@@ -1,0 +1,4 @@
+build: hg19
+protocol: refGene,cosmic70
+operation: g,f
+nastring: '.'

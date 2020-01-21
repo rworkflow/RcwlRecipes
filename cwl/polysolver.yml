@@ -1,0 +1,5 @@
+race: Unknown
+includeFreq: 1
+build: hg19
+format: STDFQ
+insertCalc: 0
