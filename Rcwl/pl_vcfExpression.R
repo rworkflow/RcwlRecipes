@@ -14,20 +14,6 @@ CleanExp <- cwlParam(baseCommand = cleanExp,
                      inputs = InputParamList(p1),
                      outputs = OutputParamList(o1))
 
-p1 <- InputParam(id = "afile", type = "File",
-                 prefix = "afile=", separate = FALSE)
-o1 <- OutputParam(id = "aout", type = "File", glob = "abundance_clean.tsv")
-req <- list(class = "ShellCommandRequirement")
-CleanExp <- cwlParam(baseCommand = "printf",
-                     requirements = list(req),
-                     arguments = list(
-                         list(valueFrom = "'%s\n'"),
-                         list(valueFrom = 'library(R.utils)')),
-                     inputs = InputParamList(p1),
-                     outputs = OutputParamList(o1))
-
-
-
 p1 <- InputParam(id = "rnafqs", type = "File[]")
 p2 <- InputParam(id = "kallistoIdx", type = "File")
 p3 <- InputParam(id = "threads", type = "int", default = 16L)

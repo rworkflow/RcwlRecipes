@@ -1,11 +1,8 @@
 cwlVersion: v1.0
 class: CommandLineTool
-baseCommand: printf
-arguments:
-- valueFrom: |-
-    '%s
-    '
-- valueFrom: library(R.utils)
+baseCommand:
+- Rscript
+- cwl/vcfExpression/cleanExp.R
 inputs:
   afile:
     type: File

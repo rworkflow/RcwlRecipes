@@ -2,7 +2,7 @@ cwlVersion: v1.0
 class: CommandLineTool
 baseCommand:
 - Rscript
-- /tmp/RtmpUGQRVi/Funa97560a7c512.R
+- cwl/AnnPhaseVcf/cleanExp.R
 inputs:
   afile:
     type: File

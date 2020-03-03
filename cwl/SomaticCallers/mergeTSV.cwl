@@ -2,7 +2,7 @@ cwlVersion: v1.0
 class: CommandLineTool
 baseCommand:
 - Rscript
-- /tmp/RtmpUGQRVi/Funa9757ec4b2d5.R
+- cwl/SomaticCallers/mergeTSV.R
 inputs:
   esnv:
     type: File

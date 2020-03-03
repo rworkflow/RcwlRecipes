@@ -54,8 +54,4 @@ lapply(tl, function(p){
     pid <- sub(".R$", "", sub("^tl_", "", basename(p)))
     # dir.create(file.path("cwl", pid), recursive = TRUE, showWarnings = FALSE)
     writeCWL(get(pid), prefix = file.path("cwl", pid))
-    if(is(baseCommand(get(pid)), "function")){
-        s <- readLines(paste0("cwl/", pid, ".cwl"))
-        file.copy(sub("- ", "", grep(".R$", s, value = T)), paste0("cwl/", pid, ".R"))
-    }
 })

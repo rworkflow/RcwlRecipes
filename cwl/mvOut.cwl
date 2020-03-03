@@ -2,7 +2,8 @@ cwlVersion: v1.0
 class: CommandLineTool
 baseCommand:
 - Rscript
-- /tmp/RtmpTANr90/Fun530c383656f5.R
+- cwl/mvOut.R
+id: mvOut
 inputs:
   logFile:
     type: File

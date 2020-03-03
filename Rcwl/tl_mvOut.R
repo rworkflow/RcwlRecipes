@@ -31,5 +31,6 @@ mvout <- function(logFile){
 p1 <- InputParam(id = "logFile", type = "File", prefix = "logFile=", separate = F)
 o1 <- OutputParam(id = "OutDir", type = "Directory", glob = "output")
 mvOut <- cwlParam(baseCommand = mvout,
+                  id = "mvOut",
                   inputs = InputParamList(p1),
                   outputs = OutputParamList(o1))

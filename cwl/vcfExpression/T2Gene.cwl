@@ -2,7 +2,7 @@ cwlVersion: v1.0
 class: CommandLineTool
 baseCommand:
 - Rscript
-- /tmp/RtmpUGQRVi/Funa97570556f0f.R
+- cwl/vcfExpression/T2Gene.R
 inputs:
   kexp:
     type: File

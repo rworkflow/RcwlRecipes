@@ -2,7 +2,8 @@ cwlVersion: v1.0
 class: CommandLineTool
 baseCommand:
 - Rscript
-- /tmp/RtmpUGQRVi/Funa9753d25a45f.R
+- cwl/jdCall/mvOut.R
+id: mvOut
 inputs:
   logFile:
     type: File
