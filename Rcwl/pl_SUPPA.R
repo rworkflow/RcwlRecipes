@@ -4,6 +4,7 @@ p1c <- InputParam(id = "qcnames", type = "string")
 p2 <- InputParam(id = "gtf", type = "File")
 p3 <- InputParam(id = "group1", type = "string")
 p4 <- InputParam(id = "group2", type = "string")
+p5 <- InputParam(id = "method", type = "string", default = "empirical")
 
 #' quant merge
 #' @include tl_Rsplit.R
@@ -56,7 +57,7 @@ s5d <- Step(id = "splitExpG2", run = Rsplit,
 #' @include tl_SUPPA_diffSplice.R
 s6 <- Step(id = "diffSplice", run = SUPPA_diffSplice,
            In = list(iox = "mergeEvents/out",
-                     method = list(valueFrom = "empirical"),
+                     method = "method",
                      psi = list(source = list("splitEventsG1/outFile",
                                               "splitEventsG2/outFile"),
                                 linkMerge = "merge_flattened"),
@@ -71,7 +72,7 @@ req1 <- list(class = "MultipleInputFeatureRequirement")
 req2 <- list(class = "InlineJavascriptRequirement")
 req3 <- list(class = "StepInputExpressionRequirement")
 SUPPA <- cwlStepParam(requirements = list(req1, req2, req3),
-                      inputs = InputParamList(p1a, p1b, p1c, p2, p3, p4),
+                      inputs = InputParamList(p1a, p1b, p1c, p2, p3, p4, p5),
                       outputs = OutputParamList(o1))
 SUPPA <- SUPPA + s1 + s2 + s3 + s4 + s5a + s5b + s5c + s5d + s6
 
