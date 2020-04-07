@@ -10,7 +10,7 @@ req1 <- list(class = "DockerRequirement",
              dockerPull = "hubentu/suppa")
 req2 <- list(class = "ShellCommandRequirement")
 SUPPA_generateEvents <-
-    cwlParam(baseCommand = c("python", "/opt/SUPPA-2.3/suppa.py", "generateEvents"),
+    cwlParam(baseCommand = c("python", "/opt/SUPPA/suppa.py", "generateEvents"),
              requirements = list(req1, req2),
              inputs = InputParamList(p1, p2, p3, p4),
              outputs = OutputParamList(o1, o2))
