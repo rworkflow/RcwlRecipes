@@ -11,7 +11,7 @@ o2 <- OutputParam(id = "outLog", type = "File", glob = "*Log.final.out")
 o3 <- OutputParam(id = "outCount", type = "File", glob = "*ReadsPerGene.out.tab")
 
 req1 <- list(class = "DockerRequirement",
-             dockerPull = "hubentu/rcwl-rnaseq")
+             dockerPull = "quay.io/biocontainers/star:2.7.3a--0")
 STAR <- cwlParam(baseCommand = "STAR",
                  requirements = list(req1),
                  arguments = list("--outFilterMultimapNmax", "3",
