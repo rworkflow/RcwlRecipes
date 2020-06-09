@@ -25,7 +25,8 @@ s4 <- Step(id = "samtools_flagstat", run = samtools_flagstat,
 s5 <- Step(id = "samtools_stats", run = samtools_stats,
            In = list(bam = "ApplyBQSR/Bam"))
 
-o1 <- OutputParam(id = "rcBam", type = "File", outputSource = "samtools_index/idx")
+o1 <- OutputParam(id = "rcBam", type = "File", outputSource = "samtools_index/idx",
+                  secondaryFiles = ".bai")
 o2 <- OutputParam(id = "flagstat", type = "File",
                   outputSource = "samtools_flagstat/flagstat")
 o3 <- OutputParam(id = "stats", type = "File",
