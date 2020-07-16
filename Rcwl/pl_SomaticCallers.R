@@ -34,7 +34,7 @@ s2 <- Step(id = "MuSE", run = MuSE,
                      region = "interval",
                      dbsnp = "dbsnp",
                      vcf = list(valueFrom = "$(inputs.tbam.nameroot.split('_')[0])_MuSE.vcf")))
-#' @include pl_mantaStrelka.R
+#' @include pl_mantaStrelka.R tl_bgzip.R tl_tabix_index.R
 s3a <- Step(id = "bgzip", run = bgzip,
             In = list(ifile = "interval"))
 s3b <- Step(id = "tabixIndex", run = tabix_index,

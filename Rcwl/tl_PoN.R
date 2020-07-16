@@ -16,6 +16,6 @@ req2 <- list(class = "EnvVarRequirement",
 
 PoN <- cwlParam(baseCommand = c("gatk", "CreateSomaticPanelOfNormals"),
                 requirements = list(req1, req2),
-                arguments = list("-V"),
+                arguments = list("--min-sample-count", "1", "-V"),
                 inputs = InputParamList(p1, p2, p3, p4),
                 outputs = OutputParamList(o1))
