@@ -23,7 +23,6 @@ DropletUtils <- function(dir.name, lower=100, df=20, ...) {
 }
 
 ## write out the R function as `cwlParam`. 
-```{r}
 p1 <- InputParam(id = "dirname", type = "Directory", prefix = "dir.name=", separate = FALSE)
 p2 <- InputParam(id = "lower", type = "int", prefix = "lower=", separate = FALSE, default = 100L)
 p3 <- InputParam(id = "df", type = "int", prefix = "df=", separate = FALSE, default = 20L)
@@ -32,10 +31,3 @@ o2 <- OutputParam(id = "outsce", type = "File", glob = "*.rds")
 DropletUtils <- cwlParam(baseCommand = DropletUtils,
                       inputs = InputParamList(p1, p2, p3),
                       outputs = OutputParamList(o1, o2))
-
-
-
-
-
-
-
