@@ -124,7 +124,7 @@ s10 <- Step(id = "neusomaticPL", run = neusomatic,
 o1a <- OutputParam(id = "mutect2filterVCF", type = "File", outputSource = "Mutect2PL/filterVCF")
 o1b <- OutputParam(id = "mutect2passVCF", type = "File", outputSource = "Mutect2PL/passVCF")
 o1c <- OutputParam(id = "mutect2conTable", type = "File", outputSource = "Mutect2PL/conTable")
-o1d <- OutputParam(id = "mutect2artTable", type = "File", outputSource = "Mutect2PL/artTable")
+o1d <- OutputParam(id = "mutect2segment", type = "File", outputSource = "Mutect2PL/segment")
 o2 <- OutputParam(id = "MuSEout", type = "File", outputSource = "MuSE/outVcf")
 o3a <- OutputParam(id = "strelka2snv", type = "File", outputSource = "mantaStrelka/snvs")
 o3b <- OutputParam(id = "strelka2indel", type = "File", outputSource = "mantaStrelka/indels")
