@@ -23,6 +23,7 @@ inputs:
 outputs:
   rcBam:
     type: File
+    secondaryFiles: .bai
     outputSource: samtools_index/idx
   flagstat:
     type: File

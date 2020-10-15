@@ -1,0 +1,4 @@
+type: paired
+od: ./
+threads: 4
+tstat: 4

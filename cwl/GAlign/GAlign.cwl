@@ -1,80 +1,69 @@
 cwlVersion: v1.0
-class: Workflow
+class: CommandLineTool
+baseCommand:
+- Rscript
+- -e
+- args <- commandArgs(TRUE); splitList <- function(s)as.list(unlist(strsplit(s, split
+  = ','))); template <- args[1]; input1 <- jsonlite::fromJSON(template, simplifyVector=FALSE);
+  input1$ConvertPairedFastQsToUnmappedBamWf.readgroup_name <- splitList(args[2]);
+  input1$ConvertPairedFastQsToUnmappedBamWf.sample_name <- splitList(args[3]); input1$ConvertPairedFastQsToUnmappedBamWf.fastq_1
+  <- splitList(args[4]); input1$ConvertPairedFastQsToUnmappedBamWf.fastq_2 <- splitList(args[5]);
+  input1$ConvertPairedFastQsToUnmappedBamWf.ubam_list_name <- splitList(args[3])[[1]][1];
+  input1$ConvertPairedFastQsToUnmappedBamWf.library_name <- splitList(args[6]); input1$ConvertPairedFastQsToUnmappedBamWf.platform_unit
+  <- splitList(args[7]); input1$ConvertPairedFastQsToUnmappedBamWf.run_date <- list(rep(as.character(Sys.Date()),
+  lengths(splitList(args[2])))); input1$ConvertPairedFastQsToUnmappedBamWf.platform_name
+  <- splitList(args[8]); input1$ConvertPairedFastQsToUnmappedBamWf.sequencing_center
+  <- splitList(args[9]); cat(jsonlite::toJSON(input1, pretty = TRUE, auto_unbox =
+  T))
 inputs:
+  tmpl:
+    type: File
+    inputBinding:
+      position: 1
+      separate: true
   fastq1:
     type: string
+    inputBinding:
+      position: 4
+      separate: true
   fastq2:
     type: string
+    inputBinding:
+      position: 5
+      separate: true
   readGroup:
     type: string
+    inputBinding:
+      position: 2
+      separate: true
   sampleName:
     type: string
+    inputBinding:
+      position: 3
+      separate: true
   library:
     type: string
+    inputBinding:
+      position: 6
+      separate: true
   platunit:
     type: string
+    inputBinding:
+      position: 7
+      separate: true
   platform:
     type: string
+    inputBinding:
+      position: 8
+      separate: true
   center:
     type: string
-  tmpl1:
-    type: File
-  wdl1:
-    type: File
-  tmpl2:
-    type: File
-  wdl2:
-    type: File
-  cromwell:
-    type: File
+    inputBinding:
+      position: 9
+      separate: true
 outputs:
-  bamlog:
+  jsonOut:
     type: File
-    outputSource: align/log
-  outdir:
-    type: Directory
-    outputSource: mvOut/OutDir
-steps:
-  fqJson:
-    run: cwl/GAlign/fqJson.cwl
-    in:
-      tmpl: tmpl1
-      fastq1: fastq1
-      fastq2: fastq2
-      readGroup: readGroup
-      sampleName: sampleName
-      library: library
-      platunit: platunit
-      platform: platform
-      center: center
-    out:
-    - jsonOut
-  fq2ubam:
-    run: cwl/GAlign/fq2ubam.cwl
-    in:
-      cromwell: cromwell
-      wdl: wdl1
-      json: fqJson/jsonOut
-    out:
-    - log
-  ubam2bamJson:
-    run: cwl/GAlign/ubam2bamJson.cwl
-    in:
-      fqlog: fq2ubam/log
-      template: tmpl2
-    out:
-    - json
-  align:
-    run: cwl/GAlign/align.cwl
-    in:
-      cromwell: cromwell
-      wdl: wdl2
-      json: ubam2bamJson/json
-    out:
-    - log
-  mvOut:
-    run: cwl/GAlign/mvOut.cwl
-    in:
-      logFile: align/log
-    out:
-    - OutDir
+    outputBinding:
+      glob: tmpl1.json
+stdout: tmpl1.json
