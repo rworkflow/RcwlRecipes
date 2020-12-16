@@ -15,3 +15,6 @@ for(p in tl){
     assign(pid, cwlLoad(p))
     writeCWL(get(pid), prefix = file.path("cwl", pid))
 }
+
+meta <- RcwlPipelines:::cwlMeta(list.files("Rcwl", full.names = TRUE))
+write.csv(BM, "cwlMeta.csv")
