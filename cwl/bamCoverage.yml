@@ -1,2 +1,3 @@
 binsize: 1
-processors: 2
+processors: max
+outFormat: bigwig

@@ -8,7 +8,7 @@ DropletUtils <- function(dir.name, lower=100, df=20, ...) {
     is.cell <- e.out$FDR <= 0.01
     pdf(file = "diagnostics.pdf")
     plot(br.out$rank, br.out$total, log="xy", xlab="Rank", ylab="Total",
-         title = "Barcode Ranks")
+         main = "Barcode Ranks")
     lines(br.out$rank[o], br.out$fitted[o], col="red")
     abline(h=metadata(br.out)$knee, col="dodgerblue", lty=2)
     abline(h=metadata(br.out)$inflection, col="forestgreen", lty=2)
@@ -16,7 +16,7 @@ DropletUtils <- function(dir.name, lower=100, df=20, ...) {
            legend=c("knee", "inflection"))
     plot(e.out$Total, -e.out$LogProb, col=ifelse(is.cell, "red", "black"),
          xlab="Total UMI count", ylab="-Log Probability",
-         title = "Empty Droplets")
+         main = "Empty Droplets")
     dev.off()
     sce1 <- sce[, which(is.cell == "TRUE")]
     saveRDS(sce1, file = "sce_filtered.rds")

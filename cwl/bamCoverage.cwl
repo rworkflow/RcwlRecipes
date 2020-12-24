@@ -3,9 +3,10 @@ class: CommandLineTool
 baseCommand: bamCoverage
 requirements:
 - class: DockerRequirement
-  dockerPull: quay.io/biocontainers/deeptools:3.3.1--py_0
+  dockerPull: quay.io/biocontainers/deeptools:3.4.3--py_0
 arguments:
 - --ignoreDuplicates
+- --skipNonCoveredRegions
 inputs:
   bam:
     type: File
@@ -13,7 +14,7 @@ inputs:
     inputBinding:
       prefix: -b
       separate: true
-  bw:
+  outFile:
     type: string
     inputBinding:
       prefix: -o
@@ -25,11 +26,17 @@ inputs:
       separate: true
     default: 1
   processors:
-    type: int
+    type: string
     inputBinding:
       prefix: -p
       separate: true
-    default: 2
+    default: max
+  outFormat:
+    type: string
+    inputBinding:
+      prefix: --outFileFormat
+      separate: true
+    default: bigwig
 outputs:
   bigwig:
     type: File

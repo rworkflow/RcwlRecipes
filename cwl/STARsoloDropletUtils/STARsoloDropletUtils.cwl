@@ -1,0 +1,47 @@
+cwlVersion: v1.0
+class: Workflow
+inputs:
+  fastq_cdna:
+    type: File[]
+  fastq_cb:
+    type: File[]
+  genomeDir:
+    type: Directory
+  whiteList:
+    type: File
+  runThreadN:
+    type: int
+outputs:
+  sam:
+    type: File
+    outputSource: STARsolo/outAlign
+  Solo:
+    type: Directory
+    outputSource: STARsolo/Solo
+  sce:
+    type: File
+    outputSource: DropletUtils/outsce
+  plots:
+    type: File
+    outputSource: DropletUtils/plots
+steps:
+  STARsolo:
+    run: cwl/STARsoloDropletUtils/STARsolo.cwl
+    in:
+      readFilesIn_cdna: fastq_cdna
+      readFilesIn_cb: fastq_cb
+      genomeDir: genomeDir
+      whiteList: whiteList
+      runThreadN: runThreadN
+    out:
+    - outAlign
+    - outLog
+    - SJ
+    - Solo
+  DropletUtils:
+    run: cwl/STARsoloDropletUtils/DropletUtils.cwl
+    in:
+      dirname: STARsolo/Solo
+    out:
+    - plots
+    - outsce
