@@ -1,3 +1,4 @@
+.libPaths('/home/qhu/miniconda3/envs/r-base/lib/R/library')
 suppressPackageStartupMessages(library(R.utils))
 suppressPackageStartupMessages(library(codetools))
 args <- commandArgs(trailingOnly = TRUE, asValues = TRUE)

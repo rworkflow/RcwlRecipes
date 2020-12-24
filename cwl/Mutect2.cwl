@@ -5,7 +5,7 @@ baseCommand:
 - Mutect2
 requirements:
 - class: DockerRequirement
-  dockerPull: broadinstitute/gatk:4.1.3.0
+  dockerPull: broadinstitute/gatk:latest
 inputs:
   tbam:
     type: File
@@ -54,6 +54,12 @@ inputs:
     inputBinding:
       prefix: -O
       separate: true
+  f1r2:
+    type: string?
+    inputBinding:
+      prefix: --f1r2-tar-gz
+      separate: true
+    default: f1r2.tar.gz
 outputs:
   vout:
     type: File
@@ -62,3 +68,7 @@ outputs:
     - .stats
     outputBinding:
       glob: $(inputs.out)
+  F1r2:
+    type: File
+    outputBinding:
+      glob: $(inputs.f1r2)

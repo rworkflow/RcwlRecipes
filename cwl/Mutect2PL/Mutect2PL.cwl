@@ -31,31 +31,22 @@ inputs:
   comvcf:
     type: File
     secondaryFiles: .idx
-  artMode:
-    type:
-      type: array
-      items: string
-      inputBinding:
-        separate: true
-    default:
-    - G/T
-    - C/T
   filter:
     type: string
     default: PASS
 outputs:
   filterVCF:
     type: File
-    outputSource: FilterOBias/fout
+    outputSource: FilterMutectCalls/fout
   passVCF:
     type: File
     outputSource: bcfview/Fout
   conTable:
     type: File
-    outputSource: CalculateContamination/cout
-  artTable:
+    outputSource: CalculateContamination/Cout
+  segment:
     type: File
-    outputSource: ColSeqArtifact/aout
+    outputSource: CalculateContamination/Seg
 steps:
   Mutect2:
     run: cwl/Mutect2PL/Mutect2.cwl
@@ -74,6 +65,7 @@ steps:
         valueFrom: $(self[0]).$(self[1])
     out:
     - vout
+    - F1r2
   GetPileupSummariesT:
     run: cwl/Mutect2PL/GetPileupSummariesT.cwl
     in:
@@ -102,48 +94,39 @@ steps:
       cont:
         source:
         - tumor
-        valueFrom: $(self[0]).contamination.table
+        valueFrom: $(self).contamination.table
+      seg:
+        source:
+        - tumor
+        valueFrom: $(self).segments
     out:
-    - cout
+    - Cout
+    - Seg
+  LearnReadOrientationModel:
+    run: cwl/Mutect2PL/LearnReadOrientationModel.cwl
+    in:
+      f1r2: Mutect2/F1r2
+    out:
+    - rofile
   FilterMutectCalls:
     run: cwl/Mutect2PL/FilterMutectCalls.cwl
     in:
       vcf: Mutect2/vout
-      cont: CalculateContamination/cout
+      cont: CalculateContamination/Cout
+      seg: CalculateContamination/Seg
+      lro: LearnReadOrientationModel/rofile
       ref: Ref
       fvcf:
         source:
         - normal
         - tumor
-        valueFrom: $(self[0]).$(self[1]).ctfiltered.vcf
-    out:
-    - fout
-  ColSeqArtifact:
-    run: cwl/Mutect2PL/ColSeqArtifact.cwl
-    in:
-      bam: tbam
-      ref: Ref
-      art:
-        valueFrom: $(inputs.bam.nameroot).art
-    out:
-    - aout
-  FilterOBias:
-    run: cwl/Mutect2PL/FilterOBias.cwl
-    in:
-      vcf: FilterMutectCalls/fout
-      art: ColSeqArtifact/aout
-      mode: artMode
-      avcf:
-        source:
-        - normal
-        - tumor
-        valueFrom: $(self[0]).$(self[1]).ctfiltered.obfiltered.vcf
+        valueFrom: $(self[0]).$(self[1]).filtered.vcf
     out:
     - fout
   bcfview:
     run: cwl/Mutect2PL/bcfview.cwl
     in:
-      vcf: FilterOBias/fout
+      vcf: FilterMutectCalls/fout
       filter: filter
       fout:
         valueFrom: $(inputs.vcf.nameroot).PASS.vcf

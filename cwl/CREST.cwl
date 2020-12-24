@@ -1,50 +1,47 @@
 cwlVersion: v1.0
 class: CommandLineTool
-baseCommand:
-- gatk
-- FilterMutectCalls
+baseCommand: /opt/CREST/CREST.sh
 requirements:
 - class: DockerRequirement
-  dockerPull: broadinstitute/gatk:latest
+  dockerPull: hubentu/crest
 inputs:
-  vcf:
+  tbam:
     type: File
-    secondaryFiles:
-    - .idx
-    - .stats
+    secondaryFiles: .bai
     inputBinding:
-      prefix: -V
+      position: 1
       separate: true
-  cont:
+  gbam:
     type: File
+    secondaryFiles: .bai
     inputBinding:
-      prefix: --contamination-table
-      separate: true
-  seg:
-    type: File
-    inputBinding:
-      prefix: --tumor-segmentation
-      separate: true
-  lro:
-    type: File
-    inputBinding:
-      prefix: --ob-priors
-      separate: true
-  fvcf:
-    type: string
-    inputBinding:
-      prefix: -O
+      position: 2
       separate: true
   ref:
     type: File
-    secondaryFiles:
-    - .fai
-    - $(self.nameroot).dict
+    secondaryFiles: .fai
     inputBinding:
-      prefix: -R
+      position: 3
       separate: true
+  bit:
+    type: File
+    inputBinding:
+      position: 4
+      separate: true
+  host:
+    type: string
+    inputBinding:
+      position: 5
+      separate: true
+    default: localhost
+  port:
+    type: int
+    inputBinding:
+      position: 6
+      separate: true
+    default: 2345
 outputs:
-  fout:
+  predSV:
     type: File
     outputBinding:
-      glob: $(inputs.fvcf)
+      glob: $(inputs.tbam.basename).predSV.txt

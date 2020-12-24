@@ -13,7 +13,7 @@
 "pl_mantaStrelka","pipeline","manta+strelka",NA
 "pl_mergeBamDup","pipeline","mergeBam+markdup+samtools_index+samtools_flagstat",NA
 "pl_miRDeep2PL","pipeline","Mapper+miRDeep2",NA
-"pl_Mutect2PL","pipeline","Mutect2+GetPileupSummariesT+GetPileupSummariesN+CalculateContamination+FilterMutectCalls+ColSeqArtifact+FilterOBias+bcfview",NA
+"pl_Mutect2PL","pipeline","Mutect2+GetPileupSummariesT+GetPileupSummariesN+CalculateContamination+LearnReadOrientationModel+FilterMutectCalls+bcfview",NA
 "pl_neusomatic","pipeline","preprocess+call+postprocess",NA
 "pl_phaseVcf","pipeline","splitSample+renameGVcf+renameSVcf+combineVariants+sortVcf+ReadBackedPhasing+bgzip+tabixIndex",NA
 "pl_rnaseq_Sf","pipeline","fastqc+STAR+sortBam+samtools_index+samtools_flagstat+featureCounts+gtfToGenePred+genePredToBed+r_distribution+gCoverage",NA
@@ -49,6 +49,7 @@
 "tl_ColSeqArtifact","tool","gatk CollectSequencingArtifactMetrics","broadinstitute/gatk:latest"
 "tl_CombineGVCFs","tool","gatk CombineGVCFs","broadinstitute/gatk:latest"
 "tl_CombineVariants","tool","java -jar /usr/GenomeAnalysisTK.jar -T CombineVariants","broadinstitute/gatk3:3.8-1"
+"tl_CREST","tool","/opt/CREST/CREST.sh","hubentu/crest"
 "tl_cutadapt","tool","cutadapt","kfdrc/cutadapt"
 "tl_DepthOfCoverage","tool","java -jar /usr/GenomeAnalysisTK.jar -T DepthOfCoverage","broadinstitute/gatk3:3.8-1"
 "tl_DropletUtils","tool","R function",NA
@@ -70,6 +71,8 @@
 "tl_kallisto_index","tool","kallisto index","zlskidmore/kallisto"
 "tl_kallisto_quant","tool","kallisto quant","zlskidmore/kallisto"
 "tl_lancet","tool","/lancet-1.0.7/lancet","kfdrc/lancet:1.0.7"
+"tl_LearnReadOrientationModel","tool","gatk LearnReadOrientationModel","broadinstitute/gatk:latest"
+"tl_liftOver","tool","liftOver","biowardrobe2/ucscuserapps:v358_2"
 "tl_LoFreq","tool","lofreq somatic","andreaswilm/lofreq:v2.1.2"
 "tl_makeblastdb","tool","makeblastdb","biocontainers/blast:v2.2.31_cv2"
 "tl_manta","tool","configManta.py","cmopipeline/strelka2_manta"
@@ -80,7 +83,7 @@
 "tl_multiqc","tool","multiqc","hubentu/rcwl-rnaseq"
 "tl_MuSE","tool","MuSEv1.0rc_submission_c039ffa call","marghoob/muse:1.0rc_c"
 "tl_Mutect2_gatk3","tool","java -jar /usr/GenomeAnalysisTK.jar -T MuTect2","broadinstitute/gatk3:3.8-1"
-"tl_Mutect2","tool","gatk Mutect2","broadinstitute/gatk:4.1.3.0"
+"tl_Mutect2","tool","gatk Mutect2","broadinstitute/gatk:latest"
 "tl_mvOut","tool","R function",NA
 "tl_neusomatic_call","tool","python /opt/neusomatic/neusomatic/python/call.py","msahraeian/neusomatic"
 "tl_neusomatic_postprocess","tool","python /opt/neusomatic/neusomatic/python/postprocess.py","msahraeian/neusomatic"
@@ -91,6 +94,7 @@
 "tl_read_distribution","tool","read_distribution.py","hubentu/rcwl-rnaseq"
 "tl_ReadBackedPhasing","tool","java -jar /usr/GenomeAnalysisTK.jar -T ReadBackedPhasing","broadinstitute/gatk3:3.8-1"
 "tl_RenameSampleInVcf","tool","picard RenameSampleInVcf","quay.io/biocontainers/picard:2.21.1--0"
+"tl_ReorderSam","tool","picard ReorderSam","quay.io/biocontainers/picard:2.21.1--0"
 "tl_rMATS","tool","rmats_bam.sh","hubentu/rmats"
 "tl_Rsplit","tool","R function",NA
 "tl_runWDL","tool","java",NA

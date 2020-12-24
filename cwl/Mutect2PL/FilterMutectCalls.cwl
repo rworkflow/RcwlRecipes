@@ -20,6 +20,16 @@ inputs:
     inputBinding:
       prefix: --contamination-table
       separate: true
+  seg:
+    type: File
+    inputBinding:
+      prefix: --tumor-segmentation
+      separate: true
+  lro:
+    type: File
+    inputBinding:
+      prefix: --ob-priors
+      separate: true
   fvcf:
     type: string
     inputBinding:

@@ -22,8 +22,17 @@ inputs:
     inputBinding:
       prefix: -O
       separate: true
+  seg:
+    type: string
+    inputBinding:
+      prefix: -segments
+      separate: true
 outputs:
-  cout:
+  Cout:
     type: File
     outputBinding:
       glob: $(inputs.cont)
+  Seg:
+    type: File
+    outputBinding:
+      glob: $(inputs.seg)

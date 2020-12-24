@@ -1,38 +1,36 @@
 cwlVersion: v1.0
 class: CommandLineTool
-baseCommand:
-- gatk
-- CalculateContamination
+baseCommand: liftOver
 requirements:
 - class: DockerRequirement
-  dockerPull: broadinstitute/gatk:latest
+  dockerPull: biowardrobe2/ucscuserapps:v358_2
 inputs:
-  ttable:
+  oldFile:
     type: File
     inputBinding:
-      prefix: -I
+      position: 1
       separate: true
-  ntable:
+  chain:
     type: File
     inputBinding:
-      prefix: -matched
+      position: 2
       separate: true
-  cont:
+  newFile:
     type: string
     inputBinding:
-      prefix: -O
+      position: 3
       separate: true
-  seg:
+  unmap:
     type: string
     inputBinding:
-      prefix: -segments
+      position: 4
       separate: true
 outputs:
-  Cout:
+  outFile:
     type: File
     outputBinding:
-      glob: $(inputs.cont)
-  Seg:
+      glob: $(inputs.newFile)
+  unMap:
     type: File
     outputBinding:
-      glob: $(inputs.seg)
+      glob: $(inputs.unmap)

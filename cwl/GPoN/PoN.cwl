@@ -10,6 +10,8 @@ requirements:
   envDef:
     TILEDB_DISABLE_FILE_LOCKING: '1'
 arguments:
+- --min-sample-count
+- '1'
 - -V
 inputs:
   db:

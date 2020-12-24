@@ -1,31 +1,126 @@
 cwlVersion: v1.0
-class: CommandLineTool
-baseCommand: geneBody_coverage.py
+class: Workflow
 requirements:
-- class: DockerRequirement
-  dockerPull: hubentu/rcwl-rnaseq
+- class: ScatterFeatureRequirement
+- class: SubworkflowFeatureRequirement
+- class: StepInputExpressionRequirement
 inputs:
-  bam:
-    type: File
-    inputBinding:
-      prefix: -i
-      separate: true
-  bed:
-    type: File
-    inputBinding:
-      prefix: -r
-      separate: true
-  prefix:
+  in_seqfiles:
+    type: File[]
+  in_prefix:
     type: string
-    inputBinding:
-      prefix: -o
-      separate: true
+  in_genomeDir:
+    type: Directory
+  in_GTFfile:
+    type: File
+  in_runThreadN:
+    type: int
+    default: 1
 outputs:
-  gCovPDF:
+  out_fastqc:
+    type: File[]
+    outputSource: fastqc/QCfile
+  out_BAM:
     type: File
-    outputBinding:
-      glob: '*.geneBodyCoverage.curves.pdf'
-  gCovTXT:
+    outputSource: samtools_index/idx
+  out_Log:
     type: File
-    outputBinding:
-      glob: '*.geneBodyCoverage.txt'
+    outputSource: STAR/outLog
+  out_Count:
+    type: File
+    outputSource: STAR/outCount
+  out_stat:
+    type: File
+    outputSource: samtools_flagstat/flagstat
+  out_count:
+    type: File
+    outputSource: featureCounts/Count
+  out_distribution:
+    type: File
+    outputSource: r_distribution/distOut
+  out_gCovP:
+    type: File
+    outputSource: gCoverage/gCovPDF
+  out_gCovT:
+    type: File
+    outputSource: gCoverage/gCovTXT
+steps:
+  fastqc:
+    run: cwl/rnaseq_Sf/fastqc.cwl
+    in:
+      seqfile: in_seqfiles
+    out:
+    - QCfile
+    scatter: seqfile
+  STAR:
+    run: cwl/rnaseq_Sf/STAR.cwl
+    in:
+      prefix: in_prefix
+      genomeDir: in_genomeDir
+      sjdbGTFfile: in_GTFfile
+      readFilesIn: in_seqfiles
+      runThreadN: in_runThreadN
+    out:
+    - outBAM
+    - outLog
+    - outCount
+  sortBam:
+    run: cwl/rnaseq_Sf/sortBam.cwl
+    in:
+      bam: STAR/outBAM
+    out:
+    - sbam
+  samtools_index:
+    run: cwl/rnaseq_Sf/samtools_index.cwl
+    in:
+      bam: sortBam/sbam
+    out:
+    - idx
+  samtools_flagstat:
+    run: cwl/rnaseq_Sf/samtools_flagstat.cwl
+    in:
+      bam: sortBam/sbam
+    out:
+    - flagstat
+  featureCounts:
+    run: cwl/rnaseq_Sf/featureCounts.cwl
+    in:
+      gtf: in_GTFfile
+      bam: samtools_index/idx
+      count:
+        valueFrom: $(inputs.bam.nameroot).featureCounts.txt
+    out:
+    - Count
+  gtfToGenePred:
+    run: cwl/rnaseq_Sf/gtfToGenePred.cwl
+    in:
+      gtf: in_GTFfile
+      gPred:
+        valueFrom: $(inputs.gtf.nameroot).genePred
+    out:
+    - genePred
+  genePredToBed:
+    run: cwl/rnaseq_Sf/genePredToBed.cwl
+    in:
+      genePred: gtfToGenePred/genePred
+      Bed:
+        valueFrom: $(inputs.genePred.nameroot).bed
+    out:
+    - bed
+  r_distribution:
+    run: cwl/rnaseq_Sf/r_distribution.cwl
+    in:
+      bam: samtools_index/idx
+      bed: genePredToBed/bed
+    out:
+    - distOut
+  gCoverage:
+    run: cwl/rnaseq_Sf/gCoverage.cwl
+    in:
+      bam: samtools_index/idx
+      bed: genePredToBed/bed
+      prefix:
+        valueFrom: $(inputs.bam.nameroot)
+    out:
+    - gCovPDF
+    - gCovTXT

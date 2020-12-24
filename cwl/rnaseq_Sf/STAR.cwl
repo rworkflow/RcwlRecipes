@@ -3,7 +3,7 @@ class: CommandLineTool
 baseCommand: STAR
 requirements:
 - class: DockerRequirement
-  dockerPull: hubentu/rcwl-rnaseq
+  dockerPull: quay.io/biocontainers/star:2.7.3a--0
 arguments:
 - --outFilterMultimapNmax
 - '3'

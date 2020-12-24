@@ -17,4 +17,4 @@ for(p in tl){
 }
 
 meta <- RcwlPipelines:::cwlMeta(list.files("Rcwl", full.names = TRUE))
-write.csv(BM, "cwlMeta.csv")
+write.csv(meta, "cwlMeta.csv")
