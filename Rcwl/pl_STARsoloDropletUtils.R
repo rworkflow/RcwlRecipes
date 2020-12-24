@@ -4,7 +4,7 @@ p3 <- InputParam(id = "genomeDir", type = "Directory")
 p4 <- InputParam(id = "whiteList", type = "File")
 p5 <- InputParam(id = "runThreadN", type = "int")
 
-@include tl_STARsolo.R tl_DropletUtils.R 
+#' @include tl_STARsolo.R tl_DropletUtils.R 
 ## STARsolo
 s1 <- Step(id = "STARsolo", run = STARsolo,
            In = list(readFilesIn_cdna = "fastq_cdna", 

@@ -1,0 +1,3 @@
+outfile: event
+events: SE SS MX RI FL
+format: ioe
