@@ -31,6 +31,7 @@
 "tl_bam_readcount","tool","/usr/bin/python /usr/bin/bam_readcount_helper.py","mgibio/bam_readcount_helper-cwl:1.1.1"
 "tl_bamCoverage","tool","bamCoverage","quay.io/biocontainers/deeptools:3.4.3--py_0"
 "tl_BaseRecalibrator","tool","gatk BaseRecalibrator","broadinstitute/gatk:latest"
+"tl_bcftools_concat","tool","bcftools concat","biocontainers/bcftools:v1.5_cv3"
 "tl_bcfview","tool","bcftools view","biocontainers/bcftools:v1.5_cv3"
 "tl_BedToIntervalList","tool","picard BedToIntervalList","quay.io/biocontainers/picard:2.21.1--0"
 "tl_bedtools_genomecov","tool","bedtools genomecov","quay.io/biocontainers/bedtools:2.29.2--hc088bd4_0"
@@ -46,6 +47,7 @@
 "tl_Cat","tool","cat",NA
 "tl_cnv_facets","tool","cnv_facets.R","hubuntu/cnv_facets"
 "tl_cnvkit_batch","tool","cnvkit.py batch","etal/cnvkit"
+"tl_CollectInsertSizeMetrics","tool","picard CollectInsertSizeMetrics","quay.io/biocontainers/picard:2.21.1--0"
 "tl_ColSeqArtifact","tool","gatk CollectSequencingArtifactMetrics","broadinstitute/gatk:latest"
 "tl_CombineGVCFs","tool","gatk CombineGVCFs","broadinstitute/gatk:latest"
 "tl_CombineVariants","tool","java -jar /usr/GenomeAnalysisTK.jar -T CombineVariants","broadinstitute/gatk3:3.8-1"
