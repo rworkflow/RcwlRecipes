@@ -17,6 +17,8 @@ arguments:
 - bam1
 - --b2
 - bam2
+- --od
+- '.'
 inputs:
   bam1:
     type: File[]?
@@ -37,11 +39,6 @@ inputs:
     type: File
     inputBinding:
       prefix: --gtf
-      separate: true
-  od:
-    type: string?
-    inputBinding:
-      prefix: --od
       separate: true
   threads:
     type: int?

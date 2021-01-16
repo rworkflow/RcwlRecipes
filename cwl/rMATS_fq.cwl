@@ -17,6 +17,8 @@ arguments:
 - fq1
 - --s2
 - fq2
+- --od
+- '.'
 inputs:
   fq1:
     type: File[]?
@@ -37,11 +39,6 @@ inputs:
     type: File
     inputBinding:
       prefix: --gtf
-      separate: true
-  od:
-    type: string?
-    inputBinding:
-      prefix: --od
       separate: true
   threads:
     type: int?
