@@ -97,6 +97,8 @@
 "tl_ReadBackedPhasing","tool","java -jar /usr/GenomeAnalysisTK.jar -T ReadBackedPhasing","broadinstitute/gatk3:3.8-1"
 "tl_RenameSampleInVcf","tool","picard RenameSampleInVcf","quay.io/biocontainers/picard:2.21.1--0"
 "tl_ReorderSam","tool","picard ReorderSam","quay.io/biocontainers/picard:2.21.1--0"
+"tl_rMATS_bam","tool","","xinglab/rmats"
+"tl_rMATS_fq","tool","","xinglab/rmats"
 "tl_rMATS","tool","rmats_bam.sh","hubentu/rmats"
 "tl_Rsplit","tool","R function",NA
 "tl_runWDL","tool","java",NA
