@@ -45,7 +45,7 @@
 "tl_bwa","tool","bwa mem","biocontainers/bwa:v0.7.17-3-deb_cv1"
 "tl_CalculateContamination","tool","gatk CalculateContamination","broadinstitute/gatk:latest"
 "tl_Cat","tool","cat",NA
-"tl_cnv_facets","tool","cnv_facets.R","hubuntu/cnv_facets"
+"tl_cnv_facets","tool","cnv_facets.R","hubentu/facets"
 "tl_cnvkit_batch","tool","cnvkit.py batch","etal/cnvkit"
 "tl_CollectInsertSizeMetrics","tool","picard CollectInsertSizeMetrics","quay.io/biocontainers/picard:2.21.1--0"
 "tl_ColSeqArtifact","tool","gatk CollectSequencingArtifactMetrics","broadinstitute/gatk:latest"
@@ -111,6 +111,7 @@
 "tl_samtools_index","tool","samtools index","biocontainers/samtools:v1.7.0_cv3"
 "tl_samtools_mpileup","tool","samtools mpileup","biocontainers/samtools:v1.7.0_cv3"
 "tl_samtools_stats","tool","samtools stats","biocontainers/samtools:v1.7.0_cv3"
+"tl_samtools_view","tool","samtools view","biocontainers/samtools:1.11--h6270b1f_0"
 "tl_SomaticSeq_Wrapper","tool","/opt/somaticseq/SomaticSeq.Wrapper.sh","lethalfang/somaticseq:2.7.2"
 "tl_SomaticSniper","tool","/opt/somatic-sniper/build/bin/bam-somaticsniper","lethalfang/somaticsniper:1.0.5.0-2"
 "tl_sortBam","tool","samtools sort","biocontainers/samtools:v1.7.0_cv3"

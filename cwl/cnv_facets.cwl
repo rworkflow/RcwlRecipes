@@ -3,7 +3,7 @@ class: CommandLineTool
 baseCommand: cnv_facets.R
 requirements:
 - class: DockerRequirement
-  dockerPull: hubuntu/cnv_facets
+  dockerPull: hubentu/facets
 inputs:
   tbam:
     type: File?
@@ -34,12 +34,12 @@ inputs:
       prefix: -o
       separate: true
   build:
-    type: string
+    type: string?
     inputBinding:
       prefix: -g
       separate: true
   targets:
-    type: File
+    type: File?
     inputBinding:
       prefix: -T
       separate: true

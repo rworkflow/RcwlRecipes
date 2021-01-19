@@ -1,4 +1,4 @@
-.libPaths('/Users/qi28068/homebrew/lib/R/4.0/site-library')
+.libPaths('/home/qhu/miniconda3/envs/r-base/lib/R/library')
 suppressPackageStartupMessages(library(R.utils))
 suppressPackageStartupMessages(library(codetools))
 args <- commandArgs(trailingOnly = TRUE, asValues = TRUE)

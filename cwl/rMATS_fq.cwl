@@ -21,9 +21,9 @@ arguments:
 - '.'
 inputs:
   fq1:
-    type: File[]?
+    type: string
   fq2:
-    type: File[]?
+    type: string
   type:
     type: string
     inputBinding:
@@ -57,6 +57,11 @@ inputs:
       prefix: --tmp
       separate: true
     default: tmp
+  bindex:
+    type: Directory
+    inputBinding:
+      prefix: --bi
+      separate: true
 outputs:
   res:
     type: File[]

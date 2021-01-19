@@ -21,9 +21,9 @@ arguments:
 - '.'
 inputs:
   bam1:
-    type: File[]?
+    type: File[]
   bam2:
-    type: File[]?
+    type: File[]
   type:
     type: string
     inputBinding:
