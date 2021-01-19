@@ -1,6 +1,6 @@
 # https://github.com/Xinglab/rmats-turbo
-p1 <- InputParam(id = "bam1", type = "File[]?", position = -1)
-p2 <- InputParam(id = "bam2", type = "File[]?", position = -1)
+p1 <- InputParam(id = "bam1", type = "File[]", position = -1)
+p2 <- InputParam(id = "bam2", type = "File[]", position = -1)
 p3 <- InputParam(id = "type", type = "string", prefix = "-t", default = "paired")
 p4 <- InputParam(id = "readLength", type = "int", prefix = "--readLength")
 p5 <- InputParam(id = "gtf", type = "File", prefix = "--gtf")
