@@ -18,7 +18,7 @@ o1 <- OutputParam(id = "vout", type = "File", glob = "$(inputs.out)",
                   secondaryFiles = c(".idx", ".stats"))
 o2 <- OutputParam(id = "F1r2", type = "File", glob = "$(inputs.f1r2)")
 req1 <- requireDocker("broadinstitute/gatk:latest")
-Mutect2 <- cwlParam(baseCommand = c("gatk", "Mutect2"),
+Mutect2 <- cwlProcess(baseCommand = c("gatk", "Mutect2"),
                     requirements = list(req1),
                     inputs = InputParamList(p1a, p1b, p2, p3, p4, p5, p6, p7, p8),
                     outputs = OutputParamList(o1, o2))

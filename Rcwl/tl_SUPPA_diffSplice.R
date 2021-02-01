@@ -9,7 +9,7 @@ o1 <- OutputParam(id = "outFile", type = "File[]", glob = "$(inputs.output)*")
 req1 <- list(class = "DockerRequirement",
              dockerPull = "hubentu/suppa")
 SUPPA_diffSplice <-
-    cwlParam(baseCommand = c("python", "/opt/SUPPA/suppa.py", "diffSplice"),
+    cwlProcess(baseCommand = c("python", "/opt/SUPPA/suppa.py", "diffSplice"),
              requirements = list(req1),
              inputs = InputParamList(p1, p2, p3, p4, p5, p6, p7),
              outputs = OutputParamList(o1))

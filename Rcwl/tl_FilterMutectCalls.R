@@ -11,7 +11,7 @@ o1 <- OutputParam(id = "fout", type = "File", glob = "$(inputs.fvcf)")
 req1 <- list(class = "DockerRequirement",
              dockerPull = "broadinstitute/gatk:latest")
 
-FilterMutectCalls <- cwlParam(baseCommand = c("gatk", "FilterMutectCalls"),
+FilterMutectCalls <- cwlProcess(baseCommand = c("gatk", "FilterMutectCalls"),
                               requirements = list(req1),
                               inputs = InputParamList(p1, p2, p3, p4, p5, p6),
                               outputs = OutputParamList(o1))

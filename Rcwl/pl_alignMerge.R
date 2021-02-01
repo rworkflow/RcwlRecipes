@@ -18,7 +18,7 @@ o4 <- OutputParam(id = "stat", type = "File", outputSource = "mergeBamDup/stat")
 
 req1 <- list(class = "SubworkflowFeatureRequirement")
 req2 <- list(class = "ScatterFeatureRequirement")
-alignMerge <- cwlStepParam(requirements = list(req1, req2),
+alignMerge <- cwlWorkflow(requirements = list(req1, req2),
                            inputs = InputParamList(p1, p2, p3, p4, p5, p6),
                            outputs = OutputParamList(o1, o2, o3, o4)
                            )

@@ -26,7 +26,7 @@ o4 <- OutputParam(id = "EnsINDEL", type = "File", glob = "Ensemble.sINDEL.tsv")
 
 req1 <- list(class = "DockerRequirement",
              dockerPull = "lethalfang/somaticseq:2.7.2")
-SomaticSeq_Wrapper <- cwlParam(baseCommand = "/opt/somaticseq/SomaticSeq.Wrapper.sh",
+SomaticSeq_Wrapper <- cwlProcess(baseCommand = "/opt/somaticseq/SomaticSeq.Wrapper.sh",
                                requirements = list(req1),
                                arguments = list("--output-dir", ".", "--gatk",
                                                 "/opt/GATK/GenomeAnalysisTK.jar"),

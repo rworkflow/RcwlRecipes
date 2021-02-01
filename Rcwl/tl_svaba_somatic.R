@@ -13,7 +13,7 @@ o5 <- OutputParam(id = "align", type = "File", glob = "*.alignments.txt.gz")
 o6 <- OutputParam(id = "vcf", type = "File[]", glob = "*.vcf")
 req1 <- list(class = "DockerRequirement",
              dockerPull = "ken01nn/svaba")
-svaba_somatic <- cwlParam(baseCommand = c("svaba", "run"),
+svaba_somatic <- cwlProcess(baseCommand = c("svaba", "run"),
                           requirements = list(req1),
                           arguments = list("-a", "somatic_run"),
                           inputs = InputParamList(p1, p2, p3, p4, p5),

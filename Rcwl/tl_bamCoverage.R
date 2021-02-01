@@ -11,7 +11,7 @@ p5 <- InputParam(id = "outFormat", type = "string",
 o1 <- OutputParam(id = "bigwig", type = "File", glob = "$(inputs.bw)")
 req1 <- list(class = "DockerRequirement",
              dockerPull = "quay.io/biocontainers/deeptools:3.4.3--py_0")
-bamCoverage <- cwlParam(baseCommand = "bamCoverage",
+bamCoverage <- cwlProcess(baseCommand = "bamCoverage",
                         requirements = list(req1),
                         arguments = list("--ignoreDuplicates",
                                          "--skipNonCoveredRegions"),

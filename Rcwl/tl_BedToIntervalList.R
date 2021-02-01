@@ -6,7 +6,7 @@ o1 <- OutputParam(id = "intval", type = "File", glob = "$(inputs.out)")
 
 req1 <- list(class = "DockerRequirement",
              dockerPull = "quay.io/biocontainers/picard:2.21.1--0")
-BedToIntervalList <- cwlParam(baseCommand = c("picard",
+BedToIntervalList <- cwlProcess(baseCommand = c("picard",
                                               "BedToIntervalList"),
                               requirements = list(req1),
                               inputs = InputParamList(p1, p2, p3),

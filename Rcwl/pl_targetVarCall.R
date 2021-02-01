@@ -23,7 +23,7 @@ o5 <- OutputParam(id = "VCF", type = "File", outputSource = "GenotypeGVCFs/vcf")
 req1 <- list(class = "SubworkflowFeatureRequirement")
 req2 <- list(class = "StepInputExpressionRequirement")
 req3 <- list(class = "InlineJavascriptRequirement")
-targetVarCall <- cwlStepParam(requirements = list(req1, req2, req3),
+targetVarCall <- cwlWorkflow(requirements = list(req1, req2, req3),
                           inputs = InputParamList(p1, p2, p3, p4, p5, p6, p7, p8, p9),
                           outputs = OutputParamList(o1, o2, o3, o4, o5))
 #' @include pl_bwaAlign.R

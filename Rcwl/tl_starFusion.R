@@ -8,7 +8,7 @@ p5 <- InputParam(id = "cpu", type = "int", prefix = "--CPU")
 o1 <- OutputParam(id = "sout", type = "Directory", glob = "$(inputs.odir)")
 req1 <- list(class = "DockerRequirement",
              dockerPull = "trinityctat/ctatfusion")
-starFusion <- cwlParam(baseCommand = "/usr/local/src/STAR-Fusion/STAR-Fusion",
+starFusion <- cwlProcess(baseCommand = "/usr/local/src/STAR-Fusion/STAR-Fusion",
                        requirements = list(req1),
                        inputs = InputParamList(p1, p2, p3, p4, p5),
                                               outputs = OutputParamList(o1))

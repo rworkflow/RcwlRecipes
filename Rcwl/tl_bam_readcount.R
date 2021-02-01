@@ -14,7 +14,7 @@ o2 <- OutputParam(id = "indel", type = "File",
 req1 <- list(class = "DockerRequirement",
              dockerPull = "mgibio/bam_readcount_helper-cwl:1.1.1")
 
-bam_readcount <- cwlParam(baseCommand = c("/usr/bin/python",
+bam_readcount <- cwlProcess(baseCommand = c("/usr/bin/python",
                                           "/usr/bin/bam_readcount_helper.py"),
                           requirements = list(req1),
                           arguments = list(

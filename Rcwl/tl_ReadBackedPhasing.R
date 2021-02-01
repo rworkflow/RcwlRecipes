@@ -8,7 +8,7 @@ p5 <- InputParam(id = "region", type = "File", prefix = "-L")
 o1 <- OutputParam(id = "oVcf", type = "File", glob = "$(inputs.ovcf)")
 req1 <- list(class = "DockerRequirement",
              dockerPull = "broadinstitute/gatk3:3.8-1")
-ReadBackedPhasing <- cwlParam(baseCommand = c("java", "-jar", "/usr/GenomeAnalysisTK.jar",
+ReadBackedPhasing <- cwlProcess(baseCommand = c("java", "-jar", "/usr/GenomeAnalysisTK.jar",
                                               "-T", "ReadBackedPhasing"),
                               requirements = list(req1),
                               inputs = InputParamList(p1, p2, p3, p4, p5),

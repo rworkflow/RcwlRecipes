@@ -51,7 +51,7 @@ o1 <- OutputParam(id = "pvcf", type = "File", outputSource = "tabixIndex/idx")
 req1 <- list(class = "InlineJavascriptRequirement")
 req2 <- list(class = "StepInputExpressionRequirement")
 req3 <- list(class = "MultipleInputFeatureRequirement")
-phaseVcf <- cwlStepParam(requirements = list(req1, req2, req3),
+phaseVcf <- cwlWorkflow(requirements = list(req1, req2, req3),
                          inputs = InputParamList(p1a, p1b, p2, p3, p4, p5, p6),
                          outputs = OutputParamList(o1))
 phaseVcf <- phaseVcf + s1 + s2a + s2b + s3 + s4 + s5 + s6 + s7

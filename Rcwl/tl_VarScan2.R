@@ -13,7 +13,7 @@ o2 <- OutputParam(id = "somVcf", type = "File", glob = "$(inputs.somvcf)")
 
 req1 <- list(class = "DockerRequirement",
              dockerPull = "serge2016/varscan:v0.1.1")
-VarScan2 <- cwlParam(baseCommand = "",
+VarScan2 <- cwlProcess(baseCommand = "",
                      requirements = list(req1),
                      arguments = list("-o", "."),
                      inputs = InputParamList(p1, p2, p3, p4, p5, p6),

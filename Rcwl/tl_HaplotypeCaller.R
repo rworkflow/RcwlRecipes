@@ -12,7 +12,7 @@ o1 <- OutputParam(id = "gvcf", type = "File", glob = "$(inputs.gout)",
                   secondaryFiles = ".idx")
 req1 <- list(class = "DockerRequirement",
              dockerPull = "broadinstitute/gatk:latest")
-HaplotypeCaller <- cwlParam(baseCommand = c("gatk", "HaplotypeCaller"),
+HaplotypeCaller <- cwlProcess(baseCommand = c("gatk", "HaplotypeCaller"),
                             requirements = list(req1),
                             inputs = InputParamList(p1, p2, p3, p4, p5, p6),
                             outputs = OutputParamList(o1))

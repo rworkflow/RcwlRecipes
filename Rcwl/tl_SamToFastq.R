@@ -7,7 +7,7 @@ o2 <- OutputParam(id = "FQ2", type = "File", glob = "$(inputs.fq2)")
 
 req1 <- list(class = "DockerRequirement",
              dockerPull = "quay.io/biocontainers/picard:2.21.1--0")
-SamToFastq <- cwlParam(baseCommand = c("picard",
+SamToFastq <- cwlProcess(baseCommand = c("picard",
                                        "SamToFastq"),
                        requirements = list(req1),
                        inputs = InputParamList(p1, p2, p3),

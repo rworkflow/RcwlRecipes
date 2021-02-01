@@ -25,7 +25,7 @@ o2 <- OutputParam(id = "Arf", type = "File", glob = "$(inputs.arf)")
 req1 <- list(class = "DockerRequirement",
              dockerPull = "hubentu/mirdeep2")
 req2 <- list(class = "InlineJavascriptRequirement")
-miRMapper <- cwlParam(baseCommand = "mapper.pl",
+miRMapper <- cwlProcess(baseCommand = "mapper.pl",
                       requirements = list(req1, req2),
                       arguments = list(
                           list(valueFrom = "-j", position = 8L),

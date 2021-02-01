@@ -20,6 +20,6 @@ o1 <- OutputParam(id = "snvs", type = "File", outputSource = "strelka/snvs")
 o2 <- OutputParam(id = "indels", type = "File", outputSource = "strelka/indels")
 o3 <- OutputParam(id = "somaticSV", type = "File", outputSource = "manta/somaticSV")
 o4 <- OutputParam(id = "diploidSV", type = "File", outputSource = "manta/diploidSV")
-mantaStrelka <- cwlStepParam(inputs = InputParamList(p1, p2, p3, p4),
+mantaStrelka <- cwlWorkflow(inputs = InputParamList(p1, p2, p3, p4),
                              outputs = OutputParamList(o1, o2, o3, o4))
 mantaStrelka <- mantaStrelka + s1 + s2

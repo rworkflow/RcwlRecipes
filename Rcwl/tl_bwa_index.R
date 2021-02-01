@@ -15,7 +15,7 @@ o1 <- OutputParam(id = "idx", type = "File",
                                      "$(inputs.Ref.basename + '.pac')",
                                      "$(inputs.Ref.basename + '.sa')") )
 
-bwa_index <- cwlParam(baseCommand = c("bwa", "index"), 
+bwa_index <- cwlProcess(baseCommand = c("bwa", "index"), 
                       requirements = list(req1, req2, req3),
                       arguments = list("-a", "bwtsw"), 
                       inputs = InputParamList(p1), 

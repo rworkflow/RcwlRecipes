@@ -7,7 +7,7 @@ o1 <- OutputParam(id = "dbout", type = "Directory", glob = "$(inputs.db)")
 req1 <- list(class = "DockerRequirement",
              dockerPull = "broadinstitute/gatk:latest")
 
-GenomicsDB <- cwlParam(baseCommand = c("gatk", "GenomicsDBImport"),
+GenomicsDB <- cwlProcess(baseCommand = c("gatk", "GenomicsDBImport"),
                        requirements = list(req1),
                        arguments = list("--merge-input-intervals"),
                        inputs = InputParamList(p1, p2, p3, p4),

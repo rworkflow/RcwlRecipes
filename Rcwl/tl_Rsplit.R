@@ -26,6 +26,6 @@ p3 <- InputParam(id = "cnames", type = "string?", prefix = "cnames=", separate =
 p4 <- InputParam(id = "outfile", type = "string", prefix = "outfile=", separate = F)
 o1 <- OutputParam(id = "outFile", type = "File", glob = "$(inputs.outfile)")
 
-Rsplit <- cwlParam(baseCommand = rsplit,
+Rsplit <- cwlProcess(baseCommand = rsplit,
                    inputs = InputParamList(p1, p2, p3, p4),
                    outputs = OutputParamList(o1))

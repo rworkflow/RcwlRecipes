@@ -14,7 +14,7 @@ req1 <- list(class = "DockerRequirement",
 req2 <- list(class = "EnvVarRequirement",
              envDef = list("TILEDB_DISABLE_FILE_LOCKING" = "1"))
 
-PoN <- cwlParam(baseCommand = c("gatk", "CreateSomaticPanelOfNormals"),
+PoN <- cwlProcess(baseCommand = c("gatk", "CreateSomaticPanelOfNormals"),
                 requirements = list(req1, req2),
                 arguments = list("--min-sample-count", "1", "-V"),
                 inputs = InputParamList(p1, p2, p3, p4),

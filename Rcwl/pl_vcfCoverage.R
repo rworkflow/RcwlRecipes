@@ -34,7 +34,7 @@ o1 <- OutputParam(id = "outvcf", type = "File",
 req1 <- list(class = "InlineJavascriptRequirement")
 req2 <- list(class = "StepInputExpressionRequirement")
 req3 <- list(class = "SubworkflowFeatureRequirement")
-vcfCoverage <- cwlStepParam(requirements = list(req1, req2, req3),
+vcfCoverage <- cwlWorkflow(requirements = list(req1, req2, req3),
                             inputs = InputParamList(p1, p2, p3, p4, p5),
                             outputs = OutputParamList(o1))
 vcfCoverage <- vcfCoverage + s1 + s2 + s3 + s4

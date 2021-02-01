@@ -12,7 +12,7 @@ o3 <- OutputParam(id = "outCount", type = "File", glob = "*ReadsPerGene.out.tab"
 
 req1 <- list(class = "DockerRequirement",
              dockerPull = "quay.io/biocontainers/star:2.7.3a--0")
-STAR <- cwlParam(baseCommand = "STAR",
+STAR <- cwlProcess(baseCommand = "STAR",
                  requirements = list(req1),
                  arguments = list("--outFilterMultimapNmax", "3",
                                   "--outSAMunmapped", "Within",

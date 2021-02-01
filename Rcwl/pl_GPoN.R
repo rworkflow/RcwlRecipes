@@ -19,6 +19,6 @@ s2 <- Step(id = "PoN", run = PoN,
 
 o1 <- OutputParam(id = "Pvcf", type = "File", outputSource = "PoN/pout")
 
-GPoN <- cwlStepParam(inputs = InputParamList(p1, p2, p3, p4, p5),
+GPoN <- cwlWorkflow(inputs = InputParamList(p1, p2, p3, p4, p5),
                      outputs = OutputParamList(o1))
 GPoN <- GPoN + s1 + s2

@@ -46,7 +46,7 @@ o8 <- OutputParam(id = "arf", type = "File", outputSource = "Mapper/Arf")
 
 req1 <- list(class = "StepInputExpressionRequirement")
 req2 <- list(class = "InlineJavascriptRequirement")
-miRDeep2PL <- cwlStepParam(
+miRDeep2PL <- cwlWorkflow(
     requirements = list(req1, req2),
     inputs = InputParamList(p1, p2, p3, p4, p5, p6, p7, p8, p9),
     outputs = OutputParamList(o1, o2, o3, o4, o5, o6, o7, o8))

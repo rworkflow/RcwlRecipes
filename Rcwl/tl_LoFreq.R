@@ -18,7 +18,7 @@ o4 <- OutputParam(id = "indeldb", type = "File",
 req1 <- list(class = "DockerRequirement",
              dockerPull = "andreaswilm/lofreq:v2.1.2")
 
-LoFreq <- cwlParam(baseCommand = c("lofreq", "somatic"),
+LoFreq <- cwlProcess(baseCommand = c("lofreq", "somatic"),
                    requirements = list(req1),
                    inputs = InputParamList(p1, p2, p3, p4, p5, p6, p7),
                    outputs= OutputParamList(o1, o2, o3, o4))

@@ -19,7 +19,7 @@ o2 <- OutputParam(id = "indels", type = "File",
 req1 <- list(class = "DockerRequirement",
              dockerPull = "cmopipeline/strelka2_manta")
 req2 <- list(class = "ShellCommandRequirement")
-strelka <- cwlParam(baseCommand = "configureStrelkaSomaticWorkflow.py",
+strelka <- cwlProcess(baseCommand = "configureStrelkaSomaticWorkflow.py",
                     requirements = list(req1, req2),
                     arguments = list(
                         "--runDir", "strelkaRunDir", "--exome",

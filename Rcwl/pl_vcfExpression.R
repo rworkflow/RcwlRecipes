@@ -10,7 +10,7 @@ cleanExp <- function(afile) {
 p1 <- InputParam(id = "afile", type = "File",
                  prefix = "afile=", separate = FALSE)
 o1 <- OutputParam(id = "aout", type = "File", glob = "abundance_clean.tsv")
-CleanExp <- cwlParam(baseCommand = cleanExp,
+CleanExp <- cwlProcess(baseCommand = cleanExp,
                      inputs = InputParamList(p1),
                      outputs = OutputParamList(o1))
 
@@ -45,7 +45,7 @@ t2gene <- function(kexp){
 tp1 <- InputParam(id = "kexp", type = "File",
                  prefix = "kexp=", separate = FALSE)
 to1 <- OutputParam(id = "gout", type = "File", glob = "abundance_gene.tsv")
-T2Gene <- cwlParam(baseCommand = t2gene,
+T2Gene <- cwlProcess(baseCommand = t2gene,
                    inputs = InputParamList(tp1),
                    outputs = OutputParamList(to1))
 
@@ -70,7 +70,7 @@ o1 <- OutputParam(id = "ExpVcf", type = "File",
                   outputSource = "tabixIndex/idx", secondaryFile = ".tbi")
 req1 <- list(class = "InlineJavascriptRequirement")
 req2 <- list(class = "StepInputExpressionRequirement")
-vcfExpression <- cwlStepParam(requirements = list(req1, req2),
+vcfExpression <- cwlWorkflow(requirements = list(req1, req2),
                               inputs = InputParamList(p1, p2, p3, p4),
                               outputs = OutputParamList(o1))
 vcfExpression <- vcfExpression + s1 + s2 + s3 + s4 + s5 + s6 + s7

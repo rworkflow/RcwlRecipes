@@ -11,7 +11,7 @@ o1 <- OutputParam(id = "oVcf", type = "File", glob = "$(inputs.ovcf)")
 
 req1 <- list(class = "DockerRequirement",
              dockerPull = "msahraeian/neusomatic")
-neusomatic_postprocess <- cwlParam(baseCommand = c("python",
+neusomatic_postprocess <- cwlProcess(baseCommand = c("python",
                                                    "/opt/neusomatic/neusomatic/python/postprocess.py"),
                                    requirements = list(req1),
                                    arguments = list("--work", "."),

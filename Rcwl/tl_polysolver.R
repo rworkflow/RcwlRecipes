@@ -18,7 +18,7 @@ o1 <- OutputParam(id = "hla", type = "File", glob = "*.hla.txt")
 req1 <- list(class = "DockerRequirement",
              dockerPull = "sachet/polysolver:v4")
 
-polysolver <- cwlParam(baseCommand = c("bash", "/home/polysolver/scripts/shell_call_hla_type"),
+polysolver <- cwlProcess(baseCommand = c("bash", "/home/polysolver/scripts/shell_call_hla_type"),
                        requirements = list(req1),
                       arguments = list(
                           list(valueFrom = "$(runtime.outdir)", position = 7L)

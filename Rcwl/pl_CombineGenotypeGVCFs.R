@@ -18,7 +18,7 @@ o1 <- OutputParam(id = "VCF", type = "File",
                   outputSource = "GenotypeGVCFs/vcf", secondaryFiles = ".idx")
 req1 <- list(class = "StepInputExpressionRequirement")
 req2 <- list(class = "InlineJavascriptRequirement")
-CombineGenotypeGVCFs <- cwlStepParam(requirements = list(req1, req2),
+CombineGenotypeGVCFs <- cwlWorkflow(requirements = list(req1, req2),
                                      inputs = InputParamList(p1, p2, p3),
                                      outputs = OutputParamList(o1))
 CombineGenotypeGVCFs <- CombineGenotypeGVCFs + s1 + s2

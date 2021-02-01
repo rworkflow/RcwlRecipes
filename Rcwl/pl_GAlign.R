@@ -28,7 +28,7 @@ p7 <- InputParam(id = "platunit", type = "string", position = 7)
 p8 <- InputParam(id = "platform", type = "string", position = 8)
 p9 <- InputParam(id = "center", type = "string", position = 9)
 o1 <- OutputParam(id = "jsonOut", type = "File", glob = "tmpl1.json")
-fq2ubamJson <- cwlParam(baseCommand = c("Rscript", "-e", rscripts),
+fq2ubamJson <- cwlProcess(baseCommand = c("Rscript", "-e", rscripts),
                    inputs = InputParamList(p1, p2, p3, p4, p5, p6, p7, p8, p9),
                    outputs = OutputParamList(o1),
                    stdout = "tmpl1.json")
@@ -51,7 +51,7 @@ rscripts <- gsub("\n", "; ", rscripts)
 p1 <- InputParam(id = "fqlog", type = "File", position = 1)
 p2 <- InputParam(id = "template", type = "File", position = 2)
 o1 <- OutputParam(id = "json", type = "File", glob = "temp2.json")
-ubam2bamJson <- cwlParam(baseCommand = c("Rscript", "-e", rscripts),
+ubam2bamJson <- cwlProcess(baseCommand = c("Rscript", "-e", rscripts),
                        inputs = InputParamList(p1, p2),
                        outputs = OutputParamList(o1),
                        stdout = "temp2.json")
@@ -73,7 +73,7 @@ p13 <- InputParam(id = "cromwell", type = "File")
 o1 <- OutputParam(id = "bamlog", type = "File", outputSource = "align/log")
 o2 <- OutputParam(id = "outdir", type = "Directory", outputSource = "mvOut/OutDir")
 
-GAlign <- cwlStepParam(inputs = InputParamList(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13),
+GAlign <- cwlWorkflow(inputs = InputParamList(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13),
                          outputs = OutputParamList(o1, o2))
 s1 <- Step(id = "fqJson", run = fq2ubamJson,
            In = list(tmpl = "tmpl1",

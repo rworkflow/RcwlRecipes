@@ -20,7 +20,7 @@ o5 <- OutputParam(id = "mirna_results", type = "Directory", glob = "mirna_result
 o6 <- OutputParam(id = "pdfs", type = "Directory", glob = "pdf*")
 req1 <- list(class = "DockerRequirement",
              dockerPull = "hubentu/mirdeep2")
-miRDeep2 <- cwlParam(baseCommand = "miRDeep2.pl",
+miRDeep2 <- cwlProcess(baseCommand = "miRDeep2.pl",
                      requirements = list(req1),
                      inputs = InputParamList(p1, p2, p3, p4, p5, p6, p7),
                      outputs = OutputParamList(o1, o2, o3, o4, o5, o6))

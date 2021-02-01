@@ -10,7 +10,7 @@ p8 <- InputParam(id = "tstat", type = "int?", position = 8, default = 4L)
 o1 <- OutputParam(id = "res", type = "File[]", glob = "*.txt")
 req1 <- list(class = "DockerRequirement",
              dockerPull = "hubentu/rmats")
-rMATS <- cwlParam(baseCommand = "rmats_bam.sh",
+rMATS <- cwlProcess(baseCommand = "rmats_bam.sh",
                   requirements = list(req1),
                   inputs = InputParamList(p1, p2, p3, p4, p5, p6, p7, p8),
                   outputs = OutputParamList(o1))

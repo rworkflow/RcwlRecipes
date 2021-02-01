@@ -12,7 +12,7 @@ o1 <- OutputParam(id = "oVcf", type = "File", glob = "$(inputs.ovcf)")
 
 req1 <- list(class = "DockerRequirement",
              dockerPull = "griffithlab/vatools:3.1.0")
-vcf_expression_annotator <- cwlParam(baseCommand = "vcf-expression-annotator",
+vcf_expression_annotator <- cwlProcess(baseCommand = "vcf-expression-annotator",
                                      requirements = list(req1),
                                      arguments = list("--ignore-transcript-version"),
                                      inputs = InputParamList(p1, p2, p3, p4, p5, p6, p7, p8),

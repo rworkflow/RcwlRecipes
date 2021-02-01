@@ -7,7 +7,7 @@ p3 <- InputParam(id = "ovcf", type = "string", prefix = "-o")
 o1 <- OutputParam(id = "oVcf", type = "File", glob = "$(inputs.ovcf)")
 req1 <- list(class = "DockerRequirement",
              dockerPull = "broadinstitute/gatk3:3.8-1")
-CombineVariants <- cwlParam(baseCommand = c("java", "-jar", "/usr/GenomeAnalysisTK.jar",
+CombineVariants <- cwlProcess(baseCommand = c("java", "-jar", "/usr/GenomeAnalysisTK.jar",
                                             "-T", "CombineVariants"),
                             requirements = list(req1),
                             arguments = list("--assumeIdenticalSamples"),

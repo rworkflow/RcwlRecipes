@@ -36,7 +36,7 @@ o1 <- OutputParam(id = "Bam", type = "File", outputSource = "sortBam/sbam")
 o2 <- OutputParam(id = "Idx", type = "File", outputSource = "idxBam/idx")
 
 ## stepParam
-bwaAlign <- cwlStepParam(inputs = InputParamList(p1, p2, p3, p4, p5),
+bwaAlign <- cwlWorkflow(inputs = InputParamList(p1, p2, p3, p4, p5),
                          outputs = OutputParamList(o1, o2))
 
 ## pipeline

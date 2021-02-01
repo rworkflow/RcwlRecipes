@@ -31,7 +31,7 @@ o3 <- OutputParam(id = "sVcf", type = "File", outputSource = "somaticFilter/outV
 
 req1 <- list(class = "StepInputExpressionRequirement")
 req2 <- list(class = "MultipleInputFeatureRequirement")
-VarScan2Somatic <- cwlStepParam(requirements = list(req1, req2),
+VarScan2Somatic <- cwlWorkflow(requirements = list(req1, req2),
                                 inputs = InputParamList(p1, p2, p3, p4),
                                 outputs = OutputParamList(o1, o2, o3))
 VarScan2Somatic <- VarScan2Somatic + s1 + s2 + s3 + s4 + s5

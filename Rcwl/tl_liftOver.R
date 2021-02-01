@@ -6,7 +6,7 @@ p4 <- InputParam(id = "unmap", type = "string", position = 4)
 o1 <- OutputParam(id = "outFile", type = "File", glob = "$(inputs.newFile)")
 o2 <- OutputParam(id = "unMap", type = "File", glob = "$(inputs.unmap)")
 req1 <- requireDocker("biowardrobe2/ucscuserapps:v358_2")
-liftOver <- cwlParam(baseCommand = "liftOver",
+liftOver <- cwlProcess(baseCommand = "liftOver",
                      requirements = list(req1),
                      inputs = InputParamList(p1, p2, p3, p4),
                      outputs = OutputParamList(o1, o2))

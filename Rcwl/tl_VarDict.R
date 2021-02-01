@@ -13,7 +13,7 @@ o1 <- OutputParam(id = "outVcf", type = "stdout")
 req1 <- list(class = "DockerRequirement",
              dockerPull = "lethalfang/vardictjava:1.5.1")
 req2 <- list(class = "ShellCommandRequirement")
-VarDict <- cwlParam(baseCommand = c("/opt/VarDict-1.5.1/bin/VarDict"),
+VarDict <- cwlProcess(baseCommand = c("/opt/VarDict-1.5.1/bin/VarDict"),
                     requirements = list(req1, req2),
                     arguments = list(
                         list(valueFrom = "-b", position = 2L),

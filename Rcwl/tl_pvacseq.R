@@ -14,7 +14,7 @@ o1 <- OutputParam(id = "Out", type = "Directory", glob = "$(inputs.outdir)")
 
 req1 <- list(class = "DockerRequirement",
              dockerPull = "griffithlab/pvactools")
-pvacseq <- cwlParam(baseCommand = c("pvacseq", "run"),
+pvacseq <- cwlProcess(baseCommand = c("pvacseq", "run"),
                     requirements = list(req1),
                     inputs = InputParamList(p1, p2, p3, p4, p5, p6, p7),
                     outputs = OutputParamList(o1))

@@ -12,7 +12,7 @@ o1 <- OutputParam(id = "Output", type = "File", glob = "$(inputs.OutFile)")
 
 req1 <- list(class = "DockerRequirement", 
              dockerPull = "biocontainers/blast:v2.2.31_cv2")
-blastn <- cwlParam(baseCommand = "blastn",
+blastn <- cwlProcess(baseCommand = "blastn",
                    requirements = list(req1),
                    inputs = InputParamList(p1, p2, p3, p4, p5, p6, p7, p8),
                    outputs = OutputParamList(o1))

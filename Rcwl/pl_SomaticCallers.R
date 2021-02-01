@@ -104,7 +104,7 @@ mergeTSV <- function(esnv, eindel){
 m1 <- InputParam(id = "esnv", type = "File", prefix = "esnv=", separate = FALSE)
 m2 <- InputParam(id = "eindel", type = "File", prefix = "eindel=", separate = FALSE)
 out1 <- OutputParam(id = "tsv", type = "File", glob = "Ensemble.sVar.tsv")
-mTSV <- cwlParam(baseCommand = mergeTSV,
+mTSV <- cwlProcess(baseCommand = mergeTSV,
                  inputs = InputParamList(m1, m2),
                  outputs = OutputParamList(out1))
 
@@ -147,7 +147,7 @@ o9 <- OutputParam(id = "neusomaticVCF", type = "File", outputSource = "neusomati
 req1 <- list(class = "InlineJavascriptRequirement")
 req2 <- list(class = "StepInputExpressionRequirement")
 req3 <- list(class = "SubworkflowFeatureRequirement")
-SomaticCallers <- cwlStepParam(requirements = list(req1, req2, req3),
+SomaticCallers <- cwlWorkflow(requirements = list(req1, req2, req3),
                                inputs = InputParamList(p1, p2, p3, p6, p7,
                                                        p8, p9, p10, p11, p12, p13),
                                outputs = OutputParamList(o1a, o1b, o1c, o1d, o2,

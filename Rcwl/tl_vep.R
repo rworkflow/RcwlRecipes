@@ -10,7 +10,7 @@ req1 <- list(class = "DockerRequirement",
 ht1 <- list("cwltool:LoadListingRequirement"=
                 list(loadListing = "no_listing"))
 ext <- list("$namespaces" = list(cwltool = "http://commonwl.org/cwltool#"))
-vep <- cwlParam(baseCommand = "vep",
+vep <- cwlProcess(baseCommand = "vep",
                 requirements = list(req1),
                 hints = ht1,
                 arguments = list("--format", "vcf", "--vcf",

@@ -12,7 +12,7 @@ o1 <- OutputParam(id = "out", type = "File", glob = "$(inputs.prefix).sample_sum
 
 req1 <- list(class = "DockerRequirement",
              dockerPull = "broadinstitute/gatk3:3.8-1")
-DepthOfCoverage <- cwlParam(baseCommand = c("java", "-jar", "/usr/GenomeAnalysisTK.jar",
+DepthOfCoverage <- cwlProcess(baseCommand = c("java", "-jar", "/usr/GenomeAnalysisTK.jar",
                                             "-T", "DepthOfCoverage"),
                             requirements = list(req1),
                             arguments = list("-omitBaseOutput"),

@@ -13,7 +13,7 @@
 
 ## p1 <- InputParam(id = "logFile", type = "File")
 ## o1 <- OutputParam(id = "OutDir", type = "Directory", glob = "output")
-## mvOut <- cwlParam(baseCommand = c("Rscript", "-e", rscripts),
+## mvOut <- cwlProcess(baseCommand = c("Rscript", "-e", rscripts),
 ##                   inputs = InputParamList(p1),
 ##                   outputs = OutputParamList(o1))
 ## #' @importFrom jsonlite fromJSON
@@ -30,7 +30,7 @@ mvout <- function(logFile){
 
 p1 <- InputParam(id = "logFile", type = "File", prefix = "logFile=", separate = F)
 o1 <- OutputParam(id = "OutDir", type = "Directory", glob = "output")
-mvOut <- cwlParam(baseCommand = mvout,
+mvOut <- cwlProcess(baseCommand = mvout,
                   id = "mvOut",
                   inputs = InputParamList(p1),
                   outputs = OutputParamList(o1))

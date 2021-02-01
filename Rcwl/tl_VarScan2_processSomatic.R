@@ -18,7 +18,7 @@ req1 <- list(class = "DockerRequirement",
 req2 <- list(class = "InitialWorkDirRequirement",
              listing = list("$(inputs.vcf)"))
 
-VarScan2_processSomatic <- cwlParam(baseCommand = c("java", "-jar",
+VarScan2_processSomatic <- cwlProcess(baseCommand = c("java", "-jar",
                                                     "/opt/varscan/VarScan.jar", "processSomatic"),
                                     requirements = list(req1, req2),
                                     inputs = InputParamList(p1),

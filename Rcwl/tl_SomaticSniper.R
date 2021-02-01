@@ -7,7 +7,7 @@ o1 <- OutputParam(id = "outVcf", type = "File", glob = "$(inputs.vcf)")
 req1 <- list(class = "DockerRequirement",
              dockerPull = "lethalfang/somaticsniper:1.0.5.0-2")
 
-SomaticSniper <- cwlParam(baseCommand = "/opt/somatic-sniper/build/bin/bam-somaticsniper",
+SomaticSniper <- cwlProcess(baseCommand = "/opt/somatic-sniper/build/bin/bam-somaticsniper",
                           requirements = list(req1),
                           arguments = list("-q", "10", "-F", "vcf"),
                           inputs = InputParamList(p1, p2 , p3, p4),

@@ -5,7 +5,7 @@ o2 <- OutputParam(id = "qcDat", type = "Directory", glob = "multiqc_data")
 req1 <- list(class = "DockerRequirement",
              dockerPull = "hubentu/rcwl-rnaseq")
 
-multiqc <- cwlParam(baseCommand = "multiqc",
+multiqc <- cwlProcess(baseCommand = "multiqc",
                     requirements = list(req1),
                     inputs = InputParamList(p1),
                     outputs = OutputParamList(o1, o2))

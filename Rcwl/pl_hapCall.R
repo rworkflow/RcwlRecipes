@@ -16,7 +16,7 @@ p1 <- InputParam(id = "bam", type = "string")
 p2 <- InputParam(id = "intervals", type = "string")
 p3 <- InputParam(id = "tmpl", type = "File")
 o1 <- OutputParam(id = "json", type = "File", glob = "tmpl3.json")
-hapJson <- cwlParam(baseCommand = c("Rscript", "-e", rscripts),
+hapJson <- cwlProcess(baseCommand = c("Rscript", "-e", rscripts),
                     inputs = InputParamList(p1, p2, p3),
                     outputs = OutputParamList(o1),
                     stdout = "tmpl3.json")
@@ -28,7 +28,7 @@ p4 <- InputParam(id = "wdl", type = "File")
 p5 <- InputParam(id = "tmpl", type = "File")
 o1 <- OutputParam(id = "hclog", type = "File", outputSource = "HC/log")
 o2 <- OutputParam(id = "outdir", type = "Directory", outputSource = "mvOut/OutDir")
-hapCall <- cwlStepParam(inputs = InputParamList(p1, p2, p3, p4, p5),
+hapCall <- cwlWorkflow(inputs = InputParamList(p1, p2, p3, p4, p5),
                         outputs = OutputParamList(o1, o2))
 s1 <- Step(id = "hapJson", run = hapJson,
            In = list(bam = "bam",

@@ -10,7 +10,7 @@ o1 <- OutputParam(id = "oVcf", type = "File", glob = "$(inputs.ovcf)")
 
 req1 <- list(class = "DockerRequirement",
              dockerPull = "griffithlab/vatools:3.1.0")
-vcf_readcount_annotator <- cwlParam(baseCommand = "vcf-readcount-annotator",
+vcf_readcount_annotator <- cwlProcess(baseCommand = "vcf-readcount-annotator",
                                     requirements = list(req1),
                                     inputs = InputParamList(p1, p2, p3, p4, p5, p6),
                                     outputs = OutputParamList(o1))

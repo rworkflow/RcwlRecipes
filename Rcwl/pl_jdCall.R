@@ -26,7 +26,7 @@ p4 <- InputParam(id = "intervals", type = "string", position = 4)
 p5 <- InputParam(id = "unpadded_intervals", type = "string", position =5)
 p6 <- InputParam(id = "tmpl", type = "File", position = 6)
 o1 <- OutputParam(id = "json", type = "File", glob = "tmpl4.json")
-jdJson <- cwlParam(baseCommand = c("Rscript", "-e", rscripts),
+jdJson <- cwlProcess(baseCommand = c("Rscript", "-e", rscripts),
                     inputs = InputParamList(p1, p2, p3, p4, p5, p6),
                     outputs = OutputParamList(o1),
                     stdout = "tmpl4.json")
@@ -35,7 +35,7 @@ p7 <- InputParam(id = "cromwell", type = "File")
 p8 <- InputParam(id = "wdl", type = "File")
 o1 <- OutputParam(id = "hclog", type = "File", outputSource = "JD/log")
 o2 <- OutputParam(id = "outdir", type = "Directory", outputSource = "mvOut/OutDir")
-jdCall <- cwlStepParam(inputs = InputParamList(p1, p2, p3, p4, p5, p6, p7, p8),
+jdCall <- cwlWorkflow(inputs = InputParamList(p1, p2, p3, p4, p5, p6, p7, p8),
                         outputs = OutputParamList(o1, o2))
 s1 <- Step(id = "jdJson", run = jdJson,
            In = list(sampleName = "sampleName",

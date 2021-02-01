@@ -14,7 +14,7 @@ o1 <- OutputParam(id = "vout", type = "File", glob = "$(inputs.out)", secondaryF
 req1 <- list(class = "DockerRequirement",
              dockerPull = "broadinstitute/gatk3:3.8-1")
 
-Mutect2_gatk3 <- cwlParam(baseCommand = c("java", "-jar", "/usr/GenomeAnalysisTK.jar",
+Mutect2_gatk3 <- cwlProcess(baseCommand = c("java", "-jar", "/usr/GenomeAnalysisTK.jar",
                                           "-T", "MuTect2"),
                           requirements = list(req1),
                           inputs = InputParamList(p1a, p1b, p2, p3, p4, p5, p6, p7),

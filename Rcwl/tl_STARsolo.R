@@ -16,7 +16,7 @@ o2 <- OutputParam(id = "outLog", type = "File[]", glob = "Log*")
 o3 <- OutputParam(id = "SJ", type = "File", glob = "SJ.out.tab")
 o4 <- OutputParam(id = "Solo", type = "Directory", glob = "Solo.out")
 
-STARsolo <- cwlParam(baseCommand = "STAR",
+STARsolo <- cwlProcess(baseCommand = "STAR",
                      requirements = list(requireDocker("quay.io/biocontainers/star:2.7.5a--0")),
                      arguments = list(## "--outSAMunmapped", "Within",
                                       "--readFilesCommand", "zcat",

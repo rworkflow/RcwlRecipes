@@ -10,7 +10,7 @@ o1 <- OutputParam(id = "pred", type = "File", glob = "pred.vcf")
 
 req1 <- list(class = "DockerRequirement",
              dockerPull = "msahraeian/neusomatic")
-neusomatic_call <- cwlParam(baseCommand = c("python",
+neusomatic_call <- cwlProcess(baseCommand = c("python",
                                             "/opt/neusomatic/neusomatic/python/call.py"),
                             requirements = list(req1),
                             arguments = list("--out", ".",

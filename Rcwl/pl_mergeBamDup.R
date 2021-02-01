@@ -15,7 +15,7 @@ o4 <- OutputParam(id = "stat", type = "File",
                   outputSource = "samtools_flagstat/flagstat")
 req1 <- list(class = "StepInputExpressionRequirement")
 req2 <- list(class = "InlineJavascriptRequirement")
-mergeBamDup <- cwlStepParam(requirements = list(req1, req2),
+mergeBamDup <- cwlWorkflow(requirements = list(req1, req2),
                             inputs = InputParamList(p1, p2),
                             outputs = OutputParamList(o1, o2, o3, o4))
 s1 <- Step(id = "mergeBam", run = mergeBam,

@@ -8,7 +8,7 @@ o1 <- OutputParam(id = "aout", type = "File",
 req1 <- list(class = "DockerRequirement",
              dockerPull = "broadinstitute/gatk:latest")
 
-ColSeqArtifact <- cwlParam(baseCommand = c("gatk",
+ColSeqArtifact <- cwlProcess(baseCommand = c("gatk",
                                            "CollectSequencingArtifactMetrics"),
                            requirements = list(req1),
                            inputs = InputParamList(p1, p2, p3, p4),

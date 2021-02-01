@@ -7,7 +7,7 @@ o1 <- OutputParam(id = "outFile", type = "File", glob = "$(inputs.outfile)")
 req1 <- list(class = "DockerRequirement",
              dockerPull = "hubentu/suppa")
 SUPPA_multipleFieldSelection <-
-    cwlParam(baseCommand = c("python", "/opt/SUPPA/multipleFieldSelection.py"),
+    cwlProcess(baseCommand = c("python", "/opt/SUPPA/multipleFieldSelection.py"),
              requirements = list(req1),
              inputs = InputParamList(p1, p2, p3, p4, p5),
              outputs = OutputParamList(o1))

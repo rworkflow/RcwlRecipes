@@ -19,7 +19,7 @@ p3 <- InputParam(id = "fq1", type = "File", prefix = "-1")
 p4 <- InputParam(id = "fq2", type = "File", prefix = "-2")
 o1 <- OutputParam(id = "sam", type = "File", glob = "*.sam")
 
-hisat2_align <- cwlParam(baseCommand = "hisat2",
+hisat2_align <- cwlProcess(baseCommand = "hisat2",
                          requirements = list(req1, req2),
                          inputs = InputParamList(p1, p2, p3, p4),
                          outputs = OutputParamList(o1),

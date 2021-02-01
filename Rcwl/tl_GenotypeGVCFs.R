@@ -8,7 +8,7 @@ o1 <- OutputParam(id = "vcf", type = "File", glob = "$(inputs.vout)",
                   secondaryFiles = ".idx")
 req1 <- list(class = "DockerRequirement",
              dockerPull = "broadinstitute/gatk:latest")
-GenotypeGVCFs <- cwlParam(baseCommand = c("gatk", "GenotypeGVCFs"),
+GenotypeGVCFs <- cwlProcess(baseCommand = c("gatk", "GenotypeGVCFs"),
                           requirements = list(req1),
                           inputs = InputParamList(p1, p2, p3),
                           outputs = OutputParamList(o1))

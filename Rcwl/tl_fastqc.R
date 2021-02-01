@@ -4,7 +4,7 @@ o1 <- OutputParam(id = "QCfile", type = "File", glob = "*.zip")
 
 req1 <- list(class = "DockerRequirement",
              dockerPull = "hubentu/rcwl-rnaseq")
-fastqc <- cwlParam(baseCommand = "fastqc",
+fastqc <- cwlProcess(baseCommand = "fastqc",
                    requirements = list(req1),
                    arguments = list("--outdir", "./"),
                    inputs = InputParamList(f1),

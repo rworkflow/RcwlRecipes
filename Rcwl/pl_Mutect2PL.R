@@ -68,7 +68,7 @@ o4 <- OutputParam(id = "segment", type = "File", outputSource = "CalculateContam
 req1 <- list(class = "InlineJavascriptRequirement")
 req2 <- list(class = "StepInputExpressionRequirement")
 req3 <- list(class = "MultipleInputFeatureRequirement")
-Mutect2PL <- cwlStepParam(requirements = list(req1, req2, req3),
+Mutect2PL <- cwlWorkflow(requirements = list(req1, req2, req3),
                           inputs = InputParamList(p1a, p1b, p2, p3, p4,
                                                   p5, p6, p7, p8, p9),
                           outputs = OutputParamList(o1, o2, o3, o4))

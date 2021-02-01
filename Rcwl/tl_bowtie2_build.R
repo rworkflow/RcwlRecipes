@@ -7,7 +7,7 @@ p1 <- InputParam(id = "ref", type = "File", position = 1)
 p2 <- InputParam(id = "outPrefix", type = "string", position = 2)
 o1 <- OutputParam(id = "idx", type = "File[]", 
                   glob = "$(inputs.outPrefix).*")
-bowtie2_build <- cwlParam(baseCommand = c("bowtie2-build"), 
+bowtie2_build <- cwlProcess(baseCommand = c("bowtie2-build"), 
                          requirements = list(req1),
                          inputs = InputParamList(p1, p2), 
                          outputs = OutputParamList(o1))

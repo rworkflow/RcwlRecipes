@@ -12,7 +12,7 @@ o1 <- OutputParam(id = "vcf", type = "stdout")
 
 req1 <- list(class = "DockerRequirement",
              dockerPull = "kfdrc/lancet:1.0.7")
-lancet <- cwlParam(baseCommand = "/lancet-1.0.7/lancet",
+lancet <- cwlProcess(baseCommand = "/lancet-1.0.7/lancet",
                    requirements = list(req1),
                    inputs = InputParamList(p1, p2, p3, p4, p5),
                    outputs = OutputParamList(o1),

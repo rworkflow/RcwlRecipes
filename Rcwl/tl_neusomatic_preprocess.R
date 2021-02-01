@@ -17,7 +17,7 @@ o2 <- OutputParam(id = "fcandidates", type = "File",
 req1 <- list(class = "DockerRequirement",
              dockerPull = "msahraeian/neusomatic")
 req2 <- list(class = "ShellCommandRequirement")
-neusomatic_preprocess <- cwlParam(baseCommand = c("python",
+neusomatic_preprocess <- cwlProcess(baseCommand = c("python",
                                                   "/opt/neusomatic/neusomatic/python/preprocess.py"),
                                   requirements = list(req1, req2),
                                   arguments = list("--mode", "call", "--work", ".",

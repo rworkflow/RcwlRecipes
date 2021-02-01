@@ -9,7 +9,7 @@ p7 <- InputParam(id = "targets", type = "File?", prefix = "-T")
 o1 <- OutputParam(id = "Out", type = "File[]", glob = "$(inputs.out)*")
 req1 <- list(class = "DockerRequirement",
              dockerPull = "hubentu/facets")
-cnv_facets <- cwlParam(baseCommand = "cnv_facets.R",
+cnv_facets <- cwlProcess(baseCommand = "cnv_facets.R",
                        requirements = list(req1),
                        inputs = InputParamList(p1, p2, p3, p4, p5, p6, p7),
                        outputs = OutputParamList(o1))

@@ -11,7 +11,7 @@ p3 <- InputParam(id = "refFasta", type = "File", prefix = "-t", position = 3)
 p4 <- InputParam(id = "outPrefix", type = "string", prefix = "-i", position = 4)
 o1 <- OutputParam(id = "out1", type = "Directory", glob = "$(inputs.outPrefix)")
 
-salmon_index <- cwlParam(baseCommand = c("salmon", "index"), 
+salmon_index <- cwlProcess(baseCommand = c("salmon", "index"), 
                              requirements = list(rep1, rep2),
                              arguments = list("--type", "quasi"),
                              inputs = InputParamList(p1, p2, p3, p4), 

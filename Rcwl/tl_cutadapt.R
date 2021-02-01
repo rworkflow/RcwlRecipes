@@ -17,7 +17,7 @@ p6 <- InputParam(id = "in2", type = "File", position = 6)
 o1 <- OutputParam(id = "out1", type = "File", glob = "$(inputs.out1prefix)")
 o2 <- OutputParam(id = "out2", type = "File", glob = "$(inputs.out2prefix)")
 
-cutadapt <- cwlParam(baseCommand = "cutadapt", 
+cutadapt <- cwlProcess(baseCommand = "cutadapt", 
                          requirements = list(req1),
                          inputs = InputParamList(p1, p2, p3, p4, p5, p6), 
                          outputs = OutputParamList(o1, o2))

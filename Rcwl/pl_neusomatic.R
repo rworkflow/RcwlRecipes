@@ -29,7 +29,7 @@ s3 <- Step(id = "postprocess", run = neusomatic_postprocess,
                      ensemble = "ensemble",
                      ovcf = "ovcf"))
 
-neusomatic <- cwlStepParam(inputs = InputParamList(p1, p2, p3, p4, p5, p6, p7),
+neusomatic <- cwlWorkflow(inputs = InputParamList(p1, p2, p3, p4, p5, p6, p7),
                            outputs = OutputParamList(o1))
 
 neusomatic <- neusomatic + s1 + s2 + s3

@@ -71,7 +71,7 @@ o1 <- OutputParam(id = "res", type = "File[]", outputSource = "diffSplice/outFil
 req1 <- list(class = "MultipleInputFeatureRequirement")
 req2 <- list(class = "InlineJavascriptRequirement")
 req3 <- list(class = "StepInputExpressionRequirement")
-SUPPA <- cwlStepParam(requirements = list(req1, req2, req3),
+SUPPA <- cwlWorkflow(requirements = list(req1, req2, req3),
                       inputs = InputParamList(p1a, p1b, p1c, p2, p3, p4, p5),
                       outputs = OutputParamList(o1))
 SUPPA <- SUPPA + s1 + s2 + s3 + s4 + s5a + s5b + s5c + s5d + s6

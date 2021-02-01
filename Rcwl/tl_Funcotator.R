@@ -10,7 +10,7 @@ o1 <- OutputParam(id = "mout", type = "File", glob = "$(inputs.maf)")
 req1 <- list(class = "DockerRequirement",
              dockerPull = "broadinstitute/gatk:latest")
 
-Funcotator <- cwlParam(baseCommand = c("gatk",
+Funcotator <- cwlProcess(baseCommand = c("gatk",
                                        "Funcotator"),
                        requirements = list(req1),
                        arguments = list("--remove-filtered-variants"),

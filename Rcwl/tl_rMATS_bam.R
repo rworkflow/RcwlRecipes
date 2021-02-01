@@ -14,7 +14,7 @@ req3 <- requireManifest("bam1", sep = ",")
 req4 <- requireManifest("bam2", sep = ",")
 req5 <- requireInitialWorkDir(listing = list(req3$listing[[1]],
                                              req4$listing[[1]]))
-rMATS_bam <- cwlParam(baseCommand = "",
+rMATS_bam <- cwlProcess(baseCommand = "",
                       requirements = list(req1, req2, req5),
                       arguments = list("--b1", "bam1", "--b2", "bam2", "--od", "."),
                       inputs = InputParamList(p1, p2, p3, p4, p5, p6, p7, p8),

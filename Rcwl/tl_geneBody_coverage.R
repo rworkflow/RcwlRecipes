@@ -6,7 +6,7 @@ o1 <- OutputParam(id = "gCovPDF", type = "File", glob = "*.geneBodyCoverage.curv
 o2 <- OutputParam(id = "gCovTXT", type = "File", glob = "*.geneBodyCoverage.txt")
 req1 <- list(class = "DockerRequirement",
              dockerPull = "hubentu/rcwl-rnaseq")
-geneBody_coverage <- cwlParam(baseCommand = c("geneBody_coverage.py"),
+geneBody_coverage <- cwlProcess(baseCommand = c("geneBody_coverage.py"),
                               requirements = list(req1),
                               inputs = InputParamList(p1, p2, p3),
                               outputs = OutputParamList(o1, o2))

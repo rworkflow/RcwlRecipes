@@ -13,7 +13,7 @@ o1 <- OutputParam(id = "Fout", type = "File", glob = "$(inputs.fout)")
 req1 <- list(class = "DockerRequirement",
              dockerPull = "biocontainers/bcftools:v1.5_cv3")
 
-bcfview <- cwlParam(baseCommand = c("bcftools", "view"),
+bcfview <- cwlProcess(baseCommand = c("bcftools", "view"),
                     requirements = list(req1),
                     inputs = InputParamList(p1, p2, p3, p4, p5, p6, p7, p8, p9),
                     outputs = OutputParamList(o1))

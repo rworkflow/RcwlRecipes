@@ -17,7 +17,7 @@ req1 <- list(class = "InlineJavascriptRequirement")
 req2 <- list(class = "DockerRequirement",
              dockerPull = "bioinfochrustrasbourg/annovar")
 
-annovar <- cwlParam(baseCommand = "table_annovar.pl",
+annovar <- cwlProcess(baseCommand = "table_annovar.pl",
                     requirements = list(req1, req2),
                     arguments = list("-vcfinput"),
                     inputs = InputParamList(p1, p2, p3, p4, p5, p6, p7),

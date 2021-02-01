@@ -6,7 +6,7 @@ o1 <- OutputParam(id = "oVcf", type = "File", glob = "$(inputs.ovcf)")
     
 req1 <- list(class = "DockerRequirement",
              dockerPull = "hubentu/vt")
-vt_decompose <- cwlParam(baseCommand = c("vt", "decompose"),
+vt_decompose <- cwlProcess(baseCommand = c("vt", "decompose"),
                          requirements = list(req1),
                          arguments = list("-s"),
                          inputs = InputParamList(p1, p2),

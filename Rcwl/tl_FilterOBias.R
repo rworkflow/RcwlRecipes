@@ -7,7 +7,7 @@ o1 <- OutputParam(id = "fout", type = "File", glob = "$(inputs.avcf)")
 req1 <- list(class = "DockerRequirement",
              dockerPull = "broadinstitute/gatk:latest")
 
-FilterOBias <- cwlParam(baseCommand = c("gatk",
+FilterOBias <- cwlProcess(baseCommand = c("gatk",
                                         "FilterByOrientationBias"),
                         requirements = list(req1),
                         inputs = InputParamList(p1, p2, p3, p4),

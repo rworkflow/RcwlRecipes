@@ -53,7 +53,7 @@ req3 <- list(class = "SubworkflowFeatureRequirement")
 ht1 <- list("cwltool:LoadListingRequirement"=
                 list(loadListing = "no_listing"))
 ext <- list("$namespaces" = list(cwltool = "http://commonwl.org/cwltool#"))
-AnnPhaseVcf <- cwlStepParam(requirements = list(req1, req2, req3),
+AnnPhaseVcf <- cwlWorkflow(requirements = list(req1, req2, req3),
                             inputs = InputParamList(p1, p2, p3, p4, p5a, p5b,
                                                     p6, p7, p8, p9, p10),
                             outputs = OutputParamList(o1, o2),

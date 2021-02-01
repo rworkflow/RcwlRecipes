@@ -20,7 +20,7 @@ o1 <- OutputParam(id = "outVcf", type = "File", glob = "$(inputs.vcf)")
 req1 <- list(class = "DockerRequirement",
              dockerPull = "marghoob/muse:1.0rc_c")
 req2 <- list(class = "ShellCommandRequirement")
-MuSE <- cwlParam(baseCommand = c("MuSEv1.0rc_submission_c039ffa", "call"),
+MuSE <- cwlProcess(baseCommand = c("MuSEv1.0rc_submission_c039ffa", "call"),
                  requirements = list(req1, req2),
                  arguments = list(
                      "-O", "output",

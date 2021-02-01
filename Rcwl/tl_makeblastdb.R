@@ -13,7 +13,7 @@ o1 <- OutputParam(id = "idx", type = "File",
                                      "$(inputs.Ref.basename + '.nin')", 
                                      "$(inputs.Ref.basename + '.nsq')"))
 
-makeblastdb <- cwlParam(baseCommand = c("makeblastdb"), 
+makeblastdb <- cwlProcess(baseCommand = c("makeblastdb"), 
                       requirements = list(req1, req2, req3),
                       arguments = list("-dbtype", "nucl"), 
                       inputs = InputParamList(p1), 

@@ -10,7 +10,7 @@ o2 <- OutputParam(id = "indel", type = "File", glob = "$(inputs.bname).indel.vcf
 req1 <- list(class = "DockerRequirement",
              dockerPull = "mgibio/varscan-cwl:v2.4.2-samtools1.3.1")
 
-VarScan2_somatic <- cwlParam(baseCommand = c("java", "-jar",
+VarScan2_somatic <- cwlProcess(baseCommand = c("java", "-jar",
                                              "/opt/varscan/VarScan.jar", "somatic"),
                              requirements = list(req1),
                              inputs = InputParamList(p1, p2, p3, p4),

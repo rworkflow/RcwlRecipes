@@ -10,7 +10,7 @@ o1 <- OutputParam(id = "outs", type = "Directory", glob = "$(inputs.outdir)")
 
 req1 <- list(class = "DockerRequirement",
              dockerPull = "timothyjamesbecker/sve")
-SVE <- cwlParam(baseCommand = "/software/SVE/scripts/auto.py",
+SVE <- cwlProcess(baseCommand = "/software/SVE/scripts/auto.py",
                 requirements = list(req1),
                 inputs = InputParamList(p1, p2, p3, p4),
                 outputs = OutputParamList(o1))

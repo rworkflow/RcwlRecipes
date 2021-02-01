@@ -12,7 +12,7 @@ o1 <- OutputParam(id = "rtable", type = "File",
 req1 <- list(class = "DockerRequirement",
              dockerPull = "broadinstitute/gatk:latest")
 
-BaseRecalibrator <- cwlParam(baseCommand = c("gatk",
+BaseRecalibrator <- cwlProcess(baseCommand = c("gatk",
                                              "BaseRecalibrator"),
                              requirements = list(req1),
                              inputs = InputParamList(p1, p2, p3, p4),

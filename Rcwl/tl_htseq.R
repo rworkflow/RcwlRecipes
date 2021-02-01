@@ -11,7 +11,7 @@ p3 <- InputParam(id = "bam", type = "File")
 p4 <- InputParam(id = "gtf", type = "File")
 o1 <- OutputParam(id = "out", type = "File", glob = "$(inputs.bam.nameroot).htseq.txt")
 
-htseq <- cwlParam(baseCommand = "htseq-count",
+htseq <- cwlProcess(baseCommand = "htseq-count",
                  requirements = list(req1),
                  arguments = list("--format", "bam",
                                   "--mode", "intersection-strict"),

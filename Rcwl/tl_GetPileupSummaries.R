@@ -7,7 +7,7 @@ o1 <- OutputParam(id = "pout", type = "File", glob = "$(inputs.pileup)")
 req1 <- list(class = "DockerRequirement",
              dockerPull = "broadinstitute/gatk:latest")
 
-GetPileupSummaries <- cwlParam(baseCommand = c("gatk", "GetPileupSummaries"),
+GetPileupSummaries <- cwlProcess(baseCommand = c("gatk", "GetPileupSummaries"),
                                requirements = list(req1),
                                inputs = InputParamList(p1, p2, p3, p4),
                                outputs = OutputParamList(o1))

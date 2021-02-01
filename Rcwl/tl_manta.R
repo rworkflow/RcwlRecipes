@@ -23,7 +23,7 @@ o4 <- OutputParam(id = "candidateSmallIndels", type = "File",
 req1 <- list(class = "DockerRequirement",
              dockerPull = "cmopipeline/strelka2_manta")
 req2 <- list(class = "ShellCommandRequirement")
-manta <- cwlParam(baseCommand = "configManta.py",
+manta <- cwlProcess(baseCommand = "configManta.py",
                   requirements = list(req1, req2),
                   arguments = list(
                       "--runDir", "mantaRunDir", "--exome",
