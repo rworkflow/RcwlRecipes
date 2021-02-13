@@ -46,7 +46,7 @@ outputs:
     outputSource: BaseRecal/stats
 steps:
   bwaAlign:
-    run: cwl/bwaMMRecal/bwaAlign.cwl
+    run: bwaAlign.cwl
     in:
       threads: threads
       RG: RG
@@ -62,7 +62,7 @@ steps:
     - FQ2
     scatterMethod: dotproduct
   mergeBamDup:
-    run: cwl/bwaMMRecal/mergeBamDup.cwl
+    run: mergeBamDup.cwl
     in:
       ibam: bwaAlign/Bam
       obam: outBam
@@ -72,7 +72,7 @@ steps:
     - Idx
     - stat
   BaseRecal:
-    run: cwl/bwaMMRecal/BaseRecal.cwl
+    run: BaseRecal.cwl
     in:
       bam: mergeBamDup/Idx
       ref: Ref

@@ -30,15 +30,15 @@ o1 <- OutputParam(id = "hclog", type = "File", outputSource = "HC/log")
 o2 <- OutputParam(id = "outdir", type = "Directory", outputSource = "mvOut/OutDir")
 hapCall <- cwlWorkflow(inputs = InputParamList(p1, p2, p3, p4, p5),
                         outputs = OutputParamList(o1, o2))
-s1 <- Step(id = "hapJson", run = hapJson,
+s1 <- cwlStep(id = "hapJson", run = hapJson,
            In = list(bam = "bam",
                      intervals = "intervals",
                      tmpl = "tmpl"))
-s2 <- Step(id = "HC", run = runWDL,
+s2 <- cwlStep(id = "HC", run = runWDL,
            In = list(cromwell = "cromwell",
                      wdl = "wdl",
                      json = "hapJson/json"))
-s3 <- Step(id = "mvOut", run = mvOut,
+s3 <- cwlStep(id = "mvOut", run = mvOut,
            In = list(logFile = "HC/log"))
 
 hapCall <- hapCall + s1 + s2 + s3

@@ -20,7 +20,7 @@ outputs:
     outputSource: mvOut/OutDir
 steps:
   hapJson:
-    run: cwl/hapCall/hapJson.cwl
+    run: hapJson.cwl
     in:
       bam: bam
       intervals: intervals
@@ -28,7 +28,7 @@ steps:
     out:
     - json
   HC:
-    run: cwl/hapCall/HC.cwl
+    run: HC.cwl
     in:
       cromwell: cromwell
       wdl: wdl
@@ -36,7 +36,7 @@ steps:
     out:
     - log
   mvOut:
-    run: cwl/hapCall/mvOut.cwl
+    run: mvOut.cwl
     in:
       logFile: HC/log
     out:

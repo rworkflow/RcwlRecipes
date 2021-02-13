@@ -37,7 +37,7 @@ outputs:
     outputSource: mergeBamDup/stat
 steps:
   bwaAlign:
-    run: cwl/alignMerge/bwaAlign.cwl
+    run: bwaAlign.cwl
     in:
       threads: threads
       RG: RG
@@ -53,7 +53,7 @@ steps:
     - FQ2
     scatterMethod: dotproduct
   mergeBamDup:
-    run: cwl/alignMerge/mergeBamDup.cwl
+    run: mergeBamDup.cwl
     in:
       ibam: bwaAlign/Bam
       obam: idBam

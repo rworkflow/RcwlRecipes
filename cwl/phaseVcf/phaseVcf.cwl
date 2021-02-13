@@ -2,7 +2,7 @@ cwlVersion: v1.0
 class: Workflow
 requirements:
 - class: InlineJavascriptRequirement
-- class: StepInputExpressionRequirement
+- class: cwlStepInputExpressionRequirement
 - class: MultipleInputFeatureRequirement
 inputs:
   gvariant:
@@ -31,7 +31,7 @@ outputs:
     outputSource: tabixIndex/idx
 steps:
   splitSample:
-    run: cwl/phaseVcf/splitSample.cwl
+    run: splitSample.cwl
     in:
       vcf: gvariant
       sample: nsample
@@ -44,7 +44,7 @@ steps:
     out:
     - Fout
   renameGVcf:
-    run: cwl/phaseVcf/renameGVcf.cwl
+    run: renameGVcf.cwl
     in:
       vcf: splitSample/Fout
       ovcf:
@@ -53,7 +53,7 @@ steps:
     out:
     - oVcf
   renameSVcf:
-    run: cwl/phaseVcf/renameSVcf.cwl
+    run: renameSVcf.cwl
     in:
       vcf: svariant
       ovcf:
@@ -62,7 +62,7 @@ steps:
     out:
     - oVcf
   combineVariants:
-    run: cwl/phaseVcf/combineVariants.cwl
+    run: combineVariants.cwl
     in:
       variants:
       - renameGVcf/oVcf
@@ -73,7 +73,7 @@ steps:
     out:
     - oVcf
   sortVcf:
-    run: cwl/phaseVcf/sortVcf.cwl
+    run: sortVcf.cwl
     in:
       vcf: combineVariants/oVcf
       ovcf:
@@ -81,7 +81,7 @@ steps:
     out:
     - oVcf
   ReadBackedPhasing:
-    run: cwl/phaseVcf/ReadBackedPhasing.cwl
+    run: ReadBackedPhasing.cwl
     in:
       vcf: sortVcf/oVcf
       bam: bam
@@ -91,13 +91,13 @@ steps:
     out:
     - oVcf
   bgzip:
-    run: cwl/phaseVcf/bgzip.cwl
+    run: bgzip.cwl
     in:
       ifile: ReadBackedPhasing/oVcf
     out:
     - zfile
   tabixIndex:
-    run: cwl/phaseVcf/tabixIndex.cwl
+    run: tabixIndex.cwl
     in:
       tfile: bgzip/zfile
       type:

@@ -2,7 +2,7 @@ cwlVersion: v1.0
 class: Workflow
 requirements:
 - class: InlineJavascriptRequirement
-- class: StepInputExpressionRequirement
+- class: cwlStepInputExpressionRequirement
 - class: SubworkflowFeatureRequirement
 hints:
   cwltool:LoadListingRequirement:
@@ -48,7 +48,7 @@ $namespaces:
   cwltool: http://commonwl.org/cwltool#
 steps:
   VCFvep:
-    run: cwl/AnnPhaseVcf/VCFvep.cwl
+    run: VCFvep.cwl
     in:
       ivcf: svcf
       ref: ref
@@ -58,7 +58,7 @@ steps:
     out:
     - oVcf
   dVCFcoverage:
-    run: cwl/AnnPhaseVcf/dVCFcoverage.cwl
+    run: dVCFcoverage.cwl
     in:
       vcf: VCFvep/oVcf
       bam: tbam
@@ -68,7 +68,7 @@ steps:
     out:
     - outvcf
   rVCFcoverage:
-    run: cwl/AnnPhaseVcf/rVCFcoverage.cwl
+    run: rVCFcoverage.cwl
     in:
       vcf: dVCFcoverage/outvcf
       bam: rbam
@@ -80,7 +80,7 @@ steps:
     out:
     - outvcf
   VCFexpression:
-    run: cwl/AnnPhaseVcf/VCFexpression.cwl
+    run: VCFexpression.cwl
     in:
       rnafqs: rnaseqs
       kallistoIdx: kallistoIdx
@@ -89,7 +89,7 @@ steps:
     out:
     - ExpVcf
   PhaseVcf:
-    run: cwl/AnnPhaseVcf/PhaseVcf.cwl
+    run: PhaseVcf.cwl
     in:
       gvariant: gvcf
       svariant: VCFexpression/ExpVcf

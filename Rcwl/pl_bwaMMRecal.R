@@ -24,7 +24,7 @@ bwaMMRecal <- cwlWorkflow(requirements = list(req1, req2),
                            inputs = InputParamList(p1, p2, p3, p4, p5, p6, p7),
                            outputs = OutputParamList(o1, o2, o3, o4))
 
-s1 <- Step(id = "bwaAlign", run = bwaAlign,
+s1 <- cwlStep(id = "bwaAlign", run = bwaAlign,
            In = list(threads = "threads",
                      RG = "RG",
                      Ref = "Ref",
@@ -33,11 +33,11 @@ s1 <- Step(id = "bwaAlign", run = bwaAlign,
            scatter = list("RG", "FQ1", "FQ2"),
            scatterMethod = "dotproduct")
 
-s2 <- Step(id = "mergeBamDup", run = mergeBamDup,
+s2 <- cwlStep(id = "mergeBamDup", run = mergeBamDup,
            In = list(ibam = "bwaAlign/Bam",
                      obam = "outBam"))
 
-s3 <- Step(id = "BaseRecal", run = BaseRecal,
+s3 <- cwlStep(id = "BaseRecal", run = BaseRecal,
            In = list(bam = "mergeBamDup/Idx",
                      ref = "Ref",
                      knowSites = "knowSites",

@@ -16,7 +16,7 @@ p12 <- InputParam(id = "filter", type = "string", default = "PASS")
 p13 <- InputParam(id = "threads", type = "int", default = 8)
 
 #' @include pl_Mutect2PL.R
-s1 <- Step(id = "Mutect2PL", run = Mutect2PL,
+s1 <- cwlStep(id = "Mutect2PL", run = Mutect2PL,
            In = list(tbam = "tbam",
                      nbam = "nbam",
                      Ref = "Ref",
@@ -27,7 +27,7 @@ s1 <- Step(id = "Mutect2PL", run = Mutect2PL,
                      interval = "interval",
                      comvcf = "comvcf"))
 #' @include tl_MuSE.R
-s2 <- Step(id = "MuSE", run = MuSE,
+s2 <- cwlStep(id = "MuSE", run = MuSE,
            In = list(tbam = "tbam",
                      nbam = "nbam",
                      ref = "Ref",
@@ -35,31 +35,31 @@ s2 <- Step(id = "MuSE", run = MuSE,
                      dbsnp = "dbsnp",
                      vcf = list(valueFrom = "$(inputs.tbam.nameroot.split('_')[0])_MuSE.vcf")))
 #' @include pl_mantaStrelka.R tl_bgzip.R tl_tabix_index.R
-s3a <- Step(id = "bgzip", run = bgzip,
+s3a <- cwlStep(id = "bgzip", run = bgzip,
             In = list(ifile = "interval"))
-s3b <- Step(id = "tabixIndex", run = tabix_index,
+s3b <- cwlStep(id = "tabixIndex", run = tabix_index,
             In = list(tfile = "bgzip/zfile",
                       type = list(valueFrom = "bed")))
-s3 <- Step(id = "mantaStrelka", run = mantaStrelka,
+s3 <- cwlStep(id = "mantaStrelka", run = mantaStrelka,
            In = list(tbam = "tbam",
                      nbam = "nbam",
                      ref = "Ref",
                      region = "tabixIndex/idx"))
 #' @include tl_SomaticSniper.R
-s4 <- Step(id = "SomaticSniper", run = SomaticSniper,
+s4 <- cwlStep(id = "SomaticSniper", run = SomaticSniper,
            In = list(tbam = "tbam",
                      nbam = "nbam",
                      ref = "Ref",
                      vcf = list(valueFrom = "$(inputs.tbam.nameroot.split('_')[0])_SomaticSniper.vcf")))
 #' @include tl_VarDict.R
-s5 <- Step(id = "VarDict", run = VarDict,
+s5 <- cwlStep(id = "VarDict", run = VarDict,
            In = list(tbam = "tbam",
                      nbam = "nbam",
                      ref = "Ref",
                      region = "interval",
                      vcf = list(valueFrom = "$(inputs.tbam.nameroot.split('_')[0])_VarDict.vcf")))
 #' @include tl_LoFreq.R
-s6 <- Step(id = "LoFreq", run = LoFreq,
+s6 <- cwlStep(id = "LoFreq", run = LoFreq,
            In = list(tbam = "tbam",
                      nbam = "nbam",
                      ref = "Ref",
@@ -68,14 +68,14 @@ s6 <- Step(id = "LoFreq", run = LoFreq,
                      threads = "threads",
                      out = list(valueFrom = "$(inputs.tbam.nameroot.split('_')[0])_LoFreq.vcf")))
 #' @include pl_VarScan2Somatic.R
-s7 <- Step(id = "VarScanPL", run = VarScan2Somatic,
+s7 <- cwlStep(id = "VarScanPL", run = VarScan2Somatic,
            In = list(tbam = "tbam",
                      nbam = "nbam",
                      ref = "Ref",
                      region = "interval"))
 
 #' @include tl_SomaticSeq_Wrapper.R
-s8 <- Step(id = "Wrapper", run = SomaticSeq_Wrapper,
+s8 <- cwlStep(id = "Wrapper", run = SomaticSeq_Wrapper,
            In = list(tbam = "tbam",
                      nbam = "nbam",
                      ref = "Ref",
@@ -108,11 +108,11 @@ mTSV <- cwlProcess(baseCommand = mergeTSV,
                  inputs = InputParamList(m1, m2),
                  outputs = OutputParamList(out1))
 
-s9 <- Step(id = "mergeTSV", run = mTSV,
+s9 <- cwlStep(id = "mergeTSV", run = mTSV,
            In = list(esnv = "Wrapper/EnsSNV",
                      eindel = "Wrapper/EnsINDEL"))
 #' @include pl_neusomatic.R
-s10 <- Step(id = "neusomaticPL", run = neusomatic,
+s10 <- cwlStep(id = "neusomaticPL", run = neusomatic,
             In = list(tbam = "tbam",
                       nbam = "nbam",
                       ref = "Ref",
@@ -145,7 +145,7 @@ o8e <- OutputParam(id = "WrapperEINDEL", type = "File", outputSource = "Wrapper/
 o9 <- OutputParam(id = "neusomaticVCF", type = "File", outputSource = "neusomaticPL/outVcf")
 
 req1 <- list(class = "InlineJavascriptRequirement")
-req2 <- list(class = "StepInputExpressionRequirement")
+req2 <- list(class = "cwlStepInputExpressionRequirement")
 req3 <- list(class = "SubworkflowFeatureRequirement")
 SomaticCallers <- cwlWorkflow(requirements = list(req1, req2, req3),
                                inputs = InputParamList(p1, p2, p3, p6, p7,

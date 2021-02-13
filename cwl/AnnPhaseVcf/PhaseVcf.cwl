@@ -2,7 +2,7 @@ cwlVersion: v1.0
 class: Workflow
 requirements:
 - class: InlineJavascriptRequirement
-- class: StepInputExpressionRequirement
+- class: cwlStepInputExpressionRequirement
 - class: MultipleInputFeatureRequirement
 inputs:
   gvariant:

@@ -2,7 +2,7 @@ cwlVersion: v1.0
 class: Workflow
 requirements:
 - class: InlineJavascriptRequirement
-- class: StepInputExpressionRequirement
+- class: cwlStepInputExpressionRequirement
 inputs:
   rnafqs:
     type: File[]
@@ -20,7 +20,7 @@ outputs:
     outputSource: tabixIndex/idx
 steps:
   kallistoQuant:
-    run: cwl/vcfExpression/kallistoQuant.cwl
+    run: kallistoQuant.cwl
     in:
       fastq: rnafqs
       index: kallistoIdx
@@ -30,13 +30,13 @@ steps:
     - tsv
     - info
   cleanExp:
-    run: cwl/vcfExpression/cleanExp.cwl
+    run: cleanExp.cwl
     in:
       afile: kallistoQuant/tsv
     out:
     - aout
   vcfExpAnn:
-    run: cwl/vcfExpression/vcfExpAnn.cwl
+    run: vcfExpAnn.cwl
     in:
       ivcf: svcf
       ovcf:
@@ -49,13 +49,13 @@ steps:
     out:
     - oVcf
   T2Gene:
-    run: cwl/vcfExpression/T2Gene.cwl
+    run: T2Gene.cwl
     in:
       kexp: kallistoQuant/tsv
     out:
     - gout
   vcfgExpAnn:
-    run: cwl/vcfExpression/vcfgExpAnn.cwl
+    run: vcfgExpAnn.cwl
     in:
       ivcf: vcfExpAnn/oVcf
       ovcf:
@@ -74,13 +74,13 @@ steps:
     out:
     - oVcf
   bgzip:
-    run: cwl/vcfExpression/bgzip.cwl
+    run: bgzip.cwl
     in:
       ifile: vcfgExpAnn/oVcf
     out:
     - zfile
   tabixIndex:
-    run: cwl/vcfExpression/tabixIndex.cwl
+    run: tabixIndex.cwl
     in:
       tfile: bgzip/zfile
       type:

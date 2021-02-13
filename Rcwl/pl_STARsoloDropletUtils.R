@@ -1,4 +1,4 @@
-p1 <- InputParam(id = "fastq_cdna", type = "File[]")  ## only "id" names will be used for "Step".
+p1 <- InputParam(id = "fastq_cdna", type = "File[]")  ## only "id" names will be used for "cwlStep".
 p2 <- InputParam(id = "fastq_cb", type = "File[]")
 p3 <- InputParam(id = "genomeDir", type = "Directory")
 p4 <- InputParam(id = "whiteList", type = "File")
@@ -6,7 +6,7 @@ p5 <- InputParam(id = "runThreadN", type = "int")
 
 #' @include tl_STARsolo.R tl_DropletUtils.R 
 ## STARsolo
-s1 <- Step(id = "STARsolo", run = STARsolo,
+s1 <- cwlStep(id = "STARsolo", run = STARsolo,
            In = list(readFilesIn_cdna = "fastq_cdna", 
                      readFilesIn_cb = "fastq_cb",
                      genomeDir = "genomeDir",
@@ -14,7 +14,7 @@ s1 <- Step(id = "STARsolo", run = STARsolo,
                      runThreadN = "runThreadN"))
 
 ## DropletUtils
-s2 <- Step(id = "DropletUtils", run = DropletUtils,
+s2 <- cwlStep(id = "DropletUtils", run = DropletUtils,
            In = list(dirname = "STARsolo/Solo"))
 
 ## outputs

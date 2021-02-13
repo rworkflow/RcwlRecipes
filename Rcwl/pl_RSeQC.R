@@ -10,23 +10,23 @@ p2 <- InputParam(id = "gtf", type = "File")
 o1 <- OutputParam(id = "distribution", type = "File", outputSource = "r_distribution/distOut")
 o2 <- OutputParam(id = "gCovP", type = "File", outputSource = "gCoverage/gCovPDF")
 o3 <- OutputParam(id = "gCovT", type = "File", outputSource = "gCoverage/gCovTXT")
-req1 <- list(class = "StepInputExpressionRequirement")
+req1 <- list(class = "cwlStepInputExpressionRequirement")
 RSeQC <- cwlWorkflow(requirements = list(req1),
                       inputs = InputParamList(p1, p2),
                       outputs = OutputParamList(o1, o2, o3))
 
-s1 <- Step(id = "gtfToGenePred", run = gtfToGenePred,
+s1 <- cwlStep(id = "gtfToGenePred", run = gtfToGenePred,
            In = list(gtf = "gtf",
                      gPred = list(valueFrom = "$(inputs.gtf.nameroot).genePred")))
 
-s2 <- Step(id = "genePredToBed", run = genePredToBed,
+s2 <- cwlStep(id = "genePredToBed", run = genePredToBed,
            In = list(genePred = "gtfToGenePred/genePred",
                      Bed = list(valueFrom = "$(inputs.genePred.nameroot).bed")))
 
-s3 <- Step(id = "r_distribution", run = read_distribution,
+s3 <- cwlStep(id = "r_distribution", run = read_distribution,
            In = list(bam = "bam",
                      bed = "genePredToBed/bed"))
-s4 <- Step(id = "gCoverage", run = geneBody_coverage,
+s4 <- cwlStep(id = "gCoverage", run = geneBody_coverage,
            In = list(bam = "bam",
                      bed = "genePredToBed/bed",
                      prefix = list(valueFrom = "$(inputs.bam.nameroot)")))

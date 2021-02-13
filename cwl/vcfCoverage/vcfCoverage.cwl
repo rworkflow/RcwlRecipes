@@ -2,7 +2,7 @@ cwlVersion: v1.0
 class: Workflow
 requirements:
 - class: InlineJavascriptRequirement
-- class: StepInputExpressionRequirement
+- class: cwlStepInputExpressionRequirement
 - class: SubworkflowFeatureRequirement
 inputs:
   vcf:
@@ -24,7 +24,7 @@ outputs:
     outputSource: readcount_annotator_indel/oVcf
 steps:
   decompose:
-    run: cwl/vcfCoverage/decompose.cwl
+    run: decompose.cwl
     in:
       ivcf: vcf
       ovcf:
@@ -32,7 +32,7 @@ steps:
     out:
     - oVcf
   readcount:
-    run: cwl/vcfCoverage/readcount.cwl
+    run: readcount.cwl
     in:
       vcf: decompose/oVcf
       sample: sample
@@ -42,7 +42,7 @@ steps:
     - snv
     - indel
   readcount_annotator_snv:
-    run: cwl/vcfCoverage/readcount_annotator_snv.cwl
+    run: readcount_annotator_snv.cwl
     in:
       ivcf: decompose/oVcf
       readcount: readcount/snv
@@ -53,7 +53,7 @@ steps:
     out:
     - oVcf
   readcount_annotator_indel:
-    run: cwl/vcfCoverage/readcount_annotator_indel.cwl
+    run: readcount_annotator_indel.cwl
     in:
       ivcf: readcount_annotator_snv/oVcf
       readcount: readcount/indel

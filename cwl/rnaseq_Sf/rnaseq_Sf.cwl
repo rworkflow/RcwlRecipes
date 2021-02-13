@@ -3,7 +3,7 @@ class: Workflow
 requirements:
 - class: ScatterFeatureRequirement
 - class: SubworkflowFeatureRequirement
-- class: StepInputExpressionRequirement
+- class: cwlStepInputExpressionRequirement
 inputs:
   in_seqfiles:
     type: File[]
@@ -46,14 +46,14 @@ outputs:
     outputSource: gCoverage/gCovTXT
 steps:
   fastqc:
-    run: cwl/rnaseq_Sf/fastqc.cwl
+    run: fastqc.cwl
     in:
       seqfile: in_seqfiles
     out:
     - QCfile
     scatter: seqfile
   STAR:
-    run: cwl/rnaseq_Sf/STAR.cwl
+    run: STAR.cwl
     in:
       prefix: in_prefix
       genomeDir: in_genomeDir
@@ -65,25 +65,25 @@ steps:
     - outLog
     - outCount
   sortBam:
-    run: cwl/rnaseq_Sf/sortBam.cwl
+    run: sortBam.cwl
     in:
       bam: STAR/outBAM
     out:
     - sbam
   samtools_index:
-    run: cwl/rnaseq_Sf/samtools_index.cwl
+    run: samtools_index.cwl
     in:
       bam: sortBam/sbam
     out:
     - idx
   samtools_flagstat:
-    run: cwl/rnaseq_Sf/samtools_flagstat.cwl
+    run: samtools_flagstat.cwl
     in:
       bam: sortBam/sbam
     out:
     - flagstat
   featureCounts:
-    run: cwl/rnaseq_Sf/featureCounts.cwl
+    run: featureCounts.cwl
     in:
       gtf: in_GTFfile
       bam: samtools_index/idx
@@ -92,7 +92,7 @@ steps:
     out:
     - Count
   gtfToGenePred:
-    run: cwl/rnaseq_Sf/gtfToGenePred.cwl
+    run: gtfToGenePred.cwl
     in:
       gtf: in_GTFfile
       gPred:
@@ -100,7 +100,7 @@ steps:
     out:
     - genePred
   genePredToBed:
-    run: cwl/rnaseq_Sf/genePredToBed.cwl
+    run: genePredToBed.cwl
     in:
       genePred: gtfToGenePred/genePred
       Bed:
@@ -108,14 +108,14 @@ steps:
     out:
     - bed
   r_distribution:
-    run: cwl/rnaseq_Sf/r_distribution.cwl
+    run: r_distribution.cwl
     in:
       bam: samtools_index/idx
       bed: genePredToBed/bed
     out:
     - distOut
   gCoverage:
-    run: cwl/rnaseq_Sf/gCoverage.cwl
+    run: gCoverage.cwl
     in:
       bam: samtools_index/idx
       bed: genePredToBed/bed

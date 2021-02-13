@@ -36,7 +36,7 @@ outputs:
     outputSource: mvOut/OutDir
 steps:
   fqJson:
-    run: cwl/GAlign/fqJson.cwl
+    run: fqJson.cwl
     in:
       tmpl: tmpl1
       fastq1: fastq1
@@ -50,7 +50,7 @@ steps:
     out:
     - jsonOut
   fq2ubam:
-    run: cwl/GAlign/fq2ubam.cwl
+    run: fq2ubam.cwl
     in:
       cromwell: cromwell
       wdl: wdl1
@@ -58,14 +58,14 @@ steps:
     out:
     - log
   ubam2bamJson:
-    run: cwl/GAlign/ubam2bamJson.cwl
+    run: ubam2bamJson.cwl
     in:
       fqlog: fq2ubam/log
       template: tmpl2
     out:
     - json
   align:
-    run: cwl/GAlign/align.cwl
+    run: align.cwl
     in:
       cromwell: cromwell
       wdl: wdl2
@@ -73,7 +73,7 @@ steps:
     out:
     - log
   mvOut:
-    run: cwl/GAlign/mvOut.cwl
+    run: mvOut.cwl
     in:
       logFile: align/log
     out:

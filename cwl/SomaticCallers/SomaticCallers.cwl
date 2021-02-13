@@ -2,7 +2,7 @@ cwlVersion: v1.0
 class: Workflow
 requirements:
 - class: InlineJavascriptRequirement
-- class: StepInputExpressionRequirement
+- class: cwlStepInputExpressionRequirement
 - class: SubworkflowFeatureRequirement
 inputs:
   tbam:
@@ -114,7 +114,7 @@ outputs:
     outputSource: neusomaticPL/outVcf
 steps:
   Mutect2PL:
-    run: cwl/SomaticCallers/Mutect2PL.cwl
+    run: Mutect2PL.cwl
     in:
       tbam: tbam
       nbam: nbam
@@ -133,7 +133,7 @@ steps:
     - conTable
     - segment
   MuSE:
-    run: cwl/SomaticCallers/MuSE.cwl
+    run: MuSE.cwl
     in:
       tbam: tbam
       nbam: nbam
@@ -145,13 +145,13 @@ steps:
     out:
     - outVcf
   bgzip:
-    run: cwl/SomaticCallers/bgzip.cwl
+    run: bgzip.cwl
     in:
       ifile: interval
     out:
     - zfile
   tabixIndex:
-    run: cwl/SomaticCallers/tabixIndex.cwl
+    run: tabixIndex.cwl
     in:
       tfile: bgzip/zfile
       type:
@@ -159,7 +159,7 @@ steps:
     out:
     - idx
   mantaStrelka:
-    run: cwl/SomaticCallers/mantaStrelka.cwl
+    run: mantaStrelka.cwl
     in:
       tbam: tbam
       nbam: nbam
@@ -171,7 +171,7 @@ steps:
     - somaticSV
     - diploidSV
   SomaticSniper:
-    run: cwl/SomaticCallers/SomaticSniper.cwl
+    run: SomaticSniper.cwl
     in:
       tbam: tbam
       nbam: nbam
@@ -181,7 +181,7 @@ steps:
     out:
     - outVcf
   VarDict:
-    run: cwl/SomaticCallers/VarDict.cwl
+    run: VarDict.cwl
     in:
       tbam: tbam
       nbam: nbam
@@ -192,7 +192,7 @@ steps:
     out:
     - outVcf
   LoFreq:
-    run: cwl/SomaticCallers/LoFreq.cwl
+    run: LoFreq.cwl
     in:
       tbam: tbam
       nbam: nbam
@@ -208,7 +208,7 @@ steps:
     - indel
     - indeldb
   VarScanPL:
-    run: cwl/SomaticCallers/VarScanPL.cwl
+    run: VarScanPL.cwl
     in:
       tbam: tbam
       nbam: nbam
@@ -219,7 +219,7 @@ steps:
     - sIndel
     - sVcf
   Wrapper:
-    run: cwl/SomaticCallers/Wrapper.cwl
+    run: Wrapper.cwl
     in:
       tbam: tbam
       nbam: nbam
@@ -242,14 +242,14 @@ steps:
     - EnsSNV
     - EnsINDEL
   mergeTSV:
-    run: cwl/SomaticCallers/mergeTSV.cwl
+    run: mergeTSV.cwl
     in:
       esnv: Wrapper/EnsSNV
       eindel: Wrapper/EnsINDEL
     out:
     - tsv
   neusomaticPL:
-    run: cwl/SomaticCallers/neusomaticPL.cwl
+    run: neusomaticPL.cwl
     in:
       tbam: tbam
       nbam: nbam

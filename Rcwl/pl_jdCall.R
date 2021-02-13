@@ -37,18 +37,18 @@ o1 <- OutputParam(id = "hclog", type = "File", outputSource = "JD/log")
 o2 <- OutputParam(id = "outdir", type = "Directory", outputSource = "mvOut/OutDir")
 jdCall <- cwlWorkflow(inputs = InputParamList(p1, p2, p3, p4, p5, p6, p7, p8),
                         outputs = OutputParamList(o1, o2))
-s1 <- Step(id = "jdJson", run = jdJson,
+s1 <- cwlStep(id = "jdJson", run = jdJson,
            In = list(sampleName = "sampleName",
                      gvcf = "gvcf",
                      callsetName = "callsetName",
                      intervals = "intervals",
                      unpadded_intervals = "unpadded_intervals",
                      tmpl = "tmpl"))
-s2 <- Step(id = "JD", run = runWDL,
+s2 <- cwlStep(id = "JD", run = runWDL,
            In = list(cromwell = "cromwell",
                      wdl = "wdl",
                      json = "jdJson/json"))
-s3 <- Step(id = "mvOut", run = mvOut,
+s3 <- cwlStep(id = "mvOut", run = mvOut,
            In = list(logFile = "JD/log"))
 
 jdCall <- jdCall + s1 + s2 + s3

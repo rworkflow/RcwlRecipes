@@ -13,7 +13,7 @@ p4 <- InputParam(id = "FQ1", type = "File")
 p5 <- InputParam(id = "FQ2", type = "File?")
 
 ## bwa
-s1 <- Step(id = "bwa", run = bwa,
+s1 <- cwlStep(id = "bwa", run = bwa,
            In = list(threads = "threads",
                      RG = "RG",
                      Ref = "Ref",
@@ -21,14 +21,14 @@ s1 <- Step(id = "bwa", run = bwa,
                      FQ2 = "FQ2"))
 
 ## sam to bam
-s2 <- Step(id = "sam2bam", run = sam2bam,
+s2 <- cwlStep(id = "sam2bam", run = sam2bam,
            In = list(sam = "bwa/sam"))
 
 ## sort bam
-s3 <- Step(id = "sortBam", run = sortBam,
+s3 <- cwlStep(id = "sortBam", run = sortBam,
            In = list(bam = "sam2bam/bam"))
 ## index bam
-s4 <- Step(id = "idxBam", run = samtools_index,
+s4 <- cwlStep(id = "idxBam", run = samtools_index,
            In = list(bam = "sortBam/sbam"))
 
 ## outputs

@@ -1,7 +1,7 @@
 cwlVersion: v1.0
 class: Workflow
 requirements:
-- class: StepInputExpressionRequirement
+- class: cwlStepInputExpressionRequirement
 - class: InlineJavascriptRequirement
 inputs:
   reads:
@@ -64,7 +64,7 @@ outputs:
     outputSource: Mapper/Arf
 steps:
   Mapper:
-    run: cwl/miRDeep2PL/Mapper.cwl
+    run: Mapper.cwl
     in:
       reads: reads
       format: format
@@ -78,7 +78,7 @@ steps:
     - pReads
     - Arf
   miRDeep2:
-    run: cwl/miRDeep2PL/miRDeep2.cwl
+    run: miRDeep2.cwl
     in:
       reads: Mapper/pReads
       genome: genome

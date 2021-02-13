@@ -25,7 +25,7 @@ outputs:
     outputSource: postprocess/oVcf
 steps:
   preprocess:
-    run: cwl/neusomatic/preprocess.cwl
+    run: preprocess.cwl
     in:
       tbam: tbam
       nbam: nbam
@@ -37,14 +37,14 @@ steps:
     - candidates
     - fcandidates
   call:
-    run: cwl/neusomatic/call.cwl
+    run: call.cwl
     in:
       candidates: preprocess/candidates
       ref: ref
     out:
     - pred
   postprocess:
-    run: cwl/neusomatic/postprocess.cwl
+    run: postprocess.cwl
     in:
       ref: ref
       tbam: tbam

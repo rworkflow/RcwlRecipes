@@ -13,31 +13,31 @@ p8 <- InputParam(id = "rnaseqs", type = "File[]")
 p9 <- InputParam(id = "kallistoIdx", type = "File")
 p10 <- InputParam(id = "threads", type = "int", default = 16L)
 #' @include tl_vep.R
-s1 <- Step(id = "VCFvep", run = vep,
+s1 <- cwlStep(id = "VCFvep", run = vep,
            In = list(ivcf = "svcf",
                      ref = "ref",
                      cacheDir = "VepDir",
                      ovcf = list(valueFrom = "$(inputs.ivcf.nameroot)_vep.vcf")))
 #' @include pl_vcfCoverage.R
-s2a <- Step(id = "dVCFcoverage", run = vcfCoverage,
+s2a <- cwlStep(id = "dVCFcoverage", run = vcfCoverage,
            In = list(vcf = "VCFvep/oVcf",
                      bam = "tbam",
                      sample = list(valueFrom = "SAMPLE"),
                      ref = "ref"))
-s2b <- Step(id = "rVCFcoverage", run = vcfCoverage,
+s2b <- cwlStep(id = "rVCFcoverage", run = vcfCoverage,
            In = list(vcf = "dVCFcoverage/outvcf",
                      bam = "rbam",
                      sample = list(valueFrom = "SAMPLE"),
                      ntype = list(valueFrom = "RNA"),
                      ref = "ref"))
 #' @include pl_vcfExpression.R
-s3 <- Step(id = "VCFexpression", run = vcfExpression,
+s3 <- cwlStep(id = "VCFexpression", run = vcfExpression,
            In = list(rnafqs = "rnaseqs",
                      kallistoIdx = "kallistoIdx",
                      svcf = "rVCFcoverage/outvcf",
                      threads = "threads"))
 #' @include pl_phaseVcf.R
-s4 <- Step(id = "PhaseVcf", run = phaseVcf,
+s4 <- cwlStep(id = "PhaseVcf", run = phaseVcf,
            In = list(gvariant = "gvcf",
                      svariant = "VCFexpression/ExpVcf",
                      bam = "tbam",
@@ -48,7 +48,7 @@ s4 <- Step(id = "PhaseVcf", run = phaseVcf,
 o1 <- OutputParam(id = "annVcf", type = "File", outputSource = "VCFexpression/ExpVcf")
 o2 <- OutputParam(id = "phasedVCF", type = "File", outputSource = "PhaseVcf/pvcf")
 req1 <- list(class = "InlineJavascriptRequirement")
-req2 <- list(class = "StepInputExpressionRequirement")
+req2 <- list(class = "cwlStepInputExpressionRequirement")
 req3 <- list(class = "SubworkflowFeatureRequirement")
 ht1 <- list("cwltool:LoadListingRequirement"=
                 list(loadListing = "no_listing"))

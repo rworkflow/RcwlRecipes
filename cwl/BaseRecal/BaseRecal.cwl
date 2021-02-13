@@ -1,7 +1,7 @@
 cwlVersion: v1.0
 class: Workflow
 requirements:
-- class: StepInputExpressionRequirement
+- class: cwlStepInputExpressionRequirement
 - class: InlineJavascriptRequirement
 inputs:
   bam:
@@ -33,7 +33,7 @@ outputs:
     outputSource: samtools_stats/stats
 steps:
   BaseRecalibrator:
-    run: cwl/BaseRecal/BaseRecalibrator.cwl
+    run: BaseRecalibrator.cwl
     in:
       bam: bam
       ref: ref
@@ -43,7 +43,7 @@ steps:
     out:
     - rtable
   ApplyBQSR:
-    run: cwl/BaseRecal/ApplyBQSR.cwl
+    run: ApplyBQSR.cwl
     in:
       bam: bam
       ref: ref
@@ -52,19 +52,19 @@ steps:
     out:
     - Bam
   samtools_index:
-    run: cwl/BaseRecal/samtools_index.cwl
+    run: samtools_index.cwl
     in:
       bam: ApplyBQSR/Bam
     out:
     - idx
   samtools_flagstat:
-    run: cwl/BaseRecal/samtools_flagstat.cwl
+    run: samtools_flagstat.cwl
     in:
       bam: ApplyBQSR/Bam
     out:
     - flagstat
   samtools_stats:
-    run: cwl/BaseRecal/samtools_stats.cwl
+    run: samtools_stats.cwl
     in:
       bam: ApplyBQSR/Bam
     out:

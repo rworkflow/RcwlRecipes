@@ -7,11 +7,11 @@ p3 <- InputParam(id = "interval", type = "File")
 p4 <- InputParam(id = "pvcf", type = "string")
 p5 <- InputParam(id = "gresource", type = "File?", secondaryFiles = ".idx")
 
-s1 <- Step(id = "GenomicsDB", run = GenomicsDB,
+s1 <- cwlStep(id = "GenomicsDB", run = GenomicsDB,
            In = list(vcf = "nvcf",
                      Ref = "Ref",
                      intervals = "interval"))
-s2 <- Step(id = "PoN", run = PoN,
+s2 <- cwlStep(id = "PoN", run = PoN,
            In = list(db = "GenomicsDB/dbout",
                      Ref = "Ref",
                      pon = "pvcf",

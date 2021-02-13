@@ -28,7 +28,7 @@ outputs:
     outputSource: manta/diploidSV
 steps:
   manta:
-    run: cwl/mantaStrelka/manta.cwl
+    run: manta.cwl
     in:
       tbam: tbam
       nbam: nbam
@@ -40,7 +40,7 @@ steps:
     - candidateSV
     - candidateSmallIndels
   strelka:
-    run: cwl/mantaStrelka/strelka.cwl
+    run: strelka.cwl
     in:
       tbam: tbam
       nbam: nbam

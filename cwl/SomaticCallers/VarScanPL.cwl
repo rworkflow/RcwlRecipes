@@ -1,7 +1,7 @@
 cwlVersion: v1.0
 class: Workflow
 requirements:
-- class: StepInputExpressionRequirement
+- class: cwlStepInputExpressionRequirement
 - class: MultipleInputFeatureRequirement
 inputs:
   tbam:

@@ -26,7 +26,7 @@ outputs:
     outputSource: PoN/pout
 steps:
   GenomicsDB:
-    run: cwl/GPoN/GenomicsDB.cwl
+    run: GenomicsDB.cwl
     in:
       vcf: nvcf
       Ref: Ref
@@ -34,7 +34,7 @@ steps:
     out:
     - dbout
   PoN:
-    run: cwl/GPoN/PoN.cwl
+    run: PoN.cwl
     in:
       db: GenomicsDB/dbout
       Ref: Ref

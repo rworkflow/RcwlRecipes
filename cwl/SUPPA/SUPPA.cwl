@@ -3,7 +3,7 @@ class: Workflow
 requirements:
 - class: MultipleInputFeatureRequirement
 - class: InlineJavascriptRequirement
-- class: StepInputExpressionRequirement
+- class: cwlStepInputExpressionRequirement
 inputs:
   quant:
     type: File[]
@@ -27,7 +27,7 @@ outputs:
     outputSource: diffSplice/outFile
 steps:
   quantMerge:
-    run: cwl/SUPPA/quantMerge.cwl
+    run: quantMerge.cwl
     in:
       files: quant
       columns: qcolumn
@@ -37,7 +37,7 @@ steps:
     out:
     - outFile
   genEvents:
-    run: cwl/SUPPA/genEvents.cwl
+    run: genEvents.cwl
     in:
       gtf: gtf
       outfile:
@@ -46,7 +46,7 @@ steps:
     - outGTF
     - outIOE
   mergeEvents:
-    run: cwl/SUPPA/mergeEvents.cwl
+    run: mergeEvents.cwl
     in:
       files: genEvents/outIOE
       outfile:
@@ -54,7 +54,7 @@ steps:
     out:
     - out
   psiPerEvent:
-    run: cwl/SUPPA/psiPerEvent.cwl
+    run: psiPerEvent.cwl
     in:
       ioe: mergeEvents/out
       exp: quantMerge/outFile
@@ -63,7 +63,7 @@ steps:
     out:
     - outFile
   splitEventsG1:
-    run: cwl/SUPPA/splitEventsG1.cwl
+    run: splitEventsG1.cwl
     in:
       files:
         source:
@@ -75,7 +75,7 @@ steps:
     out:
     - outFile
   splitEventsG2:
-    run: cwl/SUPPA/splitEventsG2.cwl
+    run: splitEventsG2.cwl
     in:
       files:
         source:
@@ -87,7 +87,7 @@ steps:
     out:
     - outFile
   splitExpG1:
-    run: cwl/SUPPA/splitExpG1.cwl
+    run: splitExpG1.cwl
     in:
       files:
         source:
@@ -99,7 +99,7 @@ steps:
     out:
     - outFile
   splitExpG2:
-    run: cwl/SUPPA/splitExpG2.cwl
+    run: splitExpG2.cwl
     in:
       files:
         source:
@@ -111,7 +111,7 @@ steps:
     out:
     - outFile
   diffSplice:
-    run: cwl/SUPPA/diffSplice.cwl
+    run: diffSplice.cwl
     in:
       iox: mergeEvents/out
       method: method

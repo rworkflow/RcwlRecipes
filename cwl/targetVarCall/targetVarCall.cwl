@@ -2,7 +2,7 @@ cwlVersion: v1.0
 class: Workflow
 requirements:
 - class: SubworkflowFeatureRequirement
-- class: StepInputExpressionRequirement
+- class: cwlStepInputExpressionRequirement
 - class: InlineJavascriptRequirement
 inputs:
   Sample:
@@ -55,7 +55,7 @@ outputs:
     outputSource: GenotypeGVCFs/vcf
 steps:
   bwaAlign:
-    run: cwl/targetVarCall/bwaAlign.cwl
+    run: bwaAlign.cwl
     in:
       threads: threads
       RG: RG
@@ -66,7 +66,7 @@ steps:
     - Bam
     - Idx
   BaseRecal:
-    run: cwl/targetVarCall/BaseRecal.cwl
+    run: BaseRecal.cwl
     in:
       bam: bwaAlign/Idx
       ref: Ref
@@ -79,7 +79,7 @@ steps:
     - flagstat
     - stats
   bedtolist:
-    run: cwl/targetVarCall/bedtolist.cwl
+    run: bedtolist.cwl
     in:
       bed: bed
       SD:
@@ -90,7 +90,7 @@ steps:
     out:
     - intval
   HaplotypeCaller:
-    run: cwl/targetVarCall/HaplotypeCaller.cwl
+    run: HaplotypeCaller.cwl
     in:
       bam: BaseRecal/rcBam
       interval: bedtolist/intval
@@ -102,7 +102,7 @@ steps:
     out:
     - gvcf
   GenotypeGVCFs:
-    run: cwl/targetVarCall/GenotypeGVCFs.cwl
+    run: GenotypeGVCFs.cwl
     in:
       variant: HaplotypeCaller/gvcf
       ref: Ref

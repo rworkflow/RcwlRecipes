@@ -75,7 +75,7 @@ o2 <- OutputParam(id = "outdir", type = "Directory", outputSource = "mvOut/OutDi
 
 GAlign <- cwlWorkflow(inputs = InputParamList(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13),
                          outputs = OutputParamList(o1, o2))
-s1 <- Step(id = "fqJson", run = fq2ubamJson,
+s1 <- cwlStep(id = "fqJson", run = fq2ubamJson,
            In = list(tmpl = "tmpl1",
                      fastq1 = "fastq1",
                      fastq2 = "fastq2",
@@ -85,18 +85,18 @@ s1 <- Step(id = "fqJson", run = fq2ubamJson,
                      platunit = "platunit",
                      platform = "platform",
                      center = "center"))
-s2 <- Step(id = "fq2ubam", run = runWDL,
+s2 <- cwlStep(id = "fq2ubam", run = runWDL,
            In = list(cromwell = "cromwell",
                      wdl = "wdl1",
                      json = "fqJson/jsonOut"))
-s3 <- Step(id = "ubam2bamJson", run = ubam2bamJson,
+s3 <- cwlStep(id = "ubam2bamJson", run = ubam2bamJson,
            In = list(fqlog = "fq2ubam/log",
                      template = "tmpl2"))
-s4 <- Step(id = "align", run = runWDL,
+s4 <- cwlStep(id = "align", run = runWDL,
            In = list(cromwell = "cromwell",
                      wdl = "wdl2",
                      json = "ubam2bamJson/json"))
-s5 <- Step(id = "mvOut", run = mvOut,
+s5 <- cwlStep(id = "mvOut", run = mvOut,
            In = list(logFile = "align/log"))
 
 GAlign <- GAlign + s1 + s2 + s3 + s4 + s5

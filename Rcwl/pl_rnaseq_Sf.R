@@ -25,21 +25,21 @@ o7 <- OutputParam(id = "out_gCovP", type = "File", outputSource = "gCoverage/gCo
 o8 <- OutputParam(id = "out_gCovT", type = "File", outputSource = "gCoverage/gCovTXT")
 req1 <- list(class = "ScatterFeatureRequirement")
 req2 <- list(class = "SubworkflowFeatureRequirement")
-req3 <- list(class = "StepInputExpressionRequirement")
+req3 <- list(class = "cwlStepInputExpressionRequirement")
 rnaseq_Sf <- cwlWorkflow(requirements = list(req1, req2, req3),
                        inputs = InputParamList(p1, p2, p3, p4, p5),
                        outputs = OutputParamList(o1, o2a, o2b, o2c, o4, o5, o6, o7, o8))
 
 ## fastqc
 #' @include tl_fastqc.R
-s1 <- Step(id = "fastqc", run = fastqc,
+s1 <- cwlStep(id = "fastqc", run = fastqc,
            In = list(seqfile = "in_seqfiles"),
            scatter = "seqfile")
 ## STAR
 #' @include tl_STAR.R
 ## fix STAR sort problem
 arguments(STAR)[[13]] <- "Unsorted"
-s2 <- Step(id = "STAR", run = STAR,
+s2 <- cwlStep(id = "STAR", run = STAR,
            In = list(prefix = "in_prefix",
                      genomeDir = "in_genomeDir",
                      sjdbGTFfile = "in_GTFfile",
@@ -47,38 +47,38 @@ s2 <- Step(id = "STAR", run = STAR,
                      runThreadN = "in_runThreadN"))
 ## samtools
 #' @include tl_sortBam.R tl_samtools_index.R tl_samtools_flagstat.R
-s3a <- Step(id = "sortBam", run = sortBam,
+s3a <- cwlStep(id = "sortBam", run = sortBam,
             In = list(bam = "STAR/outBAM"))
-s3 <- Step(id = "samtools_index", run = samtools_index,
+s3 <- cwlStep(id = "samtools_index", run = samtools_index,
            In = list(bam = "sortBam/sbam"))
-s4 <- Step(id = "samtools_flagstat", run = samtools_flagstat,
+s4 <- cwlStep(id = "samtools_flagstat", run = samtools_flagstat,
            In = list(bam = "sortBam/sbam"))
 ## featureCounts
 #' @include tl_featureCounts.R
-s5 <- Step(id = "featureCounts", run = featureCounts,
+s5 <- cwlStep(id = "featureCounts", run = featureCounts,
            In = list(gtf = "in_GTFfile",
                      bam = "samtools_index/idx",
                      count = list(valueFrom = "$(inputs.bam.nameroot).featureCounts.txt")))
 ## RSeQC
 ## #' @include pl_RSeQC.R
-## s6 <- Step(id = "RSeQC", run = RSeQC,
+## s6 <- cwlStep(id = "RSeQC", run = RSeQC,
 ##            In = list(bam = "samtools_index/idx",
 ##                      gtf = "in_GTFfile"))
 #' @include tl_gtfToGenePred.R tl_genePredToBed.R tl_read_distribution.R tl_geneBody_coverage.R
-s6a <- Step(id = "gtfToGenePred", run = gtfToGenePred,
+s6a <- cwlStep(id = "gtfToGenePred", run = gtfToGenePred,
             In = list(gtf = "in_GTFfile",
                       gPred = list(valueFrom = "$(inputs.gtf.nameroot).genePred")))
 
-s6b <- Step(id = "genePredToBed", run = genePredToBed,
+s6b <- cwlStep(id = "genePredToBed", run = genePredToBed,
             In = list(genePred = "gtfToGenePred/genePred",
                       Bed = list(valueFrom = "$(inputs.genePred.nameroot).bed")))
 
-s6c <- Step(id = "r_distribution", run = read_distribution,
+s6c <- cwlStep(id = "r_distribution", run = read_distribution,
             In = list(bam = "samtools_index/idx",
                       bed = "genePredToBed/bed"))
 gCoverage <- geneBody_coverage
 gCoverage@inputs$bam@secondaryFiles <- character()
-s6d <- Step(id = "gCoverage", run = gCoverage,
+s6d <- cwlStep(id = "gCoverage", run = gCoverage,
             In = list(bam = "samtools_index/idx",
                       bed = "genePredToBed/bed",
                       prefix = list(valueFrom = "$(inputs.bam.nameroot)")))

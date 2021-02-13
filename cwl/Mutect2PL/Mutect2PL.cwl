@@ -2,7 +2,7 @@ cwlVersion: v1.0
 class: Workflow
 requirements:
 - class: InlineJavascriptRequirement
-- class: StepInputExpressionRequirement
+- class: cwlStepInputExpressionRequirement
 - class: MultipleInputFeatureRequirement
 inputs:
   tbam:
@@ -49,7 +49,7 @@ outputs:
     outputSource: CalculateContamination/Seg
 steps:
   Mutect2:
-    run: cwl/Mutect2PL/Mutect2.cwl
+    run: Mutect2.cwl
     in:
       tbam: tbam
       nbam: nbam
@@ -67,7 +67,7 @@ steps:
     - vout
     - F1r2
   GetPileupSummariesT:
-    run: cwl/Mutect2PL/GetPileupSummariesT.cwl
+    run: GetPileupSummariesT.cwl
     in:
       bam: tbam
       vcf: comvcf
@@ -77,7 +77,7 @@ steps:
     out:
     - pout
   GetPileupSummariesN:
-    run: cwl/Mutect2PL/GetPileupSummariesN.cwl
+    run: GetPileupSummariesN.cwl
     in:
       bam: nbam
       vcf: comvcf
@@ -87,7 +87,7 @@ steps:
     out:
     - pout
   CalculateContamination:
-    run: cwl/Mutect2PL/CalculateContamination.cwl
+    run: CalculateContamination.cwl
     in:
       ttable: GetPileupSummariesT/pout
       ntable: GetPileupSummariesN/pout
@@ -103,13 +103,13 @@ steps:
     - Cout
     - Seg
   LearnReadOrientationModel:
-    run: cwl/Mutect2PL/LearnReadOrientationModel.cwl
+    run: LearnReadOrientationModel.cwl
     in:
       f1r2: Mutect2/F1r2
     out:
     - rofile
   FilterMutectCalls:
-    run: cwl/Mutect2PL/FilterMutectCalls.cwl
+    run: FilterMutectCalls.cwl
     in:
       vcf: Mutect2/vout
       cont: CalculateContamination/Cout
@@ -124,7 +124,7 @@ steps:
     out:
     - fout
   bcfview:
-    run: cwl/Mutect2PL/bcfview.cwl
+    run: bcfview.cwl
     in:
       vcf: FilterMutectCalls/fout
       filter: filter

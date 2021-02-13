@@ -1,7 +1,7 @@
 cwlVersion: v1.0
 class: Workflow
 requirements:
-- class: StepInputExpressionRequirement
+- class: cwlStepInputExpressionRequirement
 - class: InlineJavascriptRequirement
 inputs:
   vcfs:
@@ -25,7 +25,7 @@ outputs:
     outputSource: GenotypeGVCFs/vcf
 steps:
   CombineGVCFs:
-    run: cwl/CombineGenotypeGVCFs/CombineGVCFs.cwl
+    run: CombineGVCFs.cwl
     in:
       vcfs: vcfs
       Ref: Ref
@@ -35,7 +35,7 @@ steps:
     out:
     - vcf
   GenotypeGVCFs:
-    run: cwl/CombineGenotypeGVCFs/GenotypeGVCFs.cwl
+    run: GenotypeGVCFs.cwl
     in:
       variant: CombineGVCFs/cvcf
       ref: Ref

@@ -5,7 +5,7 @@ A repository of tools and pipelines recipes described with Common Workflow Langu
 A collection of CWL tools. The pipelines are in its sub-directories.
 
 ## Rcwl Directory
-Tools are prefixed by `"tl_"` and pipelines start with `"pl_"`.
+Tools are prefixed by `"tl_"` for command line tools and `"pl_"` for pipelines.
 
 ## util.R
 The script to convert Rcwl recipes to CWL descriptions.

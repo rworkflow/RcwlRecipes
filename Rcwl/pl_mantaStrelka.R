@@ -4,12 +4,12 @@ p2 <- InputParam(id = "nbam", type = "File", secondaryFiles = ".bai")
 p3 <- InputParam(id = "ref", type = "File", secondaryFiles = ".fai")
 p4 <- InputParam(id = "region", type = "File?", secondaryFiles = ".tbi")
 
-s1 <- Step(id = "manta", run = manta,
+s1 <- cwlStep(id = "manta", run = manta,
            In = list(tbam = "tbam",
                      nbam = "nbam",
                      ref = "ref",
                      callRegions = "region"))
-s2 <- Step(id = "strelka", run = strelka,
+s2 <- cwlStep(id = "strelka", run = strelka,
            In = list(tbam = "tbam",
                      nbam = "nbam",
                      ref = "ref",

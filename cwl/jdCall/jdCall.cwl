@@ -26,7 +26,7 @@ outputs:
     outputSource: mvOut/OutDir
 steps:
   jdJson:
-    run: cwl/jdCall/jdJson.cwl
+    run: jdJson.cwl
     in:
       sampleName: sampleName
       gvcf: gvcf
@@ -37,7 +37,7 @@ steps:
     out:
     - json
   JD:
-    run: cwl/jdCall/JD.cwl
+    run: JD.cwl
     in:
       cromwell: cromwell
       wdl: wdl
@@ -45,7 +45,7 @@ steps:
     out:
     - log
   mvOut:
-    run: cwl/jdCall/mvOut.cwl
+    run: mvOut.cwl
     in:
       logFile: JD/log
     out:

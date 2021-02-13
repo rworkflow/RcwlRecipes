@@ -11,7 +11,7 @@ p7 <- InputParam(id = "interval", type = "File")
 p8 <- InputParam(id = "comvcf", type = "File", secondaryFiles = ".idx")
 p9 <- InputParam(id = "filter", type = "string", default = "PASS")
 #' @include tl_Mutect2.R
-s1 <- Step(id = "Mutect2", run = Mutect2,
+s1 <- cwlStep(id = "Mutect2", run = Mutect2,
            In = list(tbam = "tbam",
                      nbam = "nbam",
                      Ref = "Ref",
@@ -22,18 +22,18 @@ s1 <- Step(id = "Mutect2", run = Mutect2,
                      out = list(source = list("normal", "tumor"),
                                 valueFrom = "$(self[0]).$(self[1])")))
 #' @include tl_GetPileupSummaries.R
-s2a <- Step(id = "GetPileupSummariesT", run = GetPileupSummaries,
+s2a <- cwlStep(id = "GetPileupSummariesT", run = GetPileupSummaries,
             In = list(bam = "tbam",
                       vcf = "comvcf",
                       interval = "comvcf",
                       pileup = list(valueFrom = "$(inputs.bam.nameroot).ptable")))
-s2b <- Step(id = "GetPileupSummariesN", run = GetPileupSummaries,
+s2b <- cwlStep(id = "GetPileupSummariesN", run = GetPileupSummaries,
             In = list(bam = "nbam",
                       vcf = "comvcf",
                       interval = "comvcf",
                       pileup = list(valueFrom = "$(inputs.bam.nameroot).ptable")))
 #' @include tl_CalculateContamination.R
-s3 <- Step(id = "CalculateContamination", run = CalculateContamination,
+s3 <- cwlStep(id = "CalculateContamination", run = CalculateContamination,
            In = list(ttable = "GetPileupSummariesT/pout",
                      ntable = "GetPileupSummariesN/pout",
                      cont = list(source = list("tumor"),
@@ -41,11 +41,11 @@ s3 <- Step(id = "CalculateContamination", run = CalculateContamination,
                      seg = list(source = list("tumor"),
                                 valueFrom = "$(self).segments")))
 #' @include tl_LearnReadOrientationModel.R
-s4 <- Step(id = "LearnReadOrientationModel", run = LearnReadOrientationModel,
+s4 <- cwlStep(id = "LearnReadOrientationModel", run = LearnReadOrientationModel,
            In = list(f1r2 = "Mutect2/F1r2"))
 
 #' @include tl_FilterMutectCalls.R
-s5 <- Step(id = "FilterMutectCalls", run = FilterMutectCalls,
+s5 <- cwlStep(id = "FilterMutectCalls", run = FilterMutectCalls,
            In = list(vcf = "Mutect2/vout",
                      cont = "CalculateContamination/Cout",
                      seg = "CalculateContamination/Seg",
@@ -55,7 +55,7 @@ s5 <- Step(id = "FilterMutectCalls", run = FilterMutectCalls,
                                  valueFrom = "$(self[0]).$(self[1]).filtered.vcf")))
 
 #' @include tl_bcfview.R
-s6 <- Step(id = "bcfview", run = bcfview,
+s6 <- cwlStep(id = "bcfview", run = bcfview,
            In = list(vcf = "FilterMutectCalls/fout",
                      filter = "filter",
                      fout = list(valueFrom = "$(inputs.vcf.nameroot).PASS.vcf")))
@@ -66,7 +66,7 @@ o3 <- OutputParam(id = "conTable", type = "File", outputSource = "CalculateConta
 o4 <- OutputParam(id = "segment", type = "File", outputSource = "CalculateContamination/Seg")
 
 req1 <- list(class = "InlineJavascriptRequirement")
-req2 <- list(class = "StepInputExpressionRequirement")
+req2 <- list(class = "cwlStepInputExpressionRequirement")
 req3 <- list(class = "MultipleInputFeatureRequirement")
 Mutect2PL <- cwlWorkflow(requirements = list(req1, req2, req3),
                           inputs = InputParamList(p1a, p1b, p2, p3, p4,

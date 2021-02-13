@@ -1,7 +1,7 @@
 cwlVersion: v1.0
 class: Workflow
 requirements:
-- class: StepInputExpressionRequirement
+- class: cwlStepInputExpressionRequirement
 - class: MultipleInputFeatureRequirement
 inputs:
   tbam:
@@ -25,7 +25,7 @@ outputs:
     outputSource: somaticFilter/outVcf
 steps:
   mpileupT:
-    run: cwl/VarScan2Somatic/mpileupT.cwl
+    run: mpileupT.cwl
     in:
       bam: tbam
       ref: ref
@@ -33,7 +33,7 @@ steps:
     out:
     - pileup
   mpileupN:
-    run: cwl/VarScan2Somatic/mpileupN.cwl
+    run: mpileupN.cwl
     in:
       bam: nbam
       ref: ref
@@ -41,7 +41,7 @@ steps:
     out:
     - pileup
   somatic:
-    run: cwl/VarScan2Somatic/somatic.cwl
+    run: somatic.cwl
     in:
       npileup: mpileupN/pileup
       tpileup: mpileupT/pileup
@@ -51,7 +51,7 @@ steps:
     - snp
     - indel
   processSomatic:
-    run: cwl/VarScan2Somatic/processSomatic.cwl
+    run: processSomatic.cwl
     in:
       vcf: somatic/snp
     out:
@@ -62,7 +62,7 @@ steps:
     - LOH
     - LOHHC
   somaticFilter:
-    run: cwl/VarScan2Somatic/somaticFilter.cwl
+    run: somaticFilter.cwl
     in:
       vcf: processSomatic/somaticHC
       indel: somatic/indel

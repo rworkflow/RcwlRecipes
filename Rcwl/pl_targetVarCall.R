@@ -21,33 +21,33 @@ o4 <- OutputParam(id = "gVCF", type = "File", outputSource = "HaplotypeCaller/gv
 o5 <- OutputParam(id = "VCF", type = "File", outputSource = "GenotypeGVCFs/vcf")
 
 req1 <- list(class = "SubworkflowFeatureRequirement")
-req2 <- list(class = "StepInputExpressionRequirement")
+req2 <- list(class = "cwlStepInputExpressionRequirement")
 req3 <- list(class = "InlineJavascriptRequirement")
 targetVarCall <- cwlWorkflow(requirements = list(req1, req2, req3),
                           inputs = InputParamList(p1, p2, p3, p4, p5, p6, p7, p8, p9),
                           outputs = OutputParamList(o1, o2, o3, o4, o5))
 #' @include pl_bwaAlign.R
-s1 <- Step(id = "bwaAlign", run = bwaAlign,
+s1 <- cwlStep(id = "bwaAlign", run = bwaAlign,
            In = list(threads = "threads",
                      RG = "RG",
                      Ref = "Ref",
                      FQ1 = "FQ1",
                      FQ2 = "FQ2"))
 #' @include pl_BaseRecal.R
-s2 <- Step(id = "BaseRecal", run = BaseRecal,
+s2 <- cwlStep(id = "BaseRecal", run = BaseRecal,
            In = list(bam = "bwaAlign/Idx",
                      ref = "Ref",
                      knowSites = "knowSites",
                      oBam = list(source = "Sample",
                                  valueFrom = "$(self).bam")))
 #' @include tl_BedToIntervalList.R
-s3 <- Step(id = "bedtolist", run = BedToIntervalList,
+s3 <- cwlStep(id = "bedtolist", run = BedToIntervalList,
            In = list(bed = "bed",
                      SD = list(source = "Ref",
                                valueFrom = "$(self.secondaryFiles[6])"),
                      out = list(valueFrom = "$(inputs.bed.nameroot).list")))
 #' @include tl_HaplotypeCaller.R
-s4 <- Step(id = "HaplotypeCaller", run = HaplotypeCaller,
+s4 <- cwlStep(id = "HaplotypeCaller", run = HaplotypeCaller,
            In = list(bam = "BaseRecal/rcBam",
                      interval = "bedtolist/intval",
                      ref = "Ref",
@@ -55,7 +55,7 @@ s4 <- Step(id = "HaplotypeCaller", run = HaplotypeCaller,
                                  valueFrom = "$(self).g.vcf"),
                      downsampling = "downsampling"))
 #' @include tl_GenotypeGVCFs.R
-s5 <- Step(id = "GenotypeGVCFs", run = GenotypeGVCFs,
+s5 <- cwlStep(id = "GenotypeGVCFs", run = GenotypeGVCFs,
            In = list(variant = "HaplotypeCaller/gvcf",
                      ref = "Ref",
                      vout = list(source = "Sample",

@@ -2,7 +2,7 @@ cwlVersion: v1.0
 class: Workflow
 requirements:
 - class: SubworkflowFeatureRequirement
-- class: StepInputExpressionRequirement
+- class: cwlStepInputExpressionRequirement
 inputs:
   outBam:
     type: string
@@ -46,7 +46,7 @@ outputs:
     outputSource: BaseRecal/stats
 steps:
   bwaAlign:
-    run: cwl/bwaMRecal/bwaAlign.cwl
+    run: bwaAlign.cwl
     in:
       threads: threads
       RG: RG
@@ -57,7 +57,7 @@ steps:
     - Bam
     - Idx
   markdup:
-    run: cwl/bwaMRecal/markdup.cwl
+    run: markdup.cwl
     in:
       ibam: bwaAlign/Idx
       obam:
@@ -70,7 +70,7 @@ steps:
     - mBam
     - Mat
   BaseRecal:
-    run: cwl/bwaMRecal/BaseRecal.cwl
+    run: BaseRecal.cwl
     in:
       bam: markdup/mBam
       ref: Ref

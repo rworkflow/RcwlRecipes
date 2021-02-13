@@ -17,7 +17,7 @@ p7 <- InputParam(id = "miOther", type = list("File", "string"))
 p8 <- InputParam(id = "precursors", type = list("File", "string"))
 p9 <- InputParam(id = "species", type = "string")
 
-s1 <- Step(id = "Mapper", run = miRMapper,
+s1 <- cwlStep(id = "Mapper", run = miRMapper,
            In = list(reads = "reads",
                      format = "format",
                      adapter = "adapter",
@@ -26,7 +26,7 @@ s1 <- Step(id = "Mapper", run = miRMapper,
                          valueFrom = "$(inputs.reads.nameroot)_collapsed.fa"),
                      arf = list(
                          valueFrom = "$(inputs.reads.nameroot)_collapsed.arf")))
-s2 <- Step(id = "miRDeep2", run = miRDeep2,
+s2 <- cwlStep(id = "miRDeep2", run = miRDeep2,
            In = list(reads = "Mapper/pReads",
                      genome = "genome",
                      mappings = "Mapper/Arf",
@@ -44,7 +44,7 @@ o6 <- OutputParam(id = "pdfs", type = "Directory", outputSource = "miRDeep2/pdfs
 o7 <- OutputParam(id = "preads", type = "File", outputSource = "Mapper/pReads")
 o8 <- OutputParam(id = "arf", type = "File", outputSource = "Mapper/Arf")
 
-req1 <- list(class = "StepInputExpressionRequirement")
+req1 <- list(class = "cwlStepInputExpressionRequirement")
 req2 <- list(class = "InlineJavascriptRequirement")
 miRDeep2PL <- cwlWorkflow(
     requirements = list(req1, req2),

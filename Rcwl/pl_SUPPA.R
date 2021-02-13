@@ -8,7 +8,7 @@ p5 <- InputParam(id = "method", type = "string", default = "empirical")
 
 #' quant merge
 #' @include tl_Rsplit.R
-s1 <- Step(id = "quantMerge", run = Rsplit,
+s1 <- cwlStep(id = "quantMerge", run = Rsplit,
            In = list(files = "quant",
                      columns = "qcolumn",
                      cnames = "qcnames",
@@ -16,38 +16,38 @@ s1 <- Step(id = "quantMerge", run = Rsplit,
 
 #' event calculation
 #' @include tl_SUPPA_generateEvents.R tl_awk_merge.R
-s2 <- Step(id = "genEvents", run = SUPPA_generateEvents,
+s2 <- cwlStep(id = "genEvents", run = SUPPA_generateEvents,
            In = list(gtf = "gtf",
                      outfile = list(valueFrom = "events")))
 
-s3 <- Step(id = "mergeEvents", run = awk_merge,
+s3 <- cwlStep(id = "mergeEvents", run = awk_merge,
            In = list(files = "genEvents/outIOE",
                      outfile = list(valueFrom = "merged.ioe")))
 
 #' psi
 #' @include tl_SUPPA_psiPerEvent.R
-s4 <- Step(id = "psiPerEvent", run = SUPPA_psiPerEvent,
+s4 <- cwlStep(id = "psiPerEvent", run = SUPPA_psiPerEvent,
            In = list(ioe = "mergeEvents/out",
                      exp = "quantMerge/outFile",
                      outfile = list(valueFrom = "events")))
 
 #' split by groups
-s5a <- Step(id = "splitEventsG1", run = Rsplit,
+s5a <- cwlStep(id = "splitEventsG1", run = Rsplit,
             In = list(files = list(source = list("psiPerEvent/outFile"),
                                   linkMerge = "merge_flattened"),
                       outfile = list(valueFrom  = "group1.psi"),
                       columns = "group1"))
-s5b <- Step(id = "splitEventsG2", run = Rsplit,
+s5b <- cwlStep(id = "splitEventsG2", run = Rsplit,
             In = list(files = list(source = list("psiPerEvent/outFile"),
                                   linkMerge = "merge_flattened"),
                       outfile = list(valueFrom  = "group2.psi"),
                       columns = "group2"))
-s5c <- Step(id = "splitExpG1", run = Rsplit,
+s5c <- cwlStep(id = "splitExpG1", run = Rsplit,
             In = list(files = list(source = list("quantMerge/outFile"),
                                    linkMerge = "merge_flattened"),
                       outfile = list(valueFrom  = "group1.tpm"),
                       columns = "group1"))
-s5d <- Step(id = "splitExpG2", run = Rsplit,
+s5d <- cwlStep(id = "splitExpG2", run = Rsplit,
             In = list(files = list(source = list("quantMerge/outFile"),
                                    linkMerge = "merge_flattened"),
                       outfile = list(valueFrom  = "group2.tpm"),
@@ -55,7 +55,7 @@ s5d <- Step(id = "splitExpG2", run = Rsplit,
 
 #' diffSplice
 #' @include tl_SUPPA_diffSplice.R
-s6 <- Step(id = "diffSplice", run = SUPPA_diffSplice,
+s6 <- cwlStep(id = "diffSplice", run = SUPPA_diffSplice,
            In = list(iox = "mergeEvents/out",
                      method = "method",
                      psi = list(source = list("splitEventsG1/outFile",
@@ -70,7 +70,7 @@ o1 <- OutputParam(id = "res", type = "File[]", outputSource = "diffSplice/outFil
 
 req1 <- list(class = "MultipleInputFeatureRequirement")
 req2 <- list(class = "InlineJavascriptRequirement")
-req3 <- list(class = "StepInputExpressionRequirement")
+req3 <- list(class = "cwlStepInputExpressionRequirement")
 SUPPA <- cwlWorkflow(requirements = list(req1, req2, req3),
                       inputs = InputParamList(p1a, p1b, p1c, p2, p3, p4, p5),
                       outputs = OutputParamList(o1))

@@ -26,7 +26,7 @@ outputs:
     outputSource: idxBam/idx
 steps:
   bwa:
-    run: cwl/bwaAlign/bwa.cwl
+    run: bwa.cwl
     in:
       threads: threads
       RG: RG
@@ -36,19 +36,19 @@ steps:
     out:
     - sam
   sam2bam:
-    run: cwl/bwaAlign/sam2bam.cwl
+    run: sam2bam.cwl
     in:
       sam: bwa/sam
     out:
     - bam
   sortBam:
-    run: cwl/bwaAlign/sortBam.cwl
+    run: sortBam.cwl
     in:
       bam: sam2bam/bam
     out:
     - sbam
   idxBam:
-    run: cwl/bwaAlign/idxBam.cwl
+    run: idxBam.cwl
     in:
       bam: sortBam/sbam
     out:

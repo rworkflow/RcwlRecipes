@@ -26,7 +26,7 @@ outputs:
     outputSource: DropletUtils/plots
 steps:
   STARsolo:
-    run: cwl/STARsoloDropletUtils/STARsolo.cwl
+    run: STARsolo.cwl
     in:
       readFilesIn_cdna: fastq_cdna
       readFilesIn_cb: fastq_cb
@@ -39,7 +39,7 @@ steps:
     - SJ
     - Solo
   DropletUtils:
-    run: cwl/STARsoloDropletUtils/DropletUtils.cwl
+    run: DropletUtils.cwl
     in:
       dirname: STARsolo/Solo
     out:

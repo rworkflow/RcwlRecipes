@@ -9,7 +9,7 @@ p6 <- InputParam(id = "threads", type = "int", default = 2L)
 p7 <- InputParam(id = "ovcf", type = "string")
 o1 <- OutputParam(id = "outVcf", type = "File", outputSource = "postprocess/oVcf")
 
-s1 <- Step(id = "preprocess", run = neusomatic_preprocess,
+s1 <- cwlStep(id = "preprocess", run = neusomatic_preprocess,
            In = list(tbam = "tbam",
                      nbam = "nbam",
                      ref = "ref",
@@ -17,11 +17,11 @@ s1 <- Step(id = "preprocess", run = neusomatic_preprocess,
                      region = "region",
                      threads = "threads"))
 
-s2 <- Step(id = "call", run = neusomatic_call,
+s2 <- cwlStep(id = "call", run = neusomatic_call,
            In = list(candidates = "preprocess/candidates",
                      ref = "ref"))
 
-s3 <- Step(id = "postprocess", run = neusomatic_postprocess,
+s3 <- cwlStep(id = "postprocess", run = neusomatic_postprocess,
            In = list(ref = "ref",
                      tbam = "tbam",
                      pred = "call/pred",

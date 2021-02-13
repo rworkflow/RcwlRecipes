@@ -1,7 +1,7 @@
 cwlVersion: v1.0
 class: Workflow
 requirements:
-- class: StepInputExpressionRequirement
+- class: cwlStepInputExpressionRequirement
 inputs:
   bam:
     type: File
@@ -20,7 +20,7 @@ outputs:
     outputSource: gCoverage/gCovTXT
 steps:
   gtfToGenePred:
-    run: cwl/RSeQC/gtfToGenePred.cwl
+    run: gtfToGenePred.cwl
     in:
       gtf: gtf
       gPred:
@@ -28,7 +28,7 @@ steps:
     out:
     - genePred
   genePredToBed:
-    run: cwl/RSeQC/genePredToBed.cwl
+    run: genePredToBed.cwl
     in:
       genePred: gtfToGenePred/genePred
       Bed:
@@ -36,14 +36,14 @@ steps:
     out:
     - bed
   r_distribution:
-    run: cwl/RSeQC/r_distribution.cwl
+    run: r_distribution.cwl
     in:
       bam: bam
       bed: genePredToBed/bed
     out:
     - distOut
   gCoverage:
-    run: cwl/RSeQC/gCoverage.cwl
+    run: gCoverage.cwl
     in:
       bam: bam
       bed: genePredToBed/bed

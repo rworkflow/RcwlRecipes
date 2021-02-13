@@ -1,7 +1,7 @@
 cwlVersion: v1.0
 class: Workflow
 requirements:
-- class: StepInputExpressionRequirement
+- class: cwlStepInputExpressionRequirement
 - class: InlineJavascriptRequirement
 inputs:
   ibam:
@@ -23,14 +23,14 @@ outputs:
     outputSource: samtools_flagstat/flagstat
 steps:
   mergeBam:
-    run: cwl/mergeBamDup/mergeBam.cwl
+    run: mergeBam.cwl
     in:
       ibam: ibam
       obam: obam
     out:
     - oBam
   markdup:
-    run: cwl/mergeBamDup/markdup.cwl
+    run: markdup.cwl
     in:
       ibam: mergeBam/oBam
       obam: obam
@@ -40,13 +40,13 @@ steps:
     - mBam
     - Mat
   samtools_index:
-    run: cwl/mergeBamDup/samtools_index.cwl
+    run: samtools_index.cwl
     in:
       bam: markdup/mBam
     out:
     - idx
   samtools_flagstat:
-    run: cwl/mergeBamDup/samtools_flagstat.cwl
+    run: samtools_flagstat.cwl
     in:
       bam: markdup/mBam
     out:
