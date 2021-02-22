@@ -21,7 +21,7 @@ o4 <- OutputParam(id = "gVCF", type = "File", outputSource = "HaplotypeCaller/gv
 o5 <- OutputParam(id = "VCF", type = "File", outputSource = "GenotypeGVCFs/vcf")
 
 req1 <- list(class = "SubworkflowFeatureRequirement")
-req2 <- list(class = "cwlStepInputExpressionRequirement")
+req2 <- list(class = "StepInputExpressionRequirement")
 req3 <- list(class = "InlineJavascriptRequirement")
 targetVarCall <- cwlWorkflow(requirements = list(req1, req2, req3),
                           inputs = InputParamList(p1, p2, p3, p4, p5, p6, p7, p8, p9),

@@ -69,7 +69,7 @@ s7 <- cwlStep(id = "tabixIndex", run = tabix_index,
 o1 <- OutputParam(id = "ExpVcf", type = "File",
                   outputSource = "tabixIndex/idx", secondaryFile = ".tbi")
 req1 <- list(class = "InlineJavascriptRequirement")
-req2 <- list(class = "cwlStepInputExpressionRequirement")
+req2 <- list(class = "StepInputExpressionRequirement")
 vcfExpression <- cwlWorkflow(requirements = list(req1, req2),
                               inputs = InputParamList(p1, p2, p3, p4),
                               outputs = OutputParamList(o1))

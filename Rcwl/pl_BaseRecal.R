@@ -32,7 +32,7 @@ o2 <- OutputParam(id = "flagstat", type = "File",
 o3 <- OutputParam(id = "stats", type = "File",
                   outputSource = "samtools_stats/stats")
 
-req1 <- list(class = "cwlStepInputExpressionRequirement")
+req1 <- list(class = "StepInputExpressionRequirement")
 req2 <- list(class = "InlineJavascriptRequirement")
 BaseRecal <- cwlWorkflow(requirements = list(req1, req2),
                             inputs = InputParamList(p1, p2, p3, p4),

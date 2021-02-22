@@ -19,7 +19,7 @@ o3 <- OutputParam(id = "flagstat", type = "File", outputSource = "BaseRecal/flag
 o4 <- OutputParam(id = "stats", type = "File", outputSource = "BaseRecal/stats")
 
 req1 <- list(class = "SubworkflowFeatureRequirement")
-req2 <- list(class = "cwlStepInputExpressionRequirement")
+req2 <- list(class = "StepInputExpressionRequirement")
 ## req3 <- list(class = "InlineJavascriptRequirement")
 bwaMRecal <- cwlWorkflow(requirements = list(req1, req2),
                           inputs = InputParamList(p1, p2, p3, p4, p5, p6, p7),

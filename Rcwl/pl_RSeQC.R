@@ -10,7 +10,7 @@ p2 <- InputParam(id = "gtf", type = "File")
 o1 <- OutputParam(id = "distribution", type = "File", outputSource = "r_distribution/distOut")
 o2 <- OutputParam(id = "gCovP", type = "File", outputSource = "gCoverage/gCovPDF")
 o3 <- OutputParam(id = "gCovT", type = "File", outputSource = "gCoverage/gCovTXT")
-req1 <- list(class = "cwlStepInputExpressionRequirement")
+req1 <- list(class = "StepInputExpressionRequirement")
 RSeQC <- cwlWorkflow(requirements = list(req1),
                       inputs = InputParamList(p1, p2),
                       outputs = OutputParamList(o1, o2, o3))

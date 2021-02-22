@@ -32,7 +32,7 @@ s4 <- cwlStep(id = "readcount_annotator_indel", run = vcf_readcount_annotator,
 o1 <- OutputParam(id = "outvcf", type = "File",
                   outputSource = "readcount_annotator_indel/oVcf")
 req1 <- list(class = "InlineJavascriptRequirement")
-req2 <- list(class = "cwlStepInputExpressionRequirement")
+req2 <- list(class = "StepInputExpressionRequirement")
 req3 <- list(class = "SubworkflowFeatureRequirement")
 vcfCoverage <- cwlWorkflow(requirements = list(req1, req2, req3),
                             inputs = InputParamList(p1, p2, p3, p4, p5),

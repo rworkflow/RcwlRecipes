@@ -13,7 +13,7 @@ o2 <- OutputParam(id = "matrix", type = "File", outputSource = "markdup/Mat")
 o3 <- OutputParam(id = "Idx", type = "File", outputSource = "samtools_index/idx")
 o4 <- OutputParam(id = "stat", type = "File",
                   outputSource = "samtools_flagstat/flagstat")
-req1 <- list(class = "cwlStepInputExpressionRequirement")
+req1 <- list(class = "StepInputExpressionRequirement")
 req2 <- list(class = "InlineJavascriptRequirement")
 mergeBamDup <- cwlWorkflow(requirements = list(req1, req2),
                             inputs = InputParamList(p1, p2),

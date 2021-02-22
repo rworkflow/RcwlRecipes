@@ -25,7 +25,7 @@ o7 <- OutputParam(id = "out_gCovP", type = "File", outputSource = "gCoverage/gCo
 o8 <- OutputParam(id = "out_gCovT", type = "File", outputSource = "gCoverage/gCovTXT")
 req1 <- list(class = "ScatterFeatureRequirement")
 req2 <- list(class = "SubworkflowFeatureRequirement")
-req3 <- list(class = "cwlStepInputExpressionRequirement")
+req3 <- list(class = "StepInputExpressionRequirement")
 rnaseq_Sf <- cwlWorkflow(requirements = list(req1, req2, req3),
                        inputs = InputParamList(p1, p2, p3, p4, p5),
                        outputs = OutputParamList(o1, o2a, o2b, o2c, o4, o5, o6, o7, o8))

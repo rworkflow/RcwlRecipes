@@ -48,7 +48,7 @@ s4 <- cwlStep(id = "PhaseVcf", run = phaseVcf,
 o1 <- OutputParam(id = "annVcf", type = "File", outputSource = "VCFexpression/ExpVcf")
 o2 <- OutputParam(id = "phasedVCF", type = "File", outputSource = "PhaseVcf/pvcf")
 req1 <- list(class = "InlineJavascriptRequirement")
-req2 <- list(class = "cwlStepInputExpressionRequirement")
+req2 <- list(class = "StepInputExpressionRequirement")
 req3 <- list(class = "SubworkflowFeatureRequirement")
 ht1 <- list("cwltool:LoadListingRequirement"=
                 list(loadListing = "no_listing"))

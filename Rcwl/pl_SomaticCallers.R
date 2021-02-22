@@ -145,7 +145,7 @@ o8e <- OutputParam(id = "WrapperEINDEL", type = "File", outputSource = "Wrapper/
 o9 <- OutputParam(id = "neusomaticVCF", type = "File", outputSource = "neusomaticPL/outVcf")
 
 req1 <- list(class = "InlineJavascriptRequirement")
-req2 <- list(class = "cwlStepInputExpressionRequirement")
+req2 <- list(class = "StepInputExpressionRequirement")
 req3 <- list(class = "SubworkflowFeatureRequirement")
 SomaticCallers <- cwlWorkflow(requirements = list(req1, req2, req3),
                                inputs = InputParamList(p1, p2, p3, p6, p7,

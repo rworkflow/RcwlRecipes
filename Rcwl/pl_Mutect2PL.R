@@ -66,7 +66,7 @@ o3 <- OutputParam(id = "conTable", type = "File", outputSource = "CalculateConta
 o4 <- OutputParam(id = "segment", type = "File", outputSource = "CalculateContamination/Seg")
 
 req1 <- list(class = "InlineJavascriptRequirement")
-req2 <- list(class = "cwlStepInputExpressionRequirement")
+req2 <- list(class = "StepInputExpressionRequirement")
 req3 <- list(class = "MultipleInputFeatureRequirement")
 Mutect2PL <- cwlWorkflow(requirements = list(req1, req2, req3),
                           inputs = InputParamList(p1a, p1b, p2, p3, p4,
