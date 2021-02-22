@@ -7,7 +7,7 @@ for(p in pp){
     pid <- sub(".R$", "", sub("^pl_", "", basename(p)))
     assign(pid, cwlLoad(p))
     dir.create(file.path("cwl", pid), recursive = TRUE, showWarnings = FALSE)
-    writeCWL(get(pid), prefix = pid, outdir = file.path("cwl", pid))
+    writeCWL(get(pid), prefix = pid, outdir = file.path("cwl", pid), libPaths = FALSE)
 }
 
 tl <- list.files("Rcwl", "tl_", full.names = TRUE)

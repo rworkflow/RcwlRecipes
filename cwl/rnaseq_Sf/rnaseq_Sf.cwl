@@ -3,7 +3,7 @@ class: Workflow
 requirements:
 - class: ScatterFeatureRequirement
 - class: SubworkflowFeatureRequirement
-- class: cwlStepInputExpressionRequirement
+- class: StepInputExpressionRequirement
 inputs:
   in_seqfiles:
     type: File[]

@@ -3,7 +3,7 @@ class: Workflow
 requirements:
 - class: MultipleInputFeatureRequirement
 - class: InlineJavascriptRequirement
-- class: cwlStepInputExpressionRequirement
+- class: StepInputExpressionRequirement
 inputs:
   quant:
     type: File[]

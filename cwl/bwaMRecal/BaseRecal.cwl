@@ -1,7 +1,7 @@
 cwlVersion: v1.0
 class: Workflow
 requirements:
-- class: cwlStepInputExpressionRequirement
+- class: StepInputExpressionRequirement
 - class: InlineJavascriptRequirement
 inputs:
   bam:

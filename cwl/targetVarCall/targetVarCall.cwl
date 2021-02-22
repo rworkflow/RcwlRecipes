@@ -2,7 +2,7 @@ cwlVersion: v1.0
 class: Workflow
 requirements:
 - class: SubworkflowFeatureRequirement
-- class: cwlStepInputExpressionRequirement
+- class: StepInputExpressionRequirement
 - class: InlineJavascriptRequirement
 inputs:
   Sample:

@@ -22,6 +22,11 @@ inputs:
     inputBinding:
       prefix: -n
       separate: true
+  target:
+    type: File?
+    inputBinding:
+      prefix: -k
+      separate: true
   dbsnp:
     type: File
     inputBinding:

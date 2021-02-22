@@ -1,6 +1,4 @@
-.libPaths('/Users/qi31566/homebrew/lib/R/4.0/site-library')
 suppressPackageStartupMessages(library(R.utils))
-suppressPackageStartupMessages(library(codetools))
 args <- commandArgs(trailingOnly = TRUE, asValues = TRUE)
 args[["lower"]] <- as.integer(args[["lower"]])
 args[["df"]] <- as.integer(args[["df"]])

@@ -1,6 +1,5 @@
-.libPaths('/Users/qi31566/homebrew/lib/R/4.0/site-library')
+.libPaths('/Users/qi28068/miniconda3/envs/r-base/lib/R/library')
 suppressPackageStartupMessages(library(R.utils))
-suppressPackageStartupMessages(library(codetools))
 args <- commandArgs(trailingOnly = TRUE, asValues = TRUE)
 Rsplit <-
 function(files, columns, cnames = NULL, outfile, sep = "\t", isep = ",",

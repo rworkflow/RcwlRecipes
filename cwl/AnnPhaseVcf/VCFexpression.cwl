@@ -2,7 +2,7 @@ cwlVersion: v1.0
 class: Workflow
 requirements:
 - class: InlineJavascriptRequirement
-- class: cwlStepInputExpressionRequirement
+- class: StepInputExpressionRequirement
 inputs:
   rnafqs:
     type: File[]

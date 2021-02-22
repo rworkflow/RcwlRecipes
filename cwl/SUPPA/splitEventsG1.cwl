@@ -6,9 +6,7 @@ requirements:
   listing:
   - entryname: splitEventsG1.R
     entry: |-
-      .libPaths('/Users/qi31566/homebrew/lib/R/4.0/site-library')
       suppressPackageStartupMessages(library(R.utils))
-      suppressPackageStartupMessages(library(codetools))
       args <- commandArgs(trailingOnly = TRUE, asValues = TRUE)
       splitEventsG1 <-
       function(files, columns, cnames = NULL, outfile, sep = "\t", isep = ",",
