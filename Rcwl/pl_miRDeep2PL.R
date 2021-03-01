@@ -22,6 +22,7 @@ s1 <- cwlStep(id = "Mapper", run = miRMapper,
                      format = "format",
                      adapter = "adapter",
                      genome = "genome",
+                     len = "len",
                      preads = list(
                          valueFrom = "$(inputs.reads.nameroot)_collapsed.fa"),
                      arf = list(
