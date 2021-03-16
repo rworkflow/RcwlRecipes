@@ -3,7 +3,7 @@ p2 <- InputParam(id = "treat", type = "string[]",
                  prefix = "-t", itemSeparator = ",")
 p3 <- InputParam(id = "control", type = "string[]",
                  prefix = "-c", itemSeparator = ",")
-p4 <- InputParam(id = "prefix", type = "string, prefix = "-n"")
+p4 <- InputParam(id = "prefix", type = "string", prefix = "-n")
 p5 <- InputParam(id = "conSGRNA", type = "File?", prefix = "--control-sgrna")
 o1 <- OutputParam(id = "touts", type = "File[]", glob = "$(inputs.prefix)*")
 
