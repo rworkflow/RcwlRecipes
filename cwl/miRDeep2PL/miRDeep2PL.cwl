@@ -70,6 +70,7 @@ steps:
       format: format
       adapter: adapter
       genome: genome
+      len: len
       preads:
         valueFrom: $(inputs.reads.nameroot)_collapsed.fa
       arf:

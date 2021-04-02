@@ -1,18 +1,18 @@
 cwlVersion: v1.0
 class: CommandLineTool
 baseCommand:
-- MuSEv1.0rc_submission_c039ffa
+- MuSE
 - call
 requirements:
 - class: DockerRequirement
-  dockerPull: marghoob/muse:1.0rc_c
+  dockerPull: quay.io/biocontainers/muse:1.0.rc--h2e03b76_5
 - class: ShellCommandRequirement
 arguments:
 - -O
 - output
 - valueFrom: ' && '
   position: 5
-- valueFrom: MuSEv1.0rc_submission_c039ffa
+- valueFrom: MuSE
   position: 6
 - valueFrom: sump
   position: 7

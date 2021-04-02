@@ -11,9 +11,9 @@ p5 <- InputParam(id = "af", type = "float", default = 0.05, position = -1)
 p6 <- InputParam(id = "vcf", type = "string", position = -1)
 o1 <- OutputParam(id = "outVcf", type = "stdout")
 req1 <- list(class = "DockerRequirement",
-             dockerPull = "lethalfang/vardictjava:1.5.1")
+             dockerPull = "msahraeian/vardictjava:1.8.2")
 req2 <- list(class = "ShellCommandRequirement")
-VarDict <- cwlProcess(baseCommand = c("/opt/VarDict-1.5.1/bin/VarDict"),
+VarDict <- cwlProcess(baseCommand = c("/opt/VarDictJava/bin/VarDict"),
                     requirements = list(req1, req2),
                     arguments = list(
                         list(valueFrom = "-b", position = 2L),
@@ -22,9 +22,9 @@ VarDict <- cwlProcess(baseCommand = c("/opt/VarDict-1.5.1/bin/VarDict"),
                         list(valueFrom = "$(inputs.af)", position = 5L),
                         "-c", "1", "-S", "2", "-E", "3", "-g", "4",
                         list(valueFrom = " | ", position = 6L),
-                        list(valueFrom = "/opt/VarDict/testsomatic.R", position = 7L),
+                        list(valueFrom = "/opt/VarDictJava/bin/testsomatic.R", position = 7L),
                         list(valueFrom = " | ", position = 8L),
-                        list(valueFrom = "/opt/VarDict/var2vcf_paired.pl", position = 9L),
+                        list(valueFrom = "/opt/VarDictJava/bin/var2vcf_paired.pl", position = 9L),
                         list(valueFrom = "-N", position = 10L),
                         list(valueFrom = "TUMOR|NORMAL", position = 11L),
                         list(valueFrom = "-f", position = 12L),

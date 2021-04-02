@@ -18,14 +18,14 @@ p8 <- InputParam(id = "genome", type = "boolean",
 o1 <- OutputParam(id = "outVcf", type = "File", glob = "$(inputs.vcf)")
 
 req1 <- list(class = "DockerRequirement",
-             dockerPull = "marghoob/muse:1.0rc_c")
+             dockerPull = "quay.io/biocontainers/muse:1.0.rc--h2e03b76_5")
 req2 <- list(class = "ShellCommandRequirement")
-MuSE <- cwlProcess(baseCommand = c("MuSEv1.0rc_submission_c039ffa", "call"),
+MuSE <- cwlProcess(baseCommand = c("MuSE", "call"),
                  requirements = list(req1, req2),
                  arguments = list(
                      "-O", "output",
                      list(valueFrom = " && ", position = 5L),
-                     list(valueFrom = "MuSEv1.0rc_submission_c039ffa", position = 6L),
+                     list(valueFrom = "MuSE", position = 6L),
                      list(valueFrom = "sump", position = 7L),
                      list(valueFrom = "-I", position = 8L),
                      list(valueFrom = "output.MuSE.txt", position = 9L)

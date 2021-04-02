@@ -14,7 +14,7 @@ inputs:
       prefix: -t
       separate: true
   RG:
-    type: string
+    type: string?
     inputBinding:
       position: 2
       prefix: -R

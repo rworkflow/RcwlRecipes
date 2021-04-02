@@ -16,7 +16,7 @@ o4 <- OutputParam(id = "indeldb", type = "File",
                   glob = "$(inputs.out)somatic_final_minus-dbsnp.indels.vcf.gz")
 
 req1 <- list(class = "DockerRequirement",
-             dockerPull = "andreaswilm/lofreq:v2.1.2")
+             dockerPull = "quay.io/biocontainers/lofreq:2.1.5--py37h916d2e8_4")
 
 LoFreq <- cwlProcess(baseCommand = c("lofreq", "somatic"),
                    requirements = list(req1),

@@ -6,7 +6,7 @@ requirements:
   listing:
   - entryname: mvOut.R
     entry: |-
-      .libPaths('/Users/qi28068/miniconda3/envs/r-base/lib/R/library')
+      .libPaths('/home/qhu/miniconda3/envs/r-base/lib/R/library')
       suppressPackageStartupMessages(library(R.utils))
       args <- commandArgs(trailingOnly = TRUE, asValues = TRUE)
       mvOut <-

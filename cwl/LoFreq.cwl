@@ -5,7 +5,7 @@ baseCommand:
 - somatic
 requirements:
 - class: DockerRequirement
-  dockerPull: andreaswilm/lofreq:v2.1.2
+  dockerPull: quay.io/biocontainers/lofreq:2.1.5--py37h916d2e8_4
 inputs:
   tbam:
     type: File

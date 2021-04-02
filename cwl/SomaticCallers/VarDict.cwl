@@ -1,9 +1,9 @@
 cwlVersion: v1.0
 class: CommandLineTool
-baseCommand: /opt/VarDict-1.5.1/bin/VarDict
+baseCommand: /opt/VarDictJava/bin/VarDict
 requirements:
 - class: DockerRequirement
-  dockerPull: lethalfang/vardictjava:1.5.1
+  dockerPull: msahraeian/vardictjava:1.8.2
 - class: ShellCommandRequirement
 arguments:
 - valueFrom: -b
@@ -24,11 +24,11 @@ arguments:
 - '4'
 - valueFrom: ' | '
   position: 6
-- valueFrom: /opt/VarDict/testsomatic.R
+- valueFrom: /opt/VarDictJava/bin/testsomatic.R
   position: 7
 - valueFrom: ' | '
   position: 8
-- valueFrom: /opt/VarDict/var2vcf_paired.pl
+- valueFrom: /opt/VarDictJava/bin/var2vcf_paired.pl
   position: 9
 - valueFrom: -N
   position: 10
