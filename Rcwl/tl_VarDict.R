@@ -5,31 +5,33 @@ p1 <- InputParam(id = "tbam", type = "File",
 p2 <- InputParam(id = "nbam", type = "File",
                  secondaryFiles = ".bai", position = -1)
 p3 <- InputParam(id = "ref", type = "File", prefix = "-G",
-                 secondaryFiles = ".fai", position = 1)
-p4 <- InputParam(id = "region", type = "File")
-p5 <- InputParam(id = "af", type = "float", default = 0.05, position = -1)
+                 secondaryFiles = ".fai", position = 2)
+p4 <- InputParam(id = "region", type = "File", position = 1)
+p5 <- InputParam(id = "af", type = "string", default = "0.01", position = -1)
 p6 <- InputParam(id = "vcf", type = "string", position = -1)
-o1 <- OutputParam(id = "outVcf", type = "stdout")
+p7 <- InputParam(id = "threads", type = "int", position = 4,
+                 prefix = "-th", default = 1L)
+o1 <- OutputParam(id = "outvcf", type = "File", glob = "$(inputs.output)")
 req1 <- list(class = "DockerRequirement",
-             dockerPull = "msahraeian/vardictjava:1.8.2")
+             dockerPull = "quay.io/biocontainers/vardict-java:1.8.2--hdfd78af_1")
 req2 <- list(class = "ShellCommandRequirement")
-VarDict <- cwlProcess(baseCommand = c("/opt/VarDictJava/bin/VarDict"),
+VarDict <- cwlProcess(baseCommand = c("vardict-java"),
                     requirements = list(req1, req2),
                     arguments = list(
-                        list(valueFrom = "-b", position = 2L),
-                        list(valueFrom = "$(inputs.tbam.path)|$(inputs.nbam.path)", position = 3L),
-                        list(valueFrom = "-f", position  = 4L),
-                        list(valueFrom = "$(inputs.af)", position = 5L),
+                        list(valueFrom = "-b", position = 5L),
+                        list(valueFrom = "$(inputs.tbam.path)|$(inputs.nbam.path)", position = 6L),
+                        list(valueFrom = "-f", position  = 7L),
+                        list(valueFrom = "$(inputs.af)", position = 8L),
                         "-c", "1", "-S", "2", "-E", "3", "-g", "4",
-                        list(valueFrom = " | ", position = 6L),
-                        list(valueFrom = "/opt/VarDictJava/bin/testsomatic.R", position = 7L),
-                        list(valueFrom = " | ", position = 8L),
-                        list(valueFrom = "/opt/VarDictJava/bin/var2vcf_paired.pl", position = 9L),
-                        list(valueFrom = "-N", position = 10L),
-                        list(valueFrom = "TUMOR|NORMAL", position = 11L),
-                        list(valueFrom = "-f", position = 12L),
-                        list(valueFrom = "$(inputs.af)", position = 13L)
+                        list(valueFrom = " | ", position = 9L),
+                        list(valueFrom = "testsomatic.R", position = 10L),
+                        list(valueFrom = " | ", position = 11L),
+                        list(valueFrom = "var2vcf_paired.pl", position = 12L),
+                        list(valueFrom = "-N", position = 13L),
+                        list(valueFrom = "TUMOR|NORMAL", position = 14L),
+                        list(valueFrom = "-f", position = 15L),
+                        list(valueFrom = "$(inputs.af)", position = 16L)
                     ),
-                    inputs = InputParamList(p1, p2, p3, p4, p5, p6),
+                    inputs = InputParamList(p1, p2, p3, p4, p5, p6, p7),
                     outputs = OutputParamList(o1),
                     stdout = "$(inputs.vcf)")

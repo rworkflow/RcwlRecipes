@@ -1,0 +1,18 @@
+## https://github.com/mingyi-wang/somatic-combiner
+p1 <- InputParam(id = "vardict", type = "File?", prefix = "-D")
+p2 <- InputParam(id = "lofreqSNV", type = "File?", prefix = "-l", secondaryFiles = ".tbi")
+p3 <- InputParam(id = "lofreqIndel", type = "File?", prefix = "-L", secondaryFiles = ".tbi")
+p4 <- InputParam(id = "mutect", type = "File?", prefix = "-m", secondaryFiles = ".tbi")
+p5 <- InputParam(id = "mutect2", type = "File?", prefix = "-M", secondaryFiles = ".tbi")
+p6 <- InputParam(id = "strelkaSNV", type = "File?", prefix = "-s", secondaryFiles = ".tbi")
+p7 <- InputParam(id = "strelkaIndel", type = "File?", prefix = "-S", secondaryFiles = ".tbi")
+p8 <- InputParam(id = "muse", type = "File?", prefix = "-u")
+p9 <- InputParam(id = "varscanSNV", type = "File?", prefix = "-v")
+p10 <- InputParam(id = "varscanIndel", type = "File?", prefix = "-V")
+p11 <- InputParam(id = "outvcf", type = "string", prefix = "-o")
+o1 <- OutputParam(id = "ovcf", type = "File", glob = "$(inputs.outvcf)")
+req1 <- requireDocker("hubentu/somatic_combiner")
+somatic_combiner <- cwlProcess(baseCommand = "",
+                               requirements = list(req1),
+                               inputs = InputParamList(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11),
+                               outputs = OutputParamList(o1))

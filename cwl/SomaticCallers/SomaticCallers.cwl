@@ -190,7 +190,7 @@ steps:
       vcf:
         valueFrom: $(inputs.tbam.nameroot.split('_')[0])_VarDict.vcf
     out:
-    - outVcf
+    - outvcf
   LoFreq:
     run: LoFreq.cwl
     in:

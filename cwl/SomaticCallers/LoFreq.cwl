@@ -49,17 +49,21 @@ inputs:
 outputs:
   snp:
     type: File
+    secondaryFiles: .tbi
     outputBinding:
       glob: $(inputs.out)somatic_final.snvs.vcf.gz
   snpdb:
     type: File
+    secondaryFiles: .tbi
     outputBinding:
       glob: $(inputs.out)somatic_final_minus-dbsnp.snvs.vcf.gz
   indel:
     type: File
+    secondaryFiles: .tbi
     outputBinding:
       glob: $(inputs.out)somatic_final.indels.vcf.gz
   indeldb:
     type: File
+    secondaryFiles: .tbi
     outputBinding:
       glob: $(inputs.out)somatic_final_minus-dbsnp.indels.vcf.gz

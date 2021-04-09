@@ -6,6 +6,7 @@
 "pl_bwaMMRecal","pipeline","bwaAlign+mergeBamDup+BaseRecal",NA,2021-04-02 15:47:25
 "pl_bwaMRecal","pipeline","bwaAlign+markdup+BaseRecal",NA,2021-04-02 15:47:25
 "pl_CombineGenotypeGVCFs","pipeline","CombineGVCFs+GenotypeGVCFs",NA,2021-04-02 15:47:25
+"pl_delly_somatic","pipeline","dellyCall+listSample+echo+fpaste+dellyFilter",NA,2021-04-09 14:53:20
 "pl_GAlign","pipeline","fqJson+fq2ubam+ubam2bamJson+align+mvOut",NA,2021-04-02 15:47:25
 "pl_glnexus_joint","pipeline","glnexus+bcf",NA,2021-04-02 15:53:54
 "pl_GPoN","pipeline","GenomicsDB+PoN",NA,2021-04-02 15:47:25
@@ -33,6 +34,8 @@
 "tl_bamCoverage","tool","bamCoverage","quay.io/biocontainers/deeptools:3.4.3--py_0",2021-04-02 15:47:26
 "tl_BaseRecalibrator","tool","gatk BaseRecalibrator","broadinstitute/gatk:latest",2021-04-02 15:47:25
 "tl_bcftools_concat","tool","bcftools concat","biocontainers/bcftools:v1.5_cv3",2021-04-02 15:47:26
+"tl_bcftools_query","tool","bcftools query","quay.io/biocontainers/bcftools:1.3.1--h5bf99c6_7",2021-04-09 14:49:55
+"tl_bcftools_reheader","tool","bcftools reheader","biocontainers/bcftools:v1.5_cv3",2021-04-07 15:41:11
 "tl_bcftools_view","tool","bcftools view","biocontainers/bcftools:v1.5_cv3",2021-04-02 15:53:54
 "tl_bcfview","tool","bcftools view","biocontainers/bcftools:v1.5_cv3",2021-04-02 15:47:26
 "tl_BedToIntervalList","tool","picard BedToIntervalList","quay.io/biocontainers/picard:2.21.1--0",2021-04-02 15:47:25
@@ -56,12 +59,16 @@
 "tl_CREST","tool","/opt/CREST/CREST.sh","hubentu/crest",2021-04-02 15:47:25
 "tl_cutadapt","tool","cutadapt","kfdrc/cutadapt",2021-04-02 15:47:26
 "tl_deepvariant","tool","/opt/deepvariant/bin/run_deepvariant","google/deepvariant",2021-04-02 15:53:54
+"tl_delly_call","tool","delly call","quay.io/biocontainers/delly:0.8.7--he03298f_1",2021-04-09 14:47:05
+"tl_delly_filter","tool","delly filter","quay.io/biocontainers/delly:0.8.7--he03298f_1",2021-04-09 14:47:36
 "tl_DepthOfCoverage","tool","java -jar /usr/GenomeAnalysisTK.jar -T DepthOfCoverage","broadinstitute/gatk3:3.8-1",2021-04-02 15:47:25
 "tl_DropletUtils","tool","R function",NA,2021-04-02 15:47:25
+"tl_echo","tool","echo",NA,2021-04-09 14:47:59
 "tl_fastqc","tool","fastqc","hubentu/rcwl-rnaseq",2021-04-02 15:47:26
 "tl_featureCounts","tool","featureCounts","hubentu/rcwl-rnaseq",2021-04-02 15:47:26
 "tl_FilterMutectCalls","tool","gatk FilterMutectCalls","broadinstitute/gatk:latest",2021-04-02 15:47:25
 "tl_FilterOBias","tool","gatk FilterByOrientationBias","broadinstitute/gatk:latest",2021-04-02 15:47:25
+"tl_fpaste","tool","paste",NA,2021-04-09 14:48:45
 "tl_Funcotator","tool","gatk Funcotator","broadinstitute/gatk:latest",2021-04-02 15:47:25
 "tl_geneBody_coverage","tool","geneBody_coverage.py","hubentu/rcwl-rnaseq",2021-04-02 15:47:26
 "tl_genePredToBed","tool","genePredToBed","hubentu/rcwl-rnaseq",2021-04-02 15:47:26
@@ -80,7 +87,7 @@
 "tl_lancet","tool","/lancet-1.0.7/lancet","kfdrc/lancet:1.0.7",2021-04-02 15:47:26
 "tl_LearnReadOrientationModel","tool","gatk LearnReadOrientationModel","broadinstitute/gatk:latest",2021-04-02 15:47:25
 "tl_liftOver","tool","liftOver","biowardrobe2/ucscuserapps:v358_2",2021-04-02 15:47:26
-"tl_LoFreq","tool","lofreq somatic","quay.io/biocontainers/lofreq:2.1.5--py37h916d2e8_4",2021-04-02 15:53:54
+"tl_LoFreq","tool","lofreq somatic","quay.io/biocontainers/lofreq:2.1.5--py37h916d2e8_4",2021-04-06 22:36:12
 "tl_mageck_count","tool","mageck count","quay.io/biocontainers/mageck:0.5.9.4--py38hed8969a_0",2021-04-02 15:47:26
 "tl_mageck_mle","tool","mageck mle","quay.io/biocontainers/mageck:0.5.9.4--py38hed8969a_0",2021-04-02 15:53:54
 "tl_mageck_pathway","tool","mageck pathway","quay.io/biocontainers/mageck:0.5.9.4--py38hed8969a_0",2021-04-02 15:47:26
@@ -92,7 +99,7 @@
 "tl_miRDeep2","tool","miRDeep2.pl","hubentu/mirdeep2",2021-04-02 15:47:26
 "tl_miRMapper","tool","mapper.pl","hubentu/mirdeep2",2021-04-02 15:47:26
 "tl_multiqc","tool","multiqc","hubentu/rcwl-rnaseq",2021-04-02 15:47:26
-"tl_MuSE","tool","MuSE call","quay.io/biocontainers/muse:1.0.rc--h2e03b76_5",2021-04-02 15:53:54
+"tl_MuSE","tool","MuSE call","quay.io/biocontainers/muse:1.0.rc--h2e03b76_5",2021-04-06 09:05:32
 "tl_Mutect2_gatk3","tool","java -jar /usr/GenomeAnalysisTK.jar -T MuTect2","broadinstitute/gatk3:3.8-1",2021-04-02 15:47:25
 "tl_Mutect2","tool","gatk Mutect2","broadinstitute/gatk:latest",2021-04-02 15:47:25
 "tl_mvOut","tool","R function",NA,2021-04-02 15:47:26
@@ -121,6 +128,7 @@
 "tl_samtools_mpileup","tool","samtools mpileup","biocontainers/samtools:v1.7.0_cv3",2021-04-02 15:47:26
 "tl_samtools_stats","tool","samtools stats","biocontainers/samtools:v1.7.0_cv3",2021-04-02 15:47:26
 "tl_samtools_view","tool","samtools view","biocontainers/samtools:1.11--h6270b1f_0",2021-04-02 15:47:26
+"tl_somatic_combiner","tool","","hubentu/somatic_combiner",2021-04-07 15:41:52
 "tl_SomaticSeq_Wrapper","tool","/opt/somaticseq/SomaticSeq.Wrapper.sh","lethalfang/somaticseq:2.7.2",2021-04-02 15:47:25
 "tl_SomaticSniper","tool","/opt/somatic-sniper/build/bin/bam-somaticsniper","lethalfang/somaticsniper:1.0.5.0-2",2021-04-02 15:47:25
 "tl_sortBam","tool","samtools sort","biocontainers/samtools:v1.7.0_cv3",2021-04-02 15:47:26
@@ -134,11 +142,11 @@
 "tl_SUPPA_generateEvents","tool","python /opt/SUPPA/suppa.py generateEvents","hubentu/suppa",2021-04-02 15:47:25
 "tl_SUPPA_multipleFieldSelection","tool","python /opt/SUPPA/multipleFieldSelection.py","hubentu/suppa",2021-04-02 15:47:25
 "tl_SUPPA_psiPerEvent","tool","python /opt/SUPPA/suppa.py psiPerEvent","hubentu/suppa",2021-04-02 15:47:25
-"tl_svaba_somatic","tool","svaba run","ken01nn/svaba",2021-04-02 15:47:26
+"tl_svaba_somatic","tool","svaba run","quay.io/biocontainers/svaba:1.1.0--h7d7f7ad_2",2021-04-09 10:32:02
 "tl_SVE_VP","tool","/software/SVE/scripts/variant_processor.py","timothyjamesbecker/sve",2021-04-02 15:47:25
 "tl_SVE","tool","/software/SVE/scripts/auto.py","timothyjamesbecker/sve",2021-04-02 15:47:25
 "tl_tabix_index","tool","tabix","biocontainers/tabix:v1.3.2-2-deb_cv1",2021-04-02 15:47:26
-"tl_VarDict","tool","/opt/VarDictJava/bin/VarDict","msahraeian/vardictjava:1.8.2",2021-04-02 15:53:54
+"tl_VarDict","tool","vardict-java","quay.io/biocontainers/vardict-java:1.8.2--hdfd78af_1",2021-04-07 16:10:10
 "tl_VarScan2_processSomatic","tool","java -jar /opt/varscan/VarScan.jar processSomatic","mgibio/varscan-cwl:v2.4.2-samtools1.3.1",2021-04-02 15:47:26
 "tl_VarScan2_somatic","tool","java -jar /opt/varscan/VarScan.jar somatic","mgibio/varscan-cwl:v2.4.2-samtools1.3.1",2021-04-02 15:47:26
 "tl_VarScan2_somaticFilter","tool","java -jar /opt/varscan/VarScan.jar somaticFilter","mgibio/varscan-cwl:v2.4.2-samtools1.3.1",2021-04-02 15:47:26

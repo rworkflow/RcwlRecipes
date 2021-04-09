@@ -12,6 +12,7 @@ arguments:
 - output
 - valueFrom: ' && '
   position: 5
+  shellQuote: false
 - valueFrom: MuSE
   position: 6
 - valueFrom: sump

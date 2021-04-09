@@ -24,7 +24,7 @@ MuSE <- cwlProcess(baseCommand = c("MuSE", "call"),
                  requirements = list(req1, req2),
                  arguments = list(
                      "-O", "output",
-                     list(valueFrom = " && ", position = 5L),
+                     list(valueFrom = " && ", position = 5L, shellQuote = FALSE),
                      list(valueFrom = "MuSE", position = 6L),
                      list(valueFrom = "sump", position = 7L),
                      list(valueFrom = "-I", position = 8L),

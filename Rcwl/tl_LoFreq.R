@@ -7,13 +7,17 @@ p5 <- InputParam(id = "dbsnp", type = "File", prefix = "-d", secondaryFiles = ".
 p6 <- InputParam(id = "out", type = "string", prefix = "-o")
 p7 <- InputParam(id = "threads", type = "int", prefix = "--threads")
 o1 <- OutputParam(id = "snp", type = "File",
-                  glob = "$(inputs.out)somatic_final.snvs.vcf.gz")
+                  glob = "$(inputs.out)somatic_final.snvs.vcf.gz",
+                  secondaryFiles = ".tbi")
 o2 <- OutputParam(id = "snpdb", type = "File",
-                  glob = "$(inputs.out)somatic_final_minus-dbsnp.snvs.vcf.gz")
+                  glob = "$(inputs.out)somatic_final_minus-dbsnp.snvs.vcf.gz",
+                  secondaryFiles = ".tbi")
 o3 <- OutputParam(id = "indel", type = "File",
-                  glob = "$(inputs.out)somatic_final.indels.vcf.gz")
+                  glob = "$(inputs.out)somatic_final.indels.vcf.gz",
+                  secondaryFiles = ".tbi")
 o4 <- OutputParam(id = "indeldb", type = "File",
-                  glob = "$(inputs.out)somatic_final_minus-dbsnp.indels.vcf.gz")
+                  glob = "$(inputs.out)somatic_final_minus-dbsnp.indels.vcf.gz",
+                  secondaryFiles = ".tbi")
 
 req1 <- list(class = "DockerRequirement",
              dockerPull = "quay.io/biocontainers/lofreq:2.1.5--py37h916d2e8_4")

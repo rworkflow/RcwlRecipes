@@ -1,19 +1,19 @@
 cwlVersion: v1.0
 class: CommandLineTool
-baseCommand: /opt/VarDictJava/bin/VarDict
+baseCommand: vardict-java
 requirements:
 - class: DockerRequirement
-  dockerPull: msahraeian/vardictjava:1.8.2
+  dockerPull: quay.io/biocontainers/vardict-java:1.8.2--hdfd78af_1
 - class: ShellCommandRequirement
 arguments:
 - valueFrom: -b
-  position: 2
-- valueFrom: $(inputs.tbam.path)|$(inputs.nbam.path)
-  position: 3
-- valueFrom: -f
-  position: 4
-- valueFrom: $(inputs.af)
   position: 5
+- valueFrom: $(inputs.tbam.path)|$(inputs.nbam.path)
+  position: 6
+- valueFrom: -f
+  position: 7
+- valueFrom: $(inputs.af)
+  position: 8
 - -c
 - '1'
 - -S
@@ -23,21 +23,21 @@ arguments:
 - -g
 - '4'
 - valueFrom: ' | '
-  position: 6
-- valueFrom: /opt/VarDictJava/bin/testsomatic.R
-  position: 7
-- valueFrom: ' | '
-  position: 8
-- valueFrom: /opt/VarDictJava/bin/var2vcf_paired.pl
   position: 9
-- valueFrom: -N
+- valueFrom: testsomatic.R
   position: 10
-- valueFrom: TUMOR|NORMAL
+- valueFrom: ' | '
   position: 11
-- valueFrom: -f
+- valueFrom: var2vcf_paired.pl
   position: 12
-- valueFrom: $(inputs.af)
+- valueFrom: -N
   position: 13
+- valueFrom: TUMOR|NORMAL
+  position: 14
+- valueFrom: -f
+  position: 15
+- valueFrom: $(inputs.af)
+  position: 16
 inputs:
   tbam:
     type: File
@@ -49,19 +49,29 @@ inputs:
     type: File
     secondaryFiles: .fai
     inputBinding:
-      position: 1
+      position: 2
       prefix: -G
       separate: true
   region:
     type: File
     inputBinding:
+      position: 1
       separate: true
   af:
-    type: float
-    default: 0.05
+    type: string
+    default: '0.01'
   vcf:
     type: string
+  threads:
+    type: int
+    inputBinding:
+      position: 4
+      prefix: -th
+      separate: true
+    default: 1
 outputs:
-  outVcf:
-    type: stdout
+  outvcf:
+    type: File
+    outputBinding:
+      glob: $(inputs.output)
 stdout: $(inputs.vcf)

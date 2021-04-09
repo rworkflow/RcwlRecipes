@@ -5,7 +5,7 @@ baseCommand:
 - run
 requirements:
 - class: DockerRequirement
-  dockerPull: ken01nn/svaba
+  dockerPull: quay.io/biocontainers/svaba:1.1.0--h7d7f7ad_2
 arguments:
 - -a
 - somatic_run
