@@ -11,7 +11,7 @@ p5 <- InputParam(id = "af", type = "string", default = "0.01", position = -1)
 p6 <- InputParam(id = "vcf", type = "string", position = -1)
 p7 <- InputParam(id = "threads", type = "int", position = 4,
                  prefix = "-th", default = 1L)
-o1 <- OutputParam(id = "outvcf", type = "File", glob = "$(inputs.output)")
+o1 <- OutputParam(id = "outVcf", type = "File", glob = "$(inputs.vcf)")
 req1 <- list(class = "DockerRequirement",
              dockerPull = "quay.io/biocontainers/vardict-java:1.8.2--hdfd78af_1")
 req2 <- list(class = "ShellCommandRequirement")
@@ -23,9 +23,9 @@ VarDict <- cwlProcess(baseCommand = c("vardict-java"),
                         list(valueFrom = "-f", position  = 7L),
                         list(valueFrom = "$(inputs.af)", position = 8L),
                         "-c", "1", "-S", "2", "-E", "3", "-g", "4",
-                        list(valueFrom = " | ", position = 9L),
+                        list(valueFrom = " | ", position = 9L, shellQuote = FALSE),
                         list(valueFrom = "testsomatic.R", position = 10L),
-                        list(valueFrom = " | ", position = 11L),
+                        list(valueFrom = " | ", position = 11L, shellQuote = FALSE),
                         list(valueFrom = "var2vcf_paired.pl", position = 12L),
                         list(valueFrom = "-N", position = 13L),
                         list(valueFrom = "TUMOR|NORMAL", position = 14L),

@@ -18,7 +18,8 @@ p12 <- InputParam(id = "lofreqSnv", type = "File?", prefix = "--lofreq-snv")
 p13 <- InputParam(id = "lofreqIndel", type = "File?", prefix = "--lofreq-indel")
 p14 <- InputParam(id = "region", type = "File?", prefix = "--inclusion-region")
 p15 <- InputParam(id = "dbsnp", type = "File",
-                  prefix = "--dbsnp", secondaryFiles = ".tbi")
+                  prefix = "--dbsnp",
+                  secondaryFiles = "$(self.nameext == '.gz' ? self.basename+'.tbi' : self.basename+'.idx')")
 o1 <- OutputParam(id = "conSNV", type = "File", glob = "Consensus.sSNV.vcf")
 o2 <- OutputParam(id = "conINDEL", type = "File", glob = "Consensus.sINDEL.vcf")
 o3 <- OutputParam(id = "EnsSNV", type = "File", glob = "Ensemble.sSNV.tsv")

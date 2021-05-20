@@ -5,15 +5,15 @@ p2 <- InputParam(id = "ref", prefix = "-R", type = "File", secondaryFiles = c(
                                                                "$(self.nameroot).dict"))
 p3 <- InputParam(id = "knowSites", type = InputArrayParam(items = "File",
                                                           prefix = "--known-sites"),
-                 secondaryFiles = ".idx")
+                 secondaryFiles = "$(self.nameext == '.gz' ? self.basename+'.tbi' : self.basename+'.idx')")
 p4 <- InputParam(id = "recal", type = "string", prefix = "-O")
 o1 <- OutputParam(id = "rtable", type = "File",
                   glob = "$(inputs.recal)")
 req1 <- list(class = "DockerRequirement",
              dockerPull = "broadinstitute/gatk:latest")
-
-BaseRecalibrator <- cwlProcess(baseCommand = c("gatk",
-                                             "BaseRecalibrator"),
-                             requirements = list(req1),
-                             inputs = InputParamList(p1, p2, p3, p4),
-                             outputs = OutputParamList(o1))
+req2 <- requireJS()
+BaseRecalibrator <- cwlProcess(cwlVersion = "v1.0",
+                               baseCommand = c("gatk", "BaseRecalibrator"),
+                               requirements = list(req1, req2),
+                               inputs = InputParamList(p1, p2, p3, p4),
+                               outputs = OutputParamList(o1))

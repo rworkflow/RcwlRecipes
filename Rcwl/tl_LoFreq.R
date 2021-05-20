@@ -3,7 +3,8 @@ p1 <- InputParam(id = "tbam", type = "File", prefix = "-t", secondaryFiles = ".b
 p2 <- InputParam(id = "nbam", type = "File", prefix = "-n", secondaryFiles = ".bai")
 p3 <- InputParam(id = "ref", type = "File", prefix = "-f", secondaryFiles = ".fai")
 p4 <- InputParam(id = "region", type = "File", prefix = "-l")
-p5 <- InputParam(id = "dbsnp", type = "File", prefix = "-d", secondaryFiles = ".tbi")
+p5 <- InputParam(id = "dbsnp", type = "File", prefix = "-d",
+                 secondaryFiles = "$(self.nameext == '.gz' ? self.basename+'.tbi' : self.basename+'.idx')")
 p6 <- InputParam(id = "out", type = "string", prefix = "-o")
 p7 <- InputParam(id = "threads", type = "int", prefix = "--threads")
 o1 <- OutputParam(id = "snp", type = "File",
@@ -19,10 +20,10 @@ o4 <- OutputParam(id = "indeldb", type = "File",
                   glob = "$(inputs.out)somatic_final_minus-dbsnp.indels.vcf.gz",
                   secondaryFiles = ".tbi")
 
-req1 <- list(class = "DockerRequirement",
-             dockerPull = "quay.io/biocontainers/lofreq:2.1.5--py37h916d2e8_4")
-
+req1 <- requireDocker("quay.io/biocontainers/lofreq:2.1.5--py37h916d2e8_4")
+req2 <- requireJS()
 LoFreq <- cwlProcess(baseCommand = c("lofreq", "somatic"),
-                   requirements = list(req1),
-                   inputs = InputParamList(p1, p2, p3, p4, p5, p6, p7),
-                   outputs= OutputParamList(o1, o2, o3, o4))
+                     arguments = list("--call-indels"),
+                     requirements = list(req1, req2),
+                     inputs = InputParamList(p1, p2, p3, p4, p5, p6, p7),
+                     outputs= OutputParamList(o1, o2, o3, o4))

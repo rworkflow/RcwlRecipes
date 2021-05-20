@@ -18,10 +18,10 @@ inputs:
     - $(self.nameroot).dict
   dbsnp:
     type: File
-    secondaryFiles: .tbi
+    secondaryFiles: '$(self.nameext == ''.gz'' ? self.basename+''.tbi'' : self.basename+''.idx'')'
   gresource:
     type: File
-    secondaryFiles: .idx
+    secondaryFiles: '$(self.nameext == ''.gz'' ? self.basename+''.tbi'' : self.basename+''.idx'')'
   pon:
     type: File
     secondaryFiles: .idx
@@ -29,16 +29,7 @@ inputs:
     type: File
   comvcf:
     type: File
-    secondaryFiles: .idx
-  artMode:
-    type:
-      type: array
-      items: string
-      inputBinding:
-        separate: true
-    default:
-    - G/T
-    - C/T
+    secondaryFiles: '$(self.nameext == ''.gz'' ? self.basename+''.tbi'' : self.basename+''.idx'')'
   filter:
     type: string
     default: PASS
@@ -73,18 +64,6 @@ outputs:
   VarDictout:
     type: File
     outputSource: VarDict/outVcf
-  LoFreqsnp:
-    type: File
-    outputSource: LoFreq/snp
-  LoFreqindel:
-    type: File
-    outputSource: LoFreq/indel
-  LoFreqsnpdb:
-    type: File
-    outputSource: LoFreq/snpdb
-  LoFreqindeldb:
-    type: File
-    outputSource: LoFreq/indeldb
   VarScanSnp:
     type: File
     outputSource: VarScanPL/sSnp
@@ -190,23 +169,7 @@ steps:
       vcf:
         valueFrom: $(inputs.tbam.nameroot.split('_')[0])_VarDict.vcf
     out:
-    - outvcf
-  LoFreq:
-    run: LoFreq.cwl
-    in:
-      tbam: tbam
-      nbam: nbam
-      ref: Ref
-      region: interval
-      dbsnp: dbsnp
-      threads: threads
-      out:
-        valueFrom: $(inputs.tbam.nameroot.split('_')[0])_LoFreq.vcf
-    out:
-    - snp
-    - snpdb
-    - indel
-    - indeldb
+    - outVcf
   VarScanPL:
     run: VarScanPL.cwl
     in:
@@ -234,8 +197,6 @@ steps:
       muse: MuSE/outVcf
       strelkaSnv: mantaStrelka/snvs
       strelkaIndel: mantaStrelka/indels
-      lofreqSnv: LoFreq/snp
-      lofreqIndel: LoFreq/indel
     out:
     - conSNV
     - conINDEL

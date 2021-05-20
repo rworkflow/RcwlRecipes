@@ -7,7 +7,7 @@ p2 <- InputParam(id = "Ref", prefix = "-R", type = "File",
                  secondaryFiles = c(".fai", "$(self.nameroot).dict"))
 p3 <- InputParam(id = "normal", type = "string?", prefix = "-normal")
 p4 <- InputParam(id = "germline", type = "File?", prefix = "--germline-resource",
-                 secondaryFiles = ".idx")
+                 secondaryFiles = "$(self.nameext == '.gz' ? self.basename+'.tbi' : self.basename+'.idx')")
 p5 <- InputParam(id = "pon", type = "File?", prefix = "--panel-of-normals",
                  secondaryFiles = ".idx")
 p6 <- InputParam(id = "interval", type = "File?", prefix = "-L")
@@ -18,7 +18,8 @@ o1 <- OutputParam(id = "vout", type = "File", glob = "$(inputs.out)",
                   secondaryFiles = c(".idx", ".stats"))
 o2 <- OutputParam(id = "F1r2", type = "File", glob = "$(inputs.f1r2)")
 req1 <- requireDocker("broadinstitute/gatk:latest")
+req2 <- requireJS()
 Mutect2 <- cwlProcess(baseCommand = c("gatk", "Mutect2"),
-                    requirements = list(req1),
-                    inputs = InputParamList(p1a, p1b, p2, p3, p4, p5, p6, p7, p8),
-                    outputs = OutputParamList(o1, o2))
+                      requirements = list(req1, req2),
+                      inputs = InputParamList(p1a, p1b, p2, p3, p4, p5, p6, p7, p8),
+                      outputs = OutputParamList(o1, o2))

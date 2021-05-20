@@ -22,15 +22,15 @@ inputs:
     type: string
   gresource:
     type: File
-    secondaryFiles: .idx
+    secondaryFiles: '$(self.nameext == ''.gz'' ? self.basename+''.tbi'' : self.basename+''.idx'')'
   pon:
     type: File
-    secondaryFiles: .idx
+    secondaryFiles: '$(self.nameext == ''.gz'' ? self.basename+''.tbi'' : self.basename+''.idx'')'
   interval:
     type: File
   comvcf:
     type: File
-    secondaryFiles: .idx
+    secondaryFiles: '$(self.nameext == ''.gz'' ? self.basename+''.tbi'' : self.basename+''.idx'')'
   filter:
     type: string
     default: PASS

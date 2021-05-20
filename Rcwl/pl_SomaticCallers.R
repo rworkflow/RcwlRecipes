@@ -5,11 +5,14 @@ p3 <- InputParam(id = "Ref", type = "File",
                  secondaryFiles = c(".fai", "$(self.nameroot).dict"))
 ## p4 <- InputParam(id = "normal", type = "string")
 ## p5 <- InputParam(id = "tumor", type = "string")
-p6 <- InputParam(id = "dbsnp", type = "File", secondaryFiles = ".tbi")
-p7 <- InputParam(id = "gresource", type = "File", secondaryFiles = ".idx")
+p6 <- InputParam(id = "dbsnp", type = "File",
+                 secondaryFiles = "$(self.nameext == '.gz' ? self.basename+'.tbi' : self.basename+'.idx')")
+p7 <- InputParam(id = "gresource", type = "File",
+                 secondaryFiles = "$(self.nameext == '.gz' ? self.basename+'.tbi' : self.basename+'.idx')")
 p8 <- InputParam(id = "pon", type = "File", secondaryFiles = ".idx")
 p9 <- InputParam(id = "interval", type = "File")
-p10 <- InputParam(id = "comvcf", type = "File", secondaryFiles = ".idx")
+p10 <- InputParam(id = "comvcf", type = "File",
+                  secondaryFiles = "$(self.nameext == '.gz' ? self.basename+'.tbi' : self.basename+'.idx')")
 p11 <- InputParam(id = "artMode", type = InputArrayParam(items = "string"),
                  default = list("G/T", "C/T"))
 p12 <- InputParam(id = "filter", type = "string", default = "PASS")
@@ -58,15 +61,15 @@ s5 <- cwlStep(id = "VarDict", run = VarDict,
                      ref = "Ref",
                      region = "interval",
                      vcf = list(valueFrom = "$(inputs.tbam.nameroot.split('_')[0])_VarDict.vcf")))
-#' @include tl_LoFreq.R
-s6 <- cwlStep(id = "LoFreq", run = LoFreq,
-           In = list(tbam = "tbam",
-                     nbam = "nbam",
-                     ref = "Ref",
-                     region = "interval",
-                     dbsnp = "dbsnp",
-                     threads = "threads",
-                     out = list(valueFrom = "$(inputs.tbam.nameroot.split('_')[0])_LoFreq.vcf")))
+## #' @include tl_LoFreq.R
+## s6 <- cwlStep(id = "LoFreq", run = LoFreq,
+##            In = list(tbam = "tbam",
+##                      nbam = "nbam",
+##                      ref = "Ref",
+##                      region = "interval",
+##                      dbsnp = "dbsnp",
+##                      threads = "threads",
+##                      out = list(valueFrom = "$(inputs.tbam.nameroot.split('_')[0])_LoFreq.vcf")))
 #' @include pl_VarScan2Somatic.R
 s7 <- cwlStep(id = "VarScanPL", run = VarScan2Somatic,
            In = list(tbam = "tbam",
@@ -88,9 +91,9 @@ s8 <- cwlStep(id = "Wrapper", run = SomaticSeq_Wrapper,
                      vardict = "VarDict/outVcf",
                      muse = "MuSE/outVcf",
                      strelkaSnv = "mantaStrelka/snvs",
-                     strelkaIndel = "mantaStrelka/indels",
-                     lofreqSnv = "LoFreq/snp",
-                     lofreqIndel = "LoFreq/indel"))
+                     strelkaIndel = "mantaStrelka/indels"))
+                     ##lofreqSnv = "LoFreq/snp",
+                     ##lofreqIndel = "LoFreq/indel"))
 
 mergeTSV <- function(esnv, eindel){
     snv1 <- read.table(esnv, header = TRUE)
@@ -130,10 +133,10 @@ o3a <- OutputParam(id = "strelka2snv", type = "File", outputSource = "mantaStrel
 o3b <- OutputParam(id = "strelka2indel", type = "File", outputSource = "mantaStrelka/indels")
 o4 <- OutputParam(id = "SomaticSniperout", type = "File", outputSource = "SomaticSniper/outVcf")
 o5 <- OutputParam(id = "VarDictout", type = "File", outputSource = "VarDict/outVcf")
-o6a <- OutputParam(id = "LoFreqsnp", type = "File", outputSource = "LoFreq/snp")
-o6b <- OutputParam(id = "LoFreqindel", type = "File", outputSource = "LoFreq/indel")
-o6c <- OutputParam(id = "LoFreqsnpdb", type = "File", outputSource = "LoFreq/snpdb")
-o6d <- OutputParam(id = "LoFreqindeldb", type = "File", outputSource = "LoFreq/indeldb")
+## o6a <- OutputParam(id = "LoFreqsnp", type = "File", outputSource = "LoFreq/snp")
+## o6b <- OutputParam(id = "LoFreqindel", type = "File", outputSource = "LoFreq/indel")
+## o6c <- OutputParam(id = "LoFreqsnpdb", type = "File", outputSource = "LoFreq/snpdb")
+## o6d <- OutputParam(id = "LoFreqindeldb", type = "File", outputSource = "LoFreq/indeldb")
 o7a <- OutputParam(id = "VarScanSnp", type = "File", outputSource = "VarScanPL/sSnp")
 o7b <- OutputParam(id = "VarScanIndel", type = "File", outputSource = "VarScanPL/sIndel")
 o7c <- OutputParam(id = "VarScansVcf", type = "File", outputSource = "VarScanPL/sVcf")
@@ -149,13 +152,13 @@ req2 <- list(class = "StepInputExpressionRequirement")
 req3 <- list(class = "SubworkflowFeatureRequirement")
 SomaticCallers <- cwlWorkflow(requirements = list(req1, req2, req3),
                                inputs = InputParamList(p1, p2, p3, p6, p7,
-                                                       p8, p9, p10, p11, p12, p13),
+                                                       p8, p9, p10, p12, p13),
                                outputs = OutputParamList(o1a, o1b, o1c, o1d, o2,
                                                          o3a, o3b, o4, o5,
-                                                         o6a, o6b, o6c, o6d,
+                                                         ##o6a, o6b, o6c, o6d,
                                                          o7a, o7b, o7c,
                                                          o8a, o8b, o8c, o8d, o8e,
                                                          o9))
 
-SomaticCallers <- SomaticCallers + s1 + s2 + s3a + s3b + s3 + s4 +s5 + s6 + s7 + s8 + s9 + s10
+SomaticCallers <- SomaticCallers + s1 + s2 + s3a + s3b + s3 + s4 +s5 + s7 + s8 + s9 + s10
 

@@ -24,10 +24,12 @@ arguments:
 - '4'
 - valueFrom: ' | '
   position: 9
+  shellQuote: false
 - valueFrom: testsomatic.R
   position: 10
 - valueFrom: ' | '
   position: 11
+  shellQuote: false
 - valueFrom: var2vcf_paired.pl
   position: 12
 - valueFrom: -N
@@ -70,8 +72,8 @@ inputs:
       separate: true
     default: 1
 outputs:
-  outvcf:
+  outVcf:
     type: File
     outputBinding:
-      glob: $(inputs.output)
+      glob: $(inputs.vcf)
 stdout: $(inputs.vcf)

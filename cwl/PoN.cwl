@@ -9,6 +9,7 @@ requirements:
 - class: EnvVarRequirement
   envDef:
     TILEDB_DISABLE_FILE_LOCKING: '1'
+- class: InlineJavascriptRequirement
 arguments:
 - --min-sample-count
 - '1'
@@ -37,7 +38,7 @@ inputs:
       separate: true
   gresource:
     type: File?
-    secondaryFiles: .idx
+    secondaryFiles: '$(self.nameext == ''.gz'' ? self.basename+''.tbi'' : self.basename+''.idx'')'
     inputBinding:
       position: 4
       prefix: --germline-resource

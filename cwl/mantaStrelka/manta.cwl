@@ -8,9 +8,9 @@ requirements:
 arguments:
 - --runDir
 - mantaRunDir
-- --exome
 - valueFrom: ' && '
   position: 5
+  shellQuote: false
 - valueFrom: mantaRunDir/runWorkflow.py
   position: 6
 - valueFrom: -m
@@ -46,6 +46,12 @@ inputs:
       position: 4
       prefix: --callRegions
       separate: true
+  exome:
+    type: boolean
+    inputBinding:
+      prefix: --exome
+      separate: true
+    default: true
 outputs:
   somaticSV:
     type: File

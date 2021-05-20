@@ -7,6 +7,7 @@ requirements:
 - class: DockerRequirement
   dockerPull: quay.io/biocontainers/muse:1.0.rc--h2e03b76_5
 - class: ShellCommandRequirement
+- class: InlineJavascriptRequirement
 arguments:
 - -O
 - output
@@ -49,7 +50,7 @@ inputs:
       separate: true
   dbsnp:
     type: File
-    secondaryFiles: .tbi
+    secondaryFiles: '$(self.nameext == ''.gz'' ? self.basename+''.tbi'' : self.basename+''.idx'')'
     inputBinding:
       position: 10
       prefix: -D

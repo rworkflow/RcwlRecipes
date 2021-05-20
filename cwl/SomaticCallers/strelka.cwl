@@ -8,9 +8,9 @@ requirements:
 arguments:
 - --runDir
 - strelkaRunDir
-- --exome
 - valueFrom: ' && '
   position: 6
+  shellQuote: false
 - valueFrom: strelkaRunDir/runWorkflow.py
   position: 7
 - valueFrom: -m
@@ -52,6 +52,12 @@ inputs:
       position: 5
       prefix: --indelCandidates
       separate: true
+  exome:
+    type: boolean
+    inputBinding:
+      prefix: --exome
+      separate: true
+    default: true
 outputs:
   snvs:
     type: File

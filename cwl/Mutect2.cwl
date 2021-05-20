@@ -6,6 +6,7 @@ baseCommand:
 requirements:
 - class: DockerRequirement
   dockerPull: broadinstitute/gatk:latest
+- class: InlineJavascriptRequirement
 inputs:
   tbam:
     type: File
@@ -34,7 +35,7 @@ inputs:
       separate: true
   germline:
     type: File?
-    secondaryFiles: .idx
+    secondaryFiles: '$(self.nameext == ''.gz'' ? self.basename+''.tbi'' : self.basename+''.idx'')'
     inputBinding:
       prefix: --germline-resource
       separate: true

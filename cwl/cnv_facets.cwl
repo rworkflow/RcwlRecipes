@@ -43,6 +43,11 @@ inputs:
     inputBinding:
       prefix: -T
       separate: true
+  cval:
+    type: int[]?
+    inputBinding:
+      prefix: -cv
+      separate: true
 outputs:
   Out:
     type: File[]

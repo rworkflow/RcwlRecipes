@@ -3,6 +3,7 @@ class: Workflow
 requirements:
 - class: StepInputExpressionRequirement
 - class: InlineJavascriptRequirement
+- class: InlineJavascriptRequirement
 inputs:
   bam:
     type: File
@@ -15,9 +16,7 @@ inputs:
     type:
       type: array
       items: File
-      inputBinding:
-        separate: true
-    secondaryFiles: .idx
+    secondaryFiles: '$(self.nameext == ''.gz'' ? self.basename+''.tbi'' : self.basename+''.idx'')'
   oBam:
     type: string
 outputs:

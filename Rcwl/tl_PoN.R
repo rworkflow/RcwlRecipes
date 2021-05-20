@@ -5,7 +5,9 @@ p2 <- InputParam(id = "Ref", prefix = "-R", type = "File",
                  secondaryFiles = c(".fai", "$(self.nameroot).dict"), position = 2)
 p3 <- InputParam(id = "pon", prefix = "-O", type = "string", position = 3)
 p4 <- InputParam(id = "gresource", type = "File?", prefix = "--germline-resource",
-                 secondaryFiles = ".idx", position = 4)
+                 secondaryFiles = "$(self.nameext == '.gz' ? self.basename+'.tbi' : self.basename+'.idx')",
+                 position = 4)
+
 o1 <- OutputParam(id = "pout", type = "File", glob = "$(inputs.pon)",
                   secondaryFiles = ".idx")
 req1 <- list(class = "DockerRequirement",
@@ -13,9 +15,9 @@ req1 <- list(class = "DockerRequirement",
 ## fix bug for lock files on POSIX filesystems
 req2 <- list(class = "EnvVarRequirement",
              envDef = list("TILEDB_DISABLE_FILE_LOCKING" = "1"))
-
+req3 <- requireJS()
 PoN <- cwlProcess(baseCommand = c("gatk", "CreateSomaticPanelOfNormals"),
-                requirements = list(req1, req2),
-                arguments = list("--min-sample-count", "1", "-V"),
-                inputs = InputParamList(p1, p2, p3, p4),
-                outputs = OutputParamList(o1))
+                  requirements = list(req1, req2, req3),
+                  arguments = list("--min-sample-count", "1", "-V"),
+                  inputs = InputParamList(p1, p2, p3, p4),
+                  outputs = OutputParamList(o1))

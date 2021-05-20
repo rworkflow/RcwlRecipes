@@ -5,7 +5,8 @@ p2 <- InputParam(id = "Ref", type = "File",
                  secondaryFiles = c(".fai", "$(self.nameroot).dict"))
 p3 <- InputParam(id = "interval", type = "File")
 p4 <- InputParam(id = "pvcf", type = "string")
-p5 <- InputParam(id = "gresource", type = "File?", secondaryFiles = ".idx")
+p5 <- InputParam(id = "gresource", type = "File?",
+                 secondaryFiles = "$(self.nameext == '.gz' ? self.basename+'.tbi' : self.basename+'.idx')")
 
 s1 <- cwlStep(id = "GenomicsDB", run = GenomicsDB,
            In = list(vcf = "nvcf",
@@ -19,6 +20,7 @@ s2 <- cwlStep(id = "PoN", run = PoN,
 
 o1 <- OutputParam(id = "Pvcf", type = "File", outputSource = "PoN/pout")
 
-GPoN <- cwlWorkflow(inputs = InputParamList(p1, p2, p3, p4, p5),
-                     outputs = OutputParamList(o1))
+GPoN <- cwlWorkflow(requirements = list(requireJS()),
+                    inputs = InputParamList(p1, p2, p3, p4, p5),
+                    outputs = OutputParamList(o1))
 GPoN <- GPoN + s1 + s2

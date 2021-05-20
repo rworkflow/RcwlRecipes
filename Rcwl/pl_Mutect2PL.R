@@ -5,10 +5,13 @@ p2 <- InputParam(id = "Ref", type = "File",
                  secondaryFiles = c(".fai", "$(self.nameroot).dict"))
 p3 <- InputParam(id = "normal", type = "string")
 p4 <- InputParam(id = "tumor", type = "string")
-p5 <- InputParam(id = "gresource", type = "File", secondaryFiles = ".idx")
-p6 <- InputParam(id = "pon", type = "File", secondaryFiles = ".idx")
+p5 <- InputParam(id = "gresource", type = "File",
+                 secondaryFiles = "$(self.nameext == '.gz' ? self.basename+'.tbi' : self.basename+'.idx')")
+p6 <- InputParam(id = "pon", type = "File",
+                 secondaryFiles = "$(self.nameext == '.gz' ? self.basename+'.tbi' : self.basename+'.idx')")
 p7 <- InputParam(id = "interval", type = "File")
-p8 <- InputParam(id = "comvcf", type = "File", secondaryFiles = ".idx")
+p8 <- InputParam(id = "comvcf", type = "File",
+                 secondaryFiles = "$(self.nameext == '.gz' ? self.basename+'.tbi' : self.basename+'.idx')")
 p9 <- InputParam(id = "filter", type = "string", default = "PASS")
 #' @include tl_Mutect2.R
 s1 <- cwlStep(id = "Mutect2", run = Mutect2,

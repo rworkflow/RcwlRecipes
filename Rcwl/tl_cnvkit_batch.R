@@ -18,12 +18,13 @@ p11 <- InputParam(id = "diagram", type = "boolean", prefix = "--diagram",
                   default = TRUE)
 p12 <- InputParam(id = "scatter", type = "boolean", prefix = "--scatter",
                   default = TRUE)
+p13 <- InputParam(id = "method", type = "string?", prefix = "-m")
 o1 <- OutputParam(id = "Outdir", type = "Directory", glob = "$(inputs.outdir)")
 o2 <- OutputParam(id = "outRef", type = "File?", glob = "$(inputs.outref)")
 req1 <- list(class = "DockerRequirement",
              dockerPull = "etal/cnvkit")
 cnvkit_batch <- cwlProcess(baseCommand = c("cnvkit.py", "batch"),
                          requirements = list(req1),
-                         inputs = InputParamList(p1, p2, p3, p4, p5a, p5b, p6, p7, p8, p9, p10, p11, p12),
+                         inputs = InputParamList(p1, p2, p3, p4, p5a, p5b, p6, p7, p8, p9, p10, p11, p12, p13),
                          outputs = OutputParamList(o1, o2))
 

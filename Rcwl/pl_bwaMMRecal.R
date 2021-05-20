@@ -10,7 +10,7 @@ p4 <- InputParam(id = "Ref", type = "File",
 p5 <- InputParam(id = "FQ1s", type = "File[]")
 p6 <- InputParam(id = "FQ2s", type = "File[]")
 p7 <- InputParam(id = "knowSites", type = InputArrayParam(items = "File"),
-                 secondaryFiles = ".idx")
+                 secondaryFiles = "$(self.nameext == '.gz' ? self.basename+'.tbi' : self.basename+'.idx')")
 
 o1 <- OutputParam(id = "BAM", type = "File", outputSource = "BaseRecal/rcBam")
 o2 <- OutputParam(id = "matrix", type = "File", outputSource = "mergeBamDup/matrix")
@@ -20,7 +20,8 @@ o4 <- OutputParam(id = "stats", type = "File", outputSource = "BaseRecal/stats")
 
 req1 <- list(class = "SubworkflowFeatureRequirement")
 req2 <- list(class = "ScatterFeatureRequirement")
-bwaMMRecal <- cwlWorkflow(requirements = list(req1, req2),
+req3 <- requireJS()
+bwaMMRecal <- cwlWorkflow(requirements = list(req1, req2, req3),
                            inputs = InputParamList(p1, p2, p3, p4, p5, p6, p7),
                            outputs = OutputParamList(o1, o2, o3, o4))
 

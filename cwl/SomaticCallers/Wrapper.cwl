@@ -87,7 +87,7 @@ inputs:
       separate: true
   dbsnp:
     type: File
-    secondaryFiles: .tbi
+    secondaryFiles: '$(self.nameext == ''.gz'' ? self.basename+''.tbi'' : self.basename+''.idx'')'
     inputBinding:
       prefix: --dbsnp
       separate: true

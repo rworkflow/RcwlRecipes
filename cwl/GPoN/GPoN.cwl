@@ -1,12 +1,12 @@
 cwlVersion: v1.0
 class: Workflow
+requirements:
+- class: InlineJavascriptRequirement
 inputs:
   nvcf:
     type:
       type: array
       items: File
-      inputBinding:
-        separate: true
     secondaryFiles: .idx
   Ref:
     type: File
@@ -19,7 +19,7 @@ inputs:
     type: string
   gresource:
     type: File?
-    secondaryFiles: .idx
+    secondaryFiles: '$(self.nameext == ''.gz'' ? self.basename+''.tbi'' : self.basename+''.idx'')'
 outputs:
   Pvcf:
     type: File

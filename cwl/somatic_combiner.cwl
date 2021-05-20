@@ -1,4 +1,4 @@
-cwlVersion: v1.0
+cwlVersion: v1.1
 class: CommandLineTool
 requirements:
 - class: DockerRequirement
@@ -29,7 +29,9 @@ inputs:
       separate: true
   mutect2:
     type: File?
-    secondaryFiles: .tbi
+    secondaryFiles:
+      pattern: .tbi
+      required: false
     inputBinding:
       prefix: -M
       separate: true

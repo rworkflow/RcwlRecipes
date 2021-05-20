@@ -6,6 +6,7 @@ baseCommand:
 requirements:
 - class: DockerRequirement
   dockerPull: broadinstitute/gatk:latest
+- class: InlineJavascriptRequirement
 inputs:
   bam:
     type: File
@@ -27,7 +28,7 @@ inputs:
       inputBinding:
         prefix: --known-sites
         separate: true
-    secondaryFiles: .idx
+    secondaryFiles: '$(self.nameext == ''.gz'' ? self.basename+''.tbi'' : self.basename+''.idx'')'
     inputBinding:
       separate: true
   recal:

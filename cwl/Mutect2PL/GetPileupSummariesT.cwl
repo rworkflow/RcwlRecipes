@@ -6,6 +6,7 @@ baseCommand:
 requirements:
 - class: DockerRequirement
   dockerPull: broadinstitute/gatk:latest
+- class: InlineJavascriptRequirement
 inputs:
   bam:
     type: File
@@ -14,13 +15,13 @@ inputs:
       separate: true
   vcf:
     type: File
-    secondaryFiles: .idx
+    secondaryFiles: '$(self.nameext == ''.gz'' ? self.basename+''.tbi'' : self.basename+''.idx'')'
     inputBinding:
       prefix: -V
       separate: true
   interval:
     type: File
-    secondaryFiles: .idx
+    secondaryFiles: '$(self.nameext == ''.gz'' ? self.basename+''.tbi'' : self.basename+''.idx'')'
     inputBinding:
       prefix: -L
       separate: true

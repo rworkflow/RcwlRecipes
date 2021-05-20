@@ -13,6 +13,9 @@ inputs:
   region:
     type: File?
     secondaryFiles: .tbi
+  exome:
+    type: boolean
+    default: true
 outputs:
   snvs:
     type: File
@@ -34,6 +37,7 @@ steps:
       nbam: nbam
       ref: ref
       callRegions: region
+      exome: exome
     out:
     - somaticSV
     - diploidSV
@@ -47,6 +51,7 @@ steps:
       ref: ref
       callRegions: region
       indelCandidates: manta/candidateSmallIndels
+      exome: exome
     out:
     - snvs
     - indels

@@ -8,8 +8,6 @@ inputs:
     type:
       type: array
       items: File
-      inputBinding:
-        separate: true
     secondaryFiles: .idx
   Ref:
     type: File

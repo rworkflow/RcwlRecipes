@@ -3,6 +3,7 @@ class: Workflow
 requirements:
 - class: SubworkflowFeatureRequirement
 - class: ScatterFeatureRequirement
+- class: InlineJavascriptRequirement
 inputs:
   outBam:
     type: string
@@ -28,9 +29,7 @@ inputs:
     type:
       type: array
       items: File
-      inputBinding:
-        separate: true
-    secondaryFiles: .idx
+    secondaryFiles: '$(self.nameext == ''.gz'' ? self.basename+''.tbi'' : self.basename+''.idx'')'
 outputs:
   BAM:
     type: File

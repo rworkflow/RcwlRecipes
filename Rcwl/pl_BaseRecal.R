@@ -4,7 +4,7 @@ p1 <- InputParam(id = "bam", type = "File")
 p2 <- InputParam(id = "ref", type = "File", secondaryFiles = c(".fai",
                                                                "$(self.nameroot).dict"))
 p3 <- InputParam(id = "knowSites", type = InputArrayParam(items = "File"),
-                 secondaryFiles = ".idx")
+                 secondaryFiles = "$(self.nameext == '.gz' ? self.basename+'.tbi' : self.basename+'.idx')")
 p4 <- InputParam(id = "oBam", type = "string")
 
 s1 <- cwlStep(id = "BaseRecalibrator", run = BaseRecalibrator,
@@ -34,7 +34,9 @@ o3 <- OutputParam(id = "stats", type = "File",
 
 req1 <- list(class = "StepInputExpressionRequirement")
 req2 <- list(class = "InlineJavascriptRequirement")
-BaseRecal <- cwlWorkflow(requirements = list(req1, req2),
-                            inputs = InputParamList(p1, p2, p3, p4),
-                            outputs = OutputParamList(o1, o2, o3))
+req3 <- requireJS()
+BaseRecal <- cwlWorkflow(cwlVersion = "v1.0",
+                         requirements = list(req1, req2, req3),
+                         inputs = InputParamList(p1, p2, p3, p4),
+                         outputs = OutputParamList(o1, o2, o3))
 BaseRecal <- BaseRecal + s1 + s2 + s3 + s4 + s5

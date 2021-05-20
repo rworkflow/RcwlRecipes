@@ -77,6 +77,11 @@ inputs:
       prefix: --scatter
       separate: true
     default: true
+  method:
+    type: string?
+    inputBinding:
+      prefix: -m
+      separate: true
 outputs:
   Outdir:
     type: Directory
