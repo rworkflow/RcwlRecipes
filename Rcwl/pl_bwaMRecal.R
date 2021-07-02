@@ -8,7 +8,7 @@ p4 <- InputParam(id = "Ref", type = "File",
                                     ".sa", ".fai",
                                     "$(self.nameroot).dict"))
 p5 <- InputParam(id = "FQ1s", type = "File")
-p6 <- InputParam(id = "FQ2s", type = "File")
+p6 <- InputParam(id = "FQ2s", type = "File?")
 p7 <- InputParam(id = "knowSites", type = InputArrayParam(items = "File"),
                  secondaryFiles = "$(self.nameext == '.gz' ? self.basename+'.tbi' : self.basename+'.idx')")
 

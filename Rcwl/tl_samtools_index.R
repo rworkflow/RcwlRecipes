@@ -3,7 +3,7 @@ p1 <- InputParam(id = "bam", type = "File", position = 1)
 o1 <- OutputParam(id = "idx", type = "File", glob = "$(inputs.bam.basename)",
                   secondaryFiles = list(".bai"))
 req2 <- list(class = "DockerRequirement",
-             dockerPull = "biocontainers/samtools:v1.7.0_cv3")
+             dockerPull = "quay.io/biocontainers/samtools:1.12--h9aed4be_1")
 req3 <- list(class = "InitialWorkDirRequirement",
              listing = list("$(inputs.bam)"))
 samtools_index <- cwlProcess(baseCommand = c("samtools", "index"),
