@@ -9,12 +9,13 @@ p6 <- InputParam(id = "dbsnp", type = "File",
                  secondaryFiles = "$(self.nameext == '.gz' ? self.basename+'.tbi' : self.basename+'.idx')")
 p7 <- InputParam(id = "gresource", type = "File",
                  secondaryFiles = "$(self.nameext == '.gz' ? self.basename+'.tbi' : self.basename+'.idx')")
-p8 <- InputParam(id = "pon", type = "File", secondaryFiles = ".idx")
+p8 <- InputParam(id = "pon", type = "File",
+                 secondaryFiles = "$(self.nameext == '.gz' ? self.basename+'.tbi' : self.basename+'.idx')")
 p9 <- InputParam(id = "interval", type = "File")
 p10 <- InputParam(id = "comvcf", type = "File",
                   secondaryFiles = "$(self.nameext == '.gz' ? self.basename+'.tbi' : self.basename+'.idx')")
-p11 <- InputParam(id = "artMode", type = InputArrayParam(items = "string"),
-                 default = list("G/T", "C/T"))
+## p11 <- InputParam(id = "artMode", type = InputArrayParam(items = "string"),
+##                   default = list("G/T", "C/T"))
 p12 <- InputParam(id = "filter", type = "string", default = "PASS")
 p13 <- InputParam(id = "threads", type = "int", default = 8)
 
