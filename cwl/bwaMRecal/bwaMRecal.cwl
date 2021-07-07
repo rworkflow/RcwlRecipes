@@ -24,7 +24,7 @@ inputs:
   FQ1s:
     type: File
   FQ2s:
-    type: File
+    type: File?
   knowSites:
     type:
       type: array

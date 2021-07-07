@@ -12,6 +12,7 @@ inputs:
 outputs:
   ibam:
     type: File
+    secondaryFiles: .bai
     outputSource: bamIdx/idx
 steps:
   realign:

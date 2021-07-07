@@ -35,7 +35,7 @@ steps:
   GenotypeGVCFs:
     run: GenotypeGVCFs.cwl
     in:
-      variant: CombineGVCFs/cvcf
+      variant: CombineGVCFs/vcf
       ref: Ref
       vout: out
     out:

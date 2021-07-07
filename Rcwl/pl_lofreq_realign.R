@@ -14,7 +14,7 @@ s3 <- cwlStep(id = "indelq", run = lofreq_indelqual,
                         ibam = list(valueFrom = "$(inputs.bam.nameroot)_i.bam")))
 s4 <- cwlStep(id = "bamIdx", run = samtools_index,
               In = list(bam = "indelq/obam"))
-o1 <- OutputParam(id = "ibam", type = "File", outputSource = "bamIdx/idx")
+o1 <- OutputParam(id = "ibam", type = "File", outputSource = "bamIdx/idx", secondaryFiles = ".bai")
 lofreq_realign <- cwlWorkflow(requirements = list(requireStepInputExpression()),
                               inputs = InputParamList(p1, p2),
                               outputs = OutputParamList(o1))

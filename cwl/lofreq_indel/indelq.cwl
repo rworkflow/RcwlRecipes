@@ -19,7 +19,6 @@ inputs:
       separate: true
   bam:
     type: File
-    secondaryFiles: .bai
     inputBinding:
       position: 2
       separate: true

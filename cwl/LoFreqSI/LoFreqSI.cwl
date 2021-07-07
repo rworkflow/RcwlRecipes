@@ -16,7 +16,7 @@ inputs:
     type: File
   dbsnp:
     type: File
-    secondaryFiles: .tbi
+    secondaryFiles: '$(self.nameext == ''.gz'' ? self.basename+''.tbi'' : self.basename+''.idx'')'
   out:
     type: string
   threads:
