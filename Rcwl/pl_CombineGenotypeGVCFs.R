@@ -11,7 +11,7 @@ s1 <- cwlStep(id = "CombineGVCFs", run = CombineGVCFs,
                                  valueFrom = "$(self).g.vcf")))
 #' @include tl_GenotypeGVCFs.R
 s2 <- cwlStep(id = "GenotypeGVCFs", run = GenotypeGVCFs,
-           In = list(variant = "CombineGVCFs/cvcf",
+           In = list(variant = "CombineGVCFs/vcf",
                      ref = "Ref",
                      vout = "out"))
 o1 <- OutputParam(id = "VCF", type = "File",

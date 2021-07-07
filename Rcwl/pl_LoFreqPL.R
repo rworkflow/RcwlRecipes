@@ -4,7 +4,8 @@ p1 <- InputParam(id = "tbam", type = "File", secondaryFiles = ".bai")
 p2 <- InputParam(id = "nbam", type = "File", secondaryFiles = ".bai")
 p3 <- InputParam(id = "ref", type = "File", secondaryFiles = ".fai")
 p4 <- InputParam(id = "region", type = "File")
-p5 <- InputParam(id = "dbsnp", type = "File", secondaryFiles = ".tbi")
+p5 <- InputParam(id = "dbsnp", type = "File",
+                 secondaryFiles = "$(self.nameext == '.gz' ? self.basename+'.tbi' : self.basename+'.idx')")
 p6 <- InputParam(id = "out", type = "string")
 p7 <- InputParam(id = "threads", type = "int")
 
