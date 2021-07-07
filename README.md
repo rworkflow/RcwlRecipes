@@ -1,3 +1,4 @@
+[![cwltool-validate](https://github.com/rworkflow/RcwlRecipes/actions/workflows/check.yaml/badge.svg)](https://github.com/rworkflow/RcwlRecipes/actions/workflows/check.yaml)
 
 A repository of tools and pipelines recipes described with Common Workflow Language (CWL) and Rcwl.
 
