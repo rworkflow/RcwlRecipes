@@ -4,7 +4,7 @@ name: cwltool-validate
 
 jobs:
   cwltool-validate:
-    runs-on: rcwl
+    runs-on: ubuntu-latest
     container: hubentu/rcwl:latest
 
     steps:
