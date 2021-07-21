@@ -13,7 +13,7 @@ p10 <- InputParam(id = "varscanIndel", type = "File?", prefix = "-V")
 p11 <- InputParam(id = "outvcf", type = "string", prefix = "-o")
 o1 <- OutputParam(id = "ovcf", type = "File", glob = "$(inputs.outvcf)")
 req1 <- requireDocker("hubentu/somatic_combiner")
-somatic_combiner <- cwlProcess(cwlVersion = "v1.1",
+somatic_combiner <- cwlProcess(cwlVersion = "v1.2",
                                baseCommand = "",
                                requirements = list(req1),
                                inputs = InputParamList(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11),

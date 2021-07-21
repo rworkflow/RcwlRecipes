@@ -1,8 +1,8 @@
 ## https://bioinformatics.mdanderson.org/public-software/muse/
 p1 <- InputParam(id = "tbam", type = "File",
-                 secondaryFiles = ".bai", position = 1)
+                 secondaryFiles = list(".bai?", "^.bai?"), position = 1)
 p2 <- InputParam(id = "nbam", type = "File",
-                 secondaryFiles = ".bai", position = 2)
+                 secondaryFiles = list(".bai", "^.bai?"), position = 2)
 p3 <- InputParam(id = "ref", type = "File", prefix = "-f",
                  secondaryFiles = ".fai", position = 3)
 p4 <- InputParam(id = "region", type = "File?",
@@ -18,10 +18,10 @@ p8 <- InputParam(id = "genome", type = "boolean",
 o1 <- OutputParam(id = "outVcf", type = "File", glob = "$(inputs.vcf)", secondaryFiles = ".tbi?")
 
 req1 <- list(class = "DockerRequirement",
-             dockerPull = "quay.io/biocontainers/muse:1.0.rc--h2e03b76_5")
+             dockerPull = "quay.io/biocontainers/muse:1.0.rc--0")
 req2 <- list(class = "ShellCommandRequirement")
 req3 <- requireJS()
-MuSE <- cwlProcess(cwlVersion = "v1.0",
+MuSE <- cwlProcess(cwlVersion = "v1.2",
                    baseCommand = c("MuSE", "call"),
                    requirements = list(req1, req2, req3),
                    arguments = list(

@@ -50,13 +50,16 @@ o2 <- OutputParam(id = "phasedVCF", type = "File", outputSource = "PhaseVcf/pvcf
 req1 <- list(class = "InlineJavascriptRequirement")
 req2 <- list(class = "StepInputExpressionRequirement")
 req3 <- list(class = "SubworkflowFeatureRequirement")
+## req4 <- list(class = "LoadListingRequirement",
+##              loadListing = "no_listing")
 ht1 <- list("cwltool:LoadListingRequirement"=
                 list(loadListing = "no_listing"))
 ext <- list("$namespaces" = list(cwltool = "http://commonwl.org/cwltool#"))
-AnnPhaseVcf <- cwlWorkflow(requirements = list(req1, req2, req3),
-                            inputs = InputParamList(p1, p2, p3, p4, p5a, p5b,
-                                                    p6, p7, p8, p9, p10),
-                            outputs = OutputParamList(o1, o2),
-                            hints = ht1,
-                            extensions = ext)
+AnnPhaseVcf <- cwlWorkflow(cwlVersion = "v1.0",
+                           requirements = list(req1, req2, req3),
+                           inputs = InputParamList(p1, p2, p3, p4, p5a, p5b,
+                                                   p6, p7, p8, p9, p10),
+                           outputs = OutputParamList(o1, o2),
+                           hints = ht1,
+                           extensions = ext)
 AnnPhaseVcf <- AnnPhaseVcf + s1 + s2a + s2b + s3 + s4

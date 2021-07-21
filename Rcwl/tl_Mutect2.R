@@ -9,7 +9,7 @@ p3 <- InputParam(id = "normal", type = "string?", prefix = "-normal")
 p4 <- InputParam(id = "germline", type = "File?", prefix = "--germline-resource",
                  secondaryFiles = "$(self.nameext == '.gz' ? self.basename+'.tbi' : self.basename+'.idx')")
 p5 <- InputParam(id = "pon", type = "File?", prefix = "--panel-of-normals",
-                 secondaryFiles = ".idx")
+                 secondaryFiles = "$(self.nameext == '.gz' ? self.basename+'.tbi' : self.basename+'.idx')")
 p6 <- InputParam(id = "interval", type = "File?", prefix = "-L")
 p7 <- InputParam(id = "out", type = "string", prefix = "-O")
 p8 <- InputParam(id = "f1r2", type = "string?", prefix = "--f1r2-tar-gz",
