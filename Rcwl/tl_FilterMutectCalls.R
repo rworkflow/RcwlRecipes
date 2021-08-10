@@ -6,7 +6,7 @@ p3 <- InputParam(id = "seg", type = "File", prefix = "--tumor-segmentation")
 p4 <- InputParam(id = "lro", type = "File", prefix = "--ob-priors")
 p5 <- InputParam(id = "fvcf", type = "string", prefix = "-O")
 p6 <- InputParam(id = "ref", prefix = "-R", type = "File",
-                 secondaryFiles = c(".fai", "$(self.nameroot).dict"))
+                 secondaryFiles = c(".fai", "^.dict"))
 o1 <- OutputParam(id = "fout", type = "File", glob = "$(inputs.fvcf)")
 req1 <- list(class = "DockerRequirement",
              dockerPull = "broadinstitute/gatk:latest")

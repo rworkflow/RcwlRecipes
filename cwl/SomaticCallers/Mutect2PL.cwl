@@ -15,7 +15,7 @@ inputs:
     type: File
     secondaryFiles:
     - .fai
-    - $(self.nameroot).dict
+    - ^.dict
   normal:
     type: string
   tumor:

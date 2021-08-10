@@ -12,7 +12,7 @@ inputs:
     type: File
     secondaryFiles:
     - .fai
-    - $(self.nameroot).dict
+    - ^.dict
   interval:
     type: File
   pvcf:

@@ -1,11 +1,11 @@
-cwlVersion: v1.0
+cwlVersion: v1.2
 class: CommandLineTool
 baseCommand:
 - MuSE
 - call
 requirements:
 - class: DockerRequirement
-  dockerPull: quay.io/biocontainers/muse:1.0.rc--h2e03b76_5
+  dockerPull: quay.io/biocontainers/muse:1.0.rc--0
 - class: ShellCommandRequirement
 - class: InlineJavascriptRequirement
 arguments:
@@ -25,13 +25,17 @@ arguments:
 inputs:
   tbam:
     type: File
-    secondaryFiles: .bai
+    secondaryFiles:
+    - .bai?
+    - ^.bai?
     inputBinding:
       position: 1
       separate: true
   nbam:
     type: File
-    secondaryFiles: .bai
+    secondaryFiles:
+    - .bai
+    - ^.bai?
     inputBinding:
       position: 2
       separate: true

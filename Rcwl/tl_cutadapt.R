@@ -8,7 +8,7 @@
 req1 <- list(class = "DockerRequirement", 
              dockerPull = "kfdrc/cutadapt")
 
-p1 <- InputParam(id = "threadN", type = "int", prefix = "-j", position = 1, default = 1)
+p1 <- InputParam(id = "threadN", type = "int?", prefix = "-j", position = 1, default = 1L)
 p2 <- InputParam(id = "adapter", type = "string", prefix = "-b", position = 2)
 p3 <- InputParam(id = "out1prefix", type = "string", prefix = "-o", position = 3)
 p4 <- InputParam(id = "out2prefix", type = "string?", prefix = "-p", position = 4)

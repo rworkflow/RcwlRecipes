@@ -78,5 +78,6 @@ inputs:
 outputs:
   outVcf:
     type: File
+    secondaryFiles: .tbi?
     outputBinding:
       glob: $(inputs.vcf)

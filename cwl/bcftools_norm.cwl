@@ -2,7 +2,7 @@ cwlVersion: v1.2
 class: CommandLineTool
 baseCommand:
 - bcftools
-- sort
+- norm
 requirements:
 - class: DockerRequirement
   dockerPull: quay.io/biocontainers/bcftools:1.13--h3a49de5_0
@@ -21,6 +21,11 @@ inputs:
     type: string?
     inputBinding:
       prefix: -O
+      separate: true
+  dup:
+    type: string?
+    inputBinding:
+      prefix: -d
       separate: true
 outputs:
   Fout:

@@ -11,7 +11,7 @@ p9 <- InputParam(id = "exclude", type = "string?", prefix = "-e")
 
 o1 <- OutputParam(id = "Fout", type = "File", glob = "$(inputs.fout)")
 req1 <- list(class = "DockerRequirement",
-             dockerPull = "biocontainers/bcftools:v1.5_cv3")
+             dockerPull = "quay.io/biocontainers/bcftools:1.13--h3a49de5_0")
 
 bcftools_view <- cwlProcess(baseCommand = c("bcftools", "view"),
                             requirements = list(req1),

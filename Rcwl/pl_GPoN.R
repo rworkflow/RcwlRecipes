@@ -2,7 +2,7 @@
 #' @include tl_GenomicsDB.R tl_PoN.R
 p1 <- InputParam(id = "nvcf", type = InputArrayParam(items = "File"), secondaryFiles = ".idx")
 p2 <- InputParam(id = "Ref", type = "File",
-                 secondaryFiles = c(".fai", "$(self.nameroot).dict"))
+                 secondaryFiles = c(".fai", "^.dict"))
 p3 <- InputParam(id = "interval", type = "File")
 p4 <- InputParam(id = "pvcf", type = "string")
 p5 <- InputParam(id = "gresource", type = "File?",

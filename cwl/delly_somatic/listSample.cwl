@@ -5,7 +5,7 @@ baseCommand:
 - query
 requirements:
 - class: DockerRequirement
-  dockerPull: quay.io/biocontainers/bcftools:1.3.1--h5bf99c6_7
+  dockerPull: quay.io/biocontainers/bcftools:1.13--h3a49de5_0
 inputs:
   exclude:
     type: string?

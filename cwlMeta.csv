@@ -1,33 +1,35 @@
 "","Type","Command","Container","mtime"
 "pl_alignMerge","pipeline","bwaAlign+mergeBamDup",NA,2021-05-20 12:15:10
-"pl_AnnPhaseVcf","pipeline","VCFvep+dVCFcoverage+rVCFcoverage+VCFexpression+PhaseVcf",NA,2021-05-20 12:15:10
+"pl_AnnPhaseVcf","pipeline","VCFvep+dVCFcoverage+rVCFcoverage+VCFexpression+PhaseVcf",NA,2021-07-20 16:56:30
 "pl_BaseRecal","pipeline","BaseRecalibrator+ApplyBQSR+samtools_index+samtools_flagstat+samtools_stats",NA,2021-05-20 12:15:10
 "pl_bwaAlign","pipeline","bwa+sam2bam+sortBam+idxBam",NA,2021-05-20 12:15:10
 "pl_bwaMMRecal","pipeline","bwaAlign+mergeBamDup+BaseRecal",NA,2021-05-20 12:15:10
-"pl_bwaMRecal","pipeline","bwaAlign+markdup+BaseRecal",NA,2021-07-07 09:53:36
-"pl_CombineGenotypeGVCFs","pipeline","CombineGVCFs+GenotypeGVCFs",NA,2021-07-06 20:47:35
+"pl_bwaMRecal","pipeline","bwaAlign+markdup+BaseRecal",NA,2021-07-07 10:35:12
+"pl_CombineGenotypeGVCFs","pipeline","CombineGVCFs+GenotypeGVCFs",NA,2021-07-07 10:35:12
 "pl_delly_somatic","pipeline","dellyCall+listSample+echo+fpaste+dellyFilter",NA,2021-05-20 12:15:10
 "pl_GAlign","pipeline","fqJson+fq2ubam+ubam2bamJson+align+mvOut",NA,2021-05-20 12:15:10
 "pl_glnexus_joint","pipeline","glnexus+bcf",NA,2021-05-20 12:15:10
-"pl_GPoN","pipeline","GenomicsDB+PoN",NA,2021-05-20 12:15:10
+"pl_GPoN","pipeline","GenomicsDB+PoN",NA,2021-07-22 10:05:23
 "pl_hapCall","pipeline","hapJson+HC+mvOut",NA,2021-05-20 12:15:10
 "pl_jdCall","pipeline","jdJson+JD+mvOut",NA,2021-05-20 12:15:10
+"pl_lancet_scatter","pipeline","lancet_bed+mergeVcf",NA,2021-07-16 17:30:40
 "pl_lofreq_indel","pipeline","indelq+bamIdx",NA,2021-05-20 12:15:10
-"pl_lofreq_realign","pipeline","realign+sortBam+indelq+bamIdx",NA,2021-07-07 10:12:56
-"pl_LoFreqPL","pipeline","tbamR+nbamR+lofreqCall",NA,2021-07-07 09:48:23
-"pl_LoFreqSI","pipeline","tbamR+nbamR+lofreqCall",NA,2021-07-07 10:13:51
+"pl_lofreq_realign","pipeline","realign+sortBam+indelq+bamIdx",NA,2021-07-07 10:35:12
+"pl_LoFreqPL","pipeline","tbamR+nbamR+lofreqCall",NA,2021-07-07 10:35:12
+"pl_LoFreqSI","pipeline","tbamR+nbamR+lofreqCall",NA,2021-07-07 10:35:12
 "pl_mantaStrelka","pipeline","manta+strelka",NA,2021-05-20 12:15:10
 "pl_mergeBamDup","pipeline","mergeBam+markdup+samtools_index+samtools_flagstat",NA,2021-05-20 12:15:10
 "pl_miRDeep2PL","pipeline","Mapper+miRDeep2",NA,2021-05-20 12:15:10
-"pl_Mutect2PL","pipeline","Mutect2+GetPileupSummariesT+GetPileupSummariesN+CalculateContamination+LearnReadOrientationModel+FilterMutectCalls+bcfview",NA,2021-05-20 12:15:10
+"pl_MuSE_scatter","pipeline","MuSEchr+mergeVcf+sortVcf+normVcf",NA,2021-07-21 14:06:32
+"pl_Mutect2PL","pipeline","Mutect2+GetPileupSummariesT+GetPileupSummariesN+CalculateContamination+LearnReadOrientationModel+FilterMutectCalls+bcfview",NA,2021-07-22 15:35:10
 "pl_neusomatic","pipeline","preprocess+call+postprocess",NA,2021-05-20 12:15:10
 "pl_phaseVcf","pipeline","splitSample+renameGVcf+renameSVcf+combineVariants+sortVcf+ReadBackedPhasing+bgzip+tabixIndex",NA,2021-05-20 12:15:10
-"pl_rnaseq_Sf","pipeline","fastqc+STAR+sortBam+samtools_index+samtools_flagstat+featureCounts+gtfToGenePred+genePredToBed+r_distribution+gCoverage",NA,2021-05-20 12:15:10
+"pl_rnaseq_Sf","pipeline","fastqc+STAR+sortBam+samtools_index+samtools_flagstat+featureCounts+gtfToGenePred+genePredToBed+r_distribution+gCoverage",NA,2021-08-02 15:56:09
 "pl_RSeQC","pipeline","gtfToGenePred+genePredToBed+r_distribution+gCoverage",NA,2021-05-20 12:15:10
-"pl_SomaticCallers","pipeline","Mutect2PL+MuSE+bgzip+tabixIndex+mantaStrelka+SomaticSniper+VarDict+VarScanPL+Wrapper+mergeTSV+neusomaticPL",NA,2021-07-07 09:53:36
+"pl_SomaticCallers","pipeline","Mutect2PL+MuSE+bgzip+tabixIndex+mantaStrelka+SomaticSniper+VarDict+VarScanPL+Wrapper+mergeTSV+neusomaticPL",NA,2021-07-07 10:35:12
 "pl_STARsoloDropletUtils","pipeline","STARsolo+DropletUtils",NA,2021-05-20 12:15:10
 "pl_strelka2PL","pipeline","manta+strelka+strelkaSNV+strelkaIndel",NA,2021-05-20 12:15:10
-"pl_subBamByVcf","pipeline","vcf2bed+samtoolsview+samtoolsidx",NA,2021-07-07 09:53:36
+"pl_subBamByVcf","pipeline","vcf2bed+samtoolsview+samtoolsidx",NA,2021-07-07 10:35:12
 "pl_SUPPA","pipeline","quantMerge+genEvents+mergeEvents+psiPerEvent+splitEventsG1+splitEventsG2+splitExpG1+splitExpG2+diffSplice",NA,2021-05-20 12:15:10
 "pl_targetVarCall","pipeline","bwaAlign+BaseRecal+bedtolist+HaplotypeCaller+GenotypeGVCFs",NA,2021-05-20 12:15:10
 "pl_VarScan2Somatic","pipeline","mpileupT+mpileupN+somatic+processSomatic+somaticFilter",NA,2021-05-20 12:15:10
@@ -40,11 +42,12 @@
 "tl_bam_readcount","tool","/usr/bin/python /usr/bin/bam_readcount_helper.py","mgibio/bam_readcount_helper-cwl:1.1.1",2021-05-20 12:15:10
 "tl_bamCoverage","tool","bamCoverage","quay.io/biocontainers/deeptools:3.4.3--py_0",2021-05-20 12:15:10
 "tl_BaseRecalibrator","tool","gatk BaseRecalibrator","broadinstitute/gatk:latest",2021-05-20 12:15:10
-"tl_bcftools_concat","tool","bcftools concat","biocontainers/bcftools:v1.5_cv3",2021-05-20 12:15:10
-"tl_bcftools_query","tool","bcftools query","quay.io/biocontainers/bcftools:1.3.1--h5bf99c6_7",2021-05-20 12:15:10
-"tl_bcftools_reheader","tool","bcftools reheader","biocontainers/bcftools:v1.5_cv3",2021-05-20 12:15:10
-"tl_bcftools_sort","tool","bcftools sort","biocontainers/bcftools:v1.5_cv3",2021-05-20 12:15:10
-"tl_bcftools_view","tool","bcftools view","biocontainers/bcftools:v1.5_cv3",2021-05-20 12:15:10
+"tl_bcftools_concat","tool","bcftools concat","quay.io/biocontainers/bcftools:1.13--h3a49de5_0",2021-07-22 08:51:26
+"tl_bcftools_norm","tool","bcftools norm","quay.io/biocontainers/bcftools:1.13--h3a49de5_0",2021-07-22 08:52:21
+"tl_bcftools_query","tool","bcftools query","quay.io/biocontainers/bcftools:1.13--h3a49de5_0",2021-07-22 08:52:41
+"tl_bcftools_reheader","tool","bcftools reheader","quay.io/biocontainers/bcftools:1.13--h3a49de5_0",2021-07-22 08:52:59
+"tl_bcftools_sort","tool","bcftools sort","quay.io/biocontainers/bcftools:1.13--h3a49de5_0",2021-07-22 08:53:11
+"tl_bcftools_view","tool","bcftools view","quay.io/biocontainers/bcftools:1.13--h3a49de5_0",2021-07-22 08:53:24
 "tl_bcfview","tool","bcftools view","biocontainers/bcftools:v1.5_cv3",2021-05-20 12:15:10
 "tl_BedToIntervalList","tool","picard BedToIntervalList","quay.io/biocontainers/picard:2.21.1--0",2021-05-20 12:15:10
 "tl_bedtools_genomecov","tool","bedtools genomecov","quay.io/biocontainers/bedtools:2.29.2--hc088bd4_0",2021-05-20 12:15:10
@@ -64,9 +67,9 @@
 "tl_ColSeqArtifact","tool","gatk CollectSequencingArtifactMetrics","broadinstitute/gatk:latest",2021-05-20 12:15:10
 "tl_CombineGVCFs","tool","gatk CombineGVCFs","broadinstitute/gatk:latest",2021-05-20 12:15:10
 "tl_CombineVariants","tool","java -jar /usr/GenomeAnalysisTK.jar -T CombineVariants","broadinstitute/gatk3:3.8-1",2021-05-20 12:15:10
-"tl_convert2bed","tool","convert2bed","quay.io/biocontainers/bedops:2.4.39--h7d875b9_1",2021-07-07 09:53:37
+"tl_convert2bed","tool","convert2bed","quay.io/biocontainers/bedops:2.4.39--h7d875b9_1",2021-07-07 10:35:12
 "tl_CREST","tool","/opt/CREST/CREST.sh","hubentu/crest",2021-05-20 12:15:10
-"tl_cutadapt","tool","cutadapt","kfdrc/cutadapt",2021-05-20 12:15:11
+"tl_cutadapt","tool","cutadapt","kfdrc/cutadapt",2021-07-28 09:43:48
 "tl_deepvariant","tool","/opt/deepvariant/bin/run_deepvariant","google/deepvariant",2021-05-20 12:15:11
 "tl_delly_call","tool","delly call","quay.io/biocontainers/delly:0.8.7--he03298f_1",2021-05-20 12:15:11
 "tl_delly_filter","tool","delly filter","quay.io/biocontainers/delly:0.8.7--he03298f_1",2021-05-20 12:15:11
@@ -75,15 +78,15 @@
 "tl_echo","tool","echo",NA,2021-05-20 12:15:11
 "tl_fastqc","tool","fastqc","hubentu/rcwl-rnaseq",2021-05-20 12:15:11
 "tl_featureCounts","tool","featureCounts","hubentu/rcwl-rnaseq",2021-05-20 12:15:11
-"tl_FilterMutectCalls","tool","gatk FilterMutectCalls","broadinstitute/gatk:latest",2021-05-20 12:15:10
+"tl_FilterMutectCalls","tool","gatk FilterMutectCalls","broadinstitute/gatk:latest",2021-07-22 13:47:50
 "tl_FilterOBias","tool","gatk FilterByOrientationBias","broadinstitute/gatk:latest",2021-05-20 12:15:10
 "tl_fpaste","tool","paste",NA,2021-05-20 12:15:11
 "tl_Funcotator","tool","gatk Funcotator","broadinstitute/gatk:latest",2021-05-20 12:15:10
 "tl_geneBody_coverage","tool","geneBody_coverage.py","hubentu/rcwl-rnaseq",2021-05-20 12:15:11
 "tl_genePredToBed","tool","genePredToBed","hubentu/rcwl-rnaseq",2021-05-20 12:15:11
-"tl_GenomicsDB","tool","gatk GenomicsDBImport","broadinstitute/gatk:latest",2021-05-20 12:15:10
+"tl_GenomicsDB","tool","gatk GenomicsDBImport","broadinstitute/gatk:latest",2021-07-22 10:02:02
 "tl_GenotypeGVCFs","tool","gatk GenotypeGVCFs","broadinstitute/gatk:latest",2021-05-20 12:15:10
-"tl_GetPileupSummaries","tool","gatk GetPileupSummaries","broadinstitute/gatk:latest",2021-05-20 12:15:10
+"tl_GetPileupSummaries","tool","gatk GetPileupSummaries","broadinstitute/gatk:latest",2021-07-22 14:43:55
 "tl_ggsashimi","tool","","guigolab/ggsashimi",2021-05-20 12:15:11
 "tl_glnexus_cli","tool","/usr/local/bin/glnexus_cli","quay.io/mlin/glnexus:v1.3.1",2021-05-20 12:15:11
 "tl_gtfToGenePred","tool","gtfToGenePred","hubentu/rcwl-rnaseq",2021-05-20 12:15:11
@@ -93,10 +96,10 @@
 "tl_htseq","tool","htseq-count","genomicpariscentre/htseq",2021-05-20 12:15:11
 "tl_kallisto_index","tool","kallisto index","zlskidmore/kallisto",2021-05-20 12:15:11
 "tl_kallisto_quant","tool","kallisto quant","zlskidmore/kallisto",2021-05-20 12:15:11
-"tl_lancet","tool","/lancet-1.0.7/lancet","kfdrc/lancet:1.0.7",2021-05-20 12:15:11
+"tl_lancet","tool","lancet","hubentu/lancet",2021-07-19 14:58:56
 "tl_LearnReadOrientationModel","tool","gatk LearnReadOrientationModel","broadinstitute/gatk:latest",2021-05-20 12:15:10
 "tl_liftOver","tool","liftOver","biowardrobe2/ucscuserapps:v358_2",2021-05-20 12:15:11
-"tl_lofreq_indelqual","tool","lofreq indelqual","quay.io/biocontainers/lofreq:2.1.5--py37h916d2e8_4",2021-07-07 09:52:26
+"tl_lofreq_indelqual","tool","lofreq indelqual","quay.io/biocontainers/lofreq:2.1.5--py37h916d2e8_4",2021-07-07 10:35:12
 "tl_lofreq_viterbi","tool","lofreq viterbi","quay.io/biocontainers/lofreq:2.1.5--py37h916d2e8_4",2021-05-20 12:15:11
 "tl_LoFreq","tool","lofreq somatic","quay.io/biocontainers/lofreq:2.1.5--py37h916d2e8_4",2021-05-20 12:15:10
 "tl_mageck_count","tool","mageck count","quay.io/biocontainers/mageck:0.5.9.4--py38hed8969a_0",2021-05-20 12:15:11
@@ -107,17 +110,19 @@
 "tl_manta","tool","configManta.py","cmopipeline/strelka2_manta",2021-05-20 12:15:11
 "tl_markdup","tool","picard MarkDuplicates","quay.io/biocontainers/picard:2.21.1--0",2021-05-20 12:15:11
 "tl_mergeBam","tool","picard MergeSamFiles","quay.io/biocontainers/picard:2.21.1--0",2021-05-20 12:15:11
-"tl_MergeVcf_MMS","tool","R function","hubentu/variantcombiner",2021-07-07 09:53:37
+"tl_MergeVcf_MMS","tool","R function","hubentu/variantcombiner",2021-07-07 10:35:12
 "tl_miRDeep2","tool","miRDeep2.pl","hubentu/mirdeep2",2021-05-20 12:15:11
 "tl_miRMapper","tool","mapper.pl","hubentu/mirdeep2",2021-05-20 12:15:11
 "tl_multiqc","tool","multiqc","hubentu/rcwl-rnaseq",2021-05-20 12:15:11
-"tl_MuSE","tool","MuSE call","quay.io/biocontainers/muse:1.0.rc--h2e03b76_5",2021-05-20 12:15:10
+"tl_MuSE","tool","MuSE call","quay.io/biocontainers/muse:1.0.rc--h2e03b76_5",2021-07-21 11:57:34
+"tl_MuSEv2","tool","MuSE call","quay.io/biocontainers/muse:1.0.rc--0",2021-07-21 13:56:32
 "tl_Mutect2_gatk3","tool","java -jar /usr/GenomeAnalysisTK.jar -T MuTect2","broadinstitute/gatk3:3.8-1",2021-05-20 12:15:10
-"tl_Mutect2","tool","gatk Mutect2","broadinstitute/gatk:latest",2021-05-20 12:15:10
+"tl_Mutect2","tool","gatk Mutect2","broadinstitute/gatk:latest",2021-07-22 15:42:35
 "tl_mvOut","tool","R function",NA,2021-05-20 12:15:11
 "tl_neusomatic_call","tool","python /opt/neusomatic/neusomatic/python/call.py","msahraeian/neusomatic",2021-05-20 12:15:11
 "tl_neusomatic_postprocess","tool","python /opt/neusomatic/neusomatic/python/postprocess.py","msahraeian/neusomatic",2021-05-20 12:15:11
 "tl_neusomatic_preprocess","tool","python /opt/neusomatic/neusomatic/python/preprocess.py","msahraeian/neusomatic",2021-05-20 12:15:11
+"tl_octopus_somatic","tool","","dancooke/octopus",2021-07-30 09:49:34
 "tl_polysolver","tool","bash /home/polysolver/scripts/shell_call_hla_type","sachet/polysolver:v4",2021-05-20 12:15:11
 "tl_PoN","tool","gatk CreateSomaticPanelOfNormals","broadinstitute/gatk:latest",2021-05-20 12:15:10
 "tl_pvacseq","tool","pvacseq run","griffithlab/pvactools",2021-05-20 12:15:11
@@ -136,18 +141,18 @@
 "tl_SamToFastq","tool","picard SamToFastq","quay.io/biocontainers/picard:2.21.1--0",2021-05-20 12:15:10
 "tl_samtools_depth","tool","samtools depth","biocontainers/samtools:v1.7.0_cv3",2021-05-20 12:15:11
 "tl_samtools_flagstat","tool","samtools flagstat","biocontainers/samtools:v1.7.0_cv3",2021-05-20 12:15:11
-"tl_samtools_index","tool","samtools index","quay.io/biocontainers/samtools:1.12--h9aed4be_1",2021-07-07 09:53:37
+"tl_samtools_index","tool","samtools index","quay.io/biocontainers/samtools:1.12--h9aed4be_1",2021-07-07 10:35:12
 "tl_samtools_mpileup","tool","samtools mpileup","biocontainers/samtools:v1.7.0_cv3",2021-05-20 12:15:11
 "tl_samtools_sort","tool","samtools sort","quay.io/biocontainers/samtools:1.12--h9aed4be_1",2021-05-20 12:15:11
 "tl_samtools_stats","tool","samtools stats","biocontainers/samtools:v1.7.0_cv3",2021-05-20 12:15:11
-"tl_samtools_view","tool","samtools view","quay.io/biocontainers/samtools:1.12--h9aed4be_1",2021-07-07 09:53:37
-"tl_sigproSS","tool","python /usr/local/bin/spss.py","hubentu/sigpross",2021-07-07 09:53:37
-"tl_somatic_combiner","tool","","hubentu/somatic_combiner",2021-05-20 12:15:11
+"tl_samtools_view","tool","samtools view","quay.io/biocontainers/samtools:1.12--h9aed4be_1",2021-07-07 10:35:12
+"tl_sigproSS","tool","python /usr/local/bin/spss.py","hubentu/sigpross",2021-07-07 10:35:12
+"tl_somatic_combiner","tool","","hubentu/somatic_combiner",2021-07-20 11:22:07
 "tl_SomaticSeq_Wrapper","tool","/opt/somaticseq/SomaticSeq.Wrapper.sh","lethalfang/somaticseq:2.7.2",2021-05-20 12:15:10
 "tl_SomaticSniper","tool","/opt/somatic-sniper/build/bin/bam-somaticsniper","lethalfang/somaticsniper:1.0.5.0-2",2021-05-20 12:15:10
 "tl_sortBam","tool","samtools sort","biocontainers/samtools:v1.7.0_cv3",2021-05-20 12:15:11
 "tl_SortVcf","tool","java -jar /usr/picard/picard.jar SortVcf","broadinstitute/picard",2021-05-20 12:15:10
-"tl_STAR","tool","STAR","quay.io/biocontainers/star:2.7.3a--0",2021-05-20 12:15:10
+"tl_STAR","tool","STAR","quay.io/biocontainers/star:2.7.9a--h9ee0642_0",2021-07-23 10:52:21
 "tl_starFusion","tool","/usr/local/src/STAR-Fusion/STAR-Fusion","trinityctat/ctatfusion",2021-05-20 12:15:11
 "tl_STARindex","tool","STAR","quay.io/biocontainers/star:2.7.5a--0",2021-05-20 12:15:10
 "tl_STARsolo","tool","STAR","quay.io/biocontainers/star:2.7.5a--0",2021-05-20 12:15:10
@@ -167,6 +172,6 @@
 "tl_VarScan2","tool","","serge2016/varscan:v0.1.1",2021-05-20 12:15:10
 "tl_vcf_expression_annotator","tool","vcf-expression-annotator","griffithlab/vatools:3.1.0",2021-05-20 12:15:11
 "tl_vcf_readcount_annotator","tool","vcf-readcount-annotator","griffithlab/vatools:3.1.0",2021-05-20 12:15:11
-"tl_vcf2bed","tool","R function","hubentu/r-utils",2021-07-07 09:53:37
+"tl_vcf2bed","tool","R function","hubentu/r-utils",2021-07-07 10:35:12
 "tl_vep","tool","vep","hubentu/ensembl-vep-plugins",2021-05-20 12:15:11
 "tl_vt_decompose","tool","vt decompose","hubentu/vt",2021-05-20 12:15:11

@@ -1,5 +1,5 @@
 ## GetPileupSummaries
-p1 <- InputParam(id = "bam", type = "File", prefix = "-I")
+p1 <- InputParam(id = "bam", type = "File", prefix = "-I", secondaryFiles = ".bai")
 p2 <- InputParam(id = "vcf", type = "File", prefix = "-V",
                  secondaryFiles = "$(self.nameext == '.gz' ? self.basename+'.tbi' : self.basename+'.idx')")
 p3 <- InputParam(id = "interval", type = "File", prefix = "-L",

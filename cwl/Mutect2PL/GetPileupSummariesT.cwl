@@ -10,6 +10,7 @@ requirements:
 inputs:
   bam:
     type: File
+    secondaryFiles: .bai
     inputBinding:
       prefix: -I
       separate: true

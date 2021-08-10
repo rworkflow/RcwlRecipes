@@ -1,6 +1,6 @@
 ## Create a GenomicsDB
 p1 <- InputParam(id = "vcf", type = InputArrayParam(prefix = "-V", items = "File"), secondaryFiles = ".idx")
-p2 <- InputParam(id = "Ref", prefix = "-R", type = "File", secondaryFiles = c(".fai", "$(self.nameroot).dict"))
+p2 <- InputParam(id = "Ref", prefix = "-R", type = "File", secondaryFiles = c(".fai", "^.dict"))
 p3 <- InputParam(id = "db", prefix = "--genomicsdb-workspace-path", type = "string", default = "pon_db")
 p4 <- InputParam(id = "intervals", prefix = "-L", type = "File")
 o1 <- OutputParam(id = "dbout", type = "Directory", glob = "$(inputs.db)")

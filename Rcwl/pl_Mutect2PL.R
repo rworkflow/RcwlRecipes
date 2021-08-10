@@ -2,7 +2,7 @@
 p1a <- InputParam(id = "tbam", type = "File", secondaryFiles = ".bai")
 p1b <- InputParam(id = "nbam", type = "File", secondaryFiles = ".bai")
 p2 <- InputParam(id = "Ref", type = "File",
-                 secondaryFiles = c(".fai", "$(self.nameroot).dict"))
+                 secondaryFiles = list(".fai", "^.dict"))
 p3 <- InputParam(id = "normal", type = "string")
 p4 <- InputParam(id = "tumor", type = "string")
 p5 <- InputParam(id = "gresource", type = "File",
@@ -13,6 +13,7 @@ p7 <- InputParam(id = "interval", type = "File")
 p8 <- InputParam(id = "comvcf", type = "File",
                  secondaryFiles = "$(self.nameext == '.gz' ? self.basename+'.tbi' : self.basename+'.idx')")
 p9 <- InputParam(id = "filter", type = "string", default = "PASS")
+p10 <- InputParam(id = "threads", type = "int?")
 #' @include tl_Mutect2.R
 s1 <- cwlStep(id = "Mutect2", run = Mutect2,
            In = list(tbam = "tbam",
@@ -22,6 +23,7 @@ s1 <- cwlStep(id = "Mutect2", run = Mutect2,
                      germline = "gresource",
                      pon = "pon",
                      interval = "interval",
+                     threads = "threads",
                      out = list(source = list("normal", "tumor"),
                                 valueFrom = "$(self[0]).$(self[1])")))
 #' @include tl_GetPileupSummaries.R
@@ -71,9 +73,10 @@ o4 <- OutputParam(id = "segment", type = "File", outputSource = "CalculateContam
 req1 <- list(class = "InlineJavascriptRequirement")
 req2 <- list(class = "StepInputExpressionRequirement")
 req3 <- list(class = "MultipleInputFeatureRequirement")
-Mutect2PL <- cwlWorkflow(requirements = list(req1, req2, req3),
-                          inputs = InputParamList(p1a, p1b, p2, p3, p4,
-                                                  p5, p6, p7, p8, p9),
-                          outputs = OutputParamList(o1, o2, o3, o4))
+Mutect2PL <- cwlWorkflow(cwlVersion = "v1.0",
+                         requirements = list(req1, req2, req3),
+                         inputs = InputParamList(p1a, p1b, p2, p3, p4,
+                                                 p5, p6, p7, p8, p9, p10),
+                         outputs = OutputParamList(o1, o2, o3, o4))
 
 Mutect2PL <- Mutect2PL + s1 + s2a + s2b + s3 + s4 + s5 + s6 

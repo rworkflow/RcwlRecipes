@@ -24,7 +24,7 @@ inputs:
     type: File
     secondaryFiles:
     - .fai
-    - $(self.nameroot).dict
+    - ^.dict
     inputBinding:
       prefix: -R
       separate: true
@@ -41,7 +41,7 @@ inputs:
       separate: true
   pon:
     type: File?
-    secondaryFiles: .idx
+    secondaryFiles: '$(self.nameext == ''.gz'' ? self.basename+''.tbi'' : self.basename+''.idx'')'
     inputBinding:
       prefix: --panel-of-normals
       separate: true

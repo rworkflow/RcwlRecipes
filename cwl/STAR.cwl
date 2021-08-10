@@ -3,14 +3,10 @@ class: CommandLineTool
 baseCommand: STAR
 requirements:
 - class: DockerRequirement
-  dockerPull: quay.io/biocontainers/star:2.7.3a--0
+  dockerPull: quay.io/biocontainers/star:2.7.9a--h9ee0642_0
 arguments:
-- --outFilterMultimapNmax
-- '3'
 - --outSAMunmapped
 - Within
-- --outFilterMismatchNmax
-- '2'
 - --outSAMstrandField
 - intronMotif
 - --readFilesCommand

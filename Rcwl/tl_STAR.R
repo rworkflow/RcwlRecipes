@@ -11,12 +11,10 @@ o2 <- OutputParam(id = "outLog", type = "File", glob = "*Log.final.out")
 o3 <- OutputParam(id = "outCount", type = "File", glob = "*ReadsPerGene.out.tab")
 
 req1 <- list(class = "DockerRequirement",
-             dockerPull = "quay.io/biocontainers/star:2.7.3a--0")
+             dockerPull = "quay.io/biocontainers/star:2.7.9a--h9ee0642_0")
 STAR <- cwlProcess(baseCommand = "STAR",
                  requirements = list(req1),
-                 arguments = list("--outFilterMultimapNmax", "3",
-                                  "--outSAMunmapped", "Within",
-                                  "--outFilterMismatchNmax", "2",
+                 arguments = list("--outSAMunmapped", "Within",
                                   "--outSAMstrandField", "intronMotif",
                                   "--readFilesCommand", "zcat",
                                   "--outSAMtype", "BAM", "SortedByCoordinate",

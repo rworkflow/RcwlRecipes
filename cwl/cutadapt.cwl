@@ -6,12 +6,12 @@ requirements:
   dockerPull: kfdrc/cutadapt
 inputs:
   threadN:
-    type: int
+    type: int?
     inputBinding:
       position: 1
       prefix: -j
       separate: true
-    default: 1.0
+    default: 1
   adapter:
     type: string
     inputBinding:
@@ -25,7 +25,7 @@ inputs:
       prefix: -o
       separate: true
   out2prefix:
-    type: string
+    type: string?
     inputBinding:
       position: 4
       prefix: -p
@@ -36,7 +36,7 @@ inputs:
       position: 5
       separate: true
   in2:
-    type: File
+    type: File?
     inputBinding:
       position: 6
       separate: true
@@ -46,6 +46,6 @@ outputs:
     outputBinding:
       glob: $(inputs.out1prefix)
   out2:
-    type: File
+    type: File?
     outputBinding:
       glob: $(inputs.out2prefix)

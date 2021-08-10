@@ -5,7 +5,7 @@ baseCommand:
 - view
 requirements:
 - class: DockerRequirement
-  dockerPull: biocontainers/bcftools:v1.5_cv3
+  dockerPull: quay.io/biocontainers/bcftools:1.13--h3a49de5_0
 inputs:
   vcf:
     type: File

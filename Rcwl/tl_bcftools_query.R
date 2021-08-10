@@ -14,7 +14,7 @@ p13 <- InputParam(id = "vcfList", type = "File?", prefix = "-v")
 p14 <- InputParam(id = "vcf", type = "File?", position = 20L)
 p15 <- InputParam(id = "out", type = "string", position = -1L)
 o1 <- OutputParam(id = "qout", type = "File", glob = "$(inputs.out)")
-req1 <- requireDocker("quay.io/biocontainers/bcftools:1.3.1--h5bf99c6_7")
+req1 <- requireDocker("quay.io/biocontainers/bcftools:1.13--h3a49de5_0")
 bcftools_query <- cwlProcess(baseCommand = c("bcftools", "query"),
                              requirements = list(req1),
                              inputs = InputParamList(p1, p2, p3, p4, p5, p6, p7, p8,

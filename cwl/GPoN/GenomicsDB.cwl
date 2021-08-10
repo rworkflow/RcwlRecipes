@@ -23,7 +23,7 @@ inputs:
     type: File
     secondaryFiles:
     - .fai
-    - $(self.nameroot).dict
+    - ^.dict
     inputBinding:
       prefix: -R
       separate: true
