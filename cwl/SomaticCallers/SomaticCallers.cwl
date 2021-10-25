@@ -15,7 +15,7 @@ inputs:
     type: File
     secondaryFiles:
     - .fai
-    - $(self.nameroot).dict
+    - ^.dict
   dbsnp:
     type: File
     secondaryFiles: '$(self.nameext == ''.gz'' ? self.basename+''.tbi'' : self.basename+''.idx'')'

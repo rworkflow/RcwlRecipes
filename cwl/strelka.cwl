@@ -3,7 +3,7 @@ class: CommandLineTool
 baseCommand: configureStrelkaSomaticWorkflow.py
 requirements:
 - class: DockerRequirement
-  dockerPull: cmopipeline/strelka2_manta
+  dockerPull: quay.io/biocontainers/strelka:2.9.10--h9ee0642_1
 - class: ShellCommandRequirement
 arguments:
 - --runDir

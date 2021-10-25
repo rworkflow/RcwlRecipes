@@ -14,7 +14,7 @@ inputs:
     type: File
     secondaryFiles:
     - .fai
-    - $(self.nameroot).dict
+    - ^.dict
     inputBinding:
       prefix: --genome-reference
       separate: true

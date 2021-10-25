@@ -1,5 +1,6 @@
 cwlVersion: v1.2
 class: CommandLineTool
+baseCommand: octopus
 requirements:
 - class: DockerRequirement
   dockerPull: dancooke/octopus

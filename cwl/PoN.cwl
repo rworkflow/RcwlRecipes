@@ -25,7 +25,7 @@ inputs:
     type: File
     secondaryFiles:
     - .fai
-    - $(self.nameroot).dict
+    - ^.dict
     inputBinding:
       position: 2
       prefix: -R

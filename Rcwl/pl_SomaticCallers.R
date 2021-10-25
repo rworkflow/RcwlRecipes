@@ -2,7 +2,7 @@
 p1 <- InputParam(id = "tbam", type = "File", secondaryFiles = ".bai")
 p2 <- InputParam(id = "nbam", type = "File", secondaryFiles = ".bai")
 p3 <- InputParam(id = "Ref", type = "File",
-                 secondaryFiles = c(".fai", "$(self.nameroot).dict"))
+                 secondaryFiles = c(".fai", "^.dict"))
 ## p4 <- InputParam(id = "normal", type = "string")
 ## p5 <- InputParam(id = "tumor", type = "string")
 p6 <- InputParam(id = "dbsnp", type = "File",

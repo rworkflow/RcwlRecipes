@@ -61,6 +61,11 @@ inputs:
       prefix: --f1r2-tar-gz
       separate: true
     default: f1r2.tar.gz
+  threads:
+    type: int?
+    inputBinding:
+      prefix: --native-pair-hmm-threads
+      separate: true
 outputs:
   vout:
     type: File

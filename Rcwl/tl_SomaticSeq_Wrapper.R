@@ -1,7 +1,7 @@
 
 p1 <- InputParam(id = "ref", type = "File",
                  prefix = "--genome-reference",
-                 secondaryFiles = c(".fai", "$(self.nameroot).dict"))
+                 secondaryFiles = c(".fai", "^.dict"))
 p2 <- InputParam(id = "tbam", type = "File", prefix = "--tumor-bam",
                  secondaryFile = ".bai")
 p3 <- InputParam(id = "nbam", type = "File", prefix = "--normal-bam",

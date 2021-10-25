@@ -2,7 +2,7 @@
 p1 <- InputParam(id = "db", type = "Directory", prefix = "gendb://",
                  separate = F, position = 1)
 p2 <- InputParam(id = "Ref", prefix = "-R", type = "File",
-                 secondaryFiles = c(".fai", "$(self.nameroot).dict"), position = 2)
+                 secondaryFiles = c(".fai", "^.dict"), position = 2)
 p3 <- InputParam(id = "pon", prefix = "-O", type = "string", position = 3)
 p4 <- InputParam(id = "gresource", type = "File?", prefix = "--germline-resource",
                  secondaryFiles = "$(self.nameext == '.gz' ? self.basename+'.tbi' : self.basename+'.idx')",

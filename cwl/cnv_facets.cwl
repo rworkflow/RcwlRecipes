@@ -48,6 +48,11 @@ inputs:
     inputBinding:
       prefix: -cv
       separate: true
+  nprocs:
+    type: int?
+    inputBinding:
+      prefix: -N
+      separate: true
 outputs:
   Out:
     type: File[]

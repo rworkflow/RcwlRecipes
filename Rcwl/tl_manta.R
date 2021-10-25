@@ -22,7 +22,7 @@ o4 <- OutputParam(id = "candidateSmallIndels", type = "File",
                   secondaryFiles = ".tbi")
 
 req1 <- list(class = "DockerRequirement",
-             dockerPull = "cmopipeline/strelka2_manta")
+             dockerPull = "quay.io/biocontainers/manta:1.6.0--h9ee0642_1")
 req2 <- list(class = "ShellCommandRequirement")
 manta <- cwlProcess(baseCommand = "configManta.py",
                   requirements = list(req1, req2),

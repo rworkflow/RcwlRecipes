@@ -3,7 +3,9 @@ class: CommandLineTool
 baseCommand: gtfToGenePred
 requirements:
 - class: DockerRequirement
-  dockerPull: hubentu/rcwl-rnaseq
+  dockerPull: quay.io/biocontainers/ucsc-gtftogenepred:377--h0b8a92a_4
+arguments:
+- -genePredExt
 inputs:
   gtf:
     type: File

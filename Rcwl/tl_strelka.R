@@ -18,7 +18,7 @@ o2 <- OutputParam(id = "indels", type = "File",
                   secondaryFiles = ".tbi")
 
 req1 <- list(class = "DockerRequirement",
-             dockerPull = "cmopipeline/strelka2_manta")
+             dockerPull = "quay.io/biocontainers/strelka:2.9.10--h9ee0642_1")
 req2 <- list(class = "ShellCommandRequirement")
 strelka <- cwlProcess(baseCommand = "configureStrelkaSomaticWorkflow.py",
                     requirements = list(req1, req2),

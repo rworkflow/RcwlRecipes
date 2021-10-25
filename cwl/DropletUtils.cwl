@@ -5,7 +5,7 @@ requirements:
 - class: InitialWorkDirRequirement
   listing:
   - entryname: DropletUtils.R
-    entry: ".libPaths('/home/qhu/miniconda3/envs/r-base/lib/R/library')\nsuppressPackageStartupMessages(library(R.utils))\nargs
+    entry: ".libPaths('/user/qianghu/R/x86_64-conda-linux-gnu-library/4.1')\n.libPaths('/projects/rpci/songliu/qhu/miniconda3/envs/r-base/lib/R/library')\nsuppressPackageStartupMessages(library(R.utils))\nargs
       <- commandArgs(trailingOnly = TRUE, asValues = TRUE)\nargs[[\"lower\"]] <- as.integer(args[[\"lower\"]])\nargs[[\"df\"]]
       <- as.integer(args[[\"df\"]])\nDropletUtils <-\nfunction(dir.name, lower=100,
       df=20, ...) {    \n    library(DropletUtils)\n    dir.name <- file.path(dir.name,

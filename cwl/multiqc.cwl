@@ -3,7 +3,7 @@ class: CommandLineTool
 baseCommand: multiqc
 requirements:
 - class: DockerRequirement
-  dockerPull: hubentu/rcwl-rnaseq
+  dockerPull: quay.io/biocontainers/multiqc:1.11--pyhdfd78af_0
 inputs:
   dir:
     type: Directory

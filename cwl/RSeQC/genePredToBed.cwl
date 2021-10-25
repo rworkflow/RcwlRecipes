@@ -3,7 +3,7 @@ class: CommandLineTool
 baseCommand: genePredToBed
 requirements:
 - class: DockerRequirement
-  dockerPull: hubentu/rcwl-rnaseq
+  dockerPull: quay.io/biocontainers/ucsc-genepredtobed:377--h0b8a92a_4
 inputs:
   genePred:
     type: File

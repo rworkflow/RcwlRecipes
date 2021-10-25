@@ -34,6 +34,8 @@ inputs:
   filter:
     type: string
     default: PASS
+  threads:
+    type: int?
 outputs:
   filterVCF:
     type: File
@@ -58,6 +60,7 @@ steps:
       germline: gresource
       pon: pon
       interval: interval
+      threads: threads
       out:
         source:
         - normal

@@ -3,7 +3,7 @@ class: CommandLineTool
 baseCommand: configManta.py
 requirements:
 - class: DockerRequirement
-  dockerPull: cmopipeline/strelka2_manta
+  dockerPull: quay.io/biocontainers/manta:1.6.0--h9ee0642_1
 - class: ShellCommandRequirement
 arguments:
 - --runDir

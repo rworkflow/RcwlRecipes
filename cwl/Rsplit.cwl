@@ -6,7 +6,8 @@ requirements:
   listing:
   - entryname: Rsplit.R
     entry: |-
-      .libPaths('/home/qhu/miniconda3/envs/r-base/lib/R/library')
+      .libPaths('/user/qianghu/R/x86_64-conda-linux-gnu-library/4.1')
+      .libPaths('/projects/rpci/songliu/qhu/miniconda3/envs/r-base/lib/R/library')
       suppressPackageStartupMessages(library(R.utils))
       args <- commandArgs(trailingOnly = TRUE, asValues = TRUE)
       Rsplit <-

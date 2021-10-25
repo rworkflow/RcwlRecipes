@@ -3,10 +3,11 @@ class: CommandLineTool
 baseCommand: read_distribution.py
 requirements:
 - class: DockerRequirement
-  dockerPull: hubentu/rcwl-rnaseq
+  dockerPull: quay.io/biocontainers/rseqc:4.0.0--py38h4a8c8d9_1
 inputs:
   bam:
     type: File
+    secondaryFiles: .bai
     inputBinding:
       prefix: -i
       separate: true

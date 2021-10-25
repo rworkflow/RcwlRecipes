@@ -1,4 +1,4 @@
-cwlVersion: v1.0
+cwlVersion: v1.2
 class: CommandLineTool
 baseCommand:
 - svaba
@@ -6,19 +6,21 @@ baseCommand:
 requirements:
 - class: DockerRequirement
   dockerPull: quay.io/biocontainers/svaba:1.1.0--h7d7f7ad_2
-arguments:
-- -a
-- somatic_run
+- class: InlineJavascriptRequirement
 inputs:
   tbam:
     type: File
-    secondaryFiles: .bai
+    secondaryFiles:
+    - .bai?
+    - ^.bai?
     inputBinding:
       prefix: -t
       separate: true
   nbam:
     type: File
-    secondaryFiles: .bai
+    secondaryFiles:
+    - .bai?
+    - ^.bai?
     inputBinding:
       prefix: -n
       separate: true
@@ -29,6 +31,7 @@ inputs:
       separate: true
   dbsnp:
     type: File
+    secondaryFiles: '$(self.nameext == ''.gz'' ? self.basename+''.tbi'' : self.basename+''.idx'')'
     inputBinding:
       prefix: -D
       separate: true
@@ -50,6 +53,11 @@ inputs:
       prefix: -p
       separate: true
     default: 4
+  prefix:
+    type: string
+    inputBinding:
+      prefix: -a
+      separate: true
 outputs:
   raw:
     type: File
@@ -71,7 +79,15 @@ outputs:
     type: File
     outputBinding:
       glob: '*.alignments.txt.gz'
-  vcf:
+  uvcf:
     type: File[]
     outputBinding:
-      glob: '*.vcf'
+      glob: '*unfiltered.*'
+  svcf:
+    type: File[]
+    outputBinding:
+      glob: '*svaba.somatic*'
+  gvcf:
+    type: File[]
+    outputBinding:
+      glob: '*svaba.germline*'
