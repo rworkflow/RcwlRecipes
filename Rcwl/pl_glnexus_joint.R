@@ -3,10 +3,12 @@ p1 <- InputParam(id = "config", type = "string")
 p2 <- InputParam(id = "bed", type = "File?")
 p3 <- InputParam(id = "gvcfs", type = "File[]")
 p4 <- InputParam(id = "ovcf", type = "string")
+p5 <- InputParam(id = "threads", type = "int")
 
 #' @include tl_glnexus_cli.R
 s1 <- cwlStep(id = "glnexus", run = glnexus_cli,
               In = list(config = "config",
+                        threads = "threads",
                         bed = "bed",
                         gvcfs = "gvcfs",
                         ovcf = list(valueFrom = "merged.bcf")))
@@ -18,6 +20,6 @@ s2 <- cwlStep(id = "bcf", run = bcftools_view,
 o1 <- OutputParam(id = "outVcf", type = "File", outputSource = "bcf/Fout")
 req1 <- requireStepInputExpression()
 glnexus_joint <- cwlWorkflow(requirements = list(req1),
-                             inputs = InputParamList(p1, p2, p3, p4),
+                             inputs = InputParamList(p1, p2, p3, p4, p5),
                              outputs = OutputParamList(o1))
 glnexus_joint <- glnexus_joint + s1 + s2

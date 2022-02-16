@@ -6,24 +6,29 @@ requirements:
 - class: InlineJavascriptRequirement
 - class: InitialWorkDirRequirement
   listing:
-  - entryname: fq1
-    entry: ${var x='';for(var i=0;i<inputs.fq1.length;i++){x+=inputs.fq1[i].path+','}return(x)}
+  - entryname: bam1
+    entry: ${var x='';for(var i=0;i<inputs.bam1.length;i++){x+=inputs.bam1[i].path+','}return(x)}
     writable: false
-  - entryname: fq2
-    entry: ${var x='';for(var i=0;i<inputs.fq2.length;i++){x+=inputs.fq2[i].path+','}return(x)}
+  - entryname: bam2
+    entry: ${var x='';for(var i=0;i<inputs.bam2.length;i++){x+=inputs.bam2[i].path+','}return(x)}
     writable: false
 arguments:
-- --s1
-- fq1
-- --s2
-- fq2
+- --b1
+- bam1
+- --b2
+- bam2
 - --od
 - '.'
 inputs:
   fq1:
-    type: string
+    type: File[]
   fq2:
-    type: string
+    type: File[]
+  bindex:
+    type: Directory
+    inputBinding:
+      prefix: --bi
+      separate: true
   type:
     type: string
     inputBinding:
@@ -57,13 +62,77 @@ inputs:
       prefix: --tmp
       separate: true
     default: tmp
-  bindex:
-    type: Directory
+  libType:
+    type: string?
     inputBinding:
-      prefix: --bi
+      prefix: --libType
+      separate: true
+  varReadLength:
+    type: boolean?
+    inputBinding:
+      prefix: --variable-read-length
+      separate: true
+  anchorLength:
+    type: int?
+    inputBinding:
+      prefix: --anchorLength
+      separate: true
+  tophatAnchor:
+    type: int?
+    inputBinding:
+      prefix: --tophatAnchor
+      separate: true
+  cstat:
+    type: float?
+    inputBinding:
+      prefix: --cstat
+      separate: true
+  task:
+    type: string?
+    inputBinding:
+      prefix: --task
+      separate: true
+  statoff:
+    type: boolean?
+    inputBinding:
+      prefix: --statoff
+      separate: true
+  pairedStats:
+    type: boolean?
+    inputBinding:
+      prefix: --paired-stats
+      separate: true
+  novelSS:
+    type: boolean?
+    inputBinding:
+      prefix: --novelSS
+      separate: true
+  mil:
+    type: int?
+    inputBinding:
+      prefix: --mil
+      separate: true
+  mel:
+    type: int?
+    inputBinding:
+      prefix: --mel
+      separate: true
+  allowClipping:
+    type: boolean?
+    inputBinding:
+      prefix: --allow-clipping
+      separate: true
+  fixedEvent:
+    type: Directory?
+    inputBinding:
+      prefix: --fixed-event-set
       separate: true
 outputs:
   res:
     type: File[]
     outputBinding:
       glob: '*.txt'
+  tmp:
+    type: Directory
+    outputBinding:
+      glob: $(inputs.tmp)

@@ -11,6 +11,8 @@ inputs:
     type: File[]
   ovcf:
     type: string
+  threads:
+    type: int
 outputs:
   outVcf:
     type: File
@@ -20,6 +22,7 @@ steps:
     run: glnexus.cwl
     in:
       config: config
+      threads: threads
       bed: bed
       gvcfs: gvcfs
       ovcf:

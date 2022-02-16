@@ -1,9 +1,9 @@
 cwlVersion: v1.0
 class: CommandLineTool
-baseCommand: /usr/local/bin/glnexus_cli
+baseCommand: glnexus_cli
 requirements:
 - class: DockerRequirement
-  dockerPull: quay.io/mlin/glnexus:v1.3.1
+  dockerPull: ghcr.io/dnanexus-rnd/glnexus:v1.4.1
 inputs:
   config:
     type: string
@@ -21,6 +21,11 @@ inputs:
       separate: true
   ovcf:
     type: string
+  threads:
+    type: int
+    inputBinding:
+      prefix: -t
+      separate: true
 outputs:
   bcf:
     type: File

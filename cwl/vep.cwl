@@ -3,7 +3,7 @@ class: CommandLineTool
 baseCommand: vep
 requirements:
 - class: DockerRequirement
-  dockerPull: hubentu/ensembl-vep-plugins
+  dockerPull: ensemblorg/ensembl-vep
 hints:
   cwltool:LoadListingRequirement:
     loadListing: no_listing
@@ -11,18 +11,9 @@ arguments:
 - --format
 - vcf
 - --vcf
+- --cache
 - --symbol
-- --terms
-- SO
-- --tsl
-- --hgvs
 - --offline
-- --dir_plugins
-- /opt/vep/src/VEP_plugins
-- --plugin
-- Downstream
-- --plugin
-- Wildtype
 inputs:
   ivcf:
     type: File
@@ -44,6 +35,21 @@ inputs:
     type: Directory
     inputBinding:
       prefix: --dir_cache
+      separate: true
+  version:
+    type: string
+    inputBinding:
+      prefix: --cache_version
+      separate: true
+  merged:
+    type: boolean?
+    inputBinding:
+      prefix: --merged
+      separate: true
+  species:
+    type: string?
+    inputBinding:
+      prefix: --species
       separate: true
 outputs:
   oVcf:

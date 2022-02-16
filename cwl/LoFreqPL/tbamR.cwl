@@ -28,6 +28,8 @@ steps:
     run: sortBam.cwl
     in:
       bam: realign/obam
+      obam:
+        valueFrom: $(inputs.bam.nameroot)_sort.bam
     out:
     - sbam
   indelq:

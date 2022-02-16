@@ -15,6 +15,6 @@ o1 <- OutputParam(id = "out1", type = "Directory", glob = "$(inputs.outPrefix)")
 salmon_quant <- cwlProcess(baseCommand = c("salmon", "quant"), 
                          requirements = list(rep1, rep2),
                          arguments = list("-l", "A",
-                                          "--seqBias"),
+                                          "--validateMappings"),
                          inputs = InputParamList(p1, p2, p3, p4, p5), 
                          outputs = OutputParamList(o1))

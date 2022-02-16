@@ -12,8 +12,8 @@ p7 <- InputParam(id = "nsample", type = "string")
 p8 <- InputParam(id = "rnaseqs", type = "File[]")
 p9 <- InputParam(id = "kallistoIdx", type = "File")
 p10 <- InputParam(id = "threads", type = "int", default = 16L)
-#' @include tl_vep.R
-s1 <- cwlStep(id = "VCFvep", run = vep,
+#' @include tl_vep_plugin.R
+s1 <- cwlStep(id = "VCFvep", run = vep_plugin,
            In = list(ivcf = "svcf",
                      ref = "ref",
                      cacheDir = "VepDir",

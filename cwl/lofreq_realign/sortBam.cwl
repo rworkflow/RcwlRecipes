@@ -11,9 +11,13 @@ inputs:
     type: File
     inputBinding:
       separate: true
+  obam:
+    type: string
+    inputBinding:
+      prefix: -o
+      separate: true
 outputs:
   sbam:
     type: File
     outputBinding:
-      glob: $(inputs.bam.nameroot).sorted.bam
-stdout: $(inputs.bam.nameroot).sorted.bam
+      glob: $(inputs.obam)

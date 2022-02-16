@@ -1,5 +1,7 @@
 cwlVersion: v1.0
 class: Workflow
+requirements:
+- class: StepInputExpressionRequirement
 inputs:
   threads:
     type: int
@@ -38,13 +40,17 @@ steps:
   sam2bam:
     run: sam2bam.cwl
     in:
-      sam: bwa/sam
+      bam: bwa/sam
+      obam:
+        valueFrom: $(inputs.bam.nameroot).bam
     out:
-    - bam
+    - oBam
   sortBam:
     run: sortBam.cwl
     in:
-      bam: sam2bam/bam
+      bam: sam2bam/oBam
+      obam:
+        valueFrom: $(inputs.bam.nameroot)_sort.bam
     out:
     - sbam
   idxBam:

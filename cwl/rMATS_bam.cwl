@@ -1,5 +1,8 @@
 cwlVersion: v1.0
 class: CommandLineTool
+baseCommand:
+- python
+- /rmats/rmats.py
 requirements:
 - class: DockerRequirement
   dockerPull: xinglab/rmats
@@ -57,8 +60,67 @@ inputs:
       prefix: --tmp
       separate: true
     default: tmp
+  libType:
+    type: string?
+    inputBinding:
+      prefix: --libType
+      separate: true
+  varReadLength:
+    type: boolean?
+    inputBinding:
+      prefix: --variable-read-length
+      separate: true
+  anchorLength:
+    type: int?
+    inputBinding:
+      prefix: --anchorLength
+      separate: true
+  cstat:
+    type: float?
+    inputBinding:
+      prefix: --cstat
+      separate: true
+  task:
+    type: string?
+    inputBinding:
+      prefix: --task
+      separate: true
+  statoff:
+    type: boolean?
+    inputBinding:
+      prefix: --statoff
+      separate: true
+  pairedStats:
+    type: boolean?
+    inputBinding:
+      prefix: --paired-stats
+      separate: true
+  novelSS:
+    type: boolean?
+    inputBinding:
+      prefix: --novelSS
+      separate: true
+  mil:
+    type: int?
+    inputBinding:
+      prefix: --mil
+      separate: true
+  mel:
+    type: int?
+    inputBinding:
+      prefix: --mel
+      separate: true
+  fixedEvent:
+    type: Directory?
+    inputBinding:
+      prefix: --fixed-event-set
+      separate: true
 outputs:
   res:
     type: File[]
     outputBinding:
       glob: '*.txt'
+  tmpout:
+    type: Directory
+    outputBinding:
+      glob: $(inputs.tmp)

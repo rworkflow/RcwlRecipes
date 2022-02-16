@@ -7,7 +7,8 @@ s1 <- cwlStep(id = "realign", run = lofreq_viterbi,
                         bam = "bam",
                         vbam = list(valueFrom = "$(inputs.bam.nameroot)_v.bam")))
 s2 <- cwlStep(id = "sortBam", run = samtools_sort,
-              In = list(bam = "realign/obam"))
+              In = list(bam = "realign/obam",
+                        obam = list(valueFrom = "$(inputs.bam.nameroot)_sort.bam")))
 s3 <- cwlStep(id = "indelq", run = lofreq_indelqual,
               In = list(ref = "ref",
                         bam = "sortBam/sbam",

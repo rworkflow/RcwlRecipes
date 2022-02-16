@@ -27,9 +27,9 @@ outputs:
   out_Log:
     type: File
     outputSource: STAR/outLog
-  out_Count:
+  out_junction:
     type: File
-    outputSource: STAR/outCount
+    outputSource: STAR/junction
   out_stat:
     type: File
     outputSource: samtools_flagstat/flagstat
@@ -61,6 +61,7 @@ steps:
     - outBAM
     - outLog
     - outCount
+    - junction
   sortBam:
     run: sortBam.cwl
     in:

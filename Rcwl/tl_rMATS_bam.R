@@ -7,15 +7,30 @@ p5 <- InputParam(id = "gtf", type = "File", prefix = "--gtf")
 p6 <- InputParam(id = "threads", type = "int?", prefix = "--nthread", default = 1L)
 p7 <- InputParam(id = "tstat", type = "int?", prefix = "--tstat")
 p8 <- InputParam(id = "tmp", type = "string", prefix = "--tmp", default = "tmp")
+p9 <- InputParam(id = "libType", type = "string?", prefix = "--libType")
+p10 <- InputParam(id = "varReadLength", type = "boolean?", prefix = "--variable-read-length")
+p11 <- InputParam(id = "anchorLength", type = "int?", prefix = "--anchorLength")
+p12 <- InputParam(id = "cstat", type = "float?", prefix = "--cstat")
+p13 <- InputParam(id = "task", type = "string?", prefix = "--task")
+p14 <- InputParam(id = "statoff", type = "boolean?", prefix = "--statoff")
+p15 <- InputParam(id = "pairedStats", type = "boolean?", prefix = "--paired-stats")
+p16 <- InputParam(id = "novelSS", type = "boolean?", prefix = "--novelSS")
+p17 <- InputParam(id = "mil", type = "int?", prefix = "--mil")
+p18 <- InputParam(id = "mel", type = "int?", prefix = "--mel")
+p19 <- InputParam(id = "fixedEvent", type = "Directory?", prefix = "--fixed-event-set")
+
 o1 <- OutputParam(id = "res", type = "File[]", glob = "*.txt")
+o2 <- OutputParam(id = "tmpout", type = "Directory", glob = "$(inputs.tmp)")
 req1 <- requireDocker("xinglab/rmats")
 req2 <- requireJS()
 req3 <- requireManifest("bam1", sep = ",")
 req4 <- requireManifest("bam2", sep = ",")
 req5 <- requireInitialWorkDir(listing = list(req3$listing[[1]],
                                              req4$listing[[1]]))
-rMATS_bam <- cwlProcess(baseCommand = "",
+rMATS_bam <- cwlProcess(baseCommand = c("python", "/rmats/rmats.py"),
                       requirements = list(req1, req2, req5),
                       arguments = list("--b1", "bam1", "--b2", "bam2", "--od", "."),
-                      inputs = InputParamList(p1, p2, p3, p4, p5, p6, p7, p8),
-                      outputs = OutputParamList(o1))
+                      inputs = InputParamList(p1, p2, p3, p4, p5, p6, p7, p8, p9,
+                                              p10, p11, p12, p13, p14, p15, p16,
+                                              p17, p18, p19),
+                      outputs = OutputParamList(o1, o2))

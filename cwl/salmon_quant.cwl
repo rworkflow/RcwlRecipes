@@ -10,7 +10,7 @@ requirements:
 arguments:
 - -l
 - A
-- --seqBias
+- --validateMappings
 inputs:
   threadN:
     type: int

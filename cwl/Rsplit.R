@@ -1,5 +1,4 @@
-.libPaths('/user/qianghu/R/x86_64-conda-linux-gnu-library/4.1')
-.libPaths('/projects/rpci/songliu/qhu/miniconda3/envs/r-base/lib/R/library')
+.libPaths(c('/projects/rpci/songliu/qhu/R/x86_64-conda-linux-gnu-library/4.1','/projects/rpci/songliu/qhu/miniconda3/envs/r-base/lib/R/library'))
 suppressPackageStartupMessages(library(R.utils))
 args <- commandArgs(trailingOnly = TRUE, asValues = TRUE)
 Rsplit <-

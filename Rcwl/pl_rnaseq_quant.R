@@ -7,9 +7,9 @@ p4 <- InputParam(id = "in_GTFfile", type = "File")
 p5 <- InputParam(id = "in_runThreadN", type = "int", default = 1L)
 p6 <- InputParam(id = "salmon_index", type = "Directory")
 
-#' @include tl_STAR.R
-arguments(STAR)[[9]] <- "Unsorted"
-s1 <- cwlStep(id = "STAR", run = STAR,
+#' @include tl_STAR_FFPE.R
+# arguments(STAR)[[9]] <- "Unsorted"
+s1 <- cwlStep(id = "STAR", run = STAR_FFPE,
               In = list(prefix = list(source = "in_prefix",
                                       valueFrom = "$(self)_"),
                         genomeDir = "in_genomeDir",
@@ -60,6 +60,7 @@ s7 <- cwlStep(id = "salmon", run = salmon_quant,
 o1 <- OutputParam(id = "out_BAM", type = "File", outputSource = "samtools_index/idx")
 o2 <- OutputParam(id = "out_Log", type = "File", outputSource = "STAR/outLog")
 o3 <- OutputParam(id = "out_Count", type = "File", outputSource = "STAR/outCount")
+o3 <- OutputParam(id = "out_junction", type = "File", outputSource = "STAR/junction")
 o4 <- OutputParam(id = "out_stat",type = "File", outputSource = "samtools_flagstat/flagstat")
 o5 <- OutputParam(id = "out_count", type = "File", outputSource = "featureCounts/Count")
 o6 <- OutputParam(id = "out_salmon", type = "Directory", outputSource = "salmon/out1")
