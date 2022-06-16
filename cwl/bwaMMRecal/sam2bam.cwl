@@ -34,6 +34,16 @@ inputs:
     inputBinding:
       prefix: -b
       separate: true
+  exFlag:
+    type: string?
+    inputBinding:
+      prefix: -F
+      separate: true
+  reqFlag:
+    type: string?
+    inputBinding:
+      prefix: -f
+      separate: true
 outputs:
   oBam:
     type: File

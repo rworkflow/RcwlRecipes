@@ -40,7 +40,7 @@ inputs:
     default: PASS
   threads:
     type: int
-    default: 8.0
+    default: 8
 outputs:
   mutect2filterVCF:
     type: File
@@ -135,6 +135,7 @@ steps:
       nbam: nbam
       ref: Ref
       region: interval
+      threads: threads
       vcf:
         source:
         - tumor

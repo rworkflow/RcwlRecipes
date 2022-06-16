@@ -26,9 +26,6 @@ inputs:
     type: File[]
   FQ2s:
     type: File[]?
-  mdup:
-    type: boolean
-    default: true
 outputs:
   BAM:
     type: File
@@ -42,6 +39,9 @@ outputs:
   stats:
     type: File
     outputSource: samtools_stats/stats
+  md5s:
+    type: File
+    outputSource: md5sum/md5
 steps:
   bwaAlign:
     run: bwaAlign.cwl
@@ -85,12 +85,10 @@ steps:
       matrix:
         source:
         - outBam
-        - mdup
-        valueFrom: $(self[0]).markdup.txt
+        valueFrom: $(self).markdup.txt
     out:
     - mBam
     - Mat
-    when: $(self[1]==true)
   samtools_index:
     run: samtools_index.cwl
     in:
@@ -116,3 +114,9 @@ steps:
       bam: samtools_index/idx
     out:
     - stats
+  md5sum:
+    run: md5sum.cwl
+    in:
+      file: samtools_index/idx
+    out:
+    - md5

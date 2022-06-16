@@ -8,7 +8,7 @@ p4 <- InputParam(id = "Ref", type = "File",
                                     ".pac", ".sa", ".fai"))
 p5 <- InputParam(id = "FQ1s", type = "File[]")
 p6 <- InputParam(id = "FQ2s", type = "File[]?")
-p7 <- InputParam(id = "mdup", type = "boolean", default = TRUE)
+##p7 <- InputParam(id = "mdup", type = "boolean", default = TRUE)
 
 s1 <- cwlStep(id = "bwaAlign", run = BwaAlign,
            In = list(threads = "threads",
@@ -32,11 +32,11 @@ s3 <- cwlStep(id = "markdup", run = markdup,
                                     valueFrom = "$(self)",
                                     linkMerge = "merge_flattened"),
                          obam = "outBam",
-                         matrix = list(source = list("outBam", "mdup"),
-                                       valueFrom="$(self[0]).markdup.txt")),
-              when = "$(self[1]==true)")
+                         matrix = list(source = list("outBam"),
+                                       valueFrom="$(self).markdup.txt")))
+              ## when = "$(self[1]==true)")
 
-#'@include tl_samtools_index.R tl_samtools_flagstat.R tl_samtools_stats.R
+#'@include tl_samtools_index.R tl_samtools_flagstat.R tl_samtools_stats.R tl_md5sum.R
 s4 <- cwlStep(id = "samtools_index", run = samtools_index,
               In = list(bam = list(
                             source = list("markdup/mBam", "mergeBam/oBam", "bwaAlign/Bam"),
@@ -47,6 +47,9 @@ s5 <- cwlStep(id = "samtools_flagstat", run = samtools_flagstat,
            In = list(bam = "samtools_index/idx"))
 s6 <- cwlStep(id = "samtools_stats", run = samtools_stats,
            In = list(bam = "samtools_index/idx"))
+s7 <- cwlStep(id = "md5sum", run = md5sum,
+              In = list(file = "samtools_index/idx"))
+
 
 o1 <- OutputParam(id = "BAM", type = "File", outputSource = "samtools_index/idx")
 o2 <- OutputParam(id = "matrix", type = "File", outputSource = "markdup/Mat")
@@ -54,6 +57,7 @@ o3 <- OutputParam(id = "flagstat", type = "File",
                   outputSource = "samtools_flagstat/flagstat")
 o4 <- OutputParam(id = "stats", type = "File",
                   outputSource = "samtools_stats/stats")
+o5 <- OutputParam(id = "md5s", type = "File", outputSource = "md5sum/md5")
 
 req1 <- list(class = "SubworkflowFeatureRequirement")
 req2 <- list(class = "ScatterFeatureRequirement")
@@ -62,9 +66,9 @@ req4 <- list(class = "MultipleInputFeatureRequirement")
 req5 <- list(class = "StepInputExpressionRequirement")
 bwaDup <- cwlWorkflow(cwlVersion = "v1.2",
                       requirements = list(req1, req2, req3, req4, req5),
-                      inputs = InputParamList(p1, p2, p3, p4, p5, p6, p7),
-                      outputs = OutputParamList(o1, o2, o3, o4))
-bwaDup <- bwaDup + s1 + s2 + s3 + s4 + s5 + s6
+                      inputs = InputParamList(p1, p2, p3, p4, p5, p6),
+                      outputs = OutputParamList(o1, o2, o3, o4, o5))
+bwaDup <- bwaDup + s1 + s2 + s3 + s4 + s5 + s6 + s7
 
 ## bwaDup$outBam <- "test.bam"
 ## bwaDup$RG <- list("@RG\\tID:L1\\tSM:test", "@RG\\tID:L2\\tSM:test")

@@ -22,6 +22,8 @@ requirements:
       }
       do.call(T2Gene, args)
     writable: false
+- class: DockerRequirement
+  dockerPull: quay.io/biocontainers/bioconductor-tximport:1.22.0--r41hdfd78af_0
 arguments:
 - T2Gene.R
 inputs:

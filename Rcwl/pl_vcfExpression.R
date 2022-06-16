@@ -45,9 +45,11 @@ t2gene <- function(kexp){
 tp1 <- InputParam(id = "kexp", type = "File",
                  prefix = "kexp=", separate = FALSE)
 to1 <- OutputParam(id = "gout", type = "File", glob = "abundance_gene.tsv")
+req1 <- requireDocker("quay.io/biocontainers/bioconductor-tximport:1.22.0--r41hdfd78af_0")
 T2Gene <- cwlProcess(baseCommand = t2gene,
-                   inputs = InputParamList(tp1),
-                   outputs = OutputParamList(to1))
+                     requirements = list(req1),
+                     inputs = InputParamList(tp1),
+                     outputs = OutputParamList(to1))
 
 s4 <- cwlStep(id = "T2Gene", run = T2Gene,
            In = list(kexp = "kallistoQuant/tsv"))

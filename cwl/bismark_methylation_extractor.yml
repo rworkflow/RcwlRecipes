@@ -1,0 +1,3 @@
+bedGraph: true
+gzip: true
+core: 4.0

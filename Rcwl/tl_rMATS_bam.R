@@ -27,10 +27,10 @@ req3 <- requireManifest("bam1", sep = ",")
 req4 <- requireManifest("bam2", sep = ",")
 req5 <- requireInitialWorkDir(listing = list(req3$listing[[1]],
                                              req4$listing[[1]]))
-rMATS_bam <- cwlProcess(baseCommand = c("python", "/rmats/rmats.py"),
-                      requirements = list(req1, req2, req5),
-                      arguments = list("--b1", "bam1", "--b2", "bam2", "--od", "."),
-                      inputs = InputParamList(p1, p2, p3, p4, p5, p6, p7, p8, p9,
-                                              p10, p11, p12, p13, p14, p15, p16,
-                                              p17, p18, p19),
-                      outputs = OutputParamList(o1, o2))
+rMATS_bam <- cwlProcess(baseCommand = "",
+                        requirements = list(req1, req2, req5),
+                        arguments = list("--b1", "bam1", "--b2", "bam2", "--od", "."),
+                        inputs = InputParamList(p1, p2, p3, p4, p5, p6, p7, p8, p9,
+                                                p10, p11, p12, p13, p14, p15, p16,
+                                                p17, p18, p19),
+                        outputs = OutputParamList(o1, o2))

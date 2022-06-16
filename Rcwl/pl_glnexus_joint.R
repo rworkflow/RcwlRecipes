@@ -5,8 +5,8 @@ p3 <- InputParam(id = "gvcfs", type = "File[]")
 p4 <- InputParam(id = "ovcf", type = "string")
 p5 <- InputParam(id = "threads", type = "int")
 
-#' @include tl_glnexus_cli.R
-s1 <- cwlStep(id = "glnexus", run = glnexus_cli,
+#' @include tl_glnexus_cli_list.R
+s1 <- cwlStep(id = "glnexus", run = glnexus_cli_list,
               In = list(config = "config",
                         threads = "threads",
                         bed = "bed",

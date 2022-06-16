@@ -1,8 +1,5 @@
 cwlVersion: v1.0
 class: CommandLineTool
-baseCommand:
-- python
-- /rmats/rmats.py
 requirements:
 - class: DockerRequirement
   dockerPull: xinglab/rmats

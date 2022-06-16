@@ -1,19 +1,23 @@
-cwlVersion: v1.0
+cwlVersion: v1.2
 class: CommandLineTool
 baseCommand: cnv_facets.R
 requirements:
 - class: DockerRequirement
-  dockerPull: hubentu/facets
+  dockerPull: hubentu/facets:0.6.2
 inputs:
   tbam:
     type: File?
-    secondaryFiles: .bai
+    secondaryFiles:
+    - .bai?
+    - ^.bai?
     inputBinding:
       prefix: -t
       separate: true
   nbam:
     type: File?
-    secondaryFiles: .bai
+    secondaryFiles:
+    - .bai?
+    - ^.bai?
     inputBinding:
       prefix: -n
       separate: true

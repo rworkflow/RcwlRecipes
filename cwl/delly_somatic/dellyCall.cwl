@@ -36,7 +36,7 @@ inputs:
       position: 5
       separate: true
   nbam:
-    type: File
+    type: File?
     secondaryFiles: .bai
     inputBinding:
       position: 6

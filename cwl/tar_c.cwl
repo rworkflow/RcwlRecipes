@@ -23,7 +23,9 @@ inputs:
       prefix: -f
       separate: true
   files:
-    type: File[]?
+    type:
+    - File[]?
+    - File?
     inputBinding:
       position: 4
       separate: true

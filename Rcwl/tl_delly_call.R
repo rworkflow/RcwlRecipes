@@ -4,7 +4,7 @@ p2 <- InputParam(id = "genome", type = "File", prefix = "-g", secondaryFiles = "
 p3 <- InputParam(id = "outfile", type = "string", prefix = "-o")
 p4 <- InputParam(id = "bcf", type = "File?", prefix = "-v", secondaryFiles = ".csi")
 p5 <- InputParam(id = "tbam", type = "File", position = 5, secondaryFiles = ".bai")
-p6 <- InputParam(id = "nbam", type = "File", position = 6, secondaryFiles = ".bai")
+p6 <- InputParam(id = "nbam", type = "File?", position = 6, secondaryFiles = ".bai")
 o1 <- OutputParam(id = "outbcf", type = "File", glob = "$(inputs.outfile)",
                   secondaryFiles = ".csi")
 req1 <- requireDocker("quay.io/biocontainers/delly:0.8.7--he03298f_1")
