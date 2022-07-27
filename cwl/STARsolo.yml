@@ -1,3 +1,18 @@
-soloType: CB_UMI_Simple
+soloType: Droplet
 soloUMIlen: '12'
+outSAMattributes:
+- NH
+- HI
+- nM
+- AS
+- CR
+- UR
+- CB
+- UB
+- GX
+- GN
+- sS
+- sQ
+- sM
+readFilesCommand: zcat
 runThreadN: 1

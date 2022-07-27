@@ -1,5 +1,5 @@
 ## bwaAlign + mergeBamDup
-#' @include pl_BwaAlign.R pl_mergeBamDup.R tl_markdup.R tl_mergeBam.R
+#' @include pl_bwa_align.R pl_mergeBamDup.R tl_markdup.R tl_mergeBam.R
 p1 <- InputParam(id = "outBam", type = "string")
 p2 <- InputParam(id = "RG", type = "string[]")
 p3 <- InputParam(id = "threads", type = "int")
@@ -10,7 +10,7 @@ p5 <- InputParam(id = "FQ1s", type = "File[]")
 p6 <- InputParam(id = "FQ2s", type = "File[]?")
 ##p7 <- InputParam(id = "mdup", type = "boolean", default = TRUE)
 
-s1 <- cwlStep(id = "bwaAlign", run = BwaAlign,
+s1 <- cwlStep(id = "bwaAlign", run = bwa_align,
            In = list(threads = "threads",
                      RG = "RG",
                      Ref = "Ref",

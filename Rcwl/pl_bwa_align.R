@@ -40,9 +40,9 @@ o2 <- OutputParam(id = "Idx", type = "File", outputSource = "idxBam/idx")
 
 ## stepParam
 req1 <- requireStepInputExpression()
-BwaAlign <- cwlWorkflow(requirements = list(req1),
+bwa_align <- cwlWorkflow(requirements = list(req1),
                         inputs = InputParamList(p1, p2, p3, p4, p5, p6),
                         outputs = OutputParamList(o1, o2))
 
 ## pipeline
-BwaAlign <- BwaAlign + s1 + s2 + s3 + s4
+bwa_align <- bwa_align + s1 + s2 + s3 + s4

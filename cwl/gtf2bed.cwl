@@ -1,7 +1,7 @@
 cwlVersion: v1.2
 class: CommandLineTool
 baseCommand:
-- sh
+- bash
 - script.sh
 requirements:
 - class: DockerRequirement

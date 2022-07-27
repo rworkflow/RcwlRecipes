@@ -3,10 +3,11 @@ class: CommandLineTool
 baseCommand: STAR
 requirements:
 - class: DockerRequirement
-  dockerPull: quay.io/biocontainers/star:2.7.5a--0
+  dockerPull: quay.io/biocontainers/star:2.7.10a--h9ee0642_0
 arguments:
-- --readFilesCommand
-- zcat
+- --outSAMtype
+- BAM
+- SortedByCoordinate
 - --soloUMIfiltering
 - MultiGeneUMI
 - --soloCBmatchWLtype
@@ -40,13 +41,43 @@ inputs:
     inputBinding:
       prefix: --soloType
       separate: true
-    default: CB_UMI_Simple
+    default: Droplet
   soloUMIlen:
     type: string
     inputBinding:
       prefix: --soloUMIlen
       separate: true
     default: '12'
+  soloCellFilter:
+    type: string
+    inputBinding:
+      prefix: --soloCellFilter
+      separate: true
+  outSAMattributes:
+    type: string[]
+    inputBinding:
+      prefix: outSAMattributes
+      separate: true
+    default:
+    - NH
+    - HI
+    - nM
+    - AS
+    - CR
+    - UR
+    - CB
+    - UB
+    - GX
+    - GN
+    - sS
+    - sQ
+    - sM
+  readFilesCommand:
+    type: string
+    inputBinding:
+      prefix: --readFilesCommand
+      separate: true
+    default: zcat
   runThreadN:
     type: int
     inputBinding:
@@ -57,7 +88,7 @@ outputs:
   outAlign:
     type: File
     outputBinding:
-      glob: '*.sam'
+      glob: '*.bam'
   outLog:
     type: File[]
     outputBinding:

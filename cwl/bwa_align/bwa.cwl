@@ -1,37 +1,48 @@
 cwlVersion: v1.0
 class: CommandLineTool
-baseCommand: gp_MutSigCV
+baseCommand:
+- bwa
+- mem
 requirements:
 - class: DockerRequirement
-  dockerPull: genepattern/docker-mutsigcv:2a
+  dockerPull: biocontainers/bwa:v0.7.17-3-deb_cv1
 inputs:
-  maf:
-    type: File
+  threads:
+    type: int
     inputBinding:
       position: 1
+      prefix: -t
       separate: true
-  coverage:
-    type: File
+  RG:
+    type: string?
     inputBinding:
       position: 2
+      prefix: -R
       separate: true
-  covar:
+  Ref:
     type: File
+    secondaryFiles:
+    - .amb
+    - .ann
+    - .bwt
+    - .pac
+    - .sa
     inputBinding:
       position: 3
       separate: true
-  sig:
-    type: string
+  FQ1:
+    type: File
     inputBinding:
       position: 4
       separate: true
-  dict:
-    type: File
+  FQ2:
+    type: File?
     inputBinding:
       position: 5
       separate: true
 outputs:
-  sigout:
+  sam:
     type: File
     outputBinding:
-      glob: $(inputs.sig).sig_genes.txt
+      glob: '*.sam'
+stdout: bwaOutput.sam

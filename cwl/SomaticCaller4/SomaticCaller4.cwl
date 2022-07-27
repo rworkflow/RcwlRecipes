@@ -148,7 +148,7 @@ steps:
   combine:
     run: combine.cwl
     in:
-      m2: Mutect2PL/passVCF
+      m2: Mutect2PL/filterVCF
       vd: VarDict/outVcf
       mu: MuSE/outVcf
       ss: mantaStrelka/snvs

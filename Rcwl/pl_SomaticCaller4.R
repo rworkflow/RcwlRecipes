@@ -76,7 +76,7 @@ varcombiner <- function(ss, si, m2, mu, vd, id_t, id_n){
                         id_t = id_t, id_n = id_n)
     ## mutect2
     m2v <- readVcf(m2)
-    m2v <- m2v[fixed(m2v)$FILTER == "PASS"]
+    m2v <- m2v[fixed(m2v)$FILTER %in% c("PASS", "multiallelic")]
     v_m <- SomaticCombiner(m2v, v_s, source = c("mutect2", "strelka2"),
                         GENO = c(GT = 1, DP = 1, AD = 1),
                         id_t = id_t, id_n = id_n)
@@ -110,7 +110,7 @@ Var4Combiner <- cwlProcess(baseCommand = varcombiner,
                            outputs = OutputParamList(vo1))
 
 s5 <- cwlStep(id = "combine", run = Var4Combiner,
-              In = list(m2 = "Mutect2PL/passVCF",
+              In = list(m2 = "Mutect2PL/filterVCF",
                         vd = "VarDict/outVcf",
                         mu = "MuSE/outVcf",
                         ss = "mantaStrelka/snvs",

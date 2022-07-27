@@ -3,7 +3,7 @@ class: CommandLineTool
 baseCommand: STAR
 requirements:
 - class: DockerRequirement
-  dockerPull: quay.io/biocontainers/star:2.7.5a--0
+  dockerPull: quay.io/biocontainers/star:2.7.10a--h9ee0642_0
 arguments:
 - --runMode
 - genomeGenerate

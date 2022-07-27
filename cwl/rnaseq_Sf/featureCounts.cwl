@@ -3,7 +3,7 @@ class: CommandLineTool
 baseCommand: featureCounts
 requirements:
 - class: DockerRequirement
-  dockerPull: hubentu/rcwl-rnaseq
+  dockerPull: quay.io/biocontainers/subread:2.0.1--h7132678_2
 inputs:
   gtf:
     type: File

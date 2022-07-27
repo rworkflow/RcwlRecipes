@@ -11,6 +11,8 @@ inputs:
     type: File
   runThreadN:
     type: int
+  soloCellFilter:
+    type: string
 outputs:
   sam:
     type: File
@@ -32,6 +34,7 @@ steps:
       readFilesIn_cb: fastq_cb
       genomeDir: genomeDir
       whiteList: whiteList
+      soloCellFilter: soloCellFilter
       runThreadN: runThreadN
     out:
     - outAlign
