@@ -33,7 +33,7 @@
 "pl_rnaseq_Sf","pipeline","fastqc+STAR+sortBam+samtools_index+samtools_flagstat+featureCounts+gtfToGenePred+genePredToBed+r_distribution+gCoverage",NA,2021-10-25 14:07:38
 "pl_RSeQC","pipeline","gtfToGenePred+genePredToBed+r_distribution+gCoverage",NA,2021-10-25 12:58:44
 "pl_ScarHRD","pipeline","bam2seqz+seqz_binning+hrd",NA,2022-06-16 17:40:40
-"pl_SomaticCaller_mouse","pipeline","Mutect2+MuSE+bgzip+tabixIndex+mantaStrelka+VarDict+combine",NA,2022-06-16 17:40:40
+"pl_SomaticCaller_mouse","pipeline","Mutect2+MuSE+bgzip+tabixIndex+mantaStrelka+VarDict+combine",NA,2022-08-16 00:08:09
 "pl_SomaticCaller4","pipeline","Mutect2PL+MuSE+bgzip+tabixIndex+mantaStrelka+VarDict+combine",NA,2022-06-24 15:39:37
 "pl_SomaticCallers","pipeline","Mutect2PL+MuSE+bgzip+tabixIndex+mantaStrelka+SomaticSniper+VarDict+VarScanPL+Wrapper+mergeTSV+neusomaticPL",NA,2021-10-25 14:07:37
 "pl_STARsoloDropletUtils","pipeline","STARsolo+DropletUtils",NA,2022-07-27 11:29:33
@@ -152,10 +152,13 @@
 "tl_neusomatic_call","tool","python /opt/neusomatic/neusomatic/python/call.py","msahraeian/neusomatic",2021-10-25 12:58:46
 "tl_neusomatic_postprocess","tool","python /opt/neusomatic/neusomatic/python/postprocess.py","msahraeian/neusomatic",2021-10-25 12:58:46
 "tl_neusomatic_preprocess","tool","python /opt/neusomatic/neusomatic/python/preprocess.py","msahraeian/neusomatic",2021-10-25 12:58:46
+"tl_Nirvana_download","tool","dotnet /opt/nirvana/Downloader.dll","annotation/nirvana:3.14",2023-01-05 14:49:29
+"tl_Nirvana","tool","dotnet /opt/nirvana/Nirvana.dll","annotation/nirvana:3.14",2023-01-05 14:45:14
 "tl_octopus_somatic","tool","octopus","dancooke/octopus",2021-10-25 14:07:38
 "tl_polysolver","tool","bash /home/polysolver/scripts/shell_call_hla_type","sachet/polysolver:v4",2021-10-25 12:58:46
 "tl_PoN","tool","gatk CreateSomaticPanelOfNormals","broadinstitute/gatk:latest",2021-10-25 14:07:38
 "tl_pvacseq","tool","pvacseq run","griffithlab/pvactools",2021-10-25 12:58:46
+"tl_rbamCoverage","tool","R function",NA,2023-01-03 16:43:10
 "tl_read_distribution","tool","read_distribution.py","quay.io/biocontainers/rseqc:4.0.0--py38h4a8c8d9_1",2021-10-25 14:07:38
 "tl_ReadBackedPhasing","tool","java -jar /usr/GenomeAnalysisTK.jar -T ReadBackedPhasing","broadinstitute/gatk3:3.8-1",2021-10-25 12:58:45
 "tl_RenameSampleInVcf","tool","picard RenameSampleInVcf","quay.io/biocontainers/picard:2.21.1--0",2021-10-25 12:58:45
@@ -180,7 +183,7 @@
 "tl_samtools_view","tool","samtools view","quay.io/biocontainers/samtools:1.12--h9aed4be_1",2022-06-16 17:40:40
 "tl_scar_HRD","tool","R function",NA,2022-06-16 17:40:40
 "tl_seqz_binning","tool","sequenza-utils seqz_binning","quay.io/biocontainers/sequenza-utils:3.0.0--py39h67e14b5_5",2022-06-16 17:40:40
-"tl_sigproSS","tool","python /usr/local/bin/spss.py","hubentu/sigpross",2021-10-25 12:58:46
+"tl_sigproSS","tool","python /usr/local/bin/spss.py","hubentu/sigpro:v2",2022-08-10 16:51:24
 "tl_somatic_combiner","tool","","hubentu/somatic_combiner",2021-10-25 14:07:38
 "tl_SomaticSeq_Wrapper","tool","/opt/somaticseq/SomaticSeq.Wrapper.sh","lethalfang/somaticseq:2.7.2",2021-10-25 14:07:38
 "tl_SomaticSniper","tool","/opt/somatic-sniper/build/bin/bam-somaticsniper","lethalfang/somaticsniper:1.0.5.0-2",2021-10-25 12:58:45

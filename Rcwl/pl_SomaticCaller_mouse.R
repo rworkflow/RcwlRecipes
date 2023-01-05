@@ -56,6 +56,7 @@ s4 <- cwlStep(id = "VarDict", run = VarDict,
                      nbam = "nbam",
                      ref = "Ref",
                      region = "interval",
+                     threads = "threads",
                      vcf = list(source = list("tumor", "normal"),
                                 valueFrom = "$(self[0])_$(self[1])_VarDict.vcf"),
                      af = list(valueFrom = "0.05")))
