@@ -1,12 +1,11 @@
 ## CombineGVCFs
 p1 <- InputParam(id = "vcfs",
-                 type = InputArrayParam(items = "File"),
-                 secondaryFiles = ".idx",
-                 prefix = "--variant")
+                 type = InputArrayParam(items = "File", prefix = "--variant"),
+                 secondaryFiles = ".tbi")
 p2 <- InputParam(id = "Ref", type = "File", prefix = "-R",
                  secondaryFiles = c(".fai", "$(self.nameroot).dict"))
 p3 <- InputParam(id = "ovcf", type = "string", prefix = "-O")
-o1 <- OutputParam(id = "vcf", type = "File", glob = "$(inputs.vout)",
+o1 <- OutputParam(id = "vcf", type = "File", glob = "$(inputs.ovcf)",
                   secondaryFiles = ".idx")
 req1 <- list(class = "DockerRequirement",
              dockerPull = "broadinstitute/gatk:latest")

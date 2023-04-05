@@ -23,12 +23,17 @@ o5 <- OutputParam(id = "out_count", type = "File", outputSource = "featureCounts
 o6 <- OutputParam(id = "out_distribution", type = "File", outputSource = "r_distribution/distOut")
 o7 <- OutputParam(id = "out_gCovP", type = "File", outputSource = "gCoverage/gCovPDF")
 o8 <- OutputParam(id = "out_gCovT", type = "File", outputSource = "gCoverage/gCovTXT")
+o9 <- OutputParam(id = "out_tpm", type = "File[]", outputSource = "tpm/out")
+o10 <- OutputParam(id = "out_ent", type = "File[]", outputSource = "tpm/ent")
+o11 <- OutputParam(id = "out_uni", type = "File[]", outputSource = "tpm/uni")
+
 req1 <- list(class = "ScatterFeatureRequirement")
 req2 <- list(class = "SubworkflowFeatureRequirement")
 req3 <- list(class = "StepInputExpressionRequirement")
 rnaseq_Sf <- cwlWorkflow(requirements = list(req1, req2, req3),
                        inputs = InputParamList(p1, p2, p3, p4, p5),
-                       outputs = OutputParamList(o1, o2a, o2b, o2c, o4, o5, o6, o7, o8))
+                       outputs = OutputParamList(o1, o2a, o2b, o2c, o4, o5, o6,
+                                                 o7, o8, o9, o10, o11))
 
 ## fastqc
 #' @include tl_fastqc.R
@@ -59,6 +64,13 @@ s5 <- cwlStep(id = "featureCounts", run = featureCounts,
            In = list(gtf = "in_GTFfile",
                      bam = "samtools_index/idx",
                      count = list(valueFrom = "$(inputs.bam.nameroot).featureCounts.txt")))
+
+## TPM
+#' @include tl_TPMCalculator.R
+s7 <- cwlStep(id = "tpm", run = TPMCalculator,
+              In = list(bam = "samtools_index/idx",
+                        gtf = "in_GTFfile"))
+
 ## RSeQC
 ## #' @include pl_RSeQC.R
 ## s6 <- cwlStep(id = "RSeQC", run = RSeQC,
@@ -85,4 +97,4 @@ s6d <- cwlStep(id = "gCoverage", run = gCoverage,
 
 
 ## pipeline
-rnaseq_Sf <- rnaseq_Sf + s1 + s2 + s3a + s3 + s4 + s5 + s6a + s6b + s6c + s6d
+rnaseq_Sf <- rnaseq_Sf + s1 + s2 + s3a + s3 + s4 + s5 + s6a + s6b + s6c + s6d + s7

@@ -1,5 +1,5 @@
 ## CombineGenotypeGVCFs
-p1 <- InputParam(id = "vcfs", type = InputArrayParam(items = "File"), secondaryFiles = ".idx")
+p1 <- InputParam(id = "vcfs", type = InputArrayParam(items = "File"), secondaryFiles = ".tbi")
 p2 <- InputParam(id = "Ref", type = "File", secondaryFiles = c(".fai", "$(self.nameroot).dict"))
 p3 <- InputParam(id = "out", type = "string")
 
