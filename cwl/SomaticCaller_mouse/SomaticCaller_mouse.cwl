@@ -114,6 +114,7 @@ steps:
       nbam: nbam
       ref: Ref
       region: interval
+      threads: threads
       vcf:
         source:
         - tumor

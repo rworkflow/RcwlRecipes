@@ -9,8 +9,6 @@ arguments:
 - Within
 - --outSAMstrandField
 - intronMotif
-- --readFilesCommand
-- zcat
 - --outSAMtype
 - BAM
 - SortedByCoordinate
@@ -45,6 +43,12 @@ inputs:
       prefix: --runThreadN
       separate: true
     default: 1
+  readFileCommand:
+    type: string
+    inputBinding:
+      prefix: --readFilesCommand
+      separate: true
+    default: zcat
 outputs:
   outBAM:
     type: File

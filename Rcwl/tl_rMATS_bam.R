@@ -18,19 +18,20 @@ p16 <- InputParam(id = "novelSS", type = "boolean?", prefix = "--novelSS")
 p17 <- InputParam(id = "mil", type = "int?", prefix = "--mil")
 p18 <- InputParam(id = "mel", type = "int?", prefix = "--mel")
 p19 <- InputParam(id = "fixedEvent", type = "Directory?", prefix = "--fixed-event-set")
+p20 <- InputParam(id = "darts", type = "boolean?", prefix = "--darts-model")
 
 o1 <- OutputParam(id = "res", type = "File[]", glob = "*.txt")
 o2 <- OutputParam(id = "tmpout", type = "Directory", glob = "$(inputs.tmp)")
-req1 <- requireDocker("xinglab/rmats")
+req1 <- requireDocker("rmats_darts")
 req2 <- requireJS()
 req3 <- requireManifest("bam1", sep = ",")
 req4 <- requireManifest("bam2", sep = ",")
 req5 <- requireInitialWorkDir(listing = list(req3$listing[[1]],
                                              req4$listing[[1]]))
-rMATS_bam <- cwlProcess(baseCommand = "",
+rMATS_bam <- cwlProcess(baseCommand = c("python", "/rmats/rmats.py"),
                         requirements = list(req1, req2, req5),
                         arguments = list("--b1", "bam1", "--b2", "bam2", "--od", "."),
                         inputs = InputParamList(p1, p2, p3, p4, p5, p6, p7, p8, p9,
                                                 p10, p11, p12, p13, p14, p15, p16,
-                                                p17, p18, p19),
+                                                p17, p18, p19, p20),
                         outputs = OutputParamList(o1, o2))

@@ -5,12 +5,12 @@ baseCommand:
 - view
 requirements:
 - class: DockerRequirement
-  dockerPull: quay.io/biocontainers/samtools:1.12--h9aed4be_1
+  dockerPull: quay.io/biocontainers/samtools:1.16.1--h6899075_1
 inputs:
   bam:
     type: File
     inputBinding:
-      position: 3
+      position: 99
       separate: true
   bed:
     type: File?
@@ -43,6 +43,16 @@ inputs:
     type: string?
     inputBinding:
       prefix: -f
+      separate: true
+  qname:
+    type: File?
+    inputBinding:
+      prefix: -N
+      separate: true
+  threads:
+    type: int?
+    inputBinding:
+      prefix: --threads
       separate: true
 outputs:
   oBam:

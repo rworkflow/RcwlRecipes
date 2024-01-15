@@ -12,10 +12,10 @@ inputs:
       type: array
       items: File
       inputBinding:
+        prefix: --variant
         separate: true
-    secondaryFiles: .idx
+    secondaryFiles: .tbi
     inputBinding:
-      prefix: --variant
       separate: true
   Ref:
     type: File
@@ -35,4 +35,4 @@ outputs:
     type: File
     secondaryFiles: .idx
     outputBinding:
-      glob: $(inputs.vout)
+      glob: $(inputs.ovcf)

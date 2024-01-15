@@ -44,6 +44,15 @@ outputs:
   out_gCovT:
     type: File
     outputSource: gCoverage/gCovTXT
+  out_tpm:
+    type: File[]
+    outputSource: tpm/out
+  out_ent:
+    type: File[]
+    outputSource: tpm/ent
+  out_uni:
+    type: File[]
+    outputSource: tpm/uni
 steps:
   fastqc:
     run: fastqc.cwl
@@ -124,3 +133,12 @@ steps:
     out:
     - gCovPDF
     - gCovTXT
+  tpm:
+    run: tpm.cwl
+    in:
+      bam: samtools_index/idx
+      gtf: in_GTFfile
+    out:
+    - out
+    - ent
+    - uni

@@ -13,7 +13,7 @@ inputs:
       prefix: -o
       separate: true
   vcfs:
-    type: File[]
+    type: File[]?
     secondaryFiles: tbi?
     inputBinding:
       separate: true
@@ -26,6 +26,11 @@ inputs:
     type: boolean?
     inputBinding:
       prefix: -a
+      separate: true
+  vfile:
+    type: File?
+    inputBinding:
+      prefix: -f
       separate: true
 outputs:
   Fout:

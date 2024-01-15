@@ -1,1 +1,2 @@
 runThreadN: 1
+readFileCommand: zcat

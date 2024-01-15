@@ -10,7 +10,7 @@ p7 <- InputParam(id = "oprefix", type = "string", prefix = "-o", default = "sash
 p8 <- InputParam(id = "alpha", type = "float", prefix = "--alpha", default = 0.25)
 o1 <- OutputParam(id = "plot", type = "File", glob = "$(inputs.oprefix).pdf")
 
-req1 <- requireDocker("guigolab/ggsashim:1.0.0i")
+req1 <- requireDocker("guigolab/ggsashimi:1.0.0")
 req2 <- requireInitialWorkDir(listing = list("$(inputs.bamDir)"))
 ggsashimi <- cwlProcess(baseCommand = "",
                         requirements = list(req1, req2),

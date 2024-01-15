@@ -5,7 +5,7 @@ baseCommand:
 - /usr/local/bin/spss.py
 requirements:
 - class: DockerRequirement
-  dockerPull: hubentu/sigpross
+  dockerPull: hubentu/sigpro:v2
 inputs:
   vcf:
     type: File

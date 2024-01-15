@@ -2,7 +2,7 @@ cwlVersion: v1.0
 class: CommandLineTool
 requirements:
 - class: DockerRequirement
-  dockerPull: guigolab/ggsashimi
+  dockerPull: guigolab/ggsashimi:1.0.0
 - class: InitialWorkDirRequirement
   listing:
   - $(inputs.bamDir)
@@ -30,13 +30,11 @@ inputs:
     inputBinding:
       prefix: -C
       separate: true
-    default: 3
   overlay:
     type: int?
     inputBinding:
       prefix: -O
       separate: true
-    default: 3
   oprefix:
     type: string
     inputBinding:

@@ -3,7 +3,7 @@ class: CommandLineTool
 baseCommand: fastqc
 requirements:
 - class: DockerRequirement
-  dockerPull: hubentu/rcwl-rnaseq
+  dockerPull: quay.io/biocontainers/fastqc:0.12.1--hdfd78af_0
 arguments:
 - --outdir
 - ./

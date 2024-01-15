@@ -1,8 +1,11 @@
 cwlVersion: v1.0
 class: CommandLineTool
+baseCommand:
+- python
+- /rmats/rmats.py
 requirements:
 - class: DockerRequirement
-  dockerPull: xinglab/rmats
+  dockerPull: rmats_darts
 - class: InlineJavascriptRequirement
 - class: InitialWorkDirRequirement
   listing:
@@ -111,6 +114,11 @@ inputs:
     type: Directory?
     inputBinding:
       prefix: --fixed-event-set
+      separate: true
+  darts:
+    type: boolean?
+    inputBinding:
+      prefix: --darts-model
       separate: true
 outputs:
   res:

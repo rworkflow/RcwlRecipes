@@ -8,7 +8,7 @@ inputs:
     type:
       type: array
       items: File
-    secondaryFiles: .idx
+    secondaryFiles: .tbi
   Ref:
     type: File
     secondaryFiles:
