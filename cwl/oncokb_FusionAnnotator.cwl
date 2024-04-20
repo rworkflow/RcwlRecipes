@@ -1,30 +1,34 @@
 cwlVersion: v1.0
 class: CommandLineTool
-baseCommand: featureCounts
+baseCommand:
+- python
+- /opt/FusionAnnotator.py
 requirements:
 - class: DockerRequirement
-  dockerPull: quay.io/biocontainers/subread:2.0.1--h7132678_2
-arguments:
-- -p
-- --countReadPairs
+  dockerPull: hubentu/oncokb-annotator
 inputs:
-  gtf:
+  input:
     type: File
     inputBinding:
-      prefix: -a
+      prefix: -i
       separate: true
-  count:
+  output:
     type: string
     inputBinding:
       prefix: -o
       separate: true
-  bam:
-    type: File
+  clinic:
+    type: File?
     inputBinding:
+      prefix: -c
+      separate: true
+  token:
+    type: string
+    inputBinding:
+      prefix: -b
       separate: true
 outputs:
-  Count:
+  ofile:
     type: File
-    secondaryFiles: .summary
     outputBinding:
-      glob: $(inputs.count)
+      glob: $(inputs.output)

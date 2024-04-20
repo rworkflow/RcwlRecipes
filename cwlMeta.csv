@@ -2,6 +2,7 @@
 "pl_alignMerge","pipeline","bwaAlign+mergeBamDup",NA,2021-10-25 12:58:44.493181
 "pl_AnnPhaseVcf","pipeline","VCFvep+dVCFcoverage+rVCFcoverage+VCFexpression+PhaseVcf",NA,2022-02-16 11:36:10.6357
 "pl_arcasHLA_pl","pipeline","Extract+Genotype+Partial",NA,2023-08-16 12:15:01.152409
+"pl_arriba_pl","pipeline","STAR+arriba",NA,2024-03-07 17:13:37.751693
 "pl_BaseRecal","pipeline","BaseRecalibrator+ApplyBQSR+samtools_index+samtools_flagstat+samtools_stats",NA,2021-10-25 12:58:44.272502
 "pl_bismarkPL","pipeline","bismark_align+deduplicate+meth",NA,2023-06-05 12:50:21.039179
 "pl_bwa_align","pipeline","bwa+sam2bam+sortBam+idxBam",NA,2022-07-27 11:04:03.590647
@@ -55,6 +56,7 @@
 "tl_arcasHLA_extract","tool","arcasHLA extract","hubentu/arcas-hla",2023-08-16 12:11:25.77914
 "tl_arcasHLA_genotype","tool","arcasHLA genotype","hubentu/arcas-hla",2024-01-15 15:17:00.258394
 "tl_arcasHLA_partial","tool","arcasHLA partial","hubentu/arcas-hla",2024-01-15 15:17:10.328277
+"tl_arriba","tool","arriba","quay.io/biocontainers/arriba:2.4.0--h0033a41_2",2024-03-07 17:11:32.5179
 "tl_awk_merge","tool","awk",NA,2021-10-25 12:58:45.554635
 "tl_bam_readcount","tool","/usr/bin/python /usr/bin/bam_readcount_helper.py","mgibio/bam_readcount_helper-cwl:1.1.1",2021-10-25 12:58:45.606266
 "tl_bam_stat.py","tool","bam_stat.py","quay.io/biocontainers/rseqc:4.0.0--py38h4a8c8d9_1",2021-10-25 14:07:38.108818
@@ -106,12 +108,13 @@
 "tl_DepthOfCoverage4","tool","gatk DepthOfCoverage","broadinstitute/gatk:latest",2021-10-25 14:07:38.027236
 "tl_DropletUtils","tool","R function",NA,2021-10-25 12:58:45.0033
 "tl_echo","tool","echo",NA,2021-10-25 12:58:46.004747
-"tl_fastdump","tool","fastq-dump","quay.io/biocontainers/sra-tools:2.11.0--pl5321h314213e_2",2022-02-16 11:36:10.742422
 "tl_fastqc","tool","fastqc","quay.io/biocontainers/fastqc:0.12.1--hdfd78af_0",2023-03-17 11:54:05.409305
-"tl_featureCounts","tool","featureCounts","quay.io/biocontainers/subread:2.0.1--h7132678_2",2022-07-26 00:24:59.527736
+"tl_fastqdump","tool","fastq-dump","quay.io/biocontainers/sra-tools:3.1.0--h9f5acd7_0",2024-03-29 10:18:46.256173
+"tl_featureCounts","tool","featureCounts","quay.io/biocontainers/subread:2.0.1--h7132678_2",2024-04-20 14:40:32.699636
 "tl_FilterMutectCalls","tool","gatk FilterMutectCalls","broadinstitute/gatk:latest",2021-10-25 14:07:38.034801
 "tl_FilterOBias","tool","gatk FilterByOrientationBias","broadinstitute/gatk:latest",2021-10-25 12:58:45.02689
 "tl_fpaste","tool","paste",NA,2021-10-25 12:58:46.050044
+"tl_fragCounter","tool","frag","hubentu/jabba",2024-03-25 10:37:40.593546
 "tl_Funcotator","tool","gatk Funcotator","broadinstitute/gatk:latest",2021-10-25 12:58:45.046024
 "tl_gc_wiggle","tool","sequenza-utils gc_wiggle","quay.io/biocontainers/sequenza-utils:3.0.0--py39h67e14b5_5",2022-06-16 17:40:40.875768
 "tl_geneBody_coverage","tool","geneBody_coverage.py","hubentu/rcwl-rnaseq",2021-10-25 12:58:46.063726
@@ -120,6 +123,7 @@
 "tl_GenotypeGVCFs","tool","gatk GenotypeGVCFs","broadinstitute/gatk:latest",2021-10-25 12:58:45.084435
 "tl_GetPileupSummaries","tool","gatk GetPileupSummaries","broadinstitute/gatk:latest",2021-10-25 14:07:38.050654
 "tl_ggsashimi","tool","","guigolab/ggsashimi:1.0.0",2023-08-23 15:33:34.462371
+"tl_gistic2","tool","gistic2","hubentu/gistic2",2024-03-29 16:24:32.711079
 "tl_glnexus_cli_list","tool","glnexus_cli","ghcr.io/dnanexus-rnd/glnexus:v1.4.1",2022-06-16 17:40:40.881449
 "tl_glnexus_cli","tool","glnexus_cli","ghcr.io/dnanexus-rnd/glnexus:v1.4.1",2022-04-01 12:09:51.040904
 "tl_gridss","tool","gridss","quay.io/biocontainers/gridss:2.13.2--h20b1175_1",2022-06-16 17:40:40.888018
@@ -130,6 +134,7 @@
 "tl_hisat2_build","tool","hisat2-build","biocontainers/hisat2:v2.0.5-1-deb_cv1",2021-10-25 12:58:46.166155
 "tl_htseq","tool","htseq-count","genomicpariscentre/htseq",2021-10-25 12:58:46.177739
 "tl_infer_experiment","tool","infer_experiment.py","quay.io/biocontainers/rseqc:4.0.0--py38h4a8c8d9_1",2022-07-11 23:12:29.29236
+"tl_jabba","tool","jba","hubentu/jabba",2024-03-22 12:37:03.922705
 "tl_kallisto_index","tool","kallisto index","zlskidmore/kallisto",2021-10-25 12:58:46.1891
 "tl_kallisto_quant","tool","kallisto quant","zlskidmore/kallisto",2021-10-25 12:58:46.200473
 "tl_lancet","tool","lancet","hubentu/lancet",2021-10-25 14:07:38.222061
@@ -170,6 +175,10 @@
 "tl_Nirvana","tool","dotnet /opt/nirvana/Nirvana.dll","annotation/nirvana:3.14",2023-01-06 09:03:33.327042
 "tl_nudup","tool","nudup.py","quay.io/biocontainers/nudup:2.3.3--py_2",2023-02-08 10:19:48.0382
 "tl_octopus_somatic","tool","octopus","dancooke/octopus",2021-10-25 14:07:38.251807
+"tl_oncokb_CnaAnnotator","tool","python /opt/CnaAnnotator.py","hubentu/oncokb-annotator",2024-03-28 11:14:48.458991
+"tl_oncokb_FusionAnnotator","tool","python /opt/FusionAnnotator.py","hubentu/oncokb-annotator",2024-03-28 11:13:55.106637
+"tl_oncokb_MafAnnotator","tool","python /opt/MafAnnotator.py","hubentu/oncokb-annotator",2024-03-28 11:13:22.167838
+"tl_oncokb_StructuralVariantAnnotator","tool","python /opt/StructuralVariantAnnotator.py","hubentu/oncokb-annotator",2024-03-28 11:14:23.603913
 "tl_polysolver","tool","bash /home/polysolver/scripts/shell_call_hla_type","sachet/polysolver:v4",2021-10-25 12:58:46.547474
 "tl_PoN","tool","gatk CreateSomaticPanelOfNormals","broadinstitute/gatk:latest",2021-10-25 14:07:38.085878
 "tl_pvacseq","tool","pvacseq run","griffithlab/pvactools",2021-10-25 12:58:46.561025
@@ -199,7 +208,7 @@
 "tl_samtools_mpileup","tool","samtools mpileup","biocontainers/samtools:v1.7.0_cv3",2021-10-25 12:58:46.724795
 "tl_samtools_sort","tool","samtools sort","quay.io/biocontainers/samtools:1.12--h9aed4be_1",2022-02-16 11:36:10.833519
 "tl_samtools_stats","tool","samtools stats","biocontainers/samtools:v1.7.0_cv3",2021-10-25 12:58:46.763984
-"tl_samtools_view","tool","samtools view","quay.io/biocontainers/samtools:1.16.1--h6899075_1",2023-01-06 11:11:40.607649
+"tl_samtools_view","tool","samtools view","quay.io/biocontainers/samtools:1.16.1--h6899075_1",2024-04-10 19:06:51.176349
 "tl_scar_HRD","tool","R function",NA,2022-06-16 17:40:40.949107
 "tl_seqtk_sample","tool","seqtk sample","quay.io/biocontainers/seqtk:1.4--he4a0461_1",2024-01-10 11:10:10.12264
 "tl_seqz_binning","tool","sequenza-utils seqz_binning","quay.io/biocontainers/sequenza-utils:3.0.0--py39h67e14b5_5",2022-06-16 17:40:40.955239
@@ -212,7 +221,7 @@
 "tl_STAR_FFPE","tool","STAR","quay.io/biocontainers/star:2.7.9a--h9ee0642_0",2022-02-16 11:36:10.730111
 "tl_STAR_rMATS","tool","STAR","quay.io/biocontainers/star:2.7.9a--h9ee0642_0",2022-02-16 11:36:10.736266
 "tl_STAR","tool","STAR","quay.io/biocontainers/star:2.7.9a--h9ee0642_0",2024-01-10 11:38:14.556231
-"tl_starFusion","tool","/usr/local/src/STAR-Fusion/STAR-Fusion","trinityctat/ctatfusion",2021-10-25 12:58:46.868211
+"tl_starFusion","tool","/usr/local/src/STAR-Fusion/STAR-Fusion","trinityctat/starfusion",2024-03-06 16:00:09.970868
 "tl_STARindex","tool","STAR","quay.io/biocontainers/star:2.7.10a--h9ee0642_0",2022-07-27 11:06:12.189086
 "tl_STARsolo","tool","STAR","quay.io/biocontainers/star:2.7.10a--h9ee0642_0",2022-07-27 11:06:12.217557
 "tl_strelka","tool","configureStrelkaSomaticWorkflow.py","quay.io/biocontainers/strelka:2.9.10--h9ee0642_1",2021-10-25 14:07:38.300839

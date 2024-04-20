@@ -7,7 +7,8 @@ o1 <- OutputParam(id = "Count", type = "File", glob = "$(inputs.count)", seconda
 
 req1 <- requireDocker("quay.io/biocontainers/subread:2.0.1--h7132678_2")
 featureCounts <- cwlProcess(baseCommand = "featureCounts",
-                          requirements = list(req1),
-                          inputs = InputParamList(f1, f2, f3),
-                          outputs = OutputParamList(o1))
+                            arguments = list("-p", "--countReadPairs"),
+                            requirements = list(req1),
+                            inputs = InputParamList(f1, f2, f3),
+                            outputs = OutputParamList(o1))
 

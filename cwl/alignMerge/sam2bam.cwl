@@ -9,6 +9,7 @@ requirements:
 inputs:
   bam:
     type: File
+    secondaryFiles: .bai
     inputBinding:
       position: 99
       separate: true
@@ -27,7 +28,7 @@ inputs:
   region:
     type: string?
     inputBinding:
-      position: 4
+      position: 100
       separate: true
   outb:
     type: boolean?
@@ -35,12 +36,12 @@ inputs:
       prefix: -b
       separate: true
   exFlag:
-    type: string?
+    type: int?
     inputBinding:
       prefix: -F
       separate: true
   reqFlag:
-    type: string?
+    type: int?
     inputBinding:
       prefix: -f
       separate: true
@@ -53,6 +54,11 @@ inputs:
     type: int?
     inputBinding:
       prefix: --threads
+      separate: true
+  mapq:
+    type: int?
+    inputBinding:
+      prefix: -q
       separate: true
 outputs:
   oBam:

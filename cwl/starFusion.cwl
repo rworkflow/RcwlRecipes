@@ -3,7 +3,7 @@ class: CommandLineTool
 baseCommand: /usr/local/src/STAR-Fusion/STAR-Fusion
 requirements:
 - class: DockerRequirement
-  dockerPull: trinityctat/ctatfusion
+  dockerPull: trinityctat/starfusion
 inputs:
   fq1:
     type: File
