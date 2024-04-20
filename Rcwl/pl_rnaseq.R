@@ -43,7 +43,7 @@ s1 <- cwlStep(id = "fastqc", run = fastqc,
 ## STAR
 #' @include tl_STAR.R
 ## fix STAR sort problem
-arguments(STAR)[[9]] <- "Unsorted"
+arguments(STAR)[[7]] <- "Unsorted"
 s2 <- cwlStep(id = "STAR", run = STAR,
            In = list(prefix = "in_prefix",
                      genomeDir = "in_genomeDir",
