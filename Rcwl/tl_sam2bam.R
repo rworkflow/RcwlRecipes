@@ -2,7 +2,7 @@
 p1 <- InputParam(id = "sam", type = "File")
 o1 <- OutputParam(id = "bam", type = "File", glob = "$(inputs.sam.basename).bam")
 req2 <- list(class = "DockerRequirement",
-             dockerPull = "biocontainers/samtools:v1.7.0_cv3")
+             dockerPull = "quay.io/biocontainers/samtools:1.16.1--h6899075_1")
 sam2bam <- cwlProcess(baseCommand = c("samtools", "view"),
                     arguments = list("-b"),
                     requirements = list(req2),

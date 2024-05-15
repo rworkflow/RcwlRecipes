@@ -16,7 +16,7 @@ o5 <- OutputParam(id = "align", type = "File", glob = "*.alignments.txt.gz")
 o6 <- OutputParam(id = "uvcf", type = "File[]", glob = "*unfiltered.*")
 o7 <- OutputParam(id = "svcf", type = "File[]", glob = "*svaba.somatic*")
 o8 <- OutputParam(id = "gvcf", type = "File[]", glob = "*svaba.germline*")
-req1 <- requireDocker("quay.io/biocontainers/svaba:1.1.0--h7d7f7ad_2")
+req1 <- requireDocker("hubentu/svaba:1.2.0-bin")
 req2 <- requireJS()
 svaba_somatic <- cwlProcess(cwlVersion = "v1.2",
                             baseCommand = c("svaba", "run"),

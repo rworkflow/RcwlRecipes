@@ -4,7 +4,7 @@
 ##source(system.file("tools", "samtools_index.R", package = "RcwlPipelines"))
 
 ## params
-#' @include tl_bwa.R tl_samtools_view.R tl_samtools_sort.R tl_samtools_index.R
+#' @include tl_bwa.R tl_sam2bam.R tl_samtools_sort.R tl_samtools_index.R
 p1 <- InputParam(id = "threads", type = "int")
 p2 <- InputParam(id = "RG", type = "string")
 p3 <- InputParam(id = "Ref", type = "File",
@@ -22,13 +22,13 @@ s1 <- cwlStep(id = "bwa", run = bwa,
                      FQ2 = "FQ2"))
 
 ## sam to bam
-s2 <- cwlStep(id = "sam2bam", run = samtools_view,
-              In = list(bam = "bwa/sam",
-                        obam = list(valueFrom = "$(inputs.bam.nameroot).bam")))
+s2 <- cwlStep(id = "sam2bam", run = sam2bam,
+              In = list(sam = "bwa/sam"))
+              ## bam = list(valueFrom = "$(inputs.sam.nameroot).bam")))
 
 ## sort bam
 s3 <- cwlStep(id = "sortBam", run = samtools_sort,
-              In = list(bam = "sam2bam/oBam",
+              In = list(bam = "sam2bam/bam",
                         obam = "outBam"))
 ## index bam
 s4 <- cwlStep(id = "idxBam", run = samtools_index,
