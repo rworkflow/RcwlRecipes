@@ -9,3 +9,20 @@ lumpy <- cwlProcess(baseCommand = "lumpyexpress",
                     requirements = list(req1),
                     inputs = InputParamList(p1, p2, p3, p4),
                     outputs = OutputParamList(o1))
+
+
+lumpy <- addMeta(
+    lumpy,
+    label = "lumpy",
+    doc = "A probabilistic framework for structural variant discovery.",
+    inputLabels = c("bam","split","discord","vout"),
+    inputDocs = c("full BAM or CRAM file(s) (comma separated) (required)","split reads BAM file(s) (comma separated)","discordant reads BAM files(s) (comma separated)","output file [fullBam.bam.vcf]"),
+    outputLabels = c("vcf"),
+    outputDocs = c("Output Variant file"),
+    extensions = list(
+        author = "rworkflow team",
+        date = "09-08-24",
+        url = "https://github.com/arq5x/lumpy-sv",
+        example = paste()
+    )
+)

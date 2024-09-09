@@ -4,6 +4,7 @@ library(Rcwl)
 library(RcwlPipelines)
 
 rfiles <- list.files("Rcwl", "*.R$", full.names = TRUE)
+#rfiles <- list.files("Rcwl", "tl_", full.names = TRUE)
 for(f in rfiles){
     tl <- cwlLoad(f)
     tl_n <- sub(".R$", "", basename(f))

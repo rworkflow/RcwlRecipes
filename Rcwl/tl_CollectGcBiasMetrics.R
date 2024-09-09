@@ -13,3 +13,20 @@ CollectGcBiasMetrics <- cwlProcess(baseCommand = c("picard", "CollectGcBiasMetri
                                    requirements = list(req1),
                                    inputs = InputParamList(p1, p2, p3, p4, p5),
                                    outputs = OutputParamList(o1, o2, o3))
+
+
+CollectGcBiasMetrics <- addMeta(
+    CollectGcBiasMetrics,
+    label = "CollectGcBiasMetrics",
+    doc = "This tool collects information about the relative proportions of guanine (G) and cytosine (C) nucleotides in a sample.",
+    inputLabels = c("bam","ref","gc","chart","summary"),
+    inputDocs = c("Input SAM/BAM/CRAM file. Required.","Reference sequence file. Default value: null.","The file to write the output to. Required.","The PDF file to render the chart to. Required.","The text file to write summary metrics to. Required."),
+    outputLabels = c("GC","Chart","Summary"),
+    outputDocs = c("Detailed information on the GC bias observed at various GC content levels","PDF file containing visualizations of the GC bias metrics","Summary statistics and metrics of GC bias in the sequencing data."),
+    extensions = list(
+        author = "rworkflow team",
+        date = "09-08-24",
+        url = "https://github.com/broadinstitute/picard",
+        example = paste()
+    )
+)

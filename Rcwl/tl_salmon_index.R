@@ -16,3 +16,20 @@ salmon_index <- cwlProcess(baseCommand = c("salmon", "index"),
                              arguments = list("--type", "quasi"),
                              inputs = InputParamList(p1, p2, p3, p4), 
                              outputs = OutputParamList(o1))
+
+
+salmon_index <- addMeta(
+    salmon_index,
+    label = "salmon_index",
+    doc = "Creates a salmon index.",
+    inputLabels = c("threadN","kmer","refFasta","outPrefix"),
+    inputDocs = c("Number of threads to use during indexing.","The size of k-mers that should be used for the quasi index.","Transcript fasta file.","salmon index."),
+    outputLabels = c("out1"),
+    outputDocs = c("Salmon index file"),
+    extensions = list(
+        author = "rworkflow team",
+        date = "09-08-24",
+        url = "https://github.com/COMBINE-lab/salmon",
+        example = paste()
+    )
+)

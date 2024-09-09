@@ -20,3 +20,20 @@ bwa_index <- cwlProcess(baseCommand = c("bwa", "index"),
                       arguments = list("-a", "bwtsw"), 
                       inputs = InputParamList(p1), 
                       outputs = OutputParamList(o1))
+
+
+bwa_index <- addMeta(
+    bwa_index,
+    label = "bwa_index",
+    doc = "Index referenc file using BWA mem",
+    inputLabels = c("Ref"),
+    inputDocs = c("Reference fasta file"),
+    outputLabels = c("idx"),
+    outputDocs = c("Index reference file"),
+    extensions = list(
+        author = "rworkflow team",
+        date = "09-08-24",
+        url = "https://github.com/lh3/bwa",
+        example = paste()
+    )
+)

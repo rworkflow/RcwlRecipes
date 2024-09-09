@@ -8,3 +8,20 @@ samtools_stats <- cwlProcess(baseCommand = c("samtools", "stats"),
                            inputs = InputParamList(p1),
                            outputs = OutputParamList(o1),
                            stdout = "$(inputs.bam.nameroot).stats.txt")
+
+
+samtools_stats <- addMeta(
+    samtools_stats,
+    label = "samtools_stats",
+    doc = "Provide a detailed statistical summary of the alignment data contained in BAM, SAM, or CRAM files",
+    inputLabels = c("bam"),
+    inputDocs = c("Input bam file"),
+    outputLabels = c("stats"),
+    outputDocs = c("Statistical summary"),
+    extensions = list(
+        author = "rworkflow team",
+        date = "09-08-24",
+        url = "https://github.com/samtools/samtools",
+        example = paste()
+    )
+)

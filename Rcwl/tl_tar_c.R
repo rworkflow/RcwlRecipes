@@ -8,3 +8,20 @@ o1 <- OutputParam(id = "tarfile", type = "File", glob = "$(inputs.tar)")
 tar_c <- cwlProcess(baseCommand = "tar",
                     inputs = InputParamList(p1, p2, p3, p4, p5),
                     outputs = OutputParamList(o1))
+
+
+tar_c <- addMeta(
+    tar_c,
+    label = "tar_c",
+    doc = "The tar command bundles multiple files and directories into a single file,",
+    inputLabels = c("create","compress","tar","files","dir"),
+    inputDocs = c("Create a new archive.","Compress or decompress using gzip.","name of the archive file","File list","Input directroty"),
+    outputLabels = c("tarfile"),
+    outputDocs = c("tar files"),
+    extensions = list(
+        author = "rworkflow team",
+        date = "09-08-24",
+        url = "NA",
+        example = paste()
+    )
+)

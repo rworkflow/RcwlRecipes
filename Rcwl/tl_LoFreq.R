@@ -27,3 +27,20 @@ LoFreq <- cwlProcess(baseCommand = c("lofreq", "somatic"),
                      requirements = list(req1, req2),
                      inputs = InputParamList(p1, p2, p3, p4, p5, p6, p7),
                      outputs= OutputParamList(o1, o2, o3, o4))
+
+
+LoFreq <- addMeta(
+    LoFreq,
+    label = "LoFreq",
+    doc = "Predict somatic variants from a paired normal/disease sample. The script will produce several output files using the prefix specified.",
+    inputLabels = c("tbam","nbam","ref","region","dbsnp","out","threads"),
+    inputDocs = c("Tumor BAM file","Normal BAM file","Reference fasta file","BED file listing regions to restrict analysis to","vcf-file (bgzipped and index with tabix) containing known germline variants (e.g. dbsnp for human","Prefix for output files","Use this many threads for each call"),
+    outputLabels = c("snp","snpdb","indel","indeldb"),
+    outputDocs = c("SNVs before dbsnp removal","SNVs after dbsnp removal","Indels before dbsnp removal","Indels after dbsnp removal"),
+    extensions = list(
+        author = "rworkflow team",
+        date = "09-08-24",
+        url = "https://csb5.github.io/lofreq/commands/#somatic",
+        example = paste()
+    )
+)

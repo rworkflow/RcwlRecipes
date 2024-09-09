@@ -13,3 +13,20 @@ ApplyBQSR <- cwlProcess(baseCommand = c("gatk",
                       requirements = list(req1),
                       inputs = InputParamList(p1, p2, p3, p4),
                       outputs = OutputParamList(o1))
+
+
+ApplyBQSR <- addMeta(
+    ApplyBQSR,
+    label = "ApplyBQSR",
+    doc = "This tool performs the second pass in a two-stage process called Base Quality Score Recalibration (BQSR). Specifically, it recalibrates the base qualities of the input reads based on the recalibration table produced by the BaseRecalibrator tool, and outputs a recalibrated BAM or CRAM file.",
+    inputLabels = c("bam","ref","rtable","oBam"),
+    inputDocs = c("BAM/SAM/CRAM file containing reads This argument must be specified at least once.(Required)","Reference sequence Default value: null.","Input recalibration table for BQSR Required.","Write output to this file Required."),
+    outputLabels = c("Bam"),
+    outputDocs = c("Bam file with base Quality score recaliberated"),
+    extensions = list(
+        author = "rworkflow team",
+        date = "09-08-24",
+        url = "https://github.com/broadinstitute/gatk",
+        example = paste()
+    )
+)

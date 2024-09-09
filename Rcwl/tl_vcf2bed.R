@@ -36,3 +36,20 @@ vcf2bed <- cwlProcess(cwlVersion = "v1.2",
 ##                       requirements = list(req1),
 ##                       inputs = InputParamList(i1, i2, i3),
 ##                       outputs = OutputParamList(o1))
+
+
+vcf2bed <- addMeta(
+    vcf2bed,
+    label = "vcf2bed",
+    doc = "Convert vcf file to bed file",
+    inputLabels = c("vcf","fai","win","out","window"),
+    inputDocs = c("Input vcf file","Genome index file (FAI) for chromosome size constraints.","Integer window size around each variant.","Name of the output","Integer window size around each variant."),
+    outputLabels = c("bed","bed"),
+    outputDocs = c("Output bed file","Output bed file"),
+    extensions = list(
+        author = "rworkflow team",
+        date = "09-08-24",
+        url = "https://github.com/arq5x/bedops",
+        example = paste()
+    )
+)

@@ -9,3 +9,20 @@ bcftools_reheader <- cwlProcess(baseCommand = c("bcftools", "reheader"),
                                 requirements = list(req1),
                                 inputs = InputParamList(p1, p2, p3, p4, p5),
                                 outputs = OutputParamList(o1))
+
+
+bcftools_reheader <- addMeta(
+    bcftools_reheader,
+    label = "bcftools_reheader",
+    doc = "Modify header of VCF/BCF files, change sample names.",
+    inputLabels = c("fai","header","samples","vcf","output"),
+    inputDocs = c("update sequences and their lengths from the .fai file","new header","new sample names","input VCF file","write output to a file [standard output]"),
+    outputLabels = c("outvcf"),
+    outputDocs = c("output VCF with modified header"),
+    extensions = list(
+        author = "rworkflow team",
+        date = "09-08-24",
+        url = "https://github.com/samtools/bcftools",
+        example = paste()
+    )
+)

@@ -8,3 +8,20 @@ infer_experiment <- cwlProcess(baseCommand = "infer_experiment.py",
                                inputs = InputParamList(p1, p2, p3),
                                outputs = OutputParamList(o1),
                                stdout = "$(inputs.bam.nameroot).strand.txt")
+
+
+infer_experiment <- addMeta(
+    infer_experiment,
+    label = "infer_experiment",
+    doc = "Tool to “guess” how RNA-seq sequencing were configured, particulary how reads were stranded for strand-specific RNA-seq data",
+    inputLabels = c("bed","bam","size"),
+    inputDocs = c("Reference gene model in bed fomat.","Input alignment file in SAM or BAM format","Number of reads sampled from SAM/BAM file.default=200000"),
+    outputLabels = c("sout"),
+    outputDocs = c("Info regarding how reads were stranded for strand-specific RNA-seq data"),
+    extensions = list(
+        author = "rworkflow team",
+        date = "09-08-24",
+        url = "https://github.com/Xinglab/rseqc",
+        example = paste()
+    )
+)

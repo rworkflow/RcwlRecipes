@@ -17,3 +17,20 @@ bamCoverage <- cwlProcess(baseCommand = "bamCoverage",
                                          "--skipNonCoveredRegions"),
                         inputs = InputParamList(p1, p2, p3, p4, p5),
                         outputs = OutputParamList(o1))
+
+
+bamCoverage <- addMeta(
+    bamCoverage,
+    label = "bamCoverage",
+    doc = "This tool takes an alignment of reads or fragments as input (BAM file) and generates a coverage track (bigWig or bedGraph) as output.",
+    inputLabels = c("bam","outFile","binsize","processors","outFormat"),
+    inputDocs = c("BAM file to process (default: None)","Output file name. (default: None)","Size of the bins, in bases, for the output of the bigwig/bedgraph file. (Default: 50)","Number of processors to use. Type 'max/2' to use half the maximum number of processors or 'max' to use all available processors. (Default: 1)","{bigwig,bedgraph}, -of {bigwig,bedgraph} Output file type. Either 'bigwig' or 'bedgraph'.(default: bigwig)"),
+    outputLabels = c("bigwig"),
+    outputDocs = c("Proccesed bigwig file"),
+    extensions = list(
+        author = "rworkflow team",
+        date = "09-08-24",
+        url = "https://github.com/gartician/deepTools-bamCoverage",
+        example = paste()
+    )
+)

@@ -24,3 +24,20 @@ hisat2_align <- cwlProcess(baseCommand = "hisat2",
                          inputs = InputParamList(p1, p2, p3, p4),
                          outputs = OutputParamList(o1),
                          stdout = "output.sam")
+
+
+hisat2_align <- addMeta(
+    hisat2_align,
+    label = "hisat2_align",
+    doc = "HISAT2 is a fast and sensitive alignment program for mapping next-generation sequencing reads (both DNA and RNA) to a population of human genomes as well as to a single reference genome.",
+    inputLabels = c("threadN","IndexPrefix","fq1","fq2"),
+    inputDocs = c("number of alignment threads to launch (1)","Index filename prefix (minus trailing .X.ht2).","fasrq file 1","fasrq file 2"),
+    outputLabels = c("sam"),
+    outputDocs = c("Aligned sam file"),
+    extensions = list(
+        author = "rworkflow team",
+        date = "09-08-24",
+        url = "https://github.com/DaehwanKimLab/hisat2",
+        example = paste()
+    )
+)

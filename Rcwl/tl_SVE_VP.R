@@ -14,3 +14,20 @@ SVE_VP <- cwlProcess(baseCommand = "/software/SVE/scripts/variant_processor.py",
                    requirements = list(req1),
                    inputs = InputParamList(p1, p2, p3, p4),
                    outputs = OutputParamList(o1))
+
+
+SVE_VP <- addMeta(
+    SVE_VP,
+    label = "SVE_VP",
+    doc = "Shortened Version of the SVE that uses pre-made .bam files Allthough .bam files are not compatible with all callers such as Variation Hunter",
+    inputLabels = c("bam","ref","outdir","tools"),
+    inputDocs = c("BAM comma-sep bam file path list, assuming matching bam.bai is in place","Reference file","output directory to store resulting files","stage name list"),
+    outputLabels = c("outs"),
+    outputDocs = c("SVE VP directory"),
+    extensions = list(
+        author = "rworkflow team",
+        date = "09-08-24",
+        url = "https://github.com/timothyjamesbecker/SVE",
+        example = paste()
+    )
+)

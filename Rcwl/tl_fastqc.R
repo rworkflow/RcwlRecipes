@@ -9,3 +9,20 @@ fastqc <- cwlProcess(baseCommand = "fastqc",
                    inputs = InputParamList(f1),
                    outputs = OutputParamList(o1))
 
+
+
+fastqc <- addMeta(
+    fastqc,
+    label = "fastqc",
+    doc = "FastQC reads a set of sequence files and produces from each one a quality control report consisting of a number of different modules, each one of which will help to identify a different potential type of problem in your data.",
+    inputLabels = c("seqfile"),
+    inputDocs = c("Input fastq file"),
+    outputLabels = c("QCfile"),
+    outputDocs = c("Output Quality score report"),
+    extensions = list(
+        author = "rworkflow team",
+        date = "09-08-24",
+        url = "https://github.com/s-andrews/FastQC",
+        example = paste()
+    )
+)

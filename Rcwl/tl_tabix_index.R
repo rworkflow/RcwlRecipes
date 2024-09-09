@@ -12,3 +12,20 @@ tabix_index <- cwlProcess(baseCommand = "tabix",
                         requirements = list(req1, req2),
                         inputs = InputParamList(p1, p2),
                         outputs = OutputParamList(o1))
+
+
+tabix_index <- addMeta(
+    tabix_index,
+    label = "tabix_index",
+    doc = "Tabix indexes a TAB-delimited genome position file in.tab.bgz and creates an index file",
+    inputLabels = c("tfile","type"),
+    inputDocs = c("Tab file","gff, bed, sam, vcf"),
+    outputLabels = c("idx"),
+    outputDocs = c("tab index file"),
+    extensions = list(
+        author = "rworkflow team",
+        date = "09-08-24",
+        url = "https://github.com/samtools/htslib",
+        example = paste()
+    )
+)

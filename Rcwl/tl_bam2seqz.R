@@ -9,3 +9,20 @@ bam2seqz <- cwlProcess(baseCommand = c("sequenza-utils", "bam2seqz"),
                        requirements = list(r1),
                        inputs = InputParamList(p1, p2, p3, p4, p5),
                        outputs = OutputParamList(o1))
+
+
+bam2seqz <- addMeta(
+    bam2seqz,
+    label = "bam2seqz",
+    doc = "Process a paired set of BAM/pileup files (tumor and matching normal), and GC-content genome-wide information, to extract the common positions with A and B alleles frequencies",
+    inputLabels = c("normal","tumor","ref","gc","out"),
+    inputDocs = c("Name of the BAM/pileup file from the reference/normal sample","Name of the BAM/pileup file from the tumor sample","The reference FASTA file used to generate the intermediate pileup. Required when input are BAM","The GC-content wiggle file","Name of the output file. To use gzip compression name the file ending in .gz. Default STDOUT."),
+    outputLabels = c("seqz"),
+    outputDocs = c("Seqz output file"),
+    extensions = list(
+        author = "rworkflow team",
+        date = "09-08-24",
+        url = "https://github.com/Yunuuuu/sequenza",
+        example = paste()
+    )
+)

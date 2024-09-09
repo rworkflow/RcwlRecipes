@@ -25,3 +25,20 @@ polysolver <- cwlProcess(baseCommand = c("bash", "/home/polysolver/scripts/shell
                       ),
                       inputs = InputParamList(p1, p2, p3, p4, p5, p6),
                       outputs = OutputParamList(o1))
+
+
+polysolver <- addMeta(
+    polysolver,
+    label = "polysolver",
+    doc = "Computational tool designed to accurately determine HLA (Human Leukocyte Antigen) types from next-generation sequencing (NGS) data, particularly from whole-exome sequencing (WES) or whole-genome sequencing (WGS) data.",
+    inputLabels = c("bam","race","includeFreq","build","format","insertCalc","outDir"),
+    inputDocs = c("path to the BAM file to be used for HLA typing","ethnicity of the individual (Caucasian, Black, Asian or Unknown)","flag indicating whether population-level allele frequencies should be used as priors (0 or 1)","reference genome used in the BAM file (hg18, hg19 or hg38)","fastq format (STDFQ, ILMFQ, ILM1.8 or SLXFQ; see Novoalign documentation)","flag indicating whether empirical insert size distribution should be used in the model (0 or 1)","output directory"),
+    outputLabels = c("hla"),
+    outputDocs = c("file containing the two inferred alleles for each of HLA-A, HLA-B and HLA-C"),
+    extensions = list(
+        author = "rworkflow team",
+        date = "09-08-24",
+        url = "https://software.broadinstitute.org/cancer/cga/polysolver_run",
+        example = paste()
+    )
+)

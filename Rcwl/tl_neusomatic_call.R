@@ -18,3 +18,20 @@ neusomatic_call <- cwlProcess(baseCommand = c("python",
                                              "--batch_size", "100"),
                             inputs = InputParamList(p1, p2, p3),
                             outputs = OutputParamList(o1))
+
+
+neusomatic_call <- addMeta(
+    neusomatic_call,
+    label = "neusomatic_call",
+    doc = "Used to call somatic mutations from the prepared input data using the trained deep learning model provided by Neusomatic.",
+    inputLabels = c("candidates","ref","checkpoint","threads"),
+    inputDocs = c("test candidate tsv files","reference fasta filename","network model checkpoint path","number of threads"),
+    outputLabels = c("pred"),
+    outputDocs = c("Variant output file"),
+    extensions = list(
+        author = "rworkflow team",
+        date = "09-08-24",
+        url = "https://github.com/bioinform/neusomatic",
+        example = paste()
+    )
+)

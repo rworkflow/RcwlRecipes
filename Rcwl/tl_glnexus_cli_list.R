@@ -15,3 +15,20 @@ glnexus_cli_list <- cwlProcess(baseCommand = "glnexus_cli",
                                inputs = InputParamList(p1, p2, p3, p4, p5),
                                outputs = OutputParamList(o1),
                                stdout = "$(inputs.ovcf)")
+
+
+glnexus_cli_list <- addMeta(
+    glnexus_cli_list,
+    label = "glnexus_cli_list",
+    doc = "Merge and joint-call input gVCF files, emitting multi-sample BCF on standard output.",
+    inputLabels = c("config","bed","gvcfs","ovcf","threads"),
+    inputDocs = c("configuration preset name or .yml filename (default: gatk)","three-column BED file with ranges to analyze (if neither --range nor --bed: use full length of all contigs)","Input gVCFs file","Output vcf file","thread budget (default: all hardware threads)"),
+    outputLabels = c("bcf"),
+    outputDocs = c("Output file"),
+    extensions = list(
+        author = "rworkflow team",
+        date = "09-08-24",
+        url = "https://github.com/dnanexus-rnd/GLnexus",
+        example = paste()
+    )
+)

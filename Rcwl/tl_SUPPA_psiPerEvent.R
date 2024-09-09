@@ -9,3 +9,20 @@ SUPPA_psiPerEvent <-
              requirements = list(req1),
              inputs = InputParamList(p1, p2, p3),
              outputs = OutputParamList(o1))
+
+
+SUPPA_psiPerEvent <- addMeta(
+    SUPPA_psiPerEvent,
+    label = "SUPPA_psiPerEvent",
+    doc = "calculates the Percent Spliced In (PSI) values for different types of alternative splicing events across multiple samples.",
+    inputLabels = c("ioe","exp","outfile"),
+    inputDocs = c("Input file with the event-transcripts equivalence (.ioe format).","Input transcript expression file.","Output psi file."),
+    outputLabels = c("outFile"),
+    outputDocs = c("file containing the PSI values for the specified splicing events across all samples."),
+    extensions = list(
+        author = "rworkflow team",
+        date = "09-08-24",
+        url = "https://github.com/comprna/SUPPA",
+        example = paste()
+    )
+)

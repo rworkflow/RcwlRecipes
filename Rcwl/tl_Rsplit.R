@@ -29,3 +29,20 @@ o1 <- OutputParam(id = "outFile", type = "File", glob = "$(inputs.outfile)")
 Rsplit <- cwlProcess(baseCommand = rsplit,
                    inputs = InputParamList(p1, p2, p3, p4),
                    outputs = OutputParamList(o1))
+
+
+Rsplit <- addMeta(
+    Rsplit,
+    label = "Rsplit",
+    doc = "Split and combine multiple files by column names",
+    inputLabels = c("files","columns","cnames","outfile"),
+    inputDocs = c("Input files","A string specifying the column names to extract from each input file","An optional parameter. A string containing custom column names to assign to the combined data","he name of the output file where the combined data will be saved."),
+    outputLabels = c("outFile"),
+    outputDocs = c("Combined output file"),
+    extensions = list(
+        author = "rworkflow team",
+        date = "09-08-24",
+        url = "NA",
+        example = paste()
+    )
+)

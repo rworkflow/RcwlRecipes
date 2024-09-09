@@ -9,3 +9,20 @@ genePredToBed <- cwlProcess(baseCommand = "genePredToBed",
                             requirements = list(req1),
                             inputs = InputParamList(p1, p2),
                             outputs = OutputParamList(o1))
+
+
+genePredToBed <- addMeta(
+    genePredToBed,
+    label = "genePredToBed",
+    doc = "Convert from genePred to bed format.",
+    inputLabels = c("genePred","Bed"),
+    inputDocs = c("Input genePred file","Name of output bed file"),
+    outputLabels = c("bed"),
+    outputDocs = c("Bed file output"),
+    extensions = list(
+        author = "rworkflow team",
+        date = "09-08-24",
+        url = "https://github.com/ENCODE-DCC/kentUtils",
+        example = paste()
+    )
+)

@@ -1,0 +1,87 @@
+Loading required package: yaml
+Loading required package: S4Vectors
+Loading required package: stats4
+Loading required package: BiocGenerics
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    anyDuplicated, aperm, append, as.data.frame, basename, cbind,
+    colnames, dirname, do.call, duplicated, eval, evalq, Filter, Find,
+    get, grep, grepl, intersect, is.unsorted, lapply, Map, mapply,
+    match, mget, order, paste, pmax, pmax.int, pmin, pmin.int,
+    Position, rank, rbind, Reduce, rownames, sapply, setdiff, table,
+    tapply, union, unique, unsplit, which.max, which.min
+
+
+Attaching package: ‘S4Vectors’
+
+The following object is masked from ‘package:utils’:
+
+    findMatches
+
+The following objects are masked from ‘package:base’:
+
+    expand.grid, I, unname
+
+Loading required package: BiocFileCache
+Loading required package: dbplyr
+
+Attaching package: ‘RcwlPipelines’
+
+The following object is masked from ‘package:graphics’:
+
+    title
+
+checking pl_alignMerge
+[1;30mINFO[0m /projects/rpci/songliu/qhu/miniconda3/bin//cwltool 3.1.20240708091337
+[1;30mINFO[0m Resolved '/tmp/RtmpTqjTO9/file26500c4cf99137/pl_alignMerge.cwl' to 'file:///tmp/RtmpTqjTO9/file26500c4cf99137/pl_alignMerge.cwl'
+Rcwl/pl_alignMerge.R is validated
+vep_plugin loaded
+checking pl_AnnPhaseVcf
+[1;30mINFO[0m /projects/rpci/songliu/qhu/miniconda3/bin//cwltool 3.1.20240708091337
+[1;30mINFO[0m Resolved '/tmp/RtmpTqjTO9/file26500c4405eba2/pl_AnnPhaseVcf.cwl' to 'file:///tmp/RtmpTqjTO9/file26500c4405eba2/pl_AnnPhaseVcf.cwl'
+../../../../../../../../tmp/RtmpTqjTO9/file26500c4405eba2/pl_AnnPhaseVcf.cwl:8:3: Warning: checking
+                                                                                  item
+                                                                                  Warning:   Field
+                                                                                  'class' contains
+                                                                                  undefined reference
+                                                                                  to
+                                                                                  'http://commonwl.org/cwltool#LoadListingRequirement'
+[1;30mWARNING[0m [33m../../../../../../../../tmp/RtmpTqjTO9/file26500c4405eba2/pl_AnnPhaseVcf.cwl:8:3: Warning: checking
+                                                                                  item
+                                                                                  Warning:   Field
+                                                                                  'class' contains
+                                                                                  undefined reference
+                                                                                  to
+                                                                                  'http://commonwl.org/cwltool#LoadListingRequirement'[0m
+URI prefix 'cwltool' of 'cwltool:LoadListingRequirement' not recognized, are you missing a $namespaces section?
+[1;30mWARNING[0m [33mURI prefix 'cwltool' of 'cwltool:LoadListingRequirement' not recognized, are you missing a $namespaces section?[0m
+../../../../../../../../tmp/RtmpTqjTO9/file26500c4405eba2/VCFvep.cwl:8:3: Warning: checking item
+                                                                          Warning:   Unsupported
+                                                                          scheme 'cwltool' in url:
+                                                                          cwltool:LoadListingRequirement
+[1;30mWARNING[0m [33m../../../../../../../../tmp/RtmpTqjTO9/file26500c4405eba2/VCFvep.cwl:8:3: Warning: checking item
+                                                                          Warning:   Unsupported
+                                                                          scheme 'cwltool' in url:
+                                                                          cwltool:LoadListingRequirement[0m
+[1;30mINFO[0m ../../../../../../../../tmp/RtmpTqjTO9/file26500c4405eba2/VCFvep.cwl:1:1: Unknown hint
+                                                                          cwltool:LoadListingRequirement
+Rcwl/pl_AnnPhaseVcf.R is validated
+arcasHLA_extract loaded
+arcasHLA_genotype loaded
+arcasHLA_partial loaded
+checking pl_arcasHLA_pl
+[1;30mINFO[0m /projects/rpci/songliu/qhu/miniconda3/bin//cwltool 3.1.20240708091337
+[1;30mINFO[0m Resolved '/tmp/RtmpTqjTO9/file26500c37905f49/pl_arcasHLA_pl.cwl' to 'file:///tmp/RtmpTqjTO9/file26500c37905f49/pl_arcasHLA_pl.cwl'
+Rcwl/pl_arcasHLA_pl.R is validated
+STAR loaded
+arriba loaded
+Error in stepInputs(list(s1, s2)) : could not find function "stepInputs"
+Calls: cwlLoad ... eval -> cwlWorkflow -> new -> initialize -> initialize
+Execution halted

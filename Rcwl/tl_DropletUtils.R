@@ -31,3 +31,20 @@ o2 <- OutputParam(id = "outsce", type = "File", glob = "*.rds")
 DropletUtils <- cwlProcess(baseCommand = DropletUtils,
                       inputs = InputParamList(p1, p2, p3),
                       outputs = OutputParamList(o1, o2))
+
+
+DropletUtils <- addMeta(
+    DropletUtils,
+    label = "DropletUtils",
+    doc = "Read raw 10x Genomics data from a specified directory, applies filtering to distinguish true cells from empty droplets using barcode ranking and the emptyDrops() function, and generates diagnostic plots.",
+    inputLabels = c("dirname","lower","df"),
+    inputDocs = c("Name of the input directory","A numeric scalar specifying the lower bound on the total UMI count, at or below which all barcodes are assumed to correspond to empty droplets","Degree of freadom"),
+    outputLabels = c("plots","outsce"),
+    outputDocs = c("Diagnostic Plots visualizing the barcode ranks and empty drops filtering process.","Filtered SCE Object containing only the droplets identified as true cells."),
+    extensions = list(
+        author = "rworkflow team",
+        date = "09-08-24",
+        url = "https://github.com/MarioniLab/DropletUtils",
+        example = paste()
+    )
+)

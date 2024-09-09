@@ -11,3 +11,20 @@ SUPPA_multipleFieldSelection <-
              requirements = list(req1),
              inputs = InputParamList(p1, p2, p3, p4, p5),
              outputs = OutputParamList(o1))
+
+
+SUPPA_multipleFieldSelection <- addMeta(
+    SUPPA_multipleFieldSelection,
+    label = "SUPPA_multipleFieldSelection",
+    doc = "Takes 1 or more fields from multiple files with a common format and at least a common field which can be used as a unique identifier.",
+    inputLabels = c("inputFiles","key","field","outfile","noheader"),
+    inputDocs = c("spaced separated list of files to join.","common field among the input files.","spaced separated list of fields to select.(starting in 1)","name of the output file.","use it if the file has no header."),
+    outputLabels = c("outFile"),
+    outputDocs = c("Feild selected output file"),
+    extensions = list(
+        author = "rworkflow team",
+        date = "09-08-24",
+        url = "https://github.com/comprna/SUPPA",
+        example = paste()
+    )
+)

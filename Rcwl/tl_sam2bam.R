@@ -9,3 +9,20 @@ sam2bam <- cwlProcess(baseCommand = c("samtools", "view"),
                     inputs = InputParamList(p1),
                     outputs = OutputParamList(o1),
                     stdout = "$(inputs.sam.basename).bam")
+
+
+sam2bam <- addMeta(
+    sam2bam,
+    label = "sam2bam",
+    doc = "Convert Sam to bam file",
+    inputLabels = c("sam"),
+    inputDocs = c("Input sam file"),
+    outputLabels = c("bam"),
+    outputDocs = c("Bam file"),
+    extensions = list(
+        author = "rworkflow team",
+        date = "09-08-24",
+        url = "https://github.com/samtools/samtools",
+        example = paste()
+    )
+)

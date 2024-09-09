@@ -35,3 +35,20 @@ manta <- cwlProcess(baseCommand = "configManta.py",
                       list(valueFrom = "local", position = 8L)),
                   inputs = InputParamList(p1, p2, p3, p4, p5),
                   outputs = OutputParamList(o1, o2, o3, o4))
+
+
+manta <- addMeta(
+    manta,
+    label = "manta",
+    doc = "Manta calls structural variants (SVs) and indels from mapped paired-end sequencing reads. It is optimized for analysis of germline variation in small sets of individuals and somatic variation in tumor/normal sample pairs.",
+    inputLabels = c("tbam","nbam","ref","callRegions","exome"),
+    inputDocs = c("Tumor sample BAM or CRAM file. Only up to one tumor bam file accepted. [optional] (no default)","Normal sample BAM or CRAM file. May be specified more than once, multiple inputs will be treated as each BAM file representing a different sample. [optional] (no default)","samtools-indexed reference fasta file [required]","Optionally provide a bgzip-compressed/tabix-indexed BED file containing the set of regions to call. No VCF output will be provided outside of these regions. The full genome will still be used to estimate statistics from the input (such as expected fragment size distribution). Only one BED file may be specified. (default: call the entire genome)","Set options for WES input: turn off depth filters"),
+    outputLabels = c("somaticSV","diploidSV","candidateSV","candidateSmallIndels"),
+    outputDocs = c("Somantic SV file","Diploid SV file","Candidate SV file","Candidate Small Indel file"),
+    extensions = list(
+        author = "rworkflow team",
+        date = "09-08-24",
+        url = "https://github.com/Illumina/manta",
+        example = paste()
+    )
+)

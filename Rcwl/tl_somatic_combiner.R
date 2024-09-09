@@ -18,3 +18,20 @@ somatic_combiner <- cwlProcess(cwlVersion = "v1.2",
                                requirements = list(req1),
                                inputs = InputParamList(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11),
                                outputs = OutputParamList(o1))
+
+
+somatic_combiner <- addMeta(
+    somatic_combiner,
+    label = "somatic_combiner",
+    doc = "A consensus ensemble approach which can combine somatic variants VCFs generated from seven popular callers: LoFreq, MuSE, MuTect2, MuTect, Strelka, VarDict and VarScan.",
+    inputLabels = c("vardict","lofreqSNV","lofreqIndel","mutect","mutect2","strelkaSNV","strelkaIndel","muse","varscanSNV","varscanIndel","outvcf"),
+    inputDocs = c("Vardict VCF file","Lofreq SNV VCF file","Lofreq INDEL VCF file","Mutect VCF file","Mutect2 VCF file","Strelka SNV VCF file","Strelka INDEL VCF file","Muse VCF file","Varscan SNV VCF file","Varscan INDEL VCF file","Output VCF file"),
+    outputLabels = c("ovcf"),
+    outputDocs = c("Combined vcf file"),
+    extensions = list(
+        author = "rworkflow team",
+        date = "09-08-24",
+        url = "https://github.com/mingyi-wang/somatic-combiner",
+        example = paste()
+    )
+)

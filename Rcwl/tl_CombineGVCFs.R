@@ -13,3 +13,20 @@ CombineGVCFs <- cwlProcess(baseCommand = c("gatk", "CombineGVCFs"),
                          requirements = list(req1),
                          inputs = InputParamList(p1, p2, p3),
                          outputs = OutputParamList(o1))
+
+
+CombineGVCFs <- addMeta(
+    CombineGVCFs,
+    label = "CombineGVCFs",
+    doc = "Merges one or more HaplotypeCaller GVCF files into a single GVCF with appropriate annotations",
+    inputLabels = c("vcfs","Ref","ovcf"),
+    inputDocs = c("One or more VCF files containing variants This argument must be specified at least once. Required.","Reference sequence file Required.","The combined GVCF output file Required."),
+    outputLabels = c("vcf"),
+    outputDocs = c("Combined GVCF file"),
+    extensions = list(
+        author = "rworkflow team",
+        date = "09-08-24",
+        url = "https://github.com/broadinstitute/gatk",
+        example = paste()
+    )
+)

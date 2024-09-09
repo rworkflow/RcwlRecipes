@@ -26,3 +26,20 @@ STAR <- cwlProcess(baseCommand = "STAR",
                  inputs = InputParamList(p1, p2, p3, p4, p5,
                                          p6, p7, p8, p9, p10, p11),
                  outputs = OutputParamList(o1, o2, o3))
+
+
+STAR <- addMeta(
+    STAR,
+    label = "STAR",
+    doc = "STAR (Spliced Transcripts Alignment to a Reference) aligner that is tailored to work with rMATS (RNA-seq Multivariate Analysis of Transcript Splicing),",
+    inputLabels = c("prefix","readFilesIn","genomeDir","sjdbGTFfile","runThreadN","readFilesCommand","twopass","chimSegmentMin","outFilterMismatchNmax","alignIntronMax","alignSJDBoverhangMin"),
+    inputDocs = c("output files name prefix (including full or relative path). Can only be defined on the command line.","paths to files that contain input read1 (and, if needed, read2)","path to the directory where genome files are stored","path to the GTF file with annotations","number of threads to run STAR","command line to execute for each of the input file. This command should generate FASTA or FASTQ text and send it to stdout","2-pass mapping mode.","minimum length of chimeric segment length, if ==0, no chimeric output","maximum number of mismatches per pair, large number switches off this filter","maximum intron size, if 0, max intron size will be determined by (2ˆwinBinNbits)*winAnchorDistNbins","minimum overhang for annotated junctions"),
+    outputLabels = c("outBAM","outLog","outCount"),
+    outputDocs = c("Aligned Bam file","detailed logs providing statistics and metrics about the alignment process.","reads mapped to each gene"),
+    extensions = list(
+        author = "rworkflow team",
+        date = "09-08-24",
+        url = "https://github.com/alexdobin/STAR",
+        example = paste()
+    )
+)

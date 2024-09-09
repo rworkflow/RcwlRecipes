@@ -12,3 +12,20 @@ fragCounter <- cwlProcess(cwlVersion = "v1.2",
                           requirements = list(req1),
                           inputs = InputParamList(p1, p2, p3, p4, p5),
                           outputs = OutputParamList(o1, o2))
+
+
+fragCounter <- addMeta(
+    fragCounter,
+    label = "fragCounter",
+    doc = "fragCounter corrects Whole genome or targeted sequencing data for GC and mappability bias.",
+    inputLabels = c("bam","gcmap","window","mapq","paired"),
+    inputDocs = c("Path to .bam file","Mappability / GC content dir","Window / bin size","Minimal map quality","Is paired"),
+    outputLabels = c("bw","rds"),
+    outputDocs = c("corrected bw file","output RDS file"),
+    extensions = list(
+        author = "rworkflow team",
+        date = "09-08-24",
+        url = "https://github.com/mskilab-org/fragCounter",
+        example = paste()
+    )
+)

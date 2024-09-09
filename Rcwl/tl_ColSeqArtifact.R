@@ -13,3 +13,20 @@ ColSeqArtifact <- cwlProcess(baseCommand = c("gatk",
                            requirements = list(req1),
                            inputs = InputParamList(p1, p2, p3, p4),
                            outputs = OutputParamList(o1))
+
+
+ColSeqArtifact <- addMeta(
+    ColSeqArtifact,
+    label = "ColSeqArtifact",
+    doc = "Collect metrics to quantify single-base sequencing artifacts.",
+    inputLabels = c("bam","ref","ext","art"),
+    inputDocs = c("Input SAM/BAM/CRAM file. Required.","Reference sequence file. Required.","Append the given file extension to all metric file names (ex.OUTPUT.pre_adapter_summary_metrics.EXT). None if null Default value: null.","The file to write the output to. Required."),
+    outputLabels = c("aout"),
+    outputDocs = c("Output of ColSeqArtifact"),
+    extensions = list(
+        author = "rworkflow team",
+        date = "09-08-24",
+        url = "https://github.com/broadinstitute/gatk",
+        example = paste()
+    )
+)

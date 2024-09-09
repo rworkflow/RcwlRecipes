@@ -10,3 +10,20 @@ lofreq_indelqual <- cwlProcess(baseCommand = c("lofreq", "indelqual"),
                                inputs = InputParamList(p1, p2, p3),
                                outputs = OutputParamList(o1),
                                stdout = "$(inputs.ibam)")
+
+
+lofreq_indelqual <- addMeta(
+    lofreq_indelqual,
+    label = "lofreq_indelqual",
+    doc = "Insert indel qualities into BAM file",
+    inputLabels = c("ref","bam","ibam"),
+    inputDocs = c("Reference sequence used for mapping (Only required for --dindel)","Input bam file","indexed bam file"),
+    outputLabels = c("obam"),
+    outputDocs = c("Output bam file with indel qual"),
+    extensions = list(
+        author = "rworkflow team",
+        date = "09-08-24",
+        url = "https://github.com/CSB5/lofreq",
+        example = paste()
+    )
+)

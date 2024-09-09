@@ -34,3 +34,20 @@ mvOut <- cwlProcess(baseCommand = mvout,
                   id = "mvOut",
                   inputs = InputParamList(p1),
                   outputs = OutputParamList(o1))
+
+
+mvOut <- addMeta(
+    mvOut,
+    label = "mvOut",
+    doc = "Consolidates all output files into a single directory, making it easier to manage and access them.",
+    inputLabels = c("logFile"),
+    inputDocs = c("Input log file"),
+    outputLabels = c("OutDir","OutDir"),
+    outputDocs = c("Output folder to move","Moved output directory"),
+    extensions = list(
+        author = "rworkflow team",
+        date = "09-08-24",
+        url = "NA",
+        example = paste()
+    )
+)

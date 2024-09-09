@@ -10,3 +10,20 @@ read_distribution <- cwlProcess(baseCommand = c("read_distribution.py"),
                               inputs = InputParamList(p1, p2),
                               outputs = OutputParamList(o1),
                               stdout = "$(inputs.bam.nameroot).distribution.txt")
+
+
+read_distribution <- addMeta(
+    read_distribution,
+    label = "read_distribution",
+    doc = "Check reads distribution over exon, intron, UTR, intergenic ... etc",
+    inputLabels = c("bam","bed"),
+    inputDocs = c("Alignment file in BAM or SAM format.","Reference gene model in bed format."),
+    outputLabels = c("distOut"),
+    outputDocs = c("Read distribution output"),
+    extensions = list(
+        author = "rworkflow team",
+        date = "09-08-24",
+        url = "https://github.com/Xinglab/rseqc",
+        example = paste()
+    )
+)

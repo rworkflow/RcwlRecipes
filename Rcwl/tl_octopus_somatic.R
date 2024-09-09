@@ -20,3 +20,20 @@ octopus_somatic <- cwlProcess(cwlVersion = "v1.2",
                                                "/opt/octopus/resources/forests/somatic.v0.7.4.forest"),
                               inputs = InputParamList(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10),
                               outputs = OutputParamList(o1))
+
+
+octopus_somatic <- addMeta(
+    octopus_somatic,
+    label = "octopus_somatic",
+    doc = "Calls somatic variants by comparing a tumor sample to a matched normal sample.",
+    inputLabels = c("bams","ref","normal","ovcf","region","error","threads","expFreq","creFreq","annotation"),
+    inputDocs = c("Indexed BAM/CRAM files to be analysed","Indexed FASTA format reference genome file to be analysed","Normal samples - all other samples are considered tumour","File to where output is written (calls are written to stdout if unspecified)","File containing a list of regions (chrom:begin-end), one per line, to be analysed","Sequencing error model to use by the haplotyoe likelihood model","Maximum number of threads to be used. If no argument is provided unlimited threads are assumed","Minimum expected somatic allele frequency in the sample","Minimum credible somatic allele frequency that will be reported","Annotations to write to final VCF"),
+    outputLabels = c("oVcf"),
+    outputDocs = c("Output somantic variant file"),
+    extensions = list(
+        author = "rworkflow team",
+        date = "09-08-24",
+        url = "https://github.com/luntergroup/octopus",
+        example = paste()
+    )
+)

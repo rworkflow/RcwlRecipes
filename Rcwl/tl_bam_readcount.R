@@ -22,3 +22,20 @@ bam_readcount <- cwlProcess(baseCommand = c("/usr/bin/python",
                               list(valueFrom = "./", position = 6L, shellQuote = FALSE)),
                           inputs = InputParamList(p1, p2, p3, p4),
                           outputs = OutputParamList(o1, o2))
+
+
+bam_readcount <- addMeta(
+    bam_readcount,
+    label = "bam_readcount",
+    doc = "generates low-level information about sequencing data at specific nucleotide positions.",
+    inputLabels = c("vcf","sample","ref","bam"),
+    inputDocs = c("Input VCF file","Smaple name","reference sequence in the fasta format.","bam input file"),
+    outputLabels = c("snv","indel"),
+    outputDocs = c("SNV file","Indel FIle"),
+    extensions = list(
+        author = "rworkflow team",
+        date = "09-08-24",
+        url = "https://github.com/genome/bam-readcount",
+        example = paste()
+    )
+)

@@ -11,3 +11,20 @@ bowtie2_build <- cwlProcess(baseCommand = c("bowtie2-build"),
                          requirements = list(req1),
                          inputs = InputParamList(p1, p2), 
                          outputs = OutputParamList(o1))
+
+
+bowtie2_build <- addMeta(
+    bowtie2_build,
+    label = "bowtie2_build",
+    doc = "Index referenc file using bowtie",
+    inputLabels = c("ref","outPrefix"),
+    inputDocs = c("comma-separated list of files with ref sequences","write bt2 data to files with this dir/basename"),
+    outputLabels = c("idx"),
+    outputDocs = c("Index reference file"),
+    extensions = list(
+        author = "rworkflow team",
+        date = "09-08-24",
+        url = "https://github.com/BenLangmead/bowtie2",
+        example = paste()
+    )
+)

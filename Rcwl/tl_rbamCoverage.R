@@ -35,3 +35,20 @@ o1 <- OutputParam(id = "cov", type = "File", glob = "*_cov.csv")
 rbamCoverage <- cwlProcess(baseCommand = bamCov,
                            inputs = InputParamList(p1, p2, p3),
                            outputs = OutputParamList(o1))
+
+
+rbamCoverage <- addMeta(
+    rbamCoverage,
+    label = "rbamCoverage",
+    doc = "Reads a BAM file to calculate the mean coverage and the fraction of bases meeting specified thresholds over genomic regions from a BED file.",
+    inputLabels = c("bam","bed","ct"),
+    inputDocs = c("A BAM file containing aligned sequencing reads.","A BED file specifying genomic regions of interest where coverage should be calculated","A string specifying coverage thresholds separated by commas"),
+    outputLabels = c("cov"),
+    outputDocs = c("Output csv file"),
+    extensions = list(
+        author = "rworkflow team",
+        date = "09-08-24",
+        url = "https://github.com/deeptools/deepTools",
+        example = paste()
+    )
+)

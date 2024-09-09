@@ -13,3 +13,20 @@ ReadBackedPhasing <- cwlProcess(baseCommand = c("java", "-jar", "/usr/GenomeAnal
                               requirements = list(req1),
                               inputs = InputParamList(p1, p2, p3, p4, p5),
                               outputs = OutputParamList(o1))
+
+
+ReadBackedPhasing <- addMeta(
+    ReadBackedPhasing,
+    label = "ReadBackedPhasing",
+    doc = "Tool to phase variants by determining their haplotype structure based on the alignment of reads that span multiple variants.",
+    inputLabels = c("vcf","bam","ref","ovcf","region"),
+    inputDocs = c("Input VCF file","Input file containing sequence data (BAM or CRAM)","Reference sequence file","File to which variants should be written","One or more genomic intervals over which to operate"),
+    outputLabels = c("oVcf"),
+    outputDocs = c("Output vcf file"),
+    extensions = list(
+        author = "rworkflow team",
+        date = "09-08-24",
+        url = "https://github.com/broadinstitute/gatk",
+        example = paste()
+    )
+)

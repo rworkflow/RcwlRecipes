@@ -22,3 +22,20 @@ vep_plugin <- cwlProcess(baseCommand = "vep",
                 inputs = InputParamList(p1, p2, p3, p4),
                 outputs = OutputParamList(o1),
                 extensions = ext)
+
+
+vep_plugin <- addMeta(
+    vep_plugin,
+    label = "vep_plugin",
+    doc = "VEP plugins provide additional annotations and extend the functionality of the VEP tool.",
+    inputLabels = c("ivcf","ovcf","ref","cacheDir"),
+    inputDocs = c("Input VCF file","Name of output fie","Reference file","Specifies the directory where VEP will look for or store its cache files."),
+    outputLabels = c("oVcf"),
+    outputDocs = c("Output vcf file"),
+    extensions = list(
+        author = "rworkflow team",
+        date = "09-08-24",
+        url = "http://useast.ensembl.org/info/docs/tools/vep/script/index.html",
+        example = paste()
+    )
+)

@@ -12,3 +12,20 @@ gtf2bed <- cwlProcess(cwlVersion = "v1.2",
                       requirements = list(req1, req2),
                       inputs = InputParamList(p1),
                       outputs = OutputParamList(o1))
+
+
+gtf2bed <- addMeta(
+    gtf2bed,
+    label = "gtf2bed",
+    doc = "Convert gtf to bed",
+    inputLabels = c("gtf"),
+    inputDocs = c("Input gtf file"),
+    outputLabels = c("bed"),
+    outputDocs = c("Output bed file"),
+    extensions = list(
+        author = "rworkflow team",
+        date = "09-08-24",
+        url = "https://github.com/arq5x/bedops",
+        example = paste()
+    )
+)

@@ -8,3 +8,20 @@ LearnReadOrientationModel <- cwlProcess(baseCommand = c("gatk", "LearnReadOrient
                                       requirements = list(req1),
                                       inputs = InputParamList(p1, p2),
                                       outputs = OutputParamList(o1))
+
+
+LearnReadOrientationModel <- addMeta(
+    LearnReadOrientationModel,
+    label = "LearnReadOrientationModel",
+    doc = "Get the maximum likelihood estimates of artifact prior probabilities in the orientation bias mixture model filter",
+    inputLabels = c("f1r2","romodel"),
+    inputDocs = c("One or more .tar.gz containing outputs of CollectF1R2Counts This argument must be specified at least once. Required.","tar.gz of artifact prior tables Required."),
+    outputLabels = c("rofile"),
+    outputDocs = c("learned artifact priors for the same samples."),
+    extensions = list(
+        author = "rworkflow team",
+        date = "09-08-24",
+        url = "https://github.com/broadinstitute/gatk",
+        example = paste()
+    )
+)

@@ -11,3 +11,20 @@ markdup <- cwlProcess(baseCommand = c("picard",
                     requirements = list(req1),
                     inputs = InputParamList(p1, p2, p3),
                     outputs = OutputParamList(o1, o2))
+
+
+markdup <- addMeta(
+    markdup,
+    label = "markdup",
+    doc = "Identifies duplicate reads.This tool locates and tags duplicate reads in a BAM or SAM file, where duplicate reads are defined as originating from a single fragment of DNA.",
+    inputLabels = c("ibam","obam","matrix"),
+    inputDocs = c("One or more input SAM or BAM files to analyze. Must be coordinate sorted. Default value:null. This option may be specified 0 or more times.","The output file to write marked records to Required.","File to write duplication metrics to Required."),
+    outputLabels = c("mBam","Mat"),
+    outputDocs = c("Marked duplicate bam file","Metric of marked duplicate"),
+    extensions = list(
+        author = "rworkflow team",
+        date = "09-08-24",
+        url = "https://github.com/biod/sambamba",
+        example = paste()
+    )
+)

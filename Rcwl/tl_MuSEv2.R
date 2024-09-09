@@ -34,3 +34,20 @@ MuSE <- cwlProcess(cwlVersion = "v1.2",
                    ),
                    inputs = InputParamList(p1, p2, p3, p4, p5, p6, p7, p8),
                    outputs = OutputParamList(o1))
+
+
+MuSE <- addMeta(
+    MuSE,
+    label = "MuSE",
+    doc = "Statistical approach for mutation calling based on a Markov substitution model for molecular evolution.",
+    inputLabels = c("tbam","nbam","ref","region","dbsnp","vcf","exome","genome"),
+    inputDocs = c("Tumor bam file","Normal bam file","faidx indexed reference sequence file","list of regions (chr:pos-pos or BED), one region per line","dbSNP vcf file that should be bgzip compressed,tabix indexed and based on the same reference genome used in 'MuSE call'","output file name (VCF format)","input generated from whole exome sequencing data","input generated from whole genome sequencing data"),
+    outputLabels = c("outVcf"),
+    outputDocs = c("Output VCF file"),
+    extensions = list(
+        author = "rworkflow team",
+        date = "09-08-24",
+        url = "https://bioinformatics.mdanderson.org/public-software/muse/",
+        example = paste()
+    )
+)

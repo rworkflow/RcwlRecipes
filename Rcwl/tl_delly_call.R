@@ -12,3 +12,20 @@ delly_call <- cwlProcess(baseCommand = c("delly", "call"),
                          requirements = list(req1),
                          inputs = InputParamList(p1, p2, p3, p4, p5, p6),
                          outputs = OutputParamList(o1))
+
+
+delly_call <- addMeta(
+    delly_call,
+    label = "delly_call",
+    doc = "Delly is an integrated structural variant (SV) prediction method that can discover, genotype and visualize deletions, tandem duplications, inversions and translocations at single-nucleotide resolution in short-read and long-read massively parallel sequencing data.",
+    inputLabels = c("exclude","genome","outfile","bcf","tbam","nbam"),
+    inputDocs = c("file with regions to exclude","genome fasta file","SV BCF output file","input VCF/BCF file for genotyping","Tumor bam file","Normal Bam file"),
+    outputLabels = c("outbcf"),
+    outputDocs = c("Output BCF file"),
+    extensions = list(
+        author = "rworkflow team",
+        date = "09-08-24",
+        url = "https://github.com/dellytools/delly",
+        example = paste()
+    )
+)

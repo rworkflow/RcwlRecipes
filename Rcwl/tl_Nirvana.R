@@ -13,3 +13,20 @@ Nirvana <- cwlProcess(cwlVersion = "v1.2",
                       requirements = list(req1),
                       inputs = InputParamList(p1, p2, p3, p4, p5),
                       outputs = OutputParamList(o1))
+
+
+Nirvana <- addMeta(
+    Nirvana,
+    label = "Nirvana",
+    doc = "Nirvana provides clinical-grade annotation of genomic variants (SNVs, MNVs, insertions, deletions, indels, STRs, gene fusions, and SVs (including CNVs).",
+    inputLabels = c("cache","sd","ref","prefix","vcf"),
+    inputDocs = c("input cache","input supplementary annotation directory","input compressed reference sequence path","output file path","input VCF path"),
+    outputLabels = c("out"),
+    outputDocs = c("Clinical grade annotated output"),
+    extensions = list(
+        author = "rworkflow team",
+        date = "09-08-24",
+        url = "https://illumina.github.io/NirvanaDocumentation/",
+        example = paste()
+    )
+)

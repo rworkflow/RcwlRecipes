@@ -8,3 +8,20 @@ oncokb_FusionAnnotator <- cwlProcess(baseCommand = c("python", "/opt/FusionAnnot
                                      requirements = list(req1),
                                      inputs = InputParamList(p1, p2, p3, p4),
                                      outputs = OutputParamList(o1))
+
+
+oncokb_FusionAnnotator <- addMeta(
+    oncokb_FusionAnnotator,
+    label = "oncokb_FusionAnnotator",
+    doc = "Annotate gene fusions identified in cancer samples with relevant clinical information from OncoKB.",
+    inputLabels = c("input","output","clinic","token"),
+    inputDocs = c("input Fusion file","output Fusion file","input clinical file","oncokb api bear token"),
+    outputLabels = c("ofile"),
+    outputDocs = c("Output annotaated file"),
+    extensions = list(
+        author = "rworkflow team",
+        date = "09-08-24",
+        url = "https://github.com/oncokb/oncokb-annotator",
+        example = paste()
+    )
+)

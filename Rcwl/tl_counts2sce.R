@@ -11,3 +11,20 @@ o1 <- OutputParam(id = "outsce", type = "File", glob = "*.rds")
 counts2sce <- cwlProcess(baseCommand = counts2sce,
                          inputs = InputParamList(p1),
                          outputs = OutputParamList(o1))
+
+
+counts2sce <- addMeta(
+    counts2sce,
+    label = "counts2sce",
+    doc = "reads in 10x Genomics single-cell RNA-seq data, processes it into a SingleCellExperiment (SCE) object,",
+    inputLabels = c("dirname"),
+    inputDocs = c("directory containing the output files from a 10x Genomics pipeline"),
+    outputLabels = c("outsce"),
+    outputDocs = c("SCE object outputted"),
+    extensions = list(
+        author = "rworkflow team",
+        date = "09-08-24",
+        url = "NA",
+        example = paste()
+    )
+)

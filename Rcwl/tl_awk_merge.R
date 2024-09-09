@@ -7,3 +7,20 @@ awk_merge <- cwlProcess(baseCommand = "awk",
                       inputs = InputParamList(p1, p2),
                       outputs = OutputParamList(o1),
                       stdout = "$(inputs.outfile)")
+
+
+awk_merge <- addMeta(
+    awk_merge,
+    label = "awk_merge",
+    doc = "Takes multiple input files and merges them into a single output file",
+    inputLabels = c("files","outfile"),
+    inputDocs = c("Array of files to be merged","Name of the merged output file"),
+    outputLabels = c("out"),
+    outputDocs = c("Merged output file"),
+    extensions = list(
+        author = "rworkflow team",
+        date = "09-08-24",
+        url = "NA",
+        example = paste()
+    )
+)

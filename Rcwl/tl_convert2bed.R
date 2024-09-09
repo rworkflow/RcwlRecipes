@@ -11,3 +11,20 @@ convert2bed <- cwlProcess(baseCommand = "convert2bed",
                           outputs = OutputParamList(o1),
                           stdin = "$(inputs.infile.path)",
                           stdout = "$(inputs.outbed)")
+
+
+convert2bed <- addMeta(
+    convert2bed,
+    label = "convert2bed",
+    doc = "Convert BAM, GFF, GTF, GVF, PSL, RepeatMasker (OUT), SAM, VCF and WIG genomic formats to BED or BEDOPS Starch (compressed BED)",
+    inputLabels = c("infmt","infile","outbed"),
+    inputDocs = c("Genomic format of input file (required)","Input file","Name of the output file"),
+    outputLabels = c("outBed"),
+    outputDocs = c("Converted bed file"),
+    extensions = list(
+        author = "rworkflow team",
+        date = "09-08-24",
+        url = "NA",
+        example = paste()
+    )
+)

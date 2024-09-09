@@ -19,3 +19,20 @@ deepvariant <- cwlProcess(baseCommand = "/opt/deepvariant/bin/run_deepvariant",
                           requirements = list(req1),
                           inputs = InputParamList(p1, p2, p3, p4, p5, p6, p7, p8),
                           outputs = OutputParamList(o1, o2, o3, o4))
+
+
+deepvariant <- addMeta(
+    deepvariant,
+    label = "deepvariant",
+    doc = "DeepVariant is a deep learning-based variant caller that takes aligned reads (in BAM or CRAM format), produces pileup image tensors from them, classifies each tensor using a convolutional neural network, and finally reports the results in a standard VCF or gVCF file.",
+    inputLabels = c("bam","model","ref","regions","outVcf","outGVcf","intermediate","cores"),
+    inputDocs = c("Required. Aligned, sorted, indexed BAM file containing the reads we want to call. Should be aligned to a reference genome compatible with --ref.","Required. Type of model to use for variant calling. Set this flag to use the default model associated with each type, and it will set necessary flags corresponding to each model. If you want to use a customized model, add --customized_model flag in addition to this flag.","Required. Genome reference to use. Must have an associated FAI index as well. Supports text or gzipped references. Should match the reference used to align the BAM file provided to --reads.","Optional. Space-separated list of regions we want to process. Elements can be region literals (e.g., chr20:10-20) or paths to BED/BEDPE files.","Required. Path where we should write VCF file.","Optional. Path where we should write gVCF file.","Optional. If specified, this should be an existing directory that is visible insider docker, and will be used to to store intermediate outputs.","Optional. Number of shards for make_examples step. (default: '1') (an integer)"),
+    outputLabels = c("vcf","gvcf","report","intdir"),
+    outputDocs = c("Vcf output file","gVcf output file","run-time information and performance metrics","Intermediate files"),
+    extensions = list(
+        author = "rworkflow team",
+        date = "09-08-24",
+        url = "https://github.com/google/deepvariant",
+        example = paste()
+    )
+)

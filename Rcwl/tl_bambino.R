@@ -9,3 +9,20 @@ bambino <- cwlProcess(baseCommand = "/opt/run.sh",
                       requirements = list(req1),
                       inputs = InputParamList(p1, p2, p3, p4),
                       outputs = OutputParamList(o1))
+
+
+bambino <- addMeta(
+    bambino,
+    label = "bambino",
+    doc = "NA",
+    inputLabels = c("dbam","gbam","out","ref"),
+    inputDocs = c("NA","NA","NA","NA"),
+    outputLabels = c("vout"),
+    outputDocs = c("NA"),
+    extensions = list(
+        author = "rworkflow team",
+        date = "09-08-24",
+        url = "NA",
+        example = paste()
+    )
+)

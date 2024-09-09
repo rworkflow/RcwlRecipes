@@ -9,3 +9,20 @@ msisensor_pro_msi <- cwlProcess(baseCommand = c("msisensor-pro", "msi"),
                                 requirements = list(r1),
                                 inputs = InputParamList(p1, p2, p3, p4),
                                 outputs = OutputParamList(o1))
+
+
+msisensor_pro_msi <- addMeta(
+    msisensor_pro_msi,
+    label = "msisensor_pro_msi",
+    doc = "MSIsensor-pro evaluates Microsatellite Instability (MSI) for cancer patients with next generation sequencing data.",
+    inputLabels = c("site","nbam","tbam","outprefix"),
+    inputDocs = c("homopolymers and microsatellites file","normal bam file with index","tumor bam file with index","output prefix"),
+    outputLabels = c("outs"),
+    outputDocs = c("Output files"),
+    extensions = list(
+        author = "rworkflow team",
+        date = "09-08-24",
+        url = "https://github.com/xjtu-omics/msisensor-pro",
+        example = paste()
+    )
+)

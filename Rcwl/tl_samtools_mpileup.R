@@ -11,3 +11,20 @@ samtools_mpileup <- cwlProcess(baseCommand = c("samtools", "mpileup"),
                              inputs = InputParamList(p1, p2, p3),
                              outputs = OutputParamList(o1),
                              stdout = "$(inputs.bam.nameroot).pileup")
+
+
+samtools_mpileup <- addMeta(
+    samtools_mpileup,
+    label = "samtools_mpileup",
+    doc = "Create a pileup format output that provides detailed information on the bases aligned to each reference position across multiple samples.",
+    inputLabels = c("bam","ref","region"),
+    inputDocs = c("Input bam file","faidx indexed reference sequence file","skip unlisted positions (chr pos) or regions (BED)"),
+    outputLabels = c("pileup"),
+    outputDocs = c("Pileup output"),
+    extensions = list(
+        author = "rworkflow team",
+        date = "09-08-24",
+        url = "https://github.com/samtools/samtools",
+        example = paste()
+    )
+)

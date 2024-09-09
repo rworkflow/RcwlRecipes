@@ -18,3 +18,20 @@ salmon_quant <- cwlProcess(baseCommand = c("salmon", "quant"),
                                           "--validateMappings"),
                          inputs = InputParamList(p1, p2, p3, p4, p5), 
                          outputs = OutputParamList(o1))
+
+
+salmon_quant <- addMeta(
+    salmon_quant,
+    label = "salmon_quant",
+    doc = "Perform dual-phase, selective-alignment-based estimation of transcript abundance from RNA-seq reads",
+    inputLabels = c("threadN","ref","fq1","fq2","outPrefix"),
+    inputDocs = c("The number of threads to use concurrently.","salmon index","File containing the #1 mates","File containing the #2 mates","Output quantification directory."),
+    outputLabels = c("out1"),
+    outputDocs = c("Quantification file"),
+    extensions = list(
+        author = "rworkflow team",
+        date = "09-08-24",
+        url = "https://github.com/COMBINE-lab/salmon",
+        example = paste()
+    )
+)

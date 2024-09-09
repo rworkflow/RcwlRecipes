@@ -13,3 +13,20 @@ fastqdump <- cwlProcess(baseCommand = "fastq-dump",
                         requirements = list(req1, req2),
                         inputs = InputParamList(p1, p2, p3, p4),
                         outputs = OutputParamList(o1))
+
+
+fastqdump <- addMeta(
+    fastqdump,
+    label = "fastqdump",
+    doc = "tool for downloading sequencing reads from NCBI’s Sequence Read Archive (SRA). These sequence reads will be downloaded as FASTQ files.",
+    inputLabels = c("acc","split","guid","gzip"),
+    inputDocs = c("Accession Id","3-way splitting for mate-pairs. For each spot, if there are two biological reads satisfying filter conditions, the first is placed in the `*_1.fastq` file, and the second is placed in the `*_2.fastq` file. If there is only one biological read satisfying the filter conditions, it is placed in the `*.fastq` file.All otherreads in the spot are ignored.","Path to download file","Compress output using gzip: deprecated, not recommended"),
+    outputLabels = c("fqs"),
+    outputDocs = c("Downloaded fastq file"),
+    extensions = list(
+        author = "rworkflow team",
+        date = "09-08-24",
+        url = "https://github.com/ncbi/sra-tools",
+        example = paste()
+    )
+)

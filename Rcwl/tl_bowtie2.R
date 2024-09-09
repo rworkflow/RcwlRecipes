@@ -24,3 +24,20 @@ bowtie2 <- cwlProcess(baseCommand = "bowtie2",
                     arguments = list("-S", "output.sam"),
                     inputs = InputParamList(p1, p2, p3, p4),
                     outputs = OutputParamList(o1))
+
+
+bowtie2 <- addMeta(
+    bowtie2,
+    label = "bowtie2",
+    doc = "Bowtie 2 is an ultrafast and memory-efficient tool for aligning sequencing reads to long reference sequences.",
+    inputLabels = c("threadN","IndexPrefix","fq1","fq2"),
+    inputDocs = c("number of alignment threads to launch (1)","Index filename prefix (minus trailing .X.bt2).","Files with #1 mates, paired with files in <m2>.","Files with #2 mates, paired with files in <m1>."),
+    outputLabels = c("sam"),
+    outputDocs = c("Aligned Sam file"),
+    extensions = list(
+        author = "rworkflow team",
+        date = "09-08-24",
+        url = "https://github.com/BenLangmead/bowtie2",
+        example = paste()
+    )
+)

@@ -19,3 +19,20 @@ gridss <- cwlProcess(baseCommand = "gridss",
                      requirements = list(req1, req2),
                      inputs = InputParamList(p1, p2, p3, p4, p5, p6, p7),
                      outputs = OutputParamList(o1, o2))
+
+
+gridss <- addMeta(
+    gridss,
+    label = "gridss",
+    doc = "GRIDSS is a module software suite containing tools useful for the detection of genomic rearrangements.",
+    inputLabels = c("bam","ref","vcf","assembly","threads","gridss","steps"),
+    inputDocs = c("Input bam file","reference genome to use.","output VCF.","location of the GRIDSS assembly BAM. This file will be created by GRIDSS.","number of threads to use. (Default: 8)","location of GRIDSS jar","processing steps to run. Defaults to all steps.Multiple steps are specified using comma separators."),
+    outputLabels = c("ovcf","abam"),
+    outputDocs = c("Variant VCF file","Bam file for visualization"),
+    extensions = list(
+        author = "rworkflow team",
+        date = "09-08-24",
+        url = "https://github.com/PapenfussLab/gridss",
+        example = paste()
+    )
+)

@@ -10,3 +10,20 @@ VarScan2_somaticFilter <- cwlProcess(baseCommand = c("java", "-jar",
                                     requirements = list(req1),
                                     inputs = InputParamList(p1, p2, p3),
                                     outputs = OutputParamList(o1))
+
+
+VarScan2_somaticFilter <- addMeta(
+    VarScan2_somaticFilter,
+    label = "VarScan2_somaticFilter",
+    doc = "toolkit designed to apply additional filters to the somatic variant calls identified by VarScan2 somatic.",
+    inputLabels = c("vcf","indel","outvcf"),
+    inputDocs = c("Input Somantic VCF file","File of indels for filtering nearby SNPs","Optional output file for filtered variants"),
+    outputLabels = c("outVcf"),
+    outputDocs = c("FIltered vfc file"),
+    extensions = list(
+        author = "rworkflow team",
+        date = "09-08-24",
+        url = "http://varscan.sourceforge.net",
+        example = paste()
+    )
+)

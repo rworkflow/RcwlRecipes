@@ -8,3 +8,20 @@ sortBam <- cwlProcess(baseCommand = c("samtools", "sort"),
                     inputs = InputParamList(p1),
                     outputs = OutputParamList(o1),
                     stdout = "$(inputs.bam.nameroot).sorted.bam")
+
+
+sortBam <- addMeta(
+    sortBam,
+    label = "sortBam",
+    doc = "Sort alignments by leftmost coordinates, by read name when -n or -N are used, by tag contents with -t, or a minimiser-based collation order with -M.",
+    inputLabels = c("bam"),
+    inputDocs = c("Input bam file"),
+    outputLabels = c("sbam"),
+    outputDocs = c("Soerted bam file"),
+    extensions = list(
+        author = "rworkflow team",
+        date = "09-08-24",
+        url = "https://github.com/samtools/samtools",
+        example = paste()
+    )
+)

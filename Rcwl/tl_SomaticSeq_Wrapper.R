@@ -34,3 +34,20 @@ SomaticSeq_Wrapper <- cwlProcess(baseCommand = "/opt/somaticseq/SomaticSeq.Wrapp
                                inputs = InputParamList(p1, p2, p3, p4, p5, p6, p7, p8,
                                                        p9, p10, p11, p12, p13, p14, p15),
                                outputs = OutputParamList(o1, o2, o3, o4))
+
+
+SomaticSeq_Wrapper <- addMeta(
+    SomaticSeq_Wrapper,
+    label = "SomaticSeq_Wrapper",
+    doc = "Simplify the execution and management of the SomaticSeq pipeline by handling the various steps involved in somatic mutation detection.",
+    inputLabels = c("ref","tbam","nbam","mutect2","varscanSnv","varscanIndel","sniper","vardict","muse","strelkaSnv","strelkaIndel","lofreqSnv","lofreqIndel","region","dbsnp"),
+    inputDocs = c("Reference file","Tumar bam file","Matched Normal bam file","Mutec2 file","Varscan snv file","Varscan indel file","Integration of the SomaticSniper tool into the SomaticSeq workflow","Integration of the VarDict tool into the SomaticSeq workflow","Integration of the MuSE tool into the SomaticSeq workflow","Strelka snv file","Strelka indel file","Lofreq SNV file","Lofreq Indel file","Region to include","Known variant information from dbSNP"),
+    outputLabels = c("conSNV","conINDEL","EnsSNV","EnsINDEL"),
+    outputDocs = c("Consensus sSNV output","Consensus sIndel output","Ensemble sSNV output","Ensemble sIndel output"),
+    extensions = list(
+        author = "rworkflow team",
+        date = "09-08-24",
+        url = "https://github.com/bioinform/somaticseq",
+        example = paste()
+    )
+)

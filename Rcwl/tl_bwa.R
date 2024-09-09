@@ -13,3 +13,20 @@ bwa <- cwlProcess(baseCommand = c("bwa", "mem"),
                 inputs = InputParamList(p1, p2, p3, p4, p5),
                 outputs = OutputParamList(o1),
                 stdout = "bwaOutput.sam")
+
+
+bwa <- addMeta(
+    bwa,
+    label = "bwa",
+    doc = "BWA is a software package for mapping DNA sequences against a large reference genome, such as the human genome.",
+    inputLabels = c("threads","RG","Ref","FQ1","FQ2"),
+    inputDocs = c("number of threads [1]","read group header line such as '@RG\tID:foo\tSM:bar' [null]","Reference file","Paired fastq file 1","Paired fastq file 2"),
+    outputLabels = c("sam"),
+    outputDocs = c("Aligned sam File"),
+    extensions = list(
+        author = "rworkflow team",
+        date = "09-08-24",
+        url = "https://github.com/lh3/bwa",
+        example = paste()
+    )
+)

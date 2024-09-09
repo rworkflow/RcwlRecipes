@@ -31,3 +31,20 @@ strelka <- cwlProcess(baseCommand = "configureStrelkaSomaticWorkflow.py",
                         list(valueFrom = "local", position = 9L)),
                     inputs = InputParamList(p1, p2, p3, p4, p5, p6),
                     outputs = OutputParamList(o1, o2))
+
+
+strelka <- addMeta(
+    strelka,
+    label = "strelka",
+    doc = "This script configures Strelka somatic small variant calling.You must specify an alignment file (BAM or CRAM) for each sample of a matched tumor-normal pair.",
+    inputLabels = c("tbam","nbam","ref","callRegions","indelCandidates","exome"),
+    inputDocs = c("Tumor sample BAM or CRAM file. [required] (no default)","Normal sample BAM or CRAM file. (no default)","samtools-indexed reference fasta file [required]","Optionally provide a bgzip-compressed/tabix-indexed BED file containing the set of regions to call.","Specify a VCF of candidate indel alleles.","Set options for exome or other targeted input: note in particular that this flag turns off high-depth filters"),
+    outputLabels = c("snvs","indels"),
+    outputDocs = c("SNV file","Indel file"),
+    extensions = list(
+        author = "rworkflow team",
+        date = "09-08-24",
+        url = "https://github.com/Illumina/strelka",
+        example = paste()
+    )
+)

@@ -17,3 +17,20 @@ COMPSRA <- cwlProcess(cwlVersion = "v1.2",
                       inputs = InputParamList(p1, p2, p3, p4),
                       outputs = OutputParamList(o1))
 
+
+
+COMPSRA <- addMeta(
+    COMPSRA,
+    label = "COMPSRA",
+    doc = "A tool for identifying and quantifying small RNAs from small RNA sequencing data.",
+    inputLabels = c("fq","adapt","ref","DB"),
+    inputDocs = c("Annotation files for small RNAs,such as GFF3.","Remove adapters.","The version of reference genome","Database reference used"),
+    outputLabels = c("outdir"),
+    outputDocs = c("The directory of the output"),
+    extensions = list(
+        author = "rworkflow team",
+        date = "09-08-24",
+        url = "https://github.com/cougarlj/COMPSRA",
+        example = paste()
+    )
+)

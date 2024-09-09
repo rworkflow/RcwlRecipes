@@ -12,3 +12,20 @@ GenotypeGVCFs <- cwlProcess(baseCommand = c("gatk", "GenotypeGVCFs"),
                           requirements = list(req1),
                           inputs = InputParamList(p1, p2, p3),
                           outputs = OutputParamList(o1))
+
+
+GenotypeGVCFs <- addMeta(
+    GenotypeGVCFs,
+    label = "GenotypeGVCFs",
+    doc = "Perform joint genotyping on a single-sample GVCF from HaplotypeCaller or a multi-sample GVCF from CombineGVCFs or GenomicsDBImport",
+    inputLabels = c("variant","ref","vout"),
+    inputDocs = c("A VCF file containing variants Required.","Reference sequence file Required.","File to which variants should be written Required."),
+    outputLabels = c("vcf"),
+    outputDocs = c("A final VCF in which all samples have been jointly genotyped."),
+    extensions = list(
+        author = "rworkflow team",
+        date = "09-08-24",
+        url = "https://github.com/broadinstitute/gatk",
+        example = paste()
+    )
+)

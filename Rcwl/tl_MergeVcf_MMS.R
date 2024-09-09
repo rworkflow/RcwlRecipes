@@ -34,3 +34,20 @@ MergeVcf_MMS <- cwlProcess(baseCommand = mergeVcf3,
                            requirements = list(req1),
                            inputs = InputParamList(i1, i2, i3, i4, i5, i6, i7),
                            outputs = OutputParamList(o1))
+
+
+MergeVcf_MMS <- addMeta(
+    MergeVcf_MMS,
+    label = "MergeVcf_MMS",
+    doc = "Merge somatic vcfs from Mutect2, MuSE, Strelka2",
+    inputLabels = c("mutect","muse","strelka_s","strelka_i","id_t","id_n","outvcf"),
+    inputDocs = c("Mutect file","Muse file","Strelka SNV file","Strelka Indel file","Tumor ID","Normal ID","Output vcf file name"),
+    outputLabels = c("ovcf"),
+    outputDocs = c("Merged vcf file"),
+    extensions = list(
+        author = "rworkflow team",
+        date = "09-08-24",
+        url = "NA",
+        example = paste()
+    )
+)

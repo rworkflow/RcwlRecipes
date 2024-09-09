@@ -7,3 +7,20 @@ Nirvana_download <- cwlProcess(baseCommand = c("dotnet", "/opt/nirvana/Downloade
                                requirements = list(req1),
                                inputs = InputParamList(p1),
                                outputs = OutputParamList(o1))
+
+
+Nirvana_download <- addMeta(
+    Nirvana_download,
+    label = "Nirvana_download",
+    doc = "Download the necessary reference data files and annotation databases required by Nirvana to perform variant annotation.",
+    inputLabels = c("genome"),
+    inputDocs = c("genome assembly version"),
+    outputLabels = c("data"),
+    outputDocs = c("Downloaded output file"),
+    extensions = list(
+        author = "rworkflow team",
+        date = "09-08-24",
+        url = "https://illumina.github.io/NirvanaDocumentation/",
+        example = paste()
+    )
+)

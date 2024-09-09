@@ -18,3 +18,20 @@ makeblastdb <- cwlProcess(baseCommand = c("makeblastdb"),
                       arguments = list("-dbtype", "nucl"), 
                       inputs = InputParamList(p1), 
                       outputs = OutputParamList(o1))
+
+
+makeblastdb <- addMeta(
+    makeblastdb,
+    label = "makeblastdb",
+    doc = "Produces BLAST databases from FASTA files",
+    inputLabels = c("Ref"),
+    inputDocs = c("Input sequence file"),
+    outputLabels = c("idx"),
+    outputDocs = c("blast db"),
+    extensions = list(
+        author = "rworkflow team",
+        date = "09-08-24",
+        url = "https://github.com/ncbi/blast_plus",
+        example = paste()
+    )
+)

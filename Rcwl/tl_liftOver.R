@@ -10,3 +10,20 @@ liftOver <- cwlProcess(baseCommand = "liftOver",
                      requirements = list(req1),
                      inputs = InputParamList(p1, p2, p3, p4),
                      outputs = OutputParamList(o1, o2))
+
+
+liftOver <- addMeta(
+    liftOver,
+    label = "liftOver",
+    doc = "Lift over variants, positions, or intervals from one reference genome to another.",
+    inputLabels = c("oldFile","chain","newFile","unmap"),
+    inputDocs = c("Input file","chain file liftOver to perform the conversion between genome assemblies","New liftover file","Output file"),
+    outputLabels = c("outFile","unMap"),
+    outputDocs = c("Liftoverred file","file listing regions that could not be converted"),
+    extensions = list(
+        author = "rworkflow team",
+        date = "09-08-24",
+        url = "https://github.com/ENCODE-DCC/kentUtils",
+        example = paste()
+    )
+)

@@ -13,3 +13,20 @@ GetPileupSummaries <- cwlProcess(baseCommand = c("gatk", "GetPileupSummaries"),
                                  requirements = list(req1, req2),
                                  inputs = InputParamList(p1, p2, p3, p4),
                                  outputs = OutputParamList(o1))
+
+
+GetPileupSummaries <- addMeta(
+    GetPileupSummaries,
+    label = "GetPileupSummaries",
+    doc = "Tabulates pileup metrics for inferring contamination",
+    inputLabels = c("bam","vcf","interval","pileup"),
+    inputDocs = c("BAM/SAM/CRAM file containing reads This argument must be specified at least once. Required.","A VCF file containing variants and allele frequencies Required.","One or more genomic intervals over which to operate This argument must be specified at least once. Required.","The output table Required."),
+    outputLabels = c("pout"),
+    outputDocs = c("Output table"),
+    extensions = list(
+        author = "rworkflow team",
+        date = "09-08-24",
+        url = "https://github.com/broadinstitute/gatk",
+        example = paste()
+    )
+)

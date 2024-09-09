@@ -21,3 +21,20 @@ PoN <- cwlProcess(baseCommand = c("gatk", "CreateSomaticPanelOfNormals"),
                   arguments = list("--min-sample-count", "1", "-V"),
                   inputs = InputParamList(p1, p2, p3, p4),
                   outputs = OutputParamList(o1))
+
+
+PoN <- addMeta(
+    PoN,
+    label = "PoN",
+    doc = "Create a panel of normals (PoN) containing germline and artifactual sites for use with Mutect2.",
+    inputLabels = c("db","Ref","pon","gresource"),
+    inputDocs = c("URI used to reference a GenomicsDB instance in GATK workflows.","Reference sequence Default value: null.","Output vcf Required.","Population vcf of germline sequencing containing allele fractions. Default value: null."),
+    outputLabels = c("pout"),
+    outputDocs = c("Panel of normal output"),
+    extensions = list(
+        author = "rworkflow team",
+        date = "09-08-24",
+        url = "https://github.com/broadinstitute/gatk",
+        example = paste()
+    )
+)

@@ -19,3 +19,20 @@ jabba <- cwlProcess(baseCommand = "jba",
                     requirements = list(req1, req2, req3),
                     inputs = InputParamList(p1, p2, p3, p4, p5),
                     outputs = OutputParamList(o1, o2, o3, o4))
+
+
+jabba <- addMeta(
+    jabba,
+    label = "jabba",
+    doc = "JaBbA builds a genome graph based on junctions and read depth from whole genome sequencing, inferring optimal copy numbers for both vertices (DNA segments) and edges (bonds between segments). It can be used for discovering various patterns of structural variations.",
+    inputLabels = c("junction","coverage","gurobi","slack","license"),
+    inputDocs = c("BND style vcf, bedpe, rds of GrangesList",".wig, .bw, .bedgraph, .bed., .rds of a granges, or .tsv .csv /.txt file that is coercible to a GRanges use --field=FIELD argument so specify which column to use if specific meta field of a multi-column table","use gurobi optimizer instead of CPLEX?","Slack penalty to apply per loose end","license"),
+    outputLabels = c("gg","plot","seg","report"),
+    outputDocs = c("The out put genome graph with integer copy numbers.","plot illustrates the distribution of the raw segmental mean of the coverage signal, with red dashed vertical lines indicating the grid of integer copy number states","SEG format file of the final segmental copy numbers, compatible with IGV/ABSOLUTE/GISTIC and many more.","This file contains an R data.table object of the convergence statistics of all the sub-problems (identified by 'cl' column)."),
+    extensions = list(
+        author = "rworkflow team",
+        date = "09-08-24",
+        url = "https://github.com/mskilab-org/JaBbA",
+        example = paste()
+    )
+)

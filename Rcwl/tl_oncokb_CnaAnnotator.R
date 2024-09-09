@@ -9,3 +9,20 @@ oncokb_CnaAnnotator <- cwlProcess(
     requirements = list(req1),
     inputs = InputParamList(p1, p2, p3, p4),
     outputs = OutputParamList(o1))
+
+
+oncokb_CnaAnnotator <- addMeta(
+    oncokb_CnaAnnotator,
+    label = "oncokb_CnaAnnotator",
+    doc = "Annotate CNAs (such as gene amplifications or deletions) detected in cancer samples with information from the OncoKB knowledge base.",
+    inputLabels = c("input","output","clinic","token"),
+    inputDocs = c("Input CNS file","Output CNA file","Input Clinical file","oncokb_api_bear_token"),
+    outputLabels = c("ofile"),
+    outputDocs = c("Annotated output file"),
+    extensions = list(
+        author = "rworkflow team",
+        date = "09-08-24",
+        url = "https://github.com/oncokb/oncokb-annotator",
+        example = paste()
+    )
+)

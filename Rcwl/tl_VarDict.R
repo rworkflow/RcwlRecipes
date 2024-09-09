@@ -35,3 +35,20 @@ VarDict <- cwlProcess(baseCommand = c("vardict-java"),
                     inputs = InputParamList(p1, p2, p3, p4, p5, p6, p7),
                     outputs = OutputParamList(o1),
                     stdout = "$(inputs.vcf)")
+
+
+VarDict <- addMeta(
+    VarDict,
+    label = "VarDict",
+    doc = "VarDict is a variant calling program for SNV, MNV, indels (<50 bp), and complex variants. It accepts any BAM format, either from DNA-seq or RNA-seq.",
+    inputLabels = c("tbam","nbam","ref","region","af","vcf","threads"),
+    inputDocs = c("Tumor bam file","Normal bam file","The reference fasta.","The region of interest.","The minimum allele frequency threshold for reporting variants.","The name of the VCF (Variant Call Format) file that will contain the output variants detected by VarDict.","The number of CPU threads to use for parallel processing."),
+    outputLabels = c("outVcf"),
+    outputDocs = c("Output vcf file"),
+    extensions = list(
+        author = "rworkflow team",
+        date = "09-08-24",
+        url = "https://github.com/AstraZeneca-NGS/VarDictJava",
+        example = paste()
+    )
+)

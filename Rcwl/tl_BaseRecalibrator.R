@@ -17,3 +17,20 @@ BaseRecalibrator <- cwlProcess(cwlVersion = "v1.0",
                                requirements = list(req1, req2),
                                inputs = InputParamList(p1, p2, p3, p4),
                                outputs = OutputParamList(o1))
+
+
+BaseRecalibrator <- addMeta(
+    BaseRecalibrator,
+    label = "BaseRecalibrator",
+    doc = "First pass of the Base Quality Score Recalibration (BQSR) -- Generates recalibration table based on various user-specified covariates",
+    inputLabels = c("bam","ref","knowSites","recal"),
+    inputDocs = c("BAM/SAM/CRAM file containing reads This argument must be specified at least once.(Required)","Reference sequence file (Required)","One or more databases of known polymorphic sites used to exclude regions around known polymorphisms from analysis. This argument must be specified at least once.(Required)","The output recalibration table file to create (Required)"),
+    outputLabels = c("rtable"),
+    outputDocs = c("recalibration table"),
+    extensions = list(
+        author = "rworkflow team",
+        date = "09-08-24",
+        url = "https://github.com/broadinstitute/gatk",
+        example = paste()
+    )
+)

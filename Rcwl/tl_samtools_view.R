@@ -19,3 +19,20 @@ samtools_view <- cwlProcess(cwlVersion="v1.2",
                             inputs = InputParamList(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10),
                             outputs = OutputParamList(o1))
 
+
+
+samtools_view <- addMeta(
+    samtools_view,
+    label = "samtools_view",
+    doc = "Enable flexible data manipulation for alignment files",
+    inputLabels = c("bam","bed","obam","region","outb","exFlag","reqFlag","qname","threads","mapq"),
+    inputDocs = c("Input bam file","Only output alignments overlapping the input BED FILE [null].","Output to FILE [stdout].","Region specifications after the input filename to restrict output to only those alignments","Output in the BAM format.","Do not output alignments with any bits set in FLAG present in the FLAG field. FLAG can be specified in hex by beginning with `0x' (i.e. /^0x[0-9A-F]+/), in octal by beginning with `0' (i.e. /^0[0-7]+/), as a decimal number not beginning with '0' or as a comma-separated list of flag names.","Only output alignments with all bits set in FLAG present in the FLAG field. FLAG can be specified in hex by beginning with `0x' (i.e. /^0x[0-9A-F]+/), in octal by beginning with `0' (i.e. /^0[0-7]+/), as a decimal number not beginning with '0' or as a comma-separated list of flag names.","Output only alignments with read names listed in FILE. If FILE starts with ^ then the operation is negated and only outputs alignment with read groups not listed in FILE. It is not permissible to mix both the filter-in and filter-out style syntax in the same command.","Number of BAM compression threads to use in addition to main thread [0].","Skip alignments with MAPQ smaller than INT [0]."),
+    outputLabels = c("oBam"),
+    outputDocs = c("Output bam file"),
+    extensions = list(
+        author = "rworkflow team",
+        date = "09-08-24",
+        url = "https://github.com/samtools/samtools",
+        example = paste()
+    )
+)

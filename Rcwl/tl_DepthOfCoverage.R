@@ -18,3 +18,20 @@ DepthOfCoverage <- cwlProcess(baseCommand = c("java", "-jar", "/usr/GenomeAnalys
                             arguments = list("-omitBaseOutput"),
                             inputs = InputParamList(p1, p2, p3, p4, p5),
                             outputs = OutputParamList(o1))
+
+
+DepthOfCoverage <- addMeta(
+    DepthOfCoverage,
+    label = "DepthOfCoverage",
+    doc = "This tool processes a set of bam files to determine coverage at different levels of partitioning and aggregation",
+    inputLabels = c("bam","prefix","region","ref","ct"),
+    inputDocs = c("Input file containing sequence data (BAM or CRAM)","An output file created by the walker. Will overwrite contents if file exists","One or more genomic intervals over which to operate","Reference sequence file","Coverage threshold (in percent) for summarizing statistics"),
+    outputLabels = c("out"),
+    outputDocs = c("Tables pertaining to different coverage summaries."),
+    extensions = list(
+        author = "rworkflow team",
+        date = "09-08-24",
+        url = "https://github.com/broadinstitute/gatk",
+        example = paste()
+    )
+)

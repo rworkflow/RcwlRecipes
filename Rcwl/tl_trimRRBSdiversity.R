@@ -11,3 +11,20 @@ trimRRBSdiversity <- cwlProcess(baseCommand = c("python",
                                 requirements = list(req1, req2),
                                 inputs = InputParamList(p1, p2),
                                 outputs = OutputParamList(o1, o2))
+
+
+trimRRBSdiversity <- addMeta(
+    trimRRBSdiversity,
+    label = "trimRRBSdiversity",
+    doc = "Given a set of paired end read files, performs the trimming for RRBS with diversity adapters. Make sure the pattern names are in quotations.",
+    inputLabels = c("fq1","fq2"),
+    inputDocs = c("pattern for forward read files","pattern for reverse read files"),
+    outputLabels = c("FQ1","FQ2"),
+    outputDocs = c("Trimmed forward read file","Trimmed reverse read file"),
+    extensions = list(
+        author = "rworkflow team",
+        date = "09-08-24",
+        url = "NA",
+        example = paste()
+    )
+)

@@ -32,3 +32,20 @@ miRMapper <- cwlProcess(baseCommand = "mapper.pl",
                           list(valueFrom = "-m", position = 9L)),
                       inputs = InputParamList(p1, p2, p3, p4, p5, p6, p7),
                       outputs = OutputParamList(o1, o2))
+
+
+miRMapper <- addMeta(
+    miRMapper,
+    label = "miRMapper",
+    doc = "This script takes as input a file with deep sequencing reads (these can be in different formats, see the options below). The script then processes the reads and/or maps them to the reference genome, as designated by the options given.",
+    inputLabels = c("reads","format","adapter","len","genome","preads","arf"),
+    inputDocs = c("Input file","Format of the input file","clip 3' adapter sequence","discard reads shorter than int nts, default = 18","map to genome (must be indexed by bowtie-build). The 'genome' string must be the prefix of the bowtie index. For instance, if the first indexed file is called 'h_sapiens_37_asm.1.ebwt' then the prefix is 'h_sapiens_37_asm'.","print processed reads to this file","print read mappings to this file"),
+    outputLabels = c("pReads","Arf"),
+    outputDocs = c("pRead of miRMapper","Arf file of miRMapper"),
+    extensions = list(
+        author = "rworkflow team",
+        date = "09-08-24",
+        url = "https://github.com/rajewsky-lab/mirdeep2",
+        example = paste()
+    )
+)

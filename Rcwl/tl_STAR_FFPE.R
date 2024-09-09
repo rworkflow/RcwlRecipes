@@ -43,3 +43,20 @@ STAR_FFPE <- cwlProcess(baseCommand = "STAR",
                                          "--twopassMode", "Basic"),
                         inputs = InputParamList(p1, p2, p3, p4, p5),
                         outputs = OutputParamList(o1, o2, o3, o4))
+
+
+STAR_FFPE <- addMeta(
+    STAR_FFPE,
+    label = "STAR_FFPE",
+    doc = "aligner for analyzing RNA sequencing (RNA-seq) data from FFPE (Formalin-Fixed, Paraffin-Embedded) tissue samples.",
+    inputLabels = c("prefix","readFilesIn","genomeDir","sjdbGTFfile","runThreadN"),
+    inputDocs = c("output files name prefix (including full or relative path). Can only be defined on the command line.","paths to files that contain input read1 (and, if needed, read2)","path to the directory where genome files are stored (for –runMode alignReads) or will be generated (for –runMode generateGenome)","path to the GTF file with annotations","number of threads to run STAR"),
+    outputLabels = c("outBAM","outLog","outCount","junction"),
+    outputDocs = c("Aligned Bam file","detailed logs providing statistics and metrics about the alignment process.","reads mapped to each gene","splice junction"),
+    extensions = list(
+        author = "rworkflow team",
+        date = "09-08-24",
+        url = "https://github.com/alexdobin/STAR",
+        example = paste()
+    )
+)

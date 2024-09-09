@@ -21,3 +21,20 @@ bcftools_query <- cwlProcess(baseCommand = c("bcftools", "query"),
                                                      p9, p10, p11, p12, p13, p14, p15),
                              outputs = OutputParamList(o1),
                              stdout = "$(inputs.out)")
+
+
+bcftools_query <- addMeta(
+    bcftools_query,
+    label = "bcftools_query",
+    doc = "Extracts fields from VCF/BCF file and prints them in user-defined format",
+    inputLabels = c("exclude","format","header","include","listSample","region","regionFile","sample","sampleFile","target","targetFile","uTags","vcfList","vcf","out"),
+    inputDocs = c("exclude sites for which the expression is true","define specific columns from the VCF file which will be selected","print header","select sites for which the expression is true","print the list of samples and exit","restrict to comma-separated list of regions","restrict to regions listed in a file","list of samples to include","file of samples to include","similar to -r but streams rather than index-jumps","similar to -R but streams rather than index-jumps","print '.' for undefined tags","process multiple VCFs listed in the file","Input VCF file","name of the Output file"),
+    outputLabels = c("qout"),
+    outputDocs = c("Queried file with extracted information"),
+    extensions = list(
+        author = "rworkflow team",
+        date = "09-08-24",
+        url = "https://github.com/samtools/bcftools",
+        example = paste()
+    )
+)

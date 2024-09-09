@@ -30,3 +30,20 @@ STARsolo <- cwlProcess(baseCommand = "STAR",
                        inputs = InputParamList(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10),
                        outputs = OutputParamList(o1, o2, o3, o4))
 
+
+
+STARsolo <- addMeta(
+    STARsolo,
+    label = "STARsolo",
+    doc = "STARsolo is a turnkey solution for analyzing droplet single cell RNA sequencing data (e.g. 10X Genomics Chromium System) built directly into STAR code.",
+    inputLabels = c("readFilesIn_cdna","readFilesIn_cb","genomeDir","whiteList","soloType","soloUMIlen","soloCellFilter","outSAMattributes","readFilesCommand","runThreadN"),
+    inputDocs = c("paths to files that contain input read1 (and, if needed, read2)","specific input file(s) containing the cell barcodes","specifies path to the genome directory where genome indices where generated","The 10X Chromium whitelist file can be found inside the CellRanger distribution","type of single-cell RNA-seq","UMI length","Which cells are retained in the final output based on criteria","a string of desired SAM attributes, in the order desired for the output SAM",": command line to execute for each of the input file. This command should generate FASTA or FASTQ text and send it to stdout","number of threads to run STAR"),
+    outputLabels = c("outAlign","outLog","SJ","Solo"),
+    outputDocs = c("Alignment file","Detailed metrics on read processing, alignment quality, and filtering results.","Details splice junctions detected","Provides additional metrics related to barcode detection and UMI processing."),
+    extensions = list(
+        author = "rworkflow team",
+        date = "09-08-24",
+        url = "https://github.com/alexdobin/STAR/blob/master/docs/STARsolo.md",
+        example = paste()
+    )
+)

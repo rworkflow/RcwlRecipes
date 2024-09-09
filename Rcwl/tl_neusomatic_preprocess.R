@@ -27,3 +27,20 @@ neusomatic_preprocess <- cwlProcess(baseCommand = c("python",
                                                         position = 10L, shellQuote = FALSE)),
                                   inputs = InputParamList(p1, p2, p3, p4, p5, p6, p7),
                                   outputs = OutputParamList(o1, o2))
+
+
+neusomatic_preprocess <- addMeta(
+    neusomatic_preprocess,
+    label = "neusomatic_preprocess",
+    doc = "Used in the Neusomatic pipeline to prepare input data for deep learning-based somatic mutation detection.",
+    inputLabels = c("tbam","nbam","ref","region","ensemble","mapq","threads"),
+    inputDocs = c("tumor bam","normal bam","reference fasta filename","region bed","Ensemble annotation tsv file (only for short read)","minimum mapping quality","number of threads"),
+    outputLabels = c("candidates","fcandidates"),
+    outputDocs = c("tsv output file","filtered cadidate vcf file"),
+    extensions = list(
+        author = "rworkflow team",
+        date = "09-08-24",
+        url = "https://github.com/bioinform/neusomatic",
+        example = paste()
+    )
+)
